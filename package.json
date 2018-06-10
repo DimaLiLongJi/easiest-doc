@@ -15,5 +15,23 @@
   "bugs": {
     "url": "https://github.com/DimaLiLongJi/easiest-doc/issues"
   },
-  "homepage": "https://github.com/DimaLiLongJi/easiest-doc#readme"
+  "homepage": "https://github.com/DimaLiLongJi/easiest-doc#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "easier-cookie": "^1.0.7",
+    "easiest": "^1.1.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "ejs": "^2.6.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-import-resolver-babel-module": "^4.0.0",
+    "eslint-import-resolver-webpack": "^0.10.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.9.1",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.5",
+    "parcel-bundler": "^1.8.1"
+  }
 }
