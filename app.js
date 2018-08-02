@@ -15,7 +15,7 @@ app.use('/easiest-doc', (req, res, next) => {
   res.render('index.html');
 });
 
-app.listen(1234);
-console.log(`listening port 1234`);
+app.listen(2234);
+console.log(`listening port 2234`);
 
 module.exports = app;
