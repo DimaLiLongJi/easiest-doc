@@ -1,6 +1,6 @@
-import { Component } from 'easiest';
-
 import './style.less';
+
+import { Component } from 'easiest';
 
 export default class RootComponent extends Component {
     constructor() {
@@ -9,9 +9,8 @@ export default class RootComponent extends Component {
 
     public $bootstrap() {
         this.$template = (`
-          <div>
+          <div class="app-container">
             <side-bar></side-bar>
-            下面是子路由<br/>
             <router-render></router-render>
           </div>
         `);

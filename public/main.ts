@@ -1,3 +1,6 @@
+import './styles/reset';
+import './styles/global';
+
 import { Easiest } from 'easiest';
 
 import router from './routes';
@@ -8,3 +11,4 @@ const easiest = new Easiest();
 easiest.$bootstrapModule(RootModule);
 easiest.$use(router);
 easiest.$init();
+console.log('easiest', easiest);
