@@ -1,8 +1,16 @@
 import './style.less';
 
-import { State } from './types';
-
 import { Component } from 'easiest';
+
+import { navs } from '../../constants/nav';
+
+type nav = {
+    name: string;
+    to: string;
+};
+interface State {
+    navs: nav[];
+}
 
 export default class SideBar extends Component<State> {
     public state: State;
@@ -10,12 +18,7 @@ export default class SideBar extends Component<State> {
     constructor() {
         super();
         this.state = {
-            navs: [
-                {
-                    name: '介绍',
-                    to: '/introduction',
-                },
-            ],
+            navs: navs,
         };
     }
 

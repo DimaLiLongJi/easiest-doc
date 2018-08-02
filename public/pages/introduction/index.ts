@@ -4,7 +4,19 @@ import { Component } from 'easiest';
 
 import { content } from '../../constants/introduction';
 
-export default class IntroductionContainer extends Component {
+type info = {
+    [x: string]: any;
+    h1: string;
+    p: string;
+}
+
+interface State {
+    info: info[];
+}
+
+export default class IntroductionContainer extends Component<State> {
+    public state: State;
+
     constructor() {
         super();
         this.state = {

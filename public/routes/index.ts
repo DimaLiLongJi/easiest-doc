@@ -12,6 +12,16 @@ const routes = [
                 path: '/introduction',
                 component: 'introduction-container',
             },
+            {
+                path: '/start',
+                component: 'start-container',
+                children: [
+                    {
+                        path: '/create',
+                        component: 'start-create-container',
+                    },
+                ],
+            },
         ],
     },
 ];
