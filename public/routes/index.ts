@@ -6,6 +6,7 @@ const router = new Router();
 const routes = [
     {
         path: '/',
+        redirectTo: '/introduction',
         component: 'root-component',
         children: [
             {
@@ -13,14 +14,8 @@ const routes = [
                 component: 'introduction-container',
             },
             {
-                path: '/start',
-                component: 'start-container',
-                children: [
-                    {
-                        path: '/create',
-                        component: 'start-create-container',
-                    },
-                ],
+                path: '/architecture',
+                component: 'architecture-container',
             },
         ],
     },

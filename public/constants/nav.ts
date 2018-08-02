@@ -4,13 +4,11 @@ export const navs = [
         to: '/introduction',
     },
     {
-        name: '快速开始',
-        to: '/start',
-        children: [
-            {
-                name: '创建',
-                to: '/create',
-            },
-        ],
+        name: '架构介绍',
+        to: '/architecture',
+    },
+    {
+        name: 'Easiest',
+        to: '/easiest',
     },
 ];

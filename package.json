@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf build && parcel build pubilc/main.ts --no-source-maps -d ./build",
-    "start": "parcel ./index.html -d dist --open",
-    "start-app": "parcel watch ./public/main.ts -d ./build --no-source-maps & nodemon app.js"
+    "start": "parcel watch public/main.ts -d build --no-source-maps & nodemon app.js"
   },
   "repository": {
     "type": "git",

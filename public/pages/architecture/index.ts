@@ -2,33 +2,30 @@ import './style.less';
 
 import { Component } from 'easiest';
 
-type info = {
+import { content } from '../../constants/start';
+
+type content = {
   [x: string]: any;
   h1: string;
-  p: string;
+  code?: string;
 }
 
 interface State {
-  info: info[];
+  info: content[];
 }
 
-export default class IntroductionContainer extends Component<State> {
+export default class ArchitectureContainer extends Component<State> {
   public state: State;
 
   constructor() {
-      super();
-      this.state = {
-          info: [
-            {
-              h1: '架构概览',
-              p: 'fuck',
-            },
-          ],
-      }
+    super();
+    this.state = {
+      info: content,
+    }
   }
 
   public $bootstrap() {
-      this.$template = (`
+    this.$template = (`
         <div class="page-container">
           <div class="info-content" es-repeat="let info in this.state.info">
               <h1>{{info.h1}}</h1>

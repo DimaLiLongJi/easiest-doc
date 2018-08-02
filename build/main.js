@@ -703,17 +703,14 @@ var easiest_1 = require("easiest");
 var router = new easiest_1.Router();
 var routes = [{
     path: '/',
+    redirectTo: '/introduction',
     component: 'root-component',
     children: [{
         path: '/introduction',
         component: 'introduction-container'
     }, {
-        path: '/start',
-        component: 'start-container',
-        children: [{
-            path: '/create',
-            component: 'start-create-container'
-        }]
+        path: '/architecture',
+        component: 'architecture-container'
     }]
 }];
 router.$setRootPath('/easiest-doc');
@@ -722,19 +719,17 @@ router.$routeChange = function (old, next) {
     console.log('$routeChange', old, next);
 };
 exports.default = router;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9yb3V0ZXMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxtQ0FBaUM7QUFFakMsSUFBTSxNQUFNLEdBQUcsSUFBSSxnQkFBTSxFQUFFLENBQUM7QUFHNUIsSUFBTSxNQUFNLEdBQUc7SUFDWDtRQUNJLElBQUksRUFBRSxHQUFHO1FBQ1QsU0FBUyxFQUFFLGdCQUFnQjtRQUMzQixRQUFRLEVBQUU7WUFDTjtnQkFDSSxJQUFJLEVBQUUsZUFBZTtnQkFDckIsU0FBUyxFQUFFLHdCQUF3QjthQUN0QztZQUNEO2dCQUNJLElBQUksRUFBRSxRQUFRO2dCQUNkLFNBQVMsRUFBRSxpQkFBaUI7Z0JBQzVCLFFBQVEsRUFBRTtvQkFDTjt3QkFDSSxJQUFJLEVBQUUsU0FBUzt3QkFDZixTQUFTLEVBQUUsd0JBQXdCO3FCQUN0QztpQkFDSjthQUNKO1NBQ0o7S0FDSjtDQUNKLENBQUM7QUFDRixNQUFNLENBQUMsWUFBWSxDQUFDLGNBQWMsQ0FBQyxDQUFDO0FBQ3BDLE1BQU0sQ0FBQyxLQUFLLENBQUMsTUFBTSxDQUFDLENBQUM7QUFDckIsTUFBTSxDQUFDLFlBQVksR0FBRyxVQUFVLEdBQVcsRUFBRSxJQUFZO0lBQ3JELE9BQU8sQ0FBQyxHQUFHLENBQUMsY0FBYyxFQUFFLEdBQUcsRUFBRSxJQUFJLENBQUMsQ0FBQztBQUMzQyxDQUFDLENBQUM7QUFFRixrQkFBZSxNQUFNLENBQUMifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9yb3V0ZXMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxtQ0FBaUM7QUFFakMsSUFBTSxNQUFNLEdBQUcsSUFBSSxnQkFBTSxFQUFFLENBQUM7QUFHNUIsSUFBTSxNQUFNLEdBQUc7SUFDWDtRQUNJLElBQUksRUFBRSxHQUFHO1FBQ1QsVUFBVSxFQUFFLGVBQWU7UUFDM0IsU0FBUyxFQUFFLGdCQUFnQjtRQUMzQixRQUFRLEVBQUU7WUFDTjtnQkFDSSxJQUFJLEVBQUUsZUFBZTtnQkFDckIsU0FBUyxFQUFFLHdCQUF3QjthQUN0QztZQUNEO2dCQUNJLElBQUksRUFBRSxlQUFlO2dCQUNyQixTQUFTLEVBQUUsd0JBQXdCO2FBQ3RDO1NBQ0o7S0FDSjtDQUNKLENBQUM7QUFDRixNQUFNLENBQUMsWUFBWSxDQUFDLGNBQWMsQ0FBQyxDQUFDO0FBQ3BDLE1BQU0sQ0FBQyxLQUFLLENBQUMsTUFBTSxDQUFDLENBQUM7QUFDckIsTUFBTSxDQUFDLFlBQVksR0FBRyxVQUFVLEdBQVcsRUFBRSxJQUFZO0lBQ3JELE9BQU8sQ0FBQyxHQUFHLENBQUMsY0FBYyxFQUFFLEdBQUcsRUFBRSxJQUFJLENBQUMsQ0FBQztBQUMzQyxDQUFDLENBQUM7QUFFRixrQkFBZSxNQUFNLENBQUMifQ==
 },{"easiest":"../node_modules/easiest/build/index.js"}],"pages/introduction/style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"constants/introduction.js":[function(require,module,exports) {
-'use strict';
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"constants/introduction.ts":[function(require,module,exports) {
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var content = exports.content = [{
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.content = [{
     h1: '什么是Easiest',
     p: 'Easiest 是一个开发平台。它能帮你更轻松的构建 Web。Easiest 集声明式模板、依赖注入和一些实践于一身，为您解决开发方面的各种挑战。'
 }, {
@@ -750,6 +745,7 @@ var content = exports.content = [{
     h1: '反馈',
     p: '你也可以和我们一起做贡献！你可以到 什么是Easiest 在 Github 上的仓库中提出文档方面的问题，并创建Pull Requests。'
 }];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW50cm9kdWN0aW9uLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vY29uc3RhbnRzL2ludHJvZHVjdGlvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsT0FBTyxHQUFHO0lBQ25CO1FBQ0ksRUFBRSxFQUFFLFlBQVk7UUFDaEIsQ0FBQyxFQUFFLDJFQUEyRTtLQUNqRjtJQUNEO1FBQ0ksRUFBRSxFQUFFLE1BQU07UUFDVixDQUFDLEVBQUUsMEdBQTBHO0tBQ2hIO0lBQ0Q7UUFDSSxFQUFFLEVBQUUsT0FBTztRQUNYLENBQUMsRUFBRSwySEFBMkg7S0FDakk7SUFDRDtRQUNJLEVBQUUsRUFBRSxNQUFNO1FBQ1YsQ0FBQyxFQUFFLDJIQUEySDtLQUNqSTtJQUNEO1FBQ0ksRUFBRSxFQUFFLElBQUk7UUFDUixDQUFDLEVBQUUsd0VBQXdFO0tBQzlFO0NBQ0osQ0FBQyJ9
 },{}],"pages/introduction/index.ts":[function(require,module,exports) {
 "use strict";
 
@@ -789,7 +785,7 @@ var IntroductionContainer = /** @class */function (_super) {
 }(easiest_1.Component);
 exports.default = IntroductionContainer;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9pbnRyb2R1Y3Rpb24vaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7O0FBQUEsd0JBQXNCO0FBRXRCLG1DQUFvQztBQUVwQyw2REFBdUQ7QUFZdkQ7SUFBbUQseUNBQWdCO0lBRy9EO1FBQUEsWUFDSSxpQkFBTyxTQUlWO1FBSEcsS0FBSSxDQUFDLEtBQUssR0FBRztZQUNULElBQUksRUFBRSxzQkFBTztTQUNoQixDQUFBOztJQUNMLENBQUM7SUFFTSwwQ0FBVSxHQUFqQjtRQUNJLElBQUksQ0FBQyxTQUFTLEdBQUcsQ0FBQyx5UEFPakIsQ0FBQyxDQUFDO0lBQ1AsQ0FBQztJQUNMLDRCQUFDO0FBQUQsQ0FBQyxBQXBCRCxDQUFtRCxtQkFBUyxHQW9CM0QifQ==
-},{"./style.less":"pages/introduction/style.less","easiest":"../node_modules/easiest/build/index.js","../../constants/introduction":"constants/introduction.js"}],"modules/introduction.ts":[function(require,module,exports) {
+},{"./style.less":"pages/introduction/style.less","easiest":"../node_modules/easiest/build/index.js","../../constants/introduction":"constants/introduction.ts"}],"modules/introduction.ts":[function(require,module,exports) {
 "use strict";
 
 var __extends = this && this.__extends || function () {
@@ -829,7 +825,112 @@ var IntroductionModule = /** @class */function (_super) {
 }(easiest_1.EsModule);
 exports.default = IntroductionModule;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW50cm9kdWN0aW9uLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vbW9kdWxlcy9pbnRyb2R1Y3Rpb24udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsbUNBQW1DO0FBRW5DLHVFQUEwRDtBQUUxRDtJQUFnRCxzQ0FBUTtJQUNwRDtlQUNJLGlCQUFPO0lBQ1gsQ0FBQztJQUVNLDBDQUFhLEdBQXBCO1FBQ0ksSUFBSSxDQUFDLFdBQVcsR0FBRztZQUNmLHdCQUF3QixFQUFFLHNCQUFxQjtTQUNsRCxDQUFDO1FBQ0YsSUFBSSxDQUFDLFFBQVEsR0FBRztZQUNaLHdCQUF3QjtTQUMzQixDQUFDO0lBQ04sQ0FBQztJQUNMLHlCQUFDO0FBQUQsQ0FBQyxBQWJELENBQWdELGtCQUFRLEdBYXZEIn0=
-},{"easiest":"../node_modules/easiest/build/index.js","../pages/introduction":"pages/introduction/index.ts"}],"components/root-component/style.less":[function(require,module,exports) {
+},{"easiest":"../node_modules/easiest/build/index.js","../pages/introduction":"pages/introduction/index.ts"}],"pages/architecture/style.less":[function(require,module,exports) {
+
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"constants/start.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.content = [{
+    h1: '架构概览',
+    p: 'Easiest 的基本构造块是 EsModule，它为组件提供了编译的上下文环境。 EsModule 会把相关的代码收集到一些功能集中。Easiest 应用就是由一组 EsModule 定义出的。 应用至少会有一个用于引导应用的根模块，通常还会有很多特性模块。 Component 作为页面元素的基本单位，由定义的 EsModule 统一提供给编译器或路由使用。Route 被委托管理页面渲染，根据访问的url的不同来获取不用的识图渲染。'
+}, {
+    h1: 'EsModule',
+    p: 'EsModule 作为整个应用的基本构造块，可以从其他 EsModule 引入或是导出 Component , 也可以导入 Service 为全局使用或是本模块。'
+}, {
+    h1: 'Component',
+    p: '组件控制屏幕上被称为视图的一小片区域。为识图提供交互和渲染模板'
+}, {
+    h1: 'Service',
+    p: '服务是一个广义的概念，它包括应用所需的任何值、函数或特性。狭义的服务是一个明确定义了用途的类。它应该做一些具体的事，并做好。 Easiest 把组件和服务区分开，以提高模块性和复用性。'
+}, {
+    h1: 'Route',
+    p: '浏览器具有熟悉的导航模式，在地址栏输入 URL，浏览器就会导航到相应的页面。 Easiest 的 Router（即“路由器”）借鉴了这个模型。它把浏览器中的 URL 看做一个操作指南， 据此导航到一个由客户端生成的视图，并可以把参数传给支撑视图的相应组件，帮它决定具体该展现哪些内容。'
+}];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RhcnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb25zdGFudHMvc3RhcnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBYSxRQUFBLE9BQU8sR0FBRztJQUNyQjtRQUNFLEVBQUUsRUFBRSxNQUFNO1FBQ1YsQ0FBQyxFQUFFLDZOQUE2TjtLQUNqTztJQUNEO1FBQ0UsRUFBRSxFQUFFLFVBQVU7UUFDZCxDQUFDLEVBQUUsbUZBQW1GO0tBQ3ZGO0lBQ0Q7UUFDRSxFQUFFLEVBQUUsV0FBVztRQUNmLENBQUMsRUFBRSxpQ0FBaUM7S0FDckM7SUFDRDtRQUNFLEVBQUUsRUFBRSxTQUFTO1FBQ2IsQ0FBQyxFQUFFLDhGQUE4RjtLQUNsRztJQUNEO1FBQ0UsRUFBRSxFQUFFLE9BQU87UUFDWCxDQUFDLEVBQUUsZ0pBQWdKO0tBQ3BKO0NBQ0YsQ0FBQyJ9
+},{}],"pages/architecture/index.ts":[function(require,module,exports) {
+"use strict";
+
+var __extends = this && this.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+require("./style.less");
+var easiest_1 = require("easiest");
+var start_1 = require("../../constants/start");
+var ArchitectureContainer = /** @class */function (_super) {
+    __extends(ArchitectureContainer, _super);
+    function ArchitectureContainer() {
+        var _this = _super.call(this) || this;
+        _this.state = {
+            info: start_1.content
+        };
+        return _this;
+    }
+    ArchitectureContainer.prototype.$bootstrap = function () {
+        this.$template = "\n        <div class=\"page-container\">\n          <div class=\"info-content\" es-repeat=\"let info in this.state.info\">\n              <h1>{{info.h1}}</h1>\n              <p>{{info.p}}</p>\n          </div>\n        </div>\n      ";
+    };
+    return ArchitectureContainer;
+}(easiest_1.Component);
+exports.default = ArchitectureContainer;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9hcmNoaXRlY3R1cmUvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7O0FBQUEsd0JBQXNCO0FBRXRCLG1DQUFvQztBQUVwQywrQ0FBZ0Q7QUFZaEQ7SUFBbUQseUNBQWdCO0lBR2pFO1FBQUEsWUFDRSxpQkFBTyxTQUlSO1FBSEMsS0FBSSxDQUFDLEtBQUssR0FBRztZQUNYLElBQUksRUFBRSxlQUFPO1NBQ2QsQ0FBQTs7SUFDSCxDQUFDO0lBRU0sMENBQVUsR0FBakI7UUFDRSxJQUFJLENBQUMsU0FBUyxHQUFHLENBQUMsMk9BT2YsQ0FBQyxDQUFDO0lBQ1AsQ0FBQztJQUNILDRCQUFDO0FBQUQsQ0FBQyxBQXBCRCxDQUFtRCxtQkFBUyxHQW9CM0QifQ==
+},{"./style.less":"pages/architecture/style.less","easiest":"../node_modules/easiest/build/index.js","../../constants/start":"constants/start.ts"}],"modules/architecture.ts":[function(require,module,exports) {
+"use strict";
+
+var __extends = this && this.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+var __importDefault = this && this.__importDefault || function (mod) {
+    return mod && mod.__esModule ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var easiest_1 = require("easiest");
+var architecture_1 = __importDefault(require("../pages/architecture"));
+var ArchitectureModule = /** @class */function (_super) {
+    __extends(ArchitectureModule, _super);
+    function ArchitectureModule() {
+        return _super.call(this) || this;
+    }
+    ArchitectureModule.prototype.$declarations = function () {
+        this.$components = {
+            'architecture-container': architecture_1.default
+        };
+        this.$exports = ['architecture-container'];
+    };
+    return ArchitectureModule;
+}(easiest_1.EsModule);
+exports.default = ArchitectureModule;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXJjaGl0ZWN0dXJlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vbW9kdWxlcy9hcmNoaXRlY3R1cmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsbUNBQW1DO0FBRW5DLHVFQUEwRDtBQUUxRDtJQUFnRCxzQ0FBUTtJQUNwRDtlQUNJLGlCQUFPO0lBQ1gsQ0FBQztJQUVNLDBDQUFhLEdBQXBCO1FBQ0ksSUFBSSxDQUFDLFdBQVcsR0FBRztZQUNmLHdCQUF3QixFQUFFLHNCQUFxQjtTQUNsRCxDQUFDO1FBQ0YsSUFBSSxDQUFDLFFBQVEsR0FBRztZQUNaLHdCQUF3QjtTQUMzQixDQUFDO0lBQ04sQ0FBQztJQUNMLHlCQUFDO0FBQUQsQ0FBQyxBQWJELENBQWdELGtCQUFRLEdBYXZEIn0=
+},{"easiest":"../node_modules/easiest/build/index.js","../pages/architecture":"pages/architecture/index.ts"}],"components/root-component/style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
@@ -878,23 +979,21 @@ exports.default = RootComponent;
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"constants/nav.js":[function(require,module,exports) {
-'use strict';
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"constants/nav.ts":[function(require,module,exports) {
+"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var navs = exports.navs = [{
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.navs = [{
     name: '介绍',
     to: '/introduction'
 }, {
-    name: '文档',
-    to: '/docs',
-    children: [{
-        name: '文档',
-        to: '/docs'
-    }]
+    name: '架构介绍',
+    to: '/architecture'
+}, {
+    name: 'Easiest',
+    to: '/easiest'
 }];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmF2LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vY29uc3RhbnRzL25hdi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsSUFBSSxHQUFHO0lBQ2hCO1FBQ0ksSUFBSSxFQUFFLElBQUk7UUFDVixFQUFFLEVBQUUsZUFBZTtLQUN0QjtJQUNEO1FBQ0ksSUFBSSxFQUFFLE1BQU07UUFDWixFQUFFLEVBQUUsZUFBZTtLQUN0QjtJQUNEO1FBQ0ksSUFBSSxFQUFFLFNBQVM7UUFDZixFQUFFLEVBQUUsVUFBVTtLQUNqQjtDQUNKLENBQUMifQ==
 },{}],"components/side-bars/index.ts":[function(require,module,exports) {
 "use strict";
 
@@ -946,7 +1045,7 @@ var SideBar = /** @class */function (_super) {
 }(easiest_1.Component);
 exports.default = SideBar;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb21wb25lbnRzL3NpZGUtYmFycy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7QUFBQSx3QkFBc0I7QUFFdEIsbUNBQW9DO0FBRXBDLDJDQUEyQztBQVUzQztJQUFxQywyQkFBZ0I7SUFHakQ7UUFBQSxZQUNJLGlCQUFPLFNBSVY7UUFIRyxLQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1QsSUFBSSxFQUFFLFVBQUk7U0FDYixDQUFDOztJQUNOLENBQUM7SUFFTSw0QkFBVSxHQUFqQjtRQUNJLElBQUksQ0FBQyxTQUFTLEdBQUcsQ0FBQyxzTUFJakIsQ0FBQyxDQUFDO0lBQ1AsQ0FBQztJQUVNLHlCQUFPLEdBQWQ7UUFDSSxPQUFPLENBQUMsR0FBRyxDQUFDLFNBQVMsRUFBRSxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUM7SUFDdkMsQ0FBQztJQUVNLHNCQUFJLEdBQVgsVUFBWSxFQUFVO1FBQ2xCLE9BQU8sQ0FBQyxHQUFHLENBQUMsSUFBSSxFQUFFLEVBQUUsQ0FBQyxDQUFDO1FBQ3RCLElBQUksQ0FBQyxTQUFTLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxDQUFDO1FBQ3RCLElBQUksQ0FBQyxTQUFTLENBQUMsS0FBSyxFQUFFLENBQUM7SUFDM0IsQ0FBQztJQUVNLDZCQUFXLEdBQWxCLFVBQW1CLE9BQWUsRUFBRSxPQUFlO1FBQy9DLE9BQU8sQ0FBQyxHQUFHLENBQUMsb0JBQW9CLEVBQUUsT0FBTyxDQUFDLENBQUM7UUFDM0MsT0FBTyxDQUFDLEdBQUcsQ0FBQyxvQkFBb0IsRUFBRSxPQUFPLENBQUMsQ0FBQztJQUMvQyxDQUFDO0lBQ0wsY0FBQztBQUFELENBQUMsQUFoQ0QsQ0FBcUMsbUJBQVMsR0FnQzdDIn0=
-},{"./style.less":"components/side-bars/style.less","easiest":"../node_modules/easiest/build/index.js","../../constants/nav":"constants/nav.js"}],"modules/index.ts":[function(require,module,exports) {
+},{"./style.less":"components/side-bars/style.less","easiest":"../node_modules/easiest/build/index.js","../../constants/nav":"constants/nav.ts"}],"modules/index.ts":[function(require,module,exports) {
 "use strict";
 
 var __extends = this && this.__extends || function () {
@@ -971,6 +1070,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var easiest_1 = require("easiest");
 var introduction_1 = __importDefault(require("./introduction"));
+var architecture_1 = __importDefault(require("./architecture"));
 var root_component_1 = __importDefault(require("../components/root-component"));
 var side_bars_1 = __importDefault(require("../components/side-bars"));
 var RootModule = /** @class */function (_super) {
@@ -979,7 +1079,7 @@ var RootModule = /** @class */function (_super) {
         return _super.call(this) || this;
     }
     RootModule.prototype.$declarations = function () {
-        this.$imports = [introduction_1.default];
+        this.$imports = [introduction_1.default, architecture_1.default];
         this.$components = {
             'side-bar': side_bars_1.default,
             'root-component': root_component_1.default
@@ -989,8 +1089,8 @@ var RootModule = /** @class */function (_super) {
     return RootModule;
 }(easiest_1.EsModule);
 exports.default = RootModule;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9tb2R1bGVzL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7OztBQUFBLG1DQUFtQztBQUVuQyxnRUFBaUQ7QUFFakQsZ0ZBQXlEO0FBQ3pELHNFQUE4QztBQUU5QztJQUF3Qyw4QkFBUTtJQUM1QztlQUNFLGlCQUFPO0lBQ1QsQ0FBQztJQUVNLGtDQUFhLEdBQXBCO1FBQ0UsSUFBSSxDQUFDLFFBQVEsR0FBRztZQUNkLHNCQUFrQjtTQUNuQixDQUFDO1FBQ0YsSUFBSSxDQUFDLFdBQVcsR0FBRztZQUNqQixVQUFVLEVBQUUsbUJBQU87WUFDbkIsZ0JBQWdCLEVBQUUsd0JBQWE7U0FDaEMsQ0FBQztRQUNGLElBQUksQ0FBQyxVQUFVLEdBQUcsRUFDakIsQ0FBQztJQUNKLENBQUM7SUFDSCxpQkFBQztBQUFELENBQUMsQUFoQkgsQ0FBd0Msa0JBQVEsR0FnQjdDIn0=
-},{"easiest":"../node_modules/easiest/build/index.js","./introduction":"modules/introduction.ts","../components/root-component":"components/root-component/index.ts","../components/side-bars":"components/side-bars/index.ts"}],"main.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9tb2R1bGVzL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7OztBQUFBLG1DQUFtQztBQUVuQyxnRUFBaUQ7QUFDakQsZ0VBQWlEO0FBRWpELGdGQUF5RDtBQUN6RCxzRUFBOEM7QUFFOUM7SUFBd0MsOEJBQVE7SUFDNUM7ZUFDRSxpQkFBTztJQUNULENBQUM7SUFFTSxrQ0FBYSxHQUFwQjtRQUNFLElBQUksQ0FBQyxRQUFRLEdBQUc7WUFDZCxzQkFBa0I7WUFDbEIsc0JBQWtCO1NBQ25CLENBQUM7UUFDRixJQUFJLENBQUMsV0FBVyxHQUFHO1lBQ2pCLFVBQVUsRUFBRSxtQkFBTztZQUNuQixnQkFBZ0IsRUFBRSx3QkFBYTtTQUNoQyxDQUFDO1FBQ0YsSUFBSSxDQUFDLFVBQVUsR0FBRyxFQUNqQixDQUFDO0lBQ0osQ0FBQztJQUNILGlCQUFDO0FBQUQsQ0FBQyxBQWpCSCxDQUF3QyxrQkFBUSxHQWlCN0MifQ==
+},{"easiest":"../node_modules/easiest/build/index.js","./introduction":"modules/introduction.ts","./architecture":"modules/architecture.ts","../components/root-component":"components/root-component/index.ts","../components/side-bars":"components/side-bars/index.ts"}],"main.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -1037,7 +1137,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50882' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56109' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

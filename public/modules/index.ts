@@ -1,6 +1,7 @@
 import { EsModule } from 'easiest';
 
 import  IntroductionModule from './introduction';
+import  ArchitectureModule from './architecture';
 
 import RootComponent from '../components/root-component';
 import SideBar from '../components/side-bars';
@@ -13,6 +14,7 @@ export default class RootModule extends EsModule {
     public $declarations(): void {
       this.$imports = [
         IntroductionModule,
+        ArchitectureModule,
       ];
       this.$components = {
         'side-bar': SideBar,
