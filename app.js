@@ -9,7 +9,7 @@ app.set('view engine', 'html');
 
 // 静态文件
 app.set('views', './');
-app.use(express.static('./build'));
+app.use(express.static('./'));
 
 app.use('/easiest-doc', (req, res, next) => {
   res.render('index.html');
