@@ -711,6 +711,14 @@ var routes = [{
     }, {
         path: '/architecture',
         component: 'architecture-container'
+    }, {
+        path: '/docs',
+        redirectTo: '/docs/component',
+        component: 'docs-container',
+        children: [{
+            path: '/component',
+            component: 'docs-component-container'
+        }]
     }]
 }];
 router.$setRootPath('/easiest-doc');
@@ -719,7 +727,7 @@ router.$routeChange = function (old, next) {
     console.log('$routeChange', old, next);
 };
 exports.default = router;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9yb3V0ZXMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxtQ0FBaUM7QUFFakMsSUFBTSxNQUFNLEdBQUcsSUFBSSxnQkFBTSxFQUFFLENBQUM7QUFHNUIsSUFBTSxNQUFNLEdBQUc7SUFDWDtRQUNJLElBQUksRUFBRSxHQUFHO1FBQ1QsVUFBVSxFQUFFLGVBQWU7UUFDM0IsU0FBUyxFQUFFLGdCQUFnQjtRQUMzQixRQUFRLEVBQUU7WUFDTjtnQkFDSSxJQUFJLEVBQUUsZUFBZTtnQkFDckIsU0FBUyxFQUFFLHdCQUF3QjthQUN0QztZQUNEO2dCQUNJLElBQUksRUFBRSxlQUFlO2dCQUNyQixTQUFTLEVBQUUsd0JBQXdCO2FBQ3RDO1NBQ0o7S0FDSjtDQUNKLENBQUM7QUFDRixNQUFNLENBQUMsWUFBWSxDQUFDLGNBQWMsQ0FBQyxDQUFDO0FBQ3BDLE1BQU0sQ0FBQyxLQUFLLENBQUMsTUFBTSxDQUFDLENBQUM7QUFDckIsTUFBTSxDQUFDLFlBQVksR0FBRyxVQUFVLEdBQVcsRUFBRSxJQUFZO0lBQ3JELE9BQU8sQ0FBQyxHQUFHLENBQUMsY0FBYyxFQUFFLEdBQUcsRUFBRSxJQUFJLENBQUMsQ0FBQztBQUMzQyxDQUFDLENBQUM7QUFFRixrQkFBZSxNQUFNLENBQUMifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9yb3V0ZXMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxtQ0FBaUM7QUFFakMsSUFBTSxNQUFNLEdBQUcsSUFBSSxnQkFBTSxFQUFFLENBQUM7QUFHNUIsSUFBTSxNQUFNLEdBQUc7SUFDWDtRQUNJLElBQUksRUFBRSxHQUFHO1FBQ1QsVUFBVSxFQUFFLGVBQWU7UUFDM0IsU0FBUyxFQUFFLGdCQUFnQjtRQUMzQixRQUFRLEVBQUU7WUFDTjtnQkFDSSxJQUFJLEVBQUUsZUFBZTtnQkFDckIsU0FBUyxFQUFFLHdCQUF3QjthQUN0QztZQUNEO2dCQUNJLElBQUksRUFBRSxlQUFlO2dCQUNyQixTQUFTLEVBQUUsd0JBQXdCO2FBQ3RDO1lBQ0Q7Z0JBQ0ksSUFBSSxFQUFFLE9BQU87Z0JBQ2IsVUFBVSxFQUFFLGlCQUFpQjtnQkFDN0IsU0FBUyxFQUFFLGdCQUFnQjtnQkFDM0IsUUFBUSxFQUFFO29CQUNOO3dCQUNJLElBQUksRUFBRSxZQUFZO3dCQUNsQixTQUFTLEVBQUUsMEJBQTBCO3FCQUN4QztpQkFDSjthQUNKO1NBQ0o7S0FDSjtDQUNKLENBQUM7QUFDRixNQUFNLENBQUMsWUFBWSxDQUFDLGNBQWMsQ0FBQyxDQUFDO0FBQ3BDLE1BQU0sQ0FBQyxLQUFLLENBQUMsTUFBTSxDQUFDLENBQUM7QUFDckIsTUFBTSxDQUFDLFlBQVksR0FBRyxVQUFVLEdBQVcsRUFBRSxJQUFZO0lBQ3JELE9BQU8sQ0FBQyxHQUFHLENBQUMsY0FBYyxFQUFFLEdBQUcsRUFBRSxJQUFJLENBQUMsQ0FBQztBQUMzQyxDQUFDLENBQUM7QUFFRixrQkFBZSxNQUFNLENBQUMifQ==
 },{"easiest":"../node_modules/easiest/build/index.js"}],"pages/introduction/style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
@@ -774,26 +782,7 @@ var IntroductionContainer = /** @class */function () {
     return IntroductionContainer;
 }();
 exports.default = IntroductionContainer;
-// export default class IntroductionContainer extends Component<State> {
-//     public state: State;
-//     constructor() {
-//         super();
-//         this.state = {
-//             info: content,
-//         }
-//     }
-//     public $bootstrap() {
-//         this.$template = (`
-//           <div class="page-container">
-//             <div class="info-content" es-repeat="let info in this.state.info">
-//                 <h1>{{info.h1}}</h1>
-//                 <p>{{info.p}}</p>
-//             </div>
-//           </div>
-//         `);
-//     }
-// }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9pbnRyb2R1Y3Rpb24vaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBQSx3QkFBc0I7QUFFdEIsbUNBQW9DO0FBRXBDLDZEQUF1RDtBQXdCdkQ7SUFBQTtJQUVBLENBQUM7SUFGb0IscUJBQXFCO1FBYnpDLG1CQUFTLENBQVE7WUFDZCxLQUFLLEVBQUU7Z0JBQ0gsSUFBSSxFQUFFLHNCQUFPO2FBQ2hCO1lBQ0QsUUFBUSxFQUFFLENBQUMsaVBBT1YsQ0FBQztTQUNMLENBQUM7T0FDbUIscUJBQXFCLENBRXpDO0lBQUQsNEJBQUM7Q0FBQSxBQUZELElBRUM7a0JBRm9CLHFCQUFxQjtBQUkxQyx3RUFBd0U7QUFDeEUsMkJBQTJCO0FBRTNCLHNCQUFzQjtBQUN0QixtQkFBbUI7QUFDbkIseUJBQXlCO0FBQ3pCLDZCQUE2QjtBQUM3QixZQUFZO0FBQ1osUUFBUTtBQUVSLDRCQUE0QjtBQUM1Qiw4QkFBOEI7QUFDOUIseUNBQXlDO0FBQ3pDLGlGQUFpRjtBQUNqRix1Q0FBdUM7QUFDdkMsb0NBQW9DO0FBQ3BDLHFCQUFxQjtBQUNyQixtQkFBbUI7QUFDbkIsY0FBYztBQUNkLFFBQVE7QUFDUixJQUFJIn0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9pbnRyb2R1Y3Rpb24vaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBQSx3QkFBc0I7QUFFdEIsbUNBQW9DO0FBRXBDLDZEQUF1RDtBQXdCdkQ7SUFBQTtJQUVBLENBQUM7SUFGb0IscUJBQXFCO1FBYnpDLG1CQUFTLENBQVE7WUFDZCxLQUFLLEVBQUU7Z0JBQ0gsSUFBSSxFQUFFLHNCQUFPO2FBQ2hCO1lBQ0QsUUFBUSxFQUFFLENBQUMsaVBBT1YsQ0FBQztTQUNMLENBQUM7T0FDbUIscUJBQXFCLENBRXpDO0lBQUQsNEJBQUM7Q0FBQSxBQUZELElBRUM7a0JBRm9CLHFCQUFxQiJ9
 },{"./style.less":"pages/introduction/style.less","easiest":"../node_modules/easiest/build/index.js","../../constants/introduction":"constants/introduction.ts"}],"modules/introduction.ts":[function(require,module,exports) {
 "use strict";
 
@@ -813,19 +802,6 @@ var __importDefault = this && this.__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var easiest_1 = require("easiest");
 var introduction_1 = __importDefault(require("../pages/introduction"));
-// export default class IntroductionModule extends EsModule {
-//     constructor() {
-//         super();
-//     }
-//     public $declarations(): void {
-//         this.$components = {
-//             'introduction-container': IntroductionContainer,
-//         };
-//         this.$exports = [
-//             'introduction-container',
-//         ];
-//     }
-// }
 var IntroductionModule = /** @class */function () {
     function IntroductionModule() {}
     IntroductionModule = __decorate([easiest_1.EsModule({
@@ -839,7 +815,7 @@ var IntroductionModule = /** @class */function () {
     return IntroductionModule;
 }();
 exports.default = IntroductionModule;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW50cm9kdWN0aW9uLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vbW9kdWxlcy9pbnRyb2R1Y3Rpb24udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSxtQ0FBbUM7QUFFbkMsdUVBQTBEO0FBRTFELDZEQUE2RDtBQUM3RCxzQkFBc0I7QUFDdEIsbUJBQW1CO0FBQ25CLFFBQVE7QUFFUixxQ0FBcUM7QUFDckMsK0JBQStCO0FBQy9CLCtEQUErRDtBQUMvRCxhQUFhO0FBQ2IsNEJBQTRCO0FBQzVCLHdDQUF3QztBQUN4QyxhQUFhO0FBQ2IsUUFBUTtBQUNSLElBQUk7QUFhSjtJQUFBO0lBQTBDLENBQUM7SUFBdEIsa0JBQWtCO1FBWnRDLGtCQUFRLENBQUM7WUFDTixPQUFPLEVBQUUsRUFDUjtZQUNELFVBQVUsRUFBRTtnQkFDUix3QkFBd0IsRUFBRSxzQkFBcUI7YUFDbEQ7WUFDRCxTQUFTLEVBQUUsRUFDVjtZQUNELE9BQU8sRUFBRTtnQkFDTCx3QkFBd0I7YUFDM0I7U0FDSixDQUFDO09BQ21CLGtCQUFrQixDQUFJO0lBQUQseUJBQUM7Q0FBQSxBQUEzQyxJQUEyQztrQkFBdEIsa0JBQWtCIn0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW50cm9kdWN0aW9uLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vbW9kdWxlcy9pbnRyb2R1Y3Rpb24udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSxtQ0FBbUM7QUFFbkMsdUVBQTBEO0FBYzFEO0lBQUE7SUFBMEMsQ0FBQztJQUF0QixrQkFBa0I7UUFadEMsa0JBQVEsQ0FBQztZQUNOLE9BQU8sRUFBRSxFQUNSO1lBQ0QsVUFBVSxFQUFFO2dCQUNSLHdCQUF3QixFQUFFLHNCQUFxQjthQUNsRDtZQUNELFNBQVMsRUFBRSxFQUNWO1lBQ0QsT0FBTyxFQUFFO2dCQUNMLHdCQUF3QjthQUMzQjtTQUNKLENBQUM7T0FDbUIsa0JBQWtCLENBQUk7SUFBRCx5QkFBQztDQUFBLEFBQTNDLElBQTJDO2tCQUF0QixrQkFBa0IifQ==
 },{"easiest":"../node_modules/easiest/build/index.js","../pages/introduction":"pages/introduction/index.ts"}],"pages/architecture/style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
@@ -894,26 +870,7 @@ var ArchitectureContainer = /** @class */function () {
     return ArchitectureContainer;
 }();
 exports.default = ArchitectureContainer;
-// export default class ArchitectureContainer extends Component<State> {
-//   public state: State;
-//   constructor() {
-//     super();
-//     this.state = {
-//       info: content,
-//     }
-//   }
-//   public $bootstrap() {
-//     this.$template = (`
-//         <div class="page-container">
-//           <div class="info-content" es-repeat="let info in this.state.info">
-//               <h1>{{info.h1}}</h1>
-//               <p>{{info.p}}</p>
-//           </div>
-//         </div>
-//       `);
-//   }
-// }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9hcmNoaXRlY3R1cmUvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBQSx3QkFBc0I7QUFFdEIsbUNBQW9DO0FBRXBDLCtDQUFnRDtBQXdCaEQ7SUFBQTtJQUVBLENBQUM7SUFGb0IscUJBQXFCO1FBYnpDLG1CQUFTLENBQVE7WUFDaEIsS0FBSyxFQUFFO2dCQUNMLElBQUksRUFBRSxlQUFPO2FBQ2Q7WUFDRCxRQUFRLEVBQUUsQ0FBQywrTUFPVixDQUFDO1NBQ0gsQ0FBQztPQUNtQixxQkFBcUIsQ0FFekM7SUFBRCw0QkFBQztDQUFBLEFBRkQsSUFFQztrQkFGb0IscUJBQXFCO0FBSTFDLHdFQUF3RTtBQUN4RSx5QkFBeUI7QUFFekIsb0JBQW9CO0FBQ3BCLGVBQWU7QUFDZixxQkFBcUI7QUFDckIsdUJBQXVCO0FBQ3ZCLFFBQVE7QUFDUixNQUFNO0FBRU4sMEJBQTBCO0FBQzFCLDBCQUEwQjtBQUMxQix1Q0FBdUM7QUFDdkMsK0VBQStFO0FBQy9FLHFDQUFxQztBQUNyQyxrQ0FBa0M7QUFDbEMsbUJBQW1CO0FBQ25CLGlCQUFpQjtBQUNqQixZQUFZO0FBQ1osTUFBTTtBQUNOLElBQUkifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9hcmNoaXRlY3R1cmUvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBQSx3QkFBc0I7QUFFdEIsbUNBQW9DO0FBRXBDLCtDQUFnRDtBQXdCaEQ7SUFBQTtJQUVBLENBQUM7SUFGb0IscUJBQXFCO1FBYnpDLG1CQUFTLENBQVE7WUFDaEIsS0FBSyxFQUFFO2dCQUNMLElBQUksRUFBRSxlQUFPO2FBQ2Q7WUFDRCxRQUFRLEVBQUUsQ0FBQywrTUFPVixDQUFDO1NBQ0gsQ0FBQztPQUNtQixxQkFBcUIsQ0FFekM7SUFBRCw0QkFBQztDQUFBLEFBRkQsSUFFQztrQkFGb0IscUJBQXFCIn0=
 },{"./style.less":"pages/architecture/style.less","easiest":"../node_modules/easiest/build/index.js","../../constants/start":"constants/start.ts"}],"modules/architecture.ts":[function(require,module,exports) {
 "use strict";
 
@@ -933,19 +890,6 @@ var __importDefault = this && this.__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var easiest_1 = require("easiest");
 var architecture_1 = __importDefault(require("../pages/architecture"));
-// export default class ArchitectureModule extends EsModule {
-//     constructor() {
-//         super();
-//     }
-//     public $declarations(): void {
-//         this.$components = {
-//             'architecture-container': ArchitectureContainer,
-//         };
-//         this.$exports = [
-//             'architecture-container',
-//         ];
-//     }
-// }
 var ArchitectureModule = /** @class */function () {
     function ArchitectureModule() {}
     ArchitectureModule = __decorate([easiest_1.EsModule({
@@ -959,8 +903,106 @@ var ArchitectureModule = /** @class */function () {
     return ArchitectureModule;
 }();
 exports.default = ArchitectureModule;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXJjaGl0ZWN0dXJlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vbW9kdWxlcy9hcmNoaXRlY3R1cmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSxtQ0FBbUM7QUFFbkMsdUVBQTBEO0FBRTFELDZEQUE2RDtBQUM3RCxzQkFBc0I7QUFDdEIsbUJBQW1CO0FBQ25CLFFBQVE7QUFFUixxQ0FBcUM7QUFDckMsK0JBQStCO0FBQy9CLCtEQUErRDtBQUMvRCxhQUFhO0FBQ2IsNEJBQTRCO0FBQzVCLHdDQUF3QztBQUN4QyxhQUFhO0FBQ2IsUUFBUTtBQUNSLElBQUk7QUFhSjtJQUFBO0lBQTBDLENBQUM7SUFBdEIsa0JBQWtCO1FBWnRDLGtCQUFRLENBQUM7WUFDTixPQUFPLEVBQUUsRUFDUjtZQUNELFVBQVUsRUFBRTtnQkFDUix3QkFBd0IsRUFBRSxzQkFBcUI7YUFDbEQ7WUFDRCxTQUFTLEVBQUUsRUFDVjtZQUNELE9BQU8sRUFBRTtnQkFDTCx3QkFBd0I7YUFDM0I7U0FDSixDQUFDO09BQ21CLGtCQUFrQixDQUFJO0lBQUQseUJBQUM7Q0FBQSxBQUEzQyxJQUEyQztrQkFBdEIsa0JBQWtCIn0=
-},{"easiest":"../node_modules/easiest/build/index.js","../pages/architecture":"pages/architecture/index.ts"}],"components/root-component/style.less":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXJjaGl0ZWN0dXJlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vbW9kdWxlcy9hcmNoaXRlY3R1cmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSxtQ0FBbUM7QUFFbkMsdUVBQTBEO0FBYzFEO0lBQUE7SUFBMEMsQ0FBQztJQUF0QixrQkFBa0I7UUFadEMsa0JBQVEsQ0FBQztZQUNOLE9BQU8sRUFBRSxFQUNSO1lBQ0QsVUFBVSxFQUFFO2dCQUNSLHdCQUF3QixFQUFFLHNCQUFxQjthQUNsRDtZQUNELFNBQVMsRUFBRSxFQUNWO1lBQ0QsT0FBTyxFQUFFO2dCQUNMLHdCQUF3QjthQUMzQjtTQUNKLENBQUM7T0FDbUIsa0JBQWtCLENBQUk7SUFBRCx5QkFBQztDQUFBLEFBQTNDLElBQTJDO2tCQUF0QixrQkFBa0IifQ==
+},{"easiest":"../node_modules/easiest/build/index.js","../pages/architecture":"pages/architecture/index.ts"}],"pages/docs/style.less":[function(require,module,exports) {
+
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"pages/docs/index.ts":[function(require,module,exports) {
+"use strict";
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    }return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = this && this.__metadata || function (k, v) {
+    if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+require("./style.less");
+var easiest_1 = require("easiest");
+var DocsContainer = /** @class */function () {
+    function DocsContainer() {}
+    DocsContainer = __decorate([easiest_1.Component({
+        template: "\n      <div class=\"page-container\">\n        <router-render></router-render>\n      </div>\n  "
+    }), __metadata("design:paramtypes", [])], DocsContainer);
+    return DocsContainer;
+}();
+exports.default = DocsContainer;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsd0JBQXNCO0FBRXRCLG1DQUFvQztBQVNwQztJQUNFO0lBQWUsQ0FBQztJQURHLGFBQWE7UUFQakMsbUJBQVMsQ0FBTTtZQUNkLFFBQVEsRUFBRSxDQUFDLG1HQUlWLENBQUM7U0FDSCxDQUFDOztPQUNtQixhQUFhLENBRWpDO0lBQUQsb0JBQUM7Q0FBQSxBQUZELElBRUM7a0JBRm9CLGFBQWEifQ==
+},{"./style.less":"pages/docs/style.less","easiest":"../node_modules/easiest/build/index.js"}],"pages/docs/component/style.less":[function(require,module,exports) {
+
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"pages/docs/component/index.ts":[function(require,module,exports) {
+"use strict";
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    }return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+require("./style.less");
+var easiest_1 = require("easiest");
+var DocsComponentContainer = /** @class */function () {
+    function DocsComponentContainer() {}
+    DocsComponentContainer = __decorate([easiest_1.Component({
+        template: "\n    <div class=\"page-container\">\n      DocsComponentContainer\n      <router-render></router-render>\n    </div>\n  "
+    })], DocsComponentContainer);
+    return DocsComponentContainer;
+}();
+exports.default = DocsComponentContainer;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2NvbXBvbmVudC9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBLHdCQUFzQjtBQUV0QixtQ0FBb0M7QUFVcEM7SUFBQTtJQUE2QyxDQUFDO0lBQXpCLHNCQUFzQjtRQVIxQyxtQkFBUyxDQUFNO1lBQ2QsUUFBUSxFQUFFLENBQUMsMkhBS1YsQ0FBQztTQUNILENBQUM7T0FDbUIsc0JBQXNCLENBQUc7SUFBRCw2QkFBQztDQUFBLEFBQTlDLElBQThDO2tCQUF6QixzQkFBc0IifQ==
+},{"./style.less":"pages/docs/component/style.less","easiest":"../node_modules/easiest/build/index.js"}],"modules/docs.ts":[function(require,module,exports) {
+"use strict";
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    }return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = this && this.__importDefault || function (mod) {
+    return mod && mod.__esModule ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var easiest_1 = require("easiest");
+var docs_1 = __importDefault(require("../pages/docs"));
+var component_1 = __importDefault(require("../pages/docs/component"));
+var DocsModule = /** @class */function () {
+    function DocsModule() {}
+    DocsModule = __decorate([easiest_1.EsModule({
+        imports: [],
+        components: {
+            'docs-container': docs_1.default,
+            'docs-component-container': component_1.default
+        },
+        providers: [],
+        exports: ['docs-container', 'docs-component-container']
+    })], DocsModule);
+    return DocsModule;
+}();
+exports.default = DocsModule;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZG9jcy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uL21vZHVsZXMvZG9jcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQUFBLG1DQUFtQztBQUVuQyx1REFBMEM7QUFDMUMsc0VBQTZEO0FBZ0I3RDtJQUFBO0lBQWtDLENBQUM7SUFBZCxVQUFVO1FBZDlCLGtCQUFRLENBQUM7WUFDTixPQUFPLEVBQUUsRUFDUjtZQUNELFVBQVUsRUFBRTtnQkFDUixnQkFBZ0IsRUFBRSxjQUFhO2dCQUMvQiwwQkFBMEIsRUFBRSxtQkFBc0I7YUFDckQ7WUFDRCxTQUFTLEVBQUUsRUFDVjtZQUNELE9BQU8sRUFBRTtnQkFDUCxnQkFBZ0I7Z0JBQ2hCLDBCQUEwQjthQUMzQjtTQUNKLENBQUM7T0FDbUIsVUFBVSxDQUFJO0lBQUQsaUJBQUM7Q0FBQSxBQUFuQyxJQUFtQztrQkFBZCxVQUFVIn0=
+},{"easiest":"../node_modules/easiest/build/index.js","../pages/docs":"pages/docs/index.ts","../pages/docs/component":"pages/docs/component/index.ts"}],"components/root-component/style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
@@ -989,30 +1031,12 @@ var RootComponent = /** @class */function () {
         console.log('newData Component:', newData);
     };
     RootComponent = __decorate([easiest_1.Component({
-        template: "\n        <div class=\"app-container\">\n        <side-bar></side-bar>\n        <router-render></router-render>\n        </div>\n    "
+        template: "\n        <div class=\"app-container\">\n            <side-bar></side-bar>\n            <router-render></router-render>\n        </div>\n    "
     })], RootComponent);
     return RootComponent;
 }();
 exports.default = RootComponent;
-// export default class RootComponent extends Component {
-//     constructor() {
-//         super();
-//     }
-//     public $bootstrap() {
-//         this.$template = (`
-//           <div class="app-container">
-//             <side-bar></side-bar>
-//             <router-render></router-render>
-//           </div>
-//         `);
-//     }
-//     public $onInit() {}
-//     public $watchState(oldData: string, newData: string) {
-//         console.log('oldData Component:', oldData);
-//         console.log('newData Component:', newData);
-//     }
-// }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb21wb25lbnRzL3Jvb3QtY29tcG9uZW50L2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUEsd0JBQXNCO0FBRXRCLG1DQUF3RDtBQVV4RDtJQUFBO0lBT0EsQ0FBQztJQU5VLGdDQUFRLEdBQWYsY0FBb0IsQ0FBQztJQUVkLG9DQUFZLEdBQW5CLFVBQW9CLE9BQWUsRUFBRSxPQUFlO1FBQ2hELE9BQU8sQ0FBQyxHQUFHLENBQUMsb0JBQW9CLEVBQUUsT0FBTyxDQUFDLENBQUM7UUFDM0MsT0FBTyxDQUFDLEdBQUcsQ0FBQyxvQkFBb0IsRUFBRSxPQUFPLENBQUMsQ0FBQztJQUMvQyxDQUFDO0lBTmdCLGFBQWE7UUFSakMsbUJBQVMsQ0FBQztZQUNQLFFBQVEsRUFBRSxDQUFDLHVJQUtWLENBQUM7U0FDTCxDQUFDO09BQ21CLGFBQWEsQ0FPakM7SUFBRCxvQkFBQztDQUFBLEFBUEQsSUFPQztrQkFQb0IsYUFBYTtBQVFsQyx5REFBeUQ7QUFDekQsc0JBQXNCO0FBQ3RCLG1CQUFtQjtBQUNuQixRQUFRO0FBRVIsNEJBQTRCO0FBQzVCLDhCQUE4QjtBQUM5Qix3Q0FBd0M7QUFDeEMsb0NBQW9DO0FBQ3BDLDhDQUE4QztBQUM5QyxtQkFBbUI7QUFDbkIsY0FBYztBQUNkLFFBQVE7QUFFUiwwQkFBMEI7QUFFMUIsNkRBQTZEO0FBQzdELHNEQUFzRDtBQUN0RCxzREFBc0Q7QUFDdEQsUUFBUTtBQUNSLElBQUkifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb21wb25lbnRzL3Jvb3QtY29tcG9uZW50L2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUEsd0JBQXNCO0FBRXRCLG1DQUF3RDtBQVV4RDtJQUFBO0lBT0EsQ0FBQztJQU5VLGdDQUFRLEdBQWYsY0FBb0IsQ0FBQztJQUVkLG9DQUFZLEdBQW5CLFVBQW9CLE9BQWUsRUFBRSxPQUFlO1FBQ2hELE9BQU8sQ0FBQyxHQUFHLENBQUMsb0JBQW9CLEVBQUUsT0FBTyxDQUFDLENBQUM7UUFDM0MsT0FBTyxDQUFDLEdBQUcsQ0FBQyxvQkFBb0IsRUFBRSxPQUFPLENBQUMsQ0FBQztJQUMvQyxDQUFDO0lBTmdCLGFBQWE7UUFSakMsbUJBQVMsQ0FBQztZQUNQLFFBQVEsRUFBRSxDQUFDLCtJQUtWLENBQUM7U0FDTCxDQUFDO09BQ21CLGFBQWEsQ0FPakM7SUFBRCxvQkFBQztDQUFBLEFBUEQsSUFPQztrQkFQb0IsYUFBYSJ9
 },{"./style.less":"components/root-component/style.less","easiest":"../node_modules/easiest/build/index.js"}],"components/side-bars/style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
@@ -1026,13 +1050,17 @@ exports.navs = [{
     name: '介绍',
     to: '/introduction'
 }, {
-    name: '架构介绍',
+    name: '构架',
     to: '/architecture'
 }, {
-    name: 'Easiest',
-    to: '/easiest'
+    name: '文档',
+    to: '/docs/component',
+    child: [{
+        name: '组件',
+        to: '/docs/component'
+    }]
 }];
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmF2LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vY29uc3RhbnRzL25hdi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsSUFBSSxHQUFHO0lBQ2hCO1FBQ0ksSUFBSSxFQUFFLElBQUk7UUFDVixFQUFFLEVBQUUsZUFBZTtLQUN0QjtJQUNEO1FBQ0ksSUFBSSxFQUFFLE1BQU07UUFDWixFQUFFLEVBQUUsZUFBZTtLQUN0QjtJQUNEO1FBQ0ksSUFBSSxFQUFFLFNBQVM7UUFDZixFQUFFLEVBQUUsVUFBVTtLQUNqQjtDQUNKLENBQUMifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmF2LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vY29uc3RhbnRzL25hdi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsSUFBSSxHQUFHO0lBQ2hCO1FBQ0ksSUFBSSxFQUFFLElBQUk7UUFDVixFQUFFLEVBQUUsZUFBZTtLQUN0QjtJQUNEO1FBQ0ksSUFBSSxFQUFFLElBQUk7UUFDVixFQUFFLEVBQUUsZUFBZTtLQUN0QjtJQUNEO1FBQ0ksSUFBSSxFQUFFLElBQUk7UUFDVixFQUFFLEVBQUUsaUJBQWlCO1FBQ3JCLEtBQUssRUFBRTtZQUNIO2dCQUNJLElBQUksRUFBRSxJQUFJO2dCQUNWLEVBQUUsRUFBRSxpQkFBaUI7YUFDeEI7U0FDSjtLQUNKO0NBQ0osQ0FBQyJ9
 },{}],"components/side-bars/index.ts":[function(require,module,exports) {
 "use strict";
 
@@ -1053,10 +1081,9 @@ var nav_1 = require("../../constants/nav");
 var SideBar = /** @class */function () {
     function SideBar() {}
     SideBar.prototype.esOnInit = function () {
-        console.log('props11', this.props);
+        console.log('esOnInit', this.state.navs);
     };
-    SideBar.prototype.goTo = function (to) {
-        console.log('to', to);
+    SideBar.prototype.goTo = function (to, index) {
         this.$setLocation(to);
         this.$getLocation();
     };
@@ -1068,40 +1095,12 @@ var SideBar = /** @class */function () {
         state: {
             navs: nav_1.navs
         },
-        template: "\n        <div class=\"side-bar-container\">\n        <a class=\"nav\" es-repeat=\"let nav in this.state.navs\" es-on:click=\"this.goTo(nav.to)\">{{nav.name}}</a>\n        </div>\n    "
+        template: "\n        <div class=\"side-bar-container\">\n            <div class=\"nav-wrap\" es-class=\"nav.active\" es-repeat=\"let nav in this.state.navs\">\n                <a class=\"nav\" es-on:click=\"this.goTo(nav.to, $index)\">{{nav.name}}</a>\n                <a class=\"nav nav-child\" es-if=\"nav.child\" es-repeat=\"let child in nav.child\" es-on:click=\"this.goTo(child.to)\">{{child.name}}</a>\n            </div>\n        </div>\n    "
     })], SideBar);
     return SideBar;
 }();
 exports.default = SideBar;
-// export default class SideBar extends Component<State> {
-//     public state: State;
-//     constructor() {
-//         super();
-//         this.state = {
-//             navs: navs,
-//         };
-//     }
-//     public $bootstrap() {
-//         this.$template = (`
-//           <div class="side-bar-container">
-//             <a class="nav" es-repeat="let nav in this.state.navs" es-on:click="this.goTo(nav.to)">{{nav.name}}</a>
-//           </div>
-//         `);
-//     }
-//     public $onInit() {
-//         console.log('props11', this.props);
-//     }
-//     public goTo(to: string) {
-//         console.log('to', to);
-//         this.$location.go(to);
-//         this.$location.state();
-//     }
-//     public $watchState(oldData: string, newData: string) {
-//         console.log('oldData Component:', oldData);
-//         console.log('newData Component:', newData);
-//     }
-// }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb21wb25lbnRzL3NpZGUtYmFycy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBLHdCQUFzQjtBQUV0QixtQ0FBd0Q7QUFFeEQsMkNBQTJDO0FBb0IzQztJQUFBO0lBb0JJLENBQUM7SUFkVSwwQkFBUSxHQUFmO1FBQ0ksT0FBTyxDQUFDLEdBQUcsQ0FBQyxTQUFTLEVBQUUsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDO0lBQ3ZDLENBQUM7SUFFTSxzQkFBSSxHQUFYLFVBQVksRUFBVTtRQUNsQixPQUFPLENBQUMsR0FBRyxDQUFDLElBQUksRUFBRSxFQUFFLENBQUMsQ0FBQztRQUN0QixJQUFJLENBQUMsWUFBWSxDQUFDLEVBQUUsQ0FBQyxDQUFDO1FBQ3RCLElBQUksQ0FBQyxZQUFZLEVBQUUsQ0FBQztJQUN4QixDQUFDO0lBRU0sOEJBQVksR0FBbkIsVUFBb0IsT0FBZSxFQUFFLE9BQWU7UUFDaEQsT0FBTyxDQUFDLEdBQUcsQ0FBQyxvQkFBb0IsRUFBRSxPQUFPLENBQUMsQ0FBQztRQUMzQyxPQUFPLENBQUMsR0FBRyxDQUFDLG9CQUFvQixFQUFFLE9BQU8sQ0FBQyxDQUFDO0lBQy9DLENBQUM7SUFuQlksT0FBTztRQVYzQixtQkFBUyxDQUFRO1lBQ2QsS0FBSyxFQUFFO2dCQUNILElBQUksRUFBRSxVQUFJO2FBQ2I7WUFDRCxRQUFRLEVBQUUsQ0FBQywwTEFJVixDQUFDO1NBQ0wsQ0FBQztPQUNtQixPQUFPLENBb0J2QjtJQUFELGNBQUM7Q0FBQSxBQXBCTCxJQW9CSztrQkFwQmdCLE9BQU87QUF1QjVCLDBEQUEwRDtBQUMxRCwyQkFBMkI7QUFFM0Isc0JBQXNCO0FBQ3RCLG1CQUFtQjtBQUNuQix5QkFBeUI7QUFDekIsMEJBQTBCO0FBQzFCLGFBQWE7QUFDYixRQUFRO0FBRVIsNEJBQTRCO0FBQzVCLDhCQUE4QjtBQUM5Qiw2Q0FBNkM7QUFDN0MscUhBQXFIO0FBQ3JILG1CQUFtQjtBQUNuQixjQUFjO0FBQ2QsUUFBUTtBQUVSLHlCQUF5QjtBQUN6Qiw4Q0FBOEM7QUFDOUMsUUFBUTtBQUVSLGdDQUFnQztBQUNoQyxpQ0FBaUM7QUFDakMsaUNBQWlDO0FBQ2pDLGtDQUFrQztBQUNsQyxRQUFRO0FBRVIsNkRBQTZEO0FBQzdELHNEQUFzRDtBQUN0RCxzREFBc0Q7QUFDdEQsUUFBUTtBQUNSLElBQUkifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb21wb25lbnRzL3NpZGUtYmFycy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBLHdCQUFzQjtBQUV0QixtQ0FBd0Q7QUFFeEQsMkNBQTJDO0FBd0IzQztJQUFBO0lBb0JBLENBQUM7SUFiVSwwQkFBUSxHQUFmO1FBQ0ksT0FBTyxDQUFDLEdBQUcsQ0FBQyxVQUFVLEVBQUUsSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsQ0FBQztJQUM3QyxDQUFDO0lBRU0sc0JBQUksR0FBWCxVQUFZLEVBQVUsRUFBRSxLQUFjO1FBQ2xDLElBQUksQ0FBQyxZQUFZLENBQUMsRUFBRSxDQUFDLENBQUM7UUFDdEIsSUFBSSxDQUFDLFlBQVksRUFBRSxDQUFDO0lBQ3hCLENBQUM7SUFFTSw4QkFBWSxHQUFuQixVQUFvQixPQUFlLEVBQUUsT0FBZTtRQUNoRCxPQUFPLENBQUMsR0FBRyxDQUFDLG9CQUFvQixFQUFFLE9BQU8sQ0FBQyxDQUFDO1FBQzNDLE9BQU8sQ0FBQyxHQUFHLENBQUMsb0JBQW9CLEVBQUUsT0FBTyxDQUFDLENBQUM7SUFDL0MsQ0FBQztJQW5CZ0IsT0FBTztRQWIzQixtQkFBUyxDQUFRO1lBQ2QsS0FBSyxFQUFFO2dCQUNILElBQUksRUFBRSxVQUFJO2FBQ2I7WUFDRCxRQUFRLEVBQUUsQ0FBQyx3YkFPVixDQUFDO1NBQ0wsQ0FBQztPQUNtQixPQUFPLENBb0IzQjtJQUFELGNBQUM7Q0FBQSxBQXBCRCxJQW9CQztrQkFwQm9CLE9BQU8ifQ==
 },{"./style.less":"components/side-bars/style.less","easiest":"../node_modules/easiest/build/index.js","../../constants/nav":"constants/nav.ts"}],"modules/index.ts":[function(require,module,exports) {
 "use strict";
 
@@ -1122,29 +1121,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var easiest_1 = require("easiest");
 var introduction_1 = __importDefault(require("./introduction"));
 var architecture_1 = __importDefault(require("./architecture"));
+var docs_1 = __importDefault(require("./docs"));
 var root_component_1 = __importDefault(require("../components/root-component"));
 var side_bars_1 = __importDefault(require("../components/side-bars"));
-// export default class RootModule extends EsModule {
-//     constructor() {
-//       super();
-//     }
-//     public $declarations(): void {
-//       this.$imports = [
-//         IntroductionModule,
-//         ArchitectureModule,
-//       ];
-//       this.$components = {
-//         'side-bar': SideBar,
-//         'root-component': RootComponent,
-//       };
-//       this.$providers = [
-//       ];
-//     }
-//   }
 var RootModule = /** @class */function () {
     function RootModule() {}
     RootModule = __decorate([easiest_1.EsModule({
-        imports: [introduction_1.default, architecture_1.default],
+        imports: [introduction_1.default, architecture_1.default, docs_1.default],
         components: {
             'side-bar': side_bars_1.default,
             'root-component': root_component_1.default
@@ -1154,8 +1137,8 @@ var RootModule = /** @class */function () {
     return RootModule;
 }();
 exports.default = RootModule;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9tb2R1bGVzL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsbUNBQW1DO0FBRW5DLGdFQUFnRDtBQUNoRCxnRUFBZ0Q7QUFFaEQsZ0ZBQXlEO0FBQ3pELHNFQUE4QztBQUU5QyxxREFBcUQ7QUFDckQsc0JBQXNCO0FBQ3RCLGlCQUFpQjtBQUNqQixRQUFRO0FBRVIscUNBQXFDO0FBQ3JDLDBCQUEwQjtBQUMxQiw4QkFBOEI7QUFDOUIsOEJBQThCO0FBQzlCLFdBQVc7QUFDWCw2QkFBNkI7QUFDN0IsK0JBQStCO0FBQy9CLDJDQUEyQztBQUMzQyxXQUFXO0FBQ1gsNEJBQTRCO0FBQzVCLFdBQVc7QUFDWCxRQUFRO0FBQ1IsTUFBTTtBQVlOO0lBQUE7SUFBa0MsQ0FBQztJQUFkLFVBQVU7UUFYOUIsa0JBQVEsQ0FBQztZQUNSLE9BQU8sRUFBRTtnQkFDUCxzQkFBa0I7Z0JBQ2xCLHNCQUFrQjthQUNuQjtZQUNELFVBQVUsRUFBRTtnQkFDVixVQUFVLEVBQUUsbUJBQU87Z0JBQ25CLGdCQUFnQixFQUFFLHdCQUFhO2FBQ2hDO1lBQ0QsU0FBUyxFQUFFLEVBQUU7U0FDZCxDQUFDO09BQ21CLFVBQVUsQ0FBSTtJQUFELGlCQUFDO0NBQUEsQUFBbkMsSUFBbUM7a0JBQWQsVUFBVSJ9
-},{"easiest":"../node_modules/easiest/build/index.js","./introduction":"modules/introduction.ts","./architecture":"modules/architecture.ts","../components/root-component":"components/root-component/index.ts","../components/side-bars":"components/side-bars/index.ts"}],"main.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9tb2R1bGVzL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsbUNBQW1DO0FBRW5DLGdFQUFnRDtBQUNoRCxnRUFBZ0Q7QUFDaEQsZ0RBQWdDO0FBRWhDLGdGQUF5RDtBQUN6RCxzRUFBOEM7QUFjOUM7SUFBQTtJQUFrQyxDQUFDO0lBQWQsVUFBVTtRQVo5QixrQkFBUSxDQUFDO1lBQ1IsT0FBTyxFQUFFO2dCQUNQLHNCQUFrQjtnQkFDbEIsc0JBQWtCO2dCQUNsQixjQUFVO2FBQ1g7WUFDRCxVQUFVLEVBQUU7Z0JBQ1YsVUFBVSxFQUFFLG1CQUFPO2dCQUNuQixnQkFBZ0IsRUFBRSx3QkFBYTthQUNoQztZQUNELFNBQVMsRUFBRSxFQUFFO1NBQ2QsQ0FBQztPQUNtQixVQUFVLENBQUk7SUFBRCxpQkFBQztDQUFBLEFBQW5DLElBQW1DO2tCQUFkLFVBQVUifQ==
+},{"easiest":"../node_modules/easiest/build/index.js","./introduction":"modules/introduction.ts","./architecture":"modules/architecture.ts","./docs":"modules/docs.ts","../components/root-component":"components/root-component/index.ts","../components/side-bars":"components/side-bars/index.ts"}],"main.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -1202,7 +1185,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51761' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '58763' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

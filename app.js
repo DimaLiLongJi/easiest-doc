@@ -12,7 +12,7 @@ app.set('views', './');
 app.use(express.static('./'));
 
 app.use('/easiest-doc', (req, res, next) => {
-  res.render('index.html');
+  res.render('dev.html');
 });
 
 app.listen(2234);

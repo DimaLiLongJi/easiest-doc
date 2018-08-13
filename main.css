@@ -192,6 +192,9 @@ a:hover {
   box-shadow: 6px 0 6px rgba(0, 0, 0, 0.1);
   padding: 20px 0;
 }
+.side-bar-container .nav-wrap {
+  overflow: hidden;
+}
 .side-bar-container .nav {
   font-size: 14px;
   font-weight: 400;
@@ -209,4 +212,8 @@ a:hover {
   text-align: left;
   width: 93%;
   word-wrap: break-word;
+}
+.side-bar-container .nav-child {
+  margin-left: 24px;
+  color: #6e6e6e;
 }

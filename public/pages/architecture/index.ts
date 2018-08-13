@@ -29,25 +29,3 @@ interface State {
 export default class ArchitectureContainer {
   public state: State;
 }
-
-// export default class ArchitectureContainer extends Component<State> {
-//   public state: State;
-
-//   constructor() {
-//     super();
-//     this.state = {
-//       info: content,
-//     }
-//   }
-
-//   public $bootstrap() {
-//     this.$template = (`
-//         <div class="page-container">
-//           <div class="info-content" es-repeat="let info in this.state.info">
-//               <h1>{{info.h1}}</h1>
-//               <p>{{info.p}}</p>
-//           </div>
-//         </div>
-//       `);
-//   }
-// }

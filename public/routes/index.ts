@@ -17,6 +17,17 @@ const routes = [
                 path: '/architecture',
                 component: 'architecture-container',
             },
+            {
+                path: '/docs',
+                redirectTo: '/docs/component',
+                component: 'docs-container',
+                children: [
+                    {
+                        path: '/component',
+                        component: 'docs-component-container',
+                    },
+                ],
+            },
         ],
     },
 ];
