@@ -1,4 +1,5 @@
-import { EsModule } from 'easiest';
+// import { EsModule } from 'easiest';
+import { EsModule } from '../../lib';
 
 import IntroductionModule from './introduction';
 import ArchitectureModule from './architecture';

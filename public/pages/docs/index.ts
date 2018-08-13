@@ -1,6 +1,7 @@
 import './style.less';
 
-import { Component } from 'easiest';
+// import { Component } from 'easiest';
+import { Component } from '../../../lib';
 
 @Component<any>({
   template: (`

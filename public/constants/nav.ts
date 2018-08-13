@@ -9,7 +9,7 @@ export const navs = [
     },
     {
         name: '文档',
-        to: '/docs/component',
+        to: '/docs',
         child: [
             {
                 name: '组件',

@@ -1,7 +1,8 @@
 import './styles/reset';
 import './styles/global';
 
-import { Easiest } from 'easiest';
+// import { Easiest } from 'easiest';
+import { Easiest } from '../lib';
 
 import router from './routes';
 

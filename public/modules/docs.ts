@@ -1,4 +1,5 @@
-import { EsModule } from 'easiest';
+// import { EsModule } from 'easiest';
+import { EsModule } from '../../lib';
 
 import DocsContainer from '../pages/docs';
 import DocsComponentContainer from '../pages/docs/component';

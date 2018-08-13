@@ -1,6 +1,7 @@
 import './style.less';
 
-import { Component, OnInit, WatchState } from 'easiest';
+// import { Component, OnInit, WatchState } from 'easiest';
+import { Component, OnInit, WatchState } from '../../../lib';
 
 import { navs } from '../../constants/nav';
 
