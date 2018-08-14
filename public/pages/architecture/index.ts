@@ -1,7 +1,7 @@
 import './style.less';
 
 // import { Component } from 'easiest';
-import { Component } from '../../../lib';
+import { Component } from '../../../../easiest/src';
 
 import { content } from '../../constants/start';
 

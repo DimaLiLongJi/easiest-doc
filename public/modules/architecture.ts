@@ -1,5 +1,5 @@
 // import { EsModule } from 'easiest';
-import { EsModule } from '../../lib';
+import { EsModule } from '../../../easiest/src';
 
 import ArchitectureContainer from '../pages/architecture';
 

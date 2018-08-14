@@ -193,7 +193,16 @@ a:hover {
   padding: 20px 0;
 }
 .side-bar-container .nav-wrap {
+  height: auto;
   overflow: hidden;
+}
+.side-bar-container .nav-wrap .child-wrap {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease-out;
+}
+.side-bar-container .nav-wrap.active .child-wrap {
+  height: auto;
 }
 .side-bar-container .nav {
   font-size: 14px;

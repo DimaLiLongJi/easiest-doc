@@ -2,7 +2,7 @@ import './styles/reset';
 import './styles/global';
 
 // import { Easiest } from 'easiest';
-import { Easiest } from '../lib';
+import { Easiest } from '../../easiest/src';
 
 import router from './routes';
 

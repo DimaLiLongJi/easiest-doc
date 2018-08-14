@@ -1,5 +1,5 @@
 // import { Router } from 'easiest';
-import { Router } from '../../lib';
+import { Router } from '../../../easiest/src';
 
 const router = new Router();
 
