@@ -37,7 +37,7 @@ export default class SideBar implements OnInit, WatchState {
     public $setState: (newState: any) => void;
 
     public esOnInit() {
-        console.log('esOnInit', this.state.navs);
+        console.log('11esOnInit', this.state.navs);
     }
 
     public goTo(to: string, index?: number) {
@@ -48,6 +48,7 @@ export default class SideBar implements OnInit, WatchState {
             this.$setState({
                 navs: navs,
             });
+            console.log(111);
         }
         this.$setLocation(to);
         this.$getLocation();
