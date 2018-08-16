@@ -45,11 +45,6 @@ export default class DocsComponentContainer implements HasRender {
 
   public click(code: any, index: number) {
     code.title = 1;
-    this.$setState({
-      info: this.state.info,
-    });
-    console.log('h2h2', code);
-    console.log('this.state.info', this.state.info);
   }
 
   public esHasRender() {
