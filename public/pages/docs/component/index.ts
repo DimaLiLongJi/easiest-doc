@@ -13,7 +13,7 @@ interface State {
       p: string;
       code: string;
     }[];
-  }
+  }[]
 }
 @Component<State>({
   template: (`
@@ -38,15 +38,18 @@ interface State {
 export default class DocsComponentContainer implements HasRender {
   public state: State;
   public func: string;
+  public $setState: (newState: any) => void;
   constructor() {
     this.func = 'fuck';
   }
 
   public click(code: any, index: number) {
-    // const copyCode = code;
     code.title = 1;
-    console.log('h2h2', code, index);
-
+    this.$setState({
+      info: this.state.info,
+    });
+    console.log('h2h2', code);
+    console.log('this.state.info', this.state.info);
   }
 
   public esHasRender() {

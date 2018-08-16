@@ -43,6 +43,20 @@ export const docsComponent = [
         }
         `,
       },
+      {
+        title: '双向绑定',
+        p: '所有绑定到state和props中的变量',
+        code: `
+          @Component({
+            template: ('
+              <div>ContainerComponent</div>
+            '),
+          })
+          class ContainerComponent {
+            constructor() {}
+          }
+        `,
+      },
     ],
   },
 ];

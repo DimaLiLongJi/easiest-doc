@@ -37,18 +37,16 @@ export default class SideBar implements OnInit, WatchState {
     public $setState: (newState: any) => void;
 
     public esOnInit() {
-        console.log('11esOnInit', this.state.navs);
+        console.log(111, this.state.navs);
     }
 
     public goTo(to: string, index?: number) {
         if (index || index === 0) {
-            const navs: nav[] = JSON.parse(JSON.stringify(this.state.navs));
-            navs.forEach(nav => nav.active = null);
+            const navs = [...this.state.navs];
             navs[index].active = 'active';
             this.$setState({
                 navs: navs,
             });
-            console.log(111);
         }
         this.$setLocation(to);
         this.$getLocation();
