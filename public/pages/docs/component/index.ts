@@ -38,13 +38,16 @@ interface State {
 export default class DocsComponentContainer implements HasRender {
   public state: State;
   public func: string;
-  public $setState: (newState: any) => void;
-  constructor() {
-    this.func = 'fuck';
-  }
+  public setState: (newState: any) => void;
 
   public click(code: any, index: number) {
-    code.title = 1;
+    const info = this.state.info;
+    info.forEach(i => {
+      const info = i.info.find(n => n.title === code.title);
+      if (info) info.title = '1';
+    });
+    this.setState({info});
+    console.log('this.state.info', this.state.info);
   }
 
   public esHasRender() {

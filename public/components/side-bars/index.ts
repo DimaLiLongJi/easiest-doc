@@ -34,7 +34,7 @@ export default class SideBar implements OnInit, WatchState {
     public props: any;
     public $getLocation: () => any;
     public $setLocation: (path: string, query?: any, params?: any) => void;
-    public $setState: (newState: any) => void;
+    public setState: (newState: any) => void;
 
     public esOnInit() {
         console.log(111, this.state.navs);
@@ -44,7 +44,7 @@ export default class SideBar implements OnInit, WatchState {
         if (index || index === 0) {
             const navs = [...this.state.navs];
             navs[index].active = 'active';
-            this.$setState({
+            this.setState({
                 navs: navs,
             });
         }
