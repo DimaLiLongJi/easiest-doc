@@ -20,10 +20,10 @@ interface State {
     },
     template: (`
         <div class="side-bar-container">
-            <div class="nav-wrap" es-class="nav.active" es-repeat="let nav in this.state.navs">
-                <a class="nav" es-on:click="this.goTo(nav.to, $index)">{{nav.name}}</a>
+            <div class="nav-wrap" es-class="nav.active" es-repeat="let nav in state.navs">
+                <a class="nav" es-on:click="@goTo(nav.to, $index)">{{nav.name}}</a>
                 <div class="child-wrap" es-if="nav.child">
-                    <a class="nav nav-child"  es-repeat="let child in nav.child" es-on:click="this.goTo(child.to)">{{child.name}}</a>
+                    <a class="nav nav-child"  es-repeat="let child in nav.child" es-on:click="@goTo(child.to)">{{child.name}}</a>
                 </div>
             </div>
         </div>
@@ -43,7 +43,10 @@ export default class SideBar implements OnInit, WatchState {
     public goTo(to: string, index?: number) {
         if (index || index === 0) {
             const navs = [...this.state.navs];
-            navs[index].active = 'active';
+            navs.forEach((nav, i) => {
+                nav.active = null;
+                if (i === index) nav.active = 'active';
+            });
             this.setState({
                 navs: navs,
             });
