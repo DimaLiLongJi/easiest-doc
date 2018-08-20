@@ -191,6 +191,12 @@ a:hover {
   margin: 32px 0 24px;
   clear: both;
 }
+.info-content blockquote {
+  background: black;
+}
+.info-content blockquote code {
+  color: #ffffff;
+}
 .side-bar-container {
   position: fixed;
   top: 0;

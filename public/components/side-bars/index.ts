@@ -37,7 +37,7 @@ export default class SideBar implements OnInit, WatchState {
     public setState: (newState: any) => void;
 
     public esOnInit() {
-        console.log(111, this.state.navs);
+        console.log('SideBar onInit', this.state.navs);
     }
 
     public goTo(to: string, index?: number) {
