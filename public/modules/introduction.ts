@@ -1,9 +1,9 @@
 // import { EsModule } from 'easiest';
-import { EsModule } from '../../../easiest/src';
+import { NvModule } from '../../../easiest/src';
 
 import IntroductionContainer from '../pages/introduction';
 
-@EsModule({
+@NvModule({
     imports: [
     ],
     components: {

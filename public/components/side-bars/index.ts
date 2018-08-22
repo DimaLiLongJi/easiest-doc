@@ -1,7 +1,7 @@
 import './style.less';
 
-// import { Component, OnInit, WatchState } from 'easiest';
-import { Component, OnInit, WatchState } from '../../../../easiest/src';
+// import { Component, OnInit, WatchState, SetState, SetLocation, GetLocation } from 'easiest';
+import { Component, OnInit, WatchState, SetState, SetLocation, GetLocation } from '../../../../easiest/src';
 
 import { navs } from '../../constants/nav';
 
@@ -20,10 +20,10 @@ interface State {
     },
     template: (`
         <div class="side-bar-container">
-            <div class="nav-wrap" es-class="nav.active" es-repeat="let nav in state.navs">
-                <a class="nav" es-on:click="@goTo(nav.to, $index)">{{nav.name}}</a>
-                <div class="child-wrap" es-if="nav.child">
-                    <a class="nav nav-child"  es-repeat="let child in nav.child" es-on:click="@goTo(child.to)">{{child.name}}</a>
+            <div class="nav-wrap" nv-class="nav.active" nv-repeat="let nav in state.navs">
+                <a class="nav" nv-on:click="@goTo(nav.to, $index)">{{nav.name}}</a>
+                <div class="child-wrap" nv-if="nav.child">
+                    <a class="nav nav-child"  nv-repeat="let child in nav.child" nv-on:click="@goTo(child.to)">{{child.name}}</a>
                 </div>
             </div>
         </div>
@@ -32,9 +32,9 @@ interface State {
 export default class SideBar implements OnInit, WatchState {
     public state: State;
     public props: any;
-    public $getLocation: () => any;
-    public $setLocation: (path: string, query?: any, params?: any) => void;
-    public setState: (newState: any) => void;
+    public getLocation: GetLocation;
+    public setLocation: SetLocation;
+    public setState: SetState;
 
     public esOnInit() {
         console.log('SideBar onInit', this.state.navs);
@@ -51,8 +51,8 @@ export default class SideBar implements OnInit, WatchState {
                 navs: navs,
             });
         }
-        this.$setLocation(to);
-        this.$getLocation();
+        this.setLocation(to);
+        this.getLocation();
     }
 
     public esWatchState(oldData: string, newData: string) {

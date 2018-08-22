@@ -20,7 +20,7 @@ interface State {
   },
   template: (`
     <div class="page-container">
-      <div class="info-content" es-repeat="let info in state.info">
+      <div class="info-content" nv-repeat="let info in state.info">
           <h1>{{info.h1}}</h1>
           <p>{{info.p}}</p>
       </div>

@@ -1,10 +1,10 @@
 // import { EsModule } from 'easiest';
-import { EsModule } from '../../../easiest/src';
+import { NvModule } from '../../../easiest/src';
 
 import DocsContainer from '../pages/docs';
 import DocsComponentContainer from '../pages/docs/component';
 
-@EsModule({
+@NvModule({
     imports: [
     ],
     components: {

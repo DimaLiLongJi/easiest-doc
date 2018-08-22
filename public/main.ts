@@ -1,15 +1,15 @@
 import './styles/reset';
 import './styles/global';
 
-// import { Easiest } from 'easiest';
-import { Easiest } from '../../easiest/src';
+// import { InDiv } from 'easiest';
+import { InDiv } from '../../easiest/src';
 
 import router from './routes';
 
 import RootModule from './modules';
 
-const easiest = new Easiest();
-easiest.$bootstrapModule(RootModule);
-easiest.$use(router);
-easiest.$init();
-console.log('easiest', easiest);
+const inDiv = new InDiv();
+inDiv.bootstrapModule(RootModule);
+inDiv.use(router);
+inDiv.init();
+console.log('indiv', inDiv);

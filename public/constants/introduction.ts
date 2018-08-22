@@ -1,7 +1,7 @@
 export const content = [
     {
-        h1: '什么是Easiest',
-        p: 'Easiest 是一个开发平台。它能帮你更轻松的构建 Web。Easiest 集声明式模板、依赖注入和一些实践于一身，为您解决开发方面的各种挑战。',
+        h1: '什么是InDiv',
+        p: 'InDiv 是一个开发平台。它能帮你更轻松的构建 Web。InDiv 集声明式模板、依赖注入和一些实践于一身，为您解决开发方面的各种挑战。',
     },
     {
         h1: '基本假设',
@@ -13,10 +13,10 @@ export const content = [
     },
     {
         h1: '基本理念',
-        p: 'Easiest 基于mvvm, 本身使用 TypeScript写成的。它将核心功能和可选功能作为一组 TypeScript 库进行实现，你可以把它们导入你的应用中。Easiest 基本构造块是 EsModule，它为组件提供了编译的上下文环境',
+        p: 'InDiv 基于mvvm, 本身使用 TypeScript写成的。它将核心功能和可选功能作为一组 TypeScript 库进行实现，你可以把它们导入你的应用中。InDiv 基本构造块是 EsModule，它为组件提供了编译的上下文环境',
     },
     {
         h1: '反馈',
-        p: '你也可以和我们一起做贡献！你可以到 什么是Easiest 在 Github 上的仓库中提出文档方面的问题，并创建Pull Requests。',
+        p: '你也可以和我们一起做贡献！你可以到 什么是InDiv 在 Github 上的仓库中提出文档方面的问题，并创建Pull Requests。',
     },
 ];

@@ -32,9 +32,9 @@ const routes = [
         ],
     },
 ];
-router.$setRootPath('/easiest-doc');
-router.$init(routes);
-router.$routeChange = function (old: string, next: string) {
+router.setRootPath('/easiest-doc');
+router.init(routes);
+router.routeChange = function (old: string, next: string) {
     console.log('$routeChange', old, next);
 };
 
