@@ -15,6 +15,7 @@ interface State {
   info: content[];
 }
 @Component<State>({
+  selector: 'architecture-container',
   state: {
     info: content,
   },

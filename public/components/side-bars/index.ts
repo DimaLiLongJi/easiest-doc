@@ -15,6 +15,7 @@ interface State {
 }
 
 @Component<State>({
+    selector: 'side-bar',
     state: {
         navs: navs,
     },
@@ -36,7 +37,7 @@ export default class SideBar implements OnInit, WatchState {
     public setLocation: SetLocation;
     public setState: SetState;
 
-    public esOnInit() {
+    public nvOnInit() {
         console.log('SideBar onInit', this.state.navs);
     }
 
@@ -55,7 +56,7 @@ export default class SideBar implements OnInit, WatchState {
         this.getLocation();
     }
 
-    public esWatchState(oldData: string, newData: string) {
+    public nvWatchState(oldData: string, newData: string) {
         console.log('oldData Component:', oldData);
         console.log('newData Component:', newData);
     }

@@ -30,6 +30,7 @@ interface State {
   //             <pre><code>{{example.code}}</code></pre>
   //           </blockquote>
   //         </div>
+  selector: 'docs-component-container',
   template: (`
     <div class="page-container">
       <div class="info-content" nv-repeat="let info in state.info">
@@ -59,7 +60,7 @@ export default class DocsComponentContainer implements HasRender {
     console.log('this.state.info', this.state.info);
   }
 
-  public esHasRender() {
-    console.log('esHasRender', this.state);
+  public nvHasRender() {
+    console.log('nvHasRender', this.state);
   }
 }

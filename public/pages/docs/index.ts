@@ -4,6 +4,7 @@ import './style.less';
 import { Component } from '../../../../easiest/src';
 
 @Component<any>({
+  selector: 'docs-container',
   template: (`
       <div class="page-container">
         <router-render></router-render>

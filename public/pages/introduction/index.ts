@@ -15,6 +15,7 @@ interface State {
     info: info[];
 }
 @Component<State>({
+    selector: 'introduction-container',
     state: {
         info: content,
     },

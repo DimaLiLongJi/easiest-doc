@@ -1,4 +1,4 @@
-// import { EsModule } from 'easiest';
+// import { NvModule } from 'easiest';
 import { NvModule } from '../../../easiest/src';
 
 import ArchitectureContainer from '../pages/architecture';
@@ -6,13 +6,13 @@ import ArchitectureContainer from '../pages/architecture';
 @NvModule({
     imports: [
     ],
-    components: {
-        'architecture-container': ArchitectureContainer,
-    },
+    components: [
+        ArchitectureContainer,
+    ],
     providers: [
     ],
     exports: [
-        'architecture-container',
+        ArchitectureContainer,
     ],
 })
 export default class ArchitectureModule { }

@@ -4,6 +4,7 @@ import './style.less';
 import { Component, OnInit, WatchState } from '../../../../easiest/src';
 
 @Component({
+    selector: 'root-component',
     template: (`
         <div class="app-container">
             <side-bar></side-bar>
@@ -12,9 +13,9 @@ import { Component, OnInit, WatchState } from '../../../../easiest/src';
     `),
 })
 export default class RootComponent implements OnInit, WatchState {
-    public esOnInit() { }
+    public nvOnInit() { }
 
-    public esWatchState(oldData: string, newData: string) {
+    public nvWatchState(oldData: string, newData: string) {
         console.log('oldData Component:', oldData);
         console.log('newData Component:', newData);
     }

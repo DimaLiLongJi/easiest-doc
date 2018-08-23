@@ -1,4 +1,4 @@
-// import { EsModule } from 'easiest';
+// import { NvModule } from 'easiest';
 import { NvModule } from '../../../easiest/src';
 
 import DocsContainer from '../pages/docs';
@@ -7,15 +7,15 @@ import DocsComponentContainer from '../pages/docs/component';
 @NvModule({
     imports: [
     ],
-    components: {
-        'docs-container': DocsContainer,
-        'docs-component-container': DocsComponentContainer,
-    },
+    components: [
+        DocsContainer,
+        DocsComponentContainer,
+    ],
     providers: [
     ],
     exports: [
-      'docs-container',
-      'docs-component-container',
+        DocsContainer,
+        DocsComponentContainer,
     ],
 })
 export default class DocsModule { }

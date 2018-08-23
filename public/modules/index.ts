@@ -1,4 +1,4 @@
-// import { EsModule } from 'easiest';
+// import { NvModule } from 'easiest';
 import { NvModule } from '../../../easiest/src';
 
 import IntroductionModule from './introduction';
@@ -14,10 +14,10 @@ import SideBar from '../components/side-bars';
     ArchitectureModule,
     DocsModule,
   ],
-  components: {
-    'side-bar': SideBar,
-    'root-component': RootComponent,
-  },
+  components: [
+    SideBar,
+    RootComponent,
+  ],
   providers: [],
 })
 export default class RootModule { }
