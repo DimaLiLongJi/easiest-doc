@@ -191,12 +191,6 @@ a:hover {
   margin: 32px 0 24px;
   clear: both;
 }
-.info-content blockquote {
-  background: black;
-}
-.info-content blockquote code {
-  color: #ffffff;
-}
 .side-bar-container {
   position: fixed;
   top: 0;
@@ -240,4 +234,10 @@ a:hover {
 .side-bar-container .nav-child {
   margin-left: 24px;
   color: #6e6e6e;
+}
+.code-show-container blockquote {
+  background: black;
+}
+.code-show-container blockquote code {
+  color: #ffffff;
 }

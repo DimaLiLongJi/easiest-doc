@@ -7,6 +7,7 @@ import DocsModule from './docs';
 
 import RootComponent from '../components/root-component';
 import SideBar from '../components/side-bars';
+import CodeShower from '../components/code-show';
 
 @NvModule({
   imports: [
@@ -17,6 +18,7 @@ import SideBar from '../components/side-bars';
   components: [
     SideBar,
     RootComponent,
+    CodeShower,
   ],
   providers: [],
 })

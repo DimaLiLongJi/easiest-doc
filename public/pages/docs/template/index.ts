@@ -2,7 +2,7 @@ import './style.less';
 
 // import { Component, HasRender, SetState } from 'easiest';
 import { Component, HasRender, SetState } from '../../../../../easiest/src';
-import { componentInfo } from '../../../constants/component';
+import { componentInfo } from '../../../constants/template';
 
 interface Info {
     h1?: string;
@@ -37,9 +37,11 @@ interface State {
         <h1>{{info.h1}}</h1>
         <p>{{info.p}}</p>
         <div class="child-info" nv-repeat="let code in info.info">
-          <h2 nv-on:click="@click(code, $index)">{{code.title}}</h2>
+          <h2>{{code.title}}</h2>
           <p nv-repeat="let pli in code.p">{{pli}}</p>
-          <code-shower codes="{code.code}"></code-shower>
+          <blockquote>
+            <pre><code>{{code.code}}</code></pre>
+          </blockquote>
         </div>
       </div>
     </div>
@@ -48,17 +50,12 @@ interface State {
     info: componentInfo,
   },
 })
-export default class DocsComponentContainer implements HasRender {
+export default class DocsTemplateContainer implements HasRender {
   public state: State;
   public func: string;
   public setState: SetState;
 
-  public click(code: any, index: number) {
-    code.title = '1';
-    console.log('this.state.info', this.state.info);
-  }
-
   public nvHasRender() {
-    console.log('nvHasRender', this.state);
+    console.log('DocsTemplateContainer nvHasRender', this.state);
   }
 }
