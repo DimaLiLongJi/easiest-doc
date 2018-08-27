@@ -15,6 +15,10 @@ export const navs = [
                 name: '组件',
                 to: '/docs/component',
             },
+            {
+                name: '模板语法',
+                to: '/docs/template',
+            },
         ],
     },
 ];

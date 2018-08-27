@@ -1,12 +1,10 @@
-import './style.less';
-
 // import { Component, HasRender, SetState } from 'easiest';
 import { Component, HasRender, SetState } from '../../../../../easiest/src';
 import { componentInfo } from '../../../constants/component';
 
 interface Info {
     h1?: string;
-    p?: string;
+    p?: string[];
     info?: {
       title?: string;
       p?: string[];
@@ -23,19 +21,12 @@ interface State {
   info: Info[];
 }
 @Component<State>({
-  // <p class="example-title" nv-if="code.exampleTitle">{{code.exampleTitle}}</p>
-  //         <div class="example-info" nv-if="code.example" nv-repeat="let example in code.example">
-  //           <p>{{example.p}}</p>
-  //           <blockquote>
-  //             <pre><code>{{example.code}}</code></pre>
-  //           </blockquote>
-  //         </div>
   selector: 'docs-component-container',
   template: (`
-    <div class="page-container">
+    <div class="page-wrapper">
       <div class="info-content" nv-repeat="let info in state.info">
         <h1>{{info.h1}}</h1>
-        <p>{{info.p}}</p>
+        <p nv-repeat="let rp in info.p">{{rp}}</p>
         <div class="child-info" nv-repeat="let code in info.info">
           <h2 nv-on:click="@click(code, $index)">{{code.title}}</h2>
           <p nv-repeat="let pli in code.p">{{pli}}</p>
@@ -44,14 +35,17 @@ interface State {
       </div>
     </div>
   `),
-  state: {
-    info: componentInfo,
-  },
 })
 export default class DocsComponentContainer implements HasRender {
   public state: State;
   public func: string;
   public setState: SetState;
+
+  constructor() {
+    this.state = {
+      info: componentInfo,
+    };
+  }
 
   public click(code: any, index: number) {
     code.title = '1';

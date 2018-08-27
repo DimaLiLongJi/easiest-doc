@@ -27,6 +27,10 @@ const routes = [
                         path: '/component',
                         component: 'docs-component-container',
                     },
+                    {
+                        path: '/template',
+                        component: 'docs-template-container',
+                    },
                 ],
             },
         ],

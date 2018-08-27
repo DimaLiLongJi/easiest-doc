@@ -9,9 +9,6 @@ interface State {
 
 @Component<State>({
     selector: 'code-shower',
-    state: {
-        codes: null,
-    },
     template: (`
         <div nv-on:click="@show()" class="code-show-container">
             <blockquote>
@@ -30,9 +27,9 @@ export default class CodeShower implements OnInit {
     public setState: SetState;
 
     public nvOnInit() {
-        this.state.codes = this.props.codes;
-        // console.log(999, this.props);
-        // console.log(1009, this.state.codes);
+        this.state = {
+            codes: this.props.codes,
+        };
     }
 
     public show() {

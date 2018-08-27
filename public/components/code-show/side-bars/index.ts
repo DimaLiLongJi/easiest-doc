@@ -9,6 +9,7 @@ type nav = {
     name: string;
     to: string;
     active?: string;
+    child?: nav[];
 };
 interface State {
     navs: nav[];
@@ -16,9 +17,6 @@ interface State {
 
 @Component<State>({
     selector: 'side-bar',
-    state: {
-        navs: navs,
-    },
     template: (`
         <div class="side-bar-container">
             <div class="nav-wrap" nv-class="nav.active" nv-repeat="let nav in state.navs">
@@ -39,6 +37,22 @@ export default class SideBar implements OnInit, WatchState {
 
     public nvOnInit() {
         console.log('SideBar onInit');
+        this.state = {
+            navs: navs,
+        };
+        const location = this.getLocation();
+        this.state.navs.forEach(nav => {
+            nav.active = null;
+            if (nav.to === location.path) {
+                nav.active = 'active';
+                return;
+            }
+            if (nav.child) {
+                nav.child.forEach(n => {
+                    if (n.to === location.path) nav.active = 'active';
+                });
+            }
+        })
     }
 
     public goTo(to: string, index?: number) {
@@ -47,9 +61,6 @@ export default class SideBar implements OnInit, WatchState {
             navs.forEach((nav, i) => {
                 nav.active = null;
                 if (i === index) nav.active = 'active';
-            });
-            this.setState({
-                navs: navs,
             });
         }
         this.setLocation(to);

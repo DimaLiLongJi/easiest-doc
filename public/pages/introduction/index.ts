@@ -16,9 +16,6 @@ interface State {
 }
 @Component<State>({
     selector: 'introduction-container',
-    state: {
-        info: content,
-    },
     template: (`
         <div class="page-container">
             <div class="info-content" nv-repeat="let info in state.info">
@@ -30,4 +27,9 @@ interface State {
 })
 export default class IntroductionContainer {
     public state: State;
+    constructor() {
+        this.state = {
+            info: content,
+        };
+    }
 }

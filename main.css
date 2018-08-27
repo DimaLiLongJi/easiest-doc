@@ -88,7 +88,6 @@ video {
   outline: none;
 }
 html {
-  height: 101%;
   background-color: #f5f5f5;
 }
 /* always display scrollbars */
@@ -161,7 +160,7 @@ a:hover {
   left: 200px;
   padding: 20px 3rem 1rem;
   height: 100vh;
-  overflow: scroll;
+  overflow: auto;
 }
 .info-content {
   margin: 0 0 24px;
@@ -187,7 +186,7 @@ a:hover {
 }
 .info-content .child-info h2 {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 800;
   margin: 32px 0 24px;
   clear: both;
 }
