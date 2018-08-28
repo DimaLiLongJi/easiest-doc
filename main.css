@@ -190,6 +190,18 @@ a:hover {
   margin: 32px 0 24px;
   clear: both;
 }
+.info-content .child-info .pchild {
+  padding: 10px;
+  margin: 20px auto;
+  border-left: 8px solid #1976d2;
+  background-color: rgba(25, 118, 210, 0.05);
+}
+.info-content .child-info .pchild p {
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.3px;
+  font-weight: 400;
+}
 .side-bar-container {
   position: fixed;
   top: 0;
@@ -208,6 +220,9 @@ a:hover {
   height: 0;
   overflow: hidden;
   transition: all 0.5s ease-out;
+}
+.side-bar-container .nav-wrap.active > a {
+  color: #1976d2;
 }
 .side-bar-container .nav-wrap.active .child-wrap {
   height: auto;

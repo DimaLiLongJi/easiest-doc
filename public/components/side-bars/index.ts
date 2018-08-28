@@ -22,7 +22,7 @@ interface State {
             <div class="nav-wrap" nv-class="nav.active" nv-repeat="let nav in state.navs">
                 <a class="nav" nv-on:click="@goTo(nav.to, $index)">{{nav.name}}</a>
                 <div class="child-wrap" nv-if="nav.child">
-                    <a class="nav nav-child"  nv-repeat="let child in nav.child" nv-on:click="@goTo(child.to)">{{child.name}}</a>
+                    <a class="nav nav-child" nv-repeat="let child in nav.child" nv-on:click="@goTo(child.to)">{{child.name}}</a>
                 </div>
             </div>
         </div>

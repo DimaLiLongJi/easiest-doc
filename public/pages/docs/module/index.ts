@@ -1,6 +1,6 @@
 // import { Component, HasRender, SetState } from 'easiest';
 import { Component, HasRender, SetState } from '../../../../../easiest/src';
-import { componentInfo } from '../../../constants/component';
+import { moduleInfo } from '../../../constants/module';
 
 interface Info {
     h1?: string;
@@ -22,14 +22,14 @@ interface State {
   info: Info[];
 }
 @Component<State>({
-  selector: 'docs-component-container',
+  selector: 'docs-module-container',
   template: (`
     <div class="page-wrapper">
       <div class="info-content" nv-repeat="let info in state.info">
         <h1>{{info.h1}}</h1>
         <p nv-repeat="let rp in info.p">{{rp}}</p>
         <div class="child-info" nv-repeat="let code in info.info">
-          <h2 nv-on:click="@click(code, $index)">{{code.title}}</h2>
+          <h2>{{code.title}}</h2>
           <p nv-repeat="let pli in code.p">{{pli}}</p>
           <div class="pchild" nv-if="code.pchild">
             <p nv-repeat="let child in code.pchild">{{child}}</p>
@@ -40,23 +40,18 @@ interface State {
     </div>
   `),
 })
-export default class DocsComponentContainer implements HasRender {
+export default class DocsModuleContainer implements HasRender {
   public state: State;
   public func: string;
   public setState: SetState;
 
   constructor() {
     this.state = {
-      info: componentInfo,
+      info: moduleInfo,
     };
   }
 
-  public click(code: any, index: number) {
-    code.title = '1';
-    console.log('this.state.info', this.state.info);
-  }
-
   public nvHasRender() {
-    console.log('nvHasRender', this.state);
+    console.log('DocsTemplateContainer nvHasRender', this.state);
   }
 }
