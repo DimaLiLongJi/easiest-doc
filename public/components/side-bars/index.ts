@@ -36,10 +36,14 @@ export default class SideBar implements OnInit, WatchState {
     public setState: SetState;
 
     public nvOnInit() {
-        console.log('SideBar onInit');
         this.state = {
             navs: navs,
         };
+        this.showColor();
+        console.log('SideBar onInit');
+    }
+
+    public showColor() {
         const location = this.getLocation();
         this.state.navs.forEach(nav => {
             nav.active = null;
@@ -49,19 +53,14 @@ export default class SideBar implements OnInit, WatchState {
                     if (n.to === location.path) nav.active = 'active';
                 });
             }
-        })
+        });
     }
 
     public goTo(to: string, index?: number) {
-        if (index || index === 0) {
-            const navs = [...this.state.navs];
-            navs.forEach((nav, i) => {
-                nav.active = null;
-                if (i === index) nav.active = 'active';
-            });
-        }
         this.setLocation(to);
-        this.getLocation();
+        if (index || index === 0) {
+            this.showColor();
+        }
     }
 
     public nvWatchState(oldData: string, newData: string) {
