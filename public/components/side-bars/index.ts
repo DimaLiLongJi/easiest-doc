@@ -43,10 +43,7 @@ export default class SideBar implements OnInit, WatchState {
         const location = this.getLocation();
         this.state.navs.forEach(nav => {
             nav.active = null;
-            if (nav.to === location.path) {
-                nav.active = 'active';
-                return;
-            }
+            if (nav.to === location.path) return nav.active = 'active';
             if (nav.child) {
                 nav.child.forEach(n => {
                     if (n.to === location.path) nav.active = 'active';

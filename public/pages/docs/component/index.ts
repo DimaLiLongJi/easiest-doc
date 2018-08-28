@@ -8,6 +8,7 @@ interface Info {
     info?: {
       title?: string;
       p?: string[];
+      pchild?: string[];
       code?: string;
       exampleTitle?: string;
       example?: {
@@ -30,6 +31,7 @@ interface State {
         <div class="child-info" nv-repeat="let code in info.info">
           <h2 nv-on:click="@click(code, $index)">{{code.title}}</h2>
           <p nv-repeat="let pli in code.p">{{pli}}</p>
+          <p nv-if="code.pchild" nv-repeat="let child in code.pchild">{{child}}</p>
           <code-shower codes="{code.code}"></code-shower>
         </div>
       </div>

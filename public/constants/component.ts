@@ -10,9 +10,11 @@ export const componentInfo = [
         p: [
           '@Component 装饰器会指出紧随其后的那个类是个组件类，并为其指定元数据。 在下面的范例代码中，你可以看到 ContainerComponent 只是一个普通类，完全没有 InDiv 特有的标记或语法。 直到给它加上了 @Component 装饰器，它才变成了组件。',
           '@Component 接收两个个参数:',
-          `   1. selector: string; 作为组件被渲染成 DOM 的标签，类似于 <div>`,
-          `   2. template: string; 视图模板，用来声明被渲染的视图`,
-          '在 JavaScript 中，只能把 Component 当做一个函数使用，最后应该导出 类。',
+        ],
+        pchild: [
+          '1. selector: string; 作为组件被渲染成 DOM 的标签，类似于 <div>',
+          '2. template: string; 视图模板，用来声明被渲染的视图',
+          '在 JavaScript 中，只能把 装饰器Component 当做一个函数使用，最后应该导出被声明的 类。',
         ],
         code: `
   // in TypeScript
@@ -52,7 +54,7 @@ export const componentInfo = [
           '因为 InDiv 使用单向数据流，所以仅仅支持使用 this.state 内的值作为绑定数据， class 实例的方法作为事件方法。如果要在组件内使用 props ，请在 nvReceiveProps 或 nvOnInit 生命周期内用 props 对 state 赋值。',
         ],
         code: `
-@Component({
+  @Component({
     selector: 'container-component',
     template: ('
       <div nv-on:click="@show(state.a)"> ContainerComponent {{state.a}}}/div>
@@ -87,8 +89,8 @@ export const componentInfo = [
           '相反，如果要对 this.state 上的属性 增加属性或删除，则需要使用  setState<S>(newState: {[key: string]: S}) 方法对 this.state 重新添加监听',
         ],
         code: `
-import { Component, SetState, OnInit, ReceiveProps } from 'InDiv';
-@Component({
+  import { Component, SetState, OnInit, ReceiveProps } from 'InDiv';
+  @Component({
     selector: 'hero-component',
     template: ('
       <div>
@@ -158,15 +160,17 @@ import { Component, SetState, OnInit, ReceiveProps } from 'InDiv';
           '生命周期钩子其实就是定义在实例中的一些方法，在 InDiv 中，通过不同的时刻调用不同的生命周期钩子，',
           '赋予你在它们发生时采取行动的能力。',
           '在 TypeScript 中，引用 InDiv 提供的 interface，通过 implements 的方式让类去实现被预先定义好的生命周期，而在 JavaScript 中，你只能自己手动去定义应该实现的生命周期方法。',
-          `   1. constructor 在类被实例化的时候回触发，你可以在这里预先定义你的 state`,
-          `   2. nvOnInit(): void; constructor 之后，在这个生命周期中，可以通过 this.props 获取 props，并定义 state，此生命周期会在开启监听前被触发，并且之后再也不会触发`,
-          `   3. nvBeforeMount(): void; 在 nvOnInit 之后，template 挂载页面之前被触发，每次触发渲染页面都会被触发`,
-          `   4. nvAfterMount(): void; 在 nvBeforeMount 之后，template 挂载页面之后被触发，每次触发渲染页面（render）都会被触发`,
-          `   5. nvHasRender(): void; 在 nvAfterMount 之后，渲染完成后被触发，每次触发渲染页面（render）都会被触发`,
-          `   6. nvRouteChange(lastRoute?: string, newRoute?: string): void; 监听路由变化，当更换路由后被触发，此生命周期仅为路由挂载的 component 提供`,
-          `   7. nvOnDestory(): void; 仅仅在路由决定销毁此组件时被触发，此生命周期仅为路由挂载的 component 提供`,
-          `   8. nvWatchState(oldData?: any, newData?: any): void; 监听 state 变化，当 state 被更改时被触发`,
-          `   9. nvReceiveProps(nextProps: any): void; 监听 props 变化，当 props 被更改时被触发`,
+        ],
+        pchild: [
+          `1. constructor 在类被实例化的时候回触发，你可以在这里预先定义你的 state`,
+          `2. nvOnInit(): void; constructor 之后，在这个生命周期中，可以通过 this.props 获取 props，并定义 state，此生命周期会在开启监听前被触发，并且之后再也不会触发`,
+          `3. nvBeforeMount(): void; 在 nvOnInit 之后，template 挂载页面之前被触发，每次触发渲染页面都会被触发`,
+          `4. nvAfterMount(): void; 在 nvBeforeMount 之后，template 挂载页面之后被触发，每次触发渲染页面（render）都会被触发`,
+          `5. nvHasRender(): void; 在 nvAfterMount 之后，渲染完成后被触发，每次触发渲染页面（render）都会被触发`,
+          `6. nvRouteChange(lastRoute?: string, newRoute?: string): void; 监听路由变化，当更换路由后被触发，此生命周期仅为路由挂载的 component 提供`,
+          `7. nvOnDestory(): void; 仅仅在路由决定销毁此组件时被触发，此生命周期仅为路由挂载的 component 提供`,
+          `8. nvWatchState(oldData?: any, newData?: any): void; 监听 state 变化，当 state 被更改时被触发`,
+          `9. nvReceiveProps(nextProps: any): void; 监听 props 变化，当 props 被更改时被触发`,
         ],
         code: `
 import { Component, OnInit, BeforeMount, AfterMount, HasRender, OnDestory, WatchState, ReceiveProps } from 'InDiv';

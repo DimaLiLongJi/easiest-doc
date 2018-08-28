@@ -1,9 +1,9 @@
 // import { NvModule } from 'easiest';
 import { NvModule } from '../../../easiest/src';
 
-import IntroductionModule from './introduction';
-import ArchitectureModule from './architecture';
-import DocsModule from './docs';
+import IntroductionModule from './introduction.module';
+import ArchitectureModule from './architecture.module';
+import DocsModule from './docs.module';
 
 import RootComponent from '../components/root-component';
 import SideBar from '../components/side-bars';
