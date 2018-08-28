@@ -14,17 +14,17 @@ export const templateInfo = [
         p: [
           '以 nv-on:event 开头, event 为未加on的事件名， 并且 被绑定的事件必须为 class 的方法，且以 @ 开头并且在方法内可以使用 this ，this 指向 class的实例。',
           '方法可使用参数',
-          `- event: $event`,
-          `- string: '1','2','3'`,
-          ` - number: 1,2,3`,
-          ` - index: @index`,
+          `- event => $event`,
+          `- string => '1','2','3'`,
+          ` - number => 1,2,3`,
+          ` - index > @index`,
           `- 变量: 仅能传递state上的值， 通过state.xxx标示`,
           `- repeat item: 传递nv-if的值，如： nv-on:click="@show(nav)" nv-repeat="let nav in state.navList"`,
         ],
         code: `
-  <a class="nav" nv-on:click="@goTo(nav.to, $index)">{{nav.name}}</a>
+  <a class="nav" nv-on:click="@goTo($event, $index, 1, 'state', state.nav.to,)">{{state.nav.name}}</a>
 
-  public goTo(to: string, index: number) {
+  public goTo(event: Event, index: number, aa: number, s: string, to: string) {
     this.$setLocation(to);
   }
  `,
@@ -70,7 +70,7 @@ export const templateInfo = [
       {
         title: 'if 指令',
         p: [
-          '使用 nv-if="state.XXX", 如果被绑定的值被 javascript 判定为 true/false，将分别在DOM树种显示或移除。',
+          '使用 nv-if="state.XXX", 如果被绑定的值被 javascript 判定为 true/false，将分别在DOM树中显示或移除。',
         ],
         code: `
   <input nv-if="state.e"/>
