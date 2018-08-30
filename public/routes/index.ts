@@ -47,6 +47,10 @@ const routes: TRouter[] = [
                         path: '/indiv',
                         component: 'docs-indiv-container',
                     },
+                    {
+                        path: '/libs',
+                        component: 'docs-libs-container',
+                    },
                 ],
             },
         ],

@@ -8,6 +8,7 @@ import DocsModuleContainer from '../pages/docs/module';
 import DocsServiceContainer from '../pages/docs/service';
 import DocsRouteContainer from '../pages/docs/route';
 import DocsInDivContainer from '../pages/docs/indiv';
+import DocsLibsContainer from '../pages/docs/libs';
 
 @NvModule({
     imports: [
@@ -20,6 +21,7 @@ import DocsInDivContainer from '../pages/docs/indiv';
         DocsServiceContainer,
         DocsRouteContainer,
         DocsInDivContainer,
+        DocsLibsContainer,
     ],
     providers: [
     ],
@@ -31,6 +33,7 @@ import DocsInDivContainer from '../pages/docs/indiv';
         DocsServiceContainer,
         DocsRouteContainer,
         DocsInDivContainer,
+        DocsLibsContainer,
     ],
 })
 export default class DocsModule { }

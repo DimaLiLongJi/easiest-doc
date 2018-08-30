@@ -1,7 +1,7 @@
 export const content = [
     {
         h1: '什么是InDiv',
-        p: 'InDiv 是一个开发平台。它能帮你更轻松的构建 Web。InDiv 集声明式模板、依赖注入和一些实践于一身。',
+        p: 'InDiv 是一个mvvm库。它能帮你轻松地构建 Web。InDiv 集声明式模板、依赖注入和一些实践于一身。',
     },
     {
         h1: '基本假设',

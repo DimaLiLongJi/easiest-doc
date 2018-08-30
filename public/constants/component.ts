@@ -94,7 +94,7 @@ export const componentInfo = [
         title: '组件通信: props 与 state',
         p: [
           'InDiv 的组件之间可以 props 来通信。',
-          '组件间通信应该是单向的，通过传递值到子组件，并通过传递一个回调方法在子组件来更改对应父组件的值来完成通信。',
+          '组件间通信应该是单向的，通过传递值到子组件，并通过传递一个回调方法在子组件调用来更改对应父组件的值来完成通信。',
         ],
         pchild: [
           '可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 propValue="{state.value}" propValue="{repeatValue}" propFunction="{@fn}" 的引号包裹花括号的写法传递值与方法。',

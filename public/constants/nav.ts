@@ -35,6 +35,10 @@ export const navs = [
                 name: '引导启动',
                 to: '/docs/indiv',
             },
+            {
+                name: '工具函数',
+                to: '/docs/libs',
+            },
         ],
     },
 ];

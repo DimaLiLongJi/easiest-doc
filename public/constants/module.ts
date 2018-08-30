@@ -219,14 +219,14 @@ export const moduleInfo = [
  `,
       },
       {
-        title: '4. exports 模块导出组件',
+        title: '4. exports 模块导出的组件',
         p: [
           'exports?: Function[];',
         ],
         pchild: [
           'exports 用来声明模块被导出的组件（component）。',
           '模块只能导出可声明的类。它不会声明或导出任何其它类型的类。',
-          '被模块导出的组件，可以随意在 导入该模块的模块（NvModule） 中的 组件 使用。',
+          '被模块导出的组件，可以随意在 导入该模块的模块（NvModule） 中的 组件（component） 使用。',
         ],
         code: `
   // NvModule M2
