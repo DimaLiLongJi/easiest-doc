@@ -9,6 +9,8 @@ import RootComponent from '../components/root-component';
 import SideBar from '../components/side-bars';
 import CodeShower from '../components/code-show';
 
+import TestService from '../service/test.service';
+
 @NvModule({
   imports: [
     IntroductionModule,
@@ -20,6 +22,8 @@ import CodeShower from '../components/code-show';
     RootComponent,
     CodeShower,
   ],
-  providers: [],
+  providers: [
+    TestService,
+  ],
 })
 export default class RootModule { }

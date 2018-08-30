@@ -1,6 +1,8 @@
 // import { Component, HasRender, SetState } from 'easiest';
-import { Component, HasRender, SetState } from '../../../../../easiest/src';
+import { Component, HasRender, SetState, Injectable } from '../../../../../easiest/src';
 import { componentInfo } from '../../../constants/component';
+
+import TestService from '../../../service/test.service';
 
 interface Info {
     h1?: string;
@@ -21,6 +23,8 @@ interface Info {
 interface State {
   info: Info[];
 }
+
+@Injectable
 @Component<State>({
   selector: 'docs-component-container',
   template: (`
@@ -45,7 +49,9 @@ export default class DocsComponentContainer implements HasRender {
   public func: string;
   public setState: SetState;
 
-  constructor() {
+  constructor(
+    private testS: TestService,
+  ) {
     this.state = {
       info: componentInfo,
     };
@@ -54,6 +60,8 @@ export default class DocsComponentContainer implements HasRender {
   public click(code: any, index: number) {
     code.title = '1';
     console.log('this.state.info', this.state.info);
+    this.testS.setData(3);
+    console.log(22222, this.testS.getData());
   }
 
   public nvHasRender() {

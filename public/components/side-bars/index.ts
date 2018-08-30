@@ -1,9 +1,11 @@
 import './style.less';
 
 // import { Component, OnInit, WatchState, SetState, SetLocation, GetLocation } from 'easiest';
-import { Component, OnInit, WatchState, RouteChange, SetState, SetLocation, GetLocation } from '../../../../easiest/src';
+import { Component, OnInit, WatchState, RouteChange, SetState, SetLocation, GetLocation, Injectable } from '../../../../easiest/src';
 
 import { navs } from '../../constants/nav';
+
+import TestService from '../../service/test.service';
 
 type nav = {
     name: string;
@@ -15,6 +17,7 @@ interface State {
     navs: nav[];
 }
 
+@Injectable
 @Component<State>({
     selector: 'side-bar',
     template: (`
@@ -34,6 +37,12 @@ export default class SideBar implements OnInit, WatchState, RouteChange {
     public getLocation: GetLocation;
     public setLocation: SetLocation;
     public setState: SetState;
+
+    constructor(
+        private testS: TestService,
+    ) {
+        console.log('service data', this.testS.getData());
+    }
 
     public nvOnInit() {
         this.state = {
@@ -63,6 +72,7 @@ export default class SideBar implements OnInit, WatchState, RouteChange {
                 });
             }
         });
+        console.log('service data', this.testS.getData());
     }
 
     public nvWatchState(oldData: string, newData: string) {

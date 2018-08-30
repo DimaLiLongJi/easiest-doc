@@ -10948,7 +10948,7 @@ exports.componentInfo = [{
     }]
 }];
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vY29uc3RhbnRzL2NvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsYUFBYSxHQUFHO0lBQzNCO1FBQ0UsRUFBRSxFQUFFLE9BQU87UUFDWCxDQUFDLEVBQUU7WUFDRCxxREFBcUQ7U0FDdEQ7UUFDRCxJQUFJLEVBQUU7WUFDSjtnQkFDRSxLQUFLLEVBQUUsZUFBZTtnQkFDdEIsQ0FBQyxFQUFFO29CQUNELDBJQUEwSTtvQkFDMUksb0JBQW9CO2lCQUNyQjtnQkFDRCxNQUFNLEVBQUU7b0JBQ04sNERBQTREO29CQUM1RCxzQ0FBc0M7b0JBQ3RDLHdEQUF3RDtpQkFDekQ7Z0JBQ0QsSUFBSSxFQUFFLDBxQkFzQ1o7YUFDSztZQUNEO2dCQUNFLEtBQUssRUFBRSxRQUFRO2dCQUNmLENBQUMsRUFBRTtvQkFDRCx3R0FBd0c7b0JBQ3hHLCtDQUErQztpQkFDaEQ7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLDhDQUE4QztvQkFDOUMsMElBQTBJO2lCQUMzSTtnQkFDRCxJQUFJLEVBQUUsMGJBc0JaO2FBQ0s7WUFDRDtnQkFDRSxLQUFLLEVBQUUscUJBQXFCO2dCQUM1QixDQUFDLEVBQUU7b0JBQ0QsMEJBQTBCO29CQUMxQix5REFBeUQ7aUJBQzFEO2dCQUNELE1BQU0sRUFBRTtvQkFDTix1SUFBdUk7b0JBQ3ZJLGtHQUFrRztvQkFDbEcsaUVBQWlFO29CQUNqRSw0SUFBNEk7b0JBQzVJLHdHQUF3RztvQkFDeEcsNENBQTRDO2lCQUM3QztnQkFDRCxJQUFJLEVBQUUsaTlDQStEWjthQUNLO1lBQ0Q7Z0JBQ0UsS0FBSyxFQUFFLFFBQVE7Z0JBQ2YsQ0FBQyxFQUFFO29CQUNELDBCQUEwQjtvQkFDMUIscURBQXFEO29CQUNyRCxtQkFBbUI7b0JBQ25CLGdIQUFnSDtpQkFDakg7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLGdEQUFnRDtvQkFDaEQsNEdBQTRHO29CQUM1RywwRUFBMEU7b0JBQzFFLHNGQUFzRjtvQkFDdEYsMEVBQTBFO29CQUMxRSxpRkFBaUY7b0JBQ2pGLDBDQUEwQztvQkFDMUMsa0ZBQWtGO29CQUNsRixzRUFBc0U7aUJBQ3ZFO2dCQUNELElBQUksRUFBRSxxMENBMERaO2FBQ0s7U0FDRjtLQUNGO0NBQ0YsQ0FBQyJ9
-},{}],"pages/docs/component/index.ts":[function(require,module,exports) {
+},{}],"service/test.service.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -10965,11 +10965,52 @@ var __metadata = this && this.__metadata || function (k, v) {
     if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var src_1 = require("../../../easiest/src");
+var TestService = /** @class */function () {
+    function TestService() {
+        var _this = this;
+        this.getData = function () {
+            return _this.data;
+        };
+        this.setData = function (data) {
+            _this.data = data;
+        };
+        this.data = 1;
+    }
+    TestService = __decorate([src_1.Service({
+        isSingletonMode: true
+    }), __metadata("design:paramtypes", [])], TestService);
+    return TestService;
+}();
+exports.default = TestService;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGVzdC5zZXJ2aWNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vc2VydmljZS90ZXN0LnNlcnZpY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSw0Q0FBK0M7QUFNL0M7SUFFRTtRQUFBLGlCQUVDO1FBRU0sWUFBTyxHQUFHO1lBQ2YsT0FBTyxLQUFJLENBQUMsSUFBSSxDQUFDO1FBQ25CLENBQUMsQ0FBQTtRQUNNLFlBQU8sR0FBRyxVQUFDLElBQVk7WUFDNUIsS0FBSSxDQUFDLElBQUksR0FBRyxJQUFJLENBQUM7UUFDbkIsQ0FBQyxDQUFBO1FBUkMsSUFBSSxDQUFDLElBQUksR0FBRyxDQUFDLENBQUM7SUFDaEIsQ0FBQztJQUprQixXQUFXO1FBSi9CLGFBQU8sQ0FBQztZQUNQLGVBQWUsRUFBRSxJQUFJO1NBQ3RCLENBQUM7O09BRW1CLFdBQVcsQ0FZL0I7SUFBRCxrQkFBQztDQUFBLEFBWkQsSUFZQztrQkFab0IsV0FBVyJ9
+},{"../../../easiest/src":"../../easiest/src/index.ts"}],"pages/docs/component/index.ts":[function(require,module,exports) {
+"use strict";
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    }return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = this && this.__metadata || function (k, v) {
+    if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = this && this.__importDefault || function (mod) {
+    return mod && mod.__esModule ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 // import { Component, HasRender, SetState } from 'easiest';
 var src_1 = require("../../../../../easiest/src");
 var component_1 = require("../../../constants/component");
+var test_service_1 = __importDefault(require("../../../service/test.service"));
 var DocsComponentContainer = /** @class */function () {
-    function DocsComponentContainer() {
+    function DocsComponentContainer(testS) {
+        this.testS = testS;
         this.state = {
             info: component_1.componentInfo
         };
@@ -10977,19 +11018,22 @@ var DocsComponentContainer = /** @class */function () {
     DocsComponentContainer.prototype.click = function (code, index) {
         code.title = '1';
         console.log('this.state.info', this.state.info);
+        this.testS.setData(3);
+        console.log(22222, this.testS.getData());
     };
     DocsComponentContainer.prototype.nvHasRender = function () {
         console.log('nvHasRender', this.state);
     };
-    DocsComponentContainer = __decorate([src_1.Component({
+    var _a;
+    DocsComponentContainer = __decorate([src_1.Injectable, src_1.Component({
         selector: 'docs-component-container',
         template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2 nv-on:click=\"@click(code, $index)\">{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
-    }), __metadata("design:paramtypes", [])], DocsComponentContainer);
+    }), __metadata("design:paramtypes", [typeof (_a = typeof test_service_1.default !== "undefined" && test_service_1.default) === "function" && _a || Object])], DocsComponentContainer);
     return DocsComponentContainer;
 }();
 exports.default = DocsComponentContainer;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2NvbXBvbmVudC9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQUFBLDREQUE0RDtBQUM1RCxrREFBNEU7QUFDNUUsMERBQTZEO0FBd0M3RDtJQUtFO1FBQ0UsSUFBSSxDQUFDLEtBQUssR0FBRztZQUNYLElBQUksRUFBRSx5QkFBYTtTQUNwQixDQUFDO0lBQ0osQ0FBQztJQUVNLHNDQUFLLEdBQVosVUFBYSxJQUFTLEVBQUUsS0FBYTtRQUNuQyxJQUFJLENBQUMsS0FBSyxHQUFHLEdBQUcsQ0FBQztRQUNqQixPQUFPLENBQUMsR0FBRyxDQUFDLGlCQUFpQixFQUFFLElBQUksQ0FBQyxLQUFLLENBQUMsSUFBSSxDQUFDLENBQUM7SUFDbEQsQ0FBQztJQUVNLDRDQUFXLEdBQWxCO1FBQ0UsT0FBTyxDQUFDLEdBQUcsQ0FBQyxhQUFhLEVBQUUsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDO0lBQ3pDLENBQUM7SUFsQmtCLHNCQUFzQjtRQW5CMUMsZUFBUyxDQUFRO1lBQ2hCLFFBQVEsRUFBRSwwQkFBMEI7WUFDcEMsUUFBUSxFQUFFLENBQUMscW9CQWVWLENBQUM7U0FDSCxDQUFDOztPQUNtQixzQkFBc0IsQ0FtQjFDO0lBQUQsNkJBQUM7Q0FBQSxBQW5CRCxJQW1CQztrQkFuQm9CLHNCQUFzQiJ9
-},{"../../../../../easiest/src":"../../easiest/src/index.ts","../../../constants/component":"constants/component.ts"}],"constants/template.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2NvbXBvbmVudC9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUFBLDREQUE0RDtBQUM1RCxrREFBd0Y7QUFDeEYsMERBQTZEO0FBRTdELCtFQUF3RDtBQTBDeEQ7SUFLRSxnQ0FDVSxLQUFrQjtRQUFsQixVQUFLLEdBQUwsS0FBSyxDQUFhO1FBRTFCLElBQUksQ0FBQyxLQUFLLEdBQUc7WUFDWCxJQUFJLEVBQUUseUJBQWE7U0FDcEIsQ0FBQztJQUNKLENBQUM7SUFFTSxzQ0FBSyxHQUFaLFVBQWEsSUFBUyxFQUFFLEtBQWE7UUFDbkMsSUFBSSxDQUFDLEtBQUssR0FBRyxHQUFHLENBQUM7UUFDakIsT0FBTyxDQUFDLEdBQUcsQ0FBQyxpQkFBaUIsRUFBRSxJQUFJLENBQUMsS0FBSyxDQUFDLElBQUksQ0FBQyxDQUFDO1FBQ2hELElBQUksQ0FBQyxLQUFLLENBQUMsT0FBTyxDQUFDLENBQUMsQ0FBQyxDQUFDO1FBQ3RCLE9BQU8sQ0FBQyxHQUFHLENBQUMsS0FBSyxFQUFFLElBQUksQ0FBQyxLQUFLLENBQUMsT0FBTyxFQUFFLENBQUMsQ0FBQztJQUMzQyxDQUFDO0lBRU0sNENBQVcsR0FBbEI7UUFDRSxPQUFPLENBQUMsR0FBRyxDQUFDLGFBQWEsRUFBRSxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUM7SUFDekMsQ0FBQzs7SUF0QmtCLHNCQUFzQjtRQXBCMUMsZ0JBQVU7UUFDVixlQUFTLENBQVE7WUFDaEIsUUFBUSxFQUFFLDBCQUEwQjtZQUNwQyxRQUFRLEVBQUUsQ0FBQyxxb0JBZVYsQ0FBQztTQUNILENBQUM7NkRBT2lCLHNCQUFXLG9CQUFYLHNCQUFXO09BTlQsc0JBQXNCLENBdUIxQztJQUFELDZCQUFDO0NBQUEsQUF2QkQsSUF1QkM7a0JBdkJvQixzQkFBc0IifQ==
+},{"../../../../../easiest/src":"../../easiest/src/index.ts","../../../constants/component":"constants/component.ts","../../../service/test.service":"service/test.service.ts"}],"constants/template.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -11496,13 +11540,23 @@ var __decorate = this && this.__decorate || function (decorators, target, key, d
         if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     }return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = this && this.__metadata || function (k, v) {
+    if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = this && this.__importDefault || function (mod) {
+    return mod && mod.__esModule ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./style.less");
 // import { Component, OnInit, WatchState, SetState, SetLocation, GetLocation } from 'easiest';
 var src_1 = require("../../../../easiest/src");
 var nav_1 = require("../../constants/nav");
+var test_service_1 = __importDefault(require("../../service/test.service"));
 var SideBar = /** @class */function () {
-    function SideBar() {}
+    function SideBar(testS) {
+        this.testS = testS;
+        console.log('service data', this.testS.getData());
+    }
     SideBar.prototype.nvOnInit = function () {
         this.state = {
             navs: nav_1.navs
@@ -11529,20 +11583,22 @@ var SideBar = /** @class */function () {
                 });
             }
         });
+        console.log('service data', this.testS.getData());
     };
     SideBar.prototype.nvWatchState = function (oldData, newData) {
         console.log('oldData Component:', oldData);
         console.log('newData Component:', newData);
     };
-    SideBar = __decorate([src_1.Component({
+    var _a;
+    SideBar = __decorate([src_1.Injectable, src_1.Component({
         selector: 'side-bar',
         template: "\n        <div class=\"side-bar-container\">\n            <div class=\"nav-wrap\" nv-class=\"nav.active\" nv-repeat=\"let nav in state.navs\">\n                <a class=\"nav\" nv-on:click=\"@setLocation(nav.to)\">{{nav.name}}</a>\n                <div class=\"child-wrap\" nv-if=\"nav.child\">\n                    <a class=\"nav nav-child\" nv-class=\"child.active\" nv-repeat=\"let child in nav.child\" nv-on:click=\"@setLocation(child.to)\">{{child.name}}</a>\n                </div>\n            </div>\n        </div>\n    "
-    })], SideBar);
+    }), __metadata("design:paramtypes", [typeof (_a = typeof test_service_1.default !== "undefined" && test_service_1.default) === "function" && _a || Object])], SideBar);
     return SideBar;
 }();
 exports.default = SideBar;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb21wb25lbnRzL3NpZGUtYmFycy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBLHdCQUFzQjtBQUV0QiwrRkFBK0Y7QUFDL0YsK0NBQXlIO0FBRXpILDJDQUEyQztBQXlCM0M7SUFBQTtJQXlDQSxDQUFDO0lBbENVLDBCQUFRLEdBQWY7UUFDSSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1QsSUFBSSxFQUFFLFVBQUk7U0FDYixDQUFDO1FBQ0YsSUFBSSxDQUFDLFNBQVMsRUFBRSxDQUFDO1FBQ2pCLE9BQU8sQ0FBQyxHQUFHLENBQUMsZ0JBQWdCLENBQUMsQ0FBQztJQUNsQyxDQUFDO0lBRU0sK0JBQWEsR0FBcEIsVUFBcUIsU0FBa0IsRUFBRSxRQUFpQjtRQUN0RCxPQUFPLENBQUMsR0FBRyxDQUFDLE1BQU0sRUFBRSxRQUFRLENBQUMsQ0FBQztRQUM5QixJQUFJLENBQUMsU0FBUyxFQUFFLENBQUM7SUFDckIsQ0FBQztJQUVNLDJCQUFTLEdBQWhCO1FBQ0ksSUFBTSxRQUFRLEdBQUcsSUFBSSxDQUFDLFdBQVcsRUFBRSxDQUFDO1FBQ3BDLElBQUksQ0FBQyxLQUFLLENBQUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxVQUFBLEdBQUc7WUFDdkIsR0FBRyxDQUFDLE1BQU0sR0FBRyxJQUFJLENBQUM7WUFDbEIsSUFBSSxHQUFHLENBQUMsRUFBRSxLQUFLLFFBQVEsQ0FBQyxJQUFJO2dCQUFFLE9BQU8sR0FBRyxDQUFDLE1BQU0sR0FBRyxRQUFRLENBQUM7WUFDM0QsSUFBSSxHQUFHLENBQUMsS0FBSyxFQUFFO2dCQUNYLEdBQUcsQ0FBQyxLQUFLLENBQUMsT0FBTyxDQUFDLFVBQUEsQ0FBQztvQkFDZixDQUFDLENBQUMsTUFBTSxHQUFHLElBQUksQ0FBQztvQkFDaEIsSUFBSSxDQUFDLENBQUMsRUFBRSxLQUFLLFFBQVEsQ0FBQyxJQUFJLEVBQUU7d0JBQ3hCLEdBQUcsQ0FBQyxNQUFNLEdBQUcsUUFBUSxDQUFDO3dCQUN0QixDQUFDLENBQUMsTUFBTSxHQUFHLFFBQVEsQ0FBQztxQkFDdkI7Z0JBQ0wsQ0FBQyxDQUFDLENBQUM7YUFDTjtRQUNMLENBQUMsQ0FBQyxDQUFDO0lBQ1AsQ0FBQztJQUVNLDhCQUFZLEdBQW5CLFVBQW9CLE9BQWUsRUFBRSxPQUFlO1FBQ2hELE9BQU8sQ0FBQyxHQUFHLENBQUMsb0JBQW9CLEVBQUUsT0FBTyxDQUFDLENBQUM7UUFDM0MsT0FBTyxDQUFDLEdBQUcsQ0FBQyxvQkFBb0IsRUFBRSxPQUFPLENBQUMsQ0FBQztJQUMvQyxDQUFDO0lBeENnQixPQUFPO1FBYjNCLGVBQVMsQ0FBUTtZQUNkLFFBQVEsRUFBRSxVQUFVO1lBQ3BCLFFBQVEsRUFBRSxDQUFDLG1oQkFTVixDQUFDO1NBQ0wsQ0FBQztPQUNtQixPQUFPLENBeUMzQjtJQUFELGNBQUM7Q0FBQSxBQXpDRCxJQXlDQztrQkF6Q29CLE9BQU8ifQ==
-},{"./style.less":"components/side-bars/style.less","../../../../easiest/src":"../../easiest/src/index.ts","../../constants/nav":"constants/nav.ts"}],"components/code-show/style.less":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb21wb25lbnRzL3NpZGUtYmFycy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUFBLHdCQUFzQjtBQUV0QiwrRkFBK0Y7QUFDL0YsK0NBQXFJO0FBRXJJLDJDQUEyQztBQUUzQyw0RUFBcUQ7QUEwQnJEO0lBT0ksaUJBQ1ksS0FBa0I7UUFBbEIsVUFBSyxHQUFMLEtBQUssQ0FBYTtRQUUxQixPQUFPLENBQUMsR0FBRyxDQUFDLGNBQWMsRUFBRSxJQUFJLENBQUMsS0FBSyxDQUFDLE9BQU8sRUFBRSxDQUFDLENBQUM7SUFDdEQsQ0FBQztJQUVNLDBCQUFRLEdBQWY7UUFDSSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1QsSUFBSSxFQUFFLFVBQUk7U0FDYixDQUFDO1FBQ0YsSUFBSSxDQUFDLFNBQVMsRUFBRSxDQUFDO1FBQ2pCLE9BQU8sQ0FBQyxHQUFHLENBQUMsZ0JBQWdCLENBQUMsQ0FBQztJQUNsQyxDQUFDO0lBRU0sK0JBQWEsR0FBcEIsVUFBcUIsU0FBa0IsRUFBRSxRQUFpQjtRQUN0RCxPQUFPLENBQUMsR0FBRyxDQUFDLE1BQU0sRUFBRSxRQUFRLENBQUMsQ0FBQztRQUM5QixJQUFJLENBQUMsU0FBUyxFQUFFLENBQUM7SUFDckIsQ0FBQztJQUVNLDJCQUFTLEdBQWhCO1FBQ0ksSUFBTSxRQUFRLEdBQUcsSUFBSSxDQUFDLFdBQVcsRUFBRSxDQUFDO1FBQ3BDLElBQUksQ0FBQyxLQUFLLENBQUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxVQUFBLEdBQUc7WUFDdkIsR0FBRyxDQUFDLE1BQU0sR0FBRyxJQUFJLENBQUM7WUFDbEIsSUFBSSxHQUFHLENBQUMsRUFBRSxLQUFLLFFBQVEsQ0FBQyxJQUFJO2dCQUFFLE9BQU8sR0FBRyxDQUFDLE1BQU0sR0FBRyxRQUFRLENBQUM7WUFDM0QsSUFBSSxHQUFHLENBQUMsS0FBSyxFQUFFO2dCQUNYLEdBQUcsQ0FBQyxLQUFLLENBQUMsT0FBTyxDQUFDLFVBQUEsQ0FBQztvQkFDZixDQUFDLENBQUMsTUFBTSxHQUFHLElBQUksQ0FBQztvQkFDaEIsSUFBSSxDQUFDLENBQUMsRUFBRSxLQUFLLFFBQVEsQ0FBQyxJQUFJLEVBQUU7d0JBQ3hCLEdBQUcsQ0FBQyxNQUFNLEdBQUcsUUFBUSxDQUFDO3dCQUN0QixDQUFDLENBQUMsTUFBTSxHQUFHLFFBQVEsQ0FBQztxQkFDdkI7Z0JBQ0wsQ0FBQyxDQUFDLENBQUM7YUFDTjtRQUNMLENBQUMsQ0FBQyxDQUFDO1FBQ0gsT0FBTyxDQUFDLEdBQUcsQ0FBQyxjQUFjLEVBQUUsSUFBSSxDQUFDLEtBQUssQ0FBQyxPQUFPLEVBQUUsQ0FBQyxDQUFDO0lBQ3RELENBQUM7SUFFTSw4QkFBWSxHQUFuQixVQUFvQixPQUFlLEVBQUUsT0FBZTtRQUNoRCxPQUFPLENBQUMsR0FBRyxDQUFDLG9CQUFvQixFQUFFLE9BQU8sQ0FBQyxDQUFDO1FBQzNDLE9BQU8sQ0FBQyxHQUFHLENBQUMsb0JBQW9CLEVBQUUsT0FBTyxDQUFDLENBQUM7SUFDL0MsQ0FBQzs7SUEvQ2dCLE9BQU87UUFkM0IsZ0JBQVU7UUFDVixlQUFTLENBQVE7WUFDZCxRQUFRLEVBQUUsVUFBVTtZQUNwQixRQUFRLEVBQUUsQ0FBQyxtaEJBU1YsQ0FBQztTQUNMLENBQUM7NkRBU3FCLHNCQUFXLG9CQUFYLHNCQUFXO09BUmIsT0FBTyxDQWdEM0I7SUFBRCxjQUFDO0NBQUEsQUFoREQsSUFnREM7a0JBaERvQixPQUFPIn0=
+},{"./style.less":"components/side-bars/style.less","../../../../easiest/src":"../../easiest/src/index.ts","../../constants/nav":"constants/nav.ts","../../service/test.service":"service/test.service.ts"}],"components/code-show/style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
@@ -11607,18 +11663,19 @@ var docs_module_1 = __importDefault(require("./docs.module"));
 var root_component_1 = __importDefault(require("../components/root-component"));
 var side_bars_1 = __importDefault(require("../components/side-bars"));
 var code_show_1 = __importDefault(require("../components/code-show"));
+var test_service_1 = __importDefault(require("../service/test.service"));
 var RootModule = /** @class */function () {
     function RootModule() {}
     RootModule = __decorate([src_1.NvModule({
         imports: [introduction_module_1.default, architecture_module_1.default, docs_module_1.default],
         components: [side_bars_1.default, root_component_1.default, code_show_1.default],
-        providers: []
+        providers: [test_service_1.default]
     })], RootModule);
     return RootModule;
 }();
 exports.default = RootModule;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9tb2R1bGVzL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsc0NBQXNDO0FBQ3RDLDRDQUFnRDtBQUVoRCw4RUFBdUQ7QUFDdkQsOEVBQXVEO0FBQ3ZELDhEQUF1QztBQUV2QyxnRkFBeUQ7QUFDekQsc0VBQThDO0FBQzlDLHNFQUFpRDtBQWVqRDtJQUFBO0lBQWtDLENBQUM7SUFBZCxVQUFVO1FBYjlCLGNBQVEsQ0FBQztZQUNSLE9BQU8sRUFBRTtnQkFDUCw2QkFBa0I7Z0JBQ2xCLDZCQUFrQjtnQkFDbEIscUJBQVU7YUFDWDtZQUNELFVBQVUsRUFBRTtnQkFDVixtQkFBTztnQkFDUCx3QkFBYTtnQkFDYixtQkFBVTthQUNYO1lBQ0QsU0FBUyxFQUFFLEVBQUU7U0FDZCxDQUFDO09BQ21CLFVBQVUsQ0FBSTtJQUFELGlCQUFDO0NBQUEsQUFBbkMsSUFBbUM7a0JBQWQsVUFBVSJ9
-},{"../../../easiest/src":"../../easiest/src/index.ts","./introduction.module":"modules/introduction.module.ts","./architecture.module":"modules/architecture.module.ts","./docs.module":"modules/docs.module.ts","../components/root-component":"components/root-component/index.ts","../components/side-bars":"components/side-bars/index.ts","../components/code-show":"components/code-show/index.ts"}],"main.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9tb2R1bGVzL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsc0NBQXNDO0FBQ3RDLDRDQUFnRDtBQUVoRCw4RUFBdUQ7QUFDdkQsOEVBQXVEO0FBQ3ZELDhEQUF1QztBQUV2QyxnRkFBeUQ7QUFDekQsc0VBQThDO0FBQzlDLHNFQUFpRDtBQUVqRCx5RUFBa0Q7QUFpQmxEO0lBQUE7SUFBa0MsQ0FBQztJQUFkLFVBQVU7UUFmOUIsY0FBUSxDQUFDO1lBQ1IsT0FBTyxFQUFFO2dCQUNQLDZCQUFrQjtnQkFDbEIsNkJBQWtCO2dCQUNsQixxQkFBVTthQUNYO1lBQ0QsVUFBVSxFQUFFO2dCQUNWLG1CQUFPO2dCQUNQLHdCQUFhO2dCQUNiLG1CQUFVO2FBQ1g7WUFDRCxTQUFTLEVBQUU7Z0JBQ1Qsc0JBQVc7YUFDWjtTQUNGLENBQUM7T0FDbUIsVUFBVSxDQUFJO0lBQUQsaUJBQUM7Q0FBQSxBQUFuQyxJQUFtQztrQkFBZCxVQUFVIn0=
+},{"../../../easiest/src":"../../easiest/src/index.ts","./introduction.module":"modules/introduction.module.ts","./architecture.module":"modules/architecture.module.ts","./docs.module":"modules/docs.module.ts","../components/root-component":"components/root-component/index.ts","../components/side-bars":"components/side-bars/index.ts","../components/code-show":"components/code-show/index.ts","../service/test.service":"service/test.service.ts"}],"main.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
