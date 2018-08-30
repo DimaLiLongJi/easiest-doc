@@ -27,6 +27,14 @@ export const navs = [
                 name: '模块',
                 to: '/docs/module',
             },
+            {
+                name: '路由 与 导航',
+                to: '/docs/route',
+            },
+            {
+                name: '引导启动',
+                to: '/docs/indiv',
+            },
         ],
     },
 ];

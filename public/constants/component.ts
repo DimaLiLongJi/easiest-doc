@@ -97,11 +97,12 @@ export const componentInfo = [
           '组件间通信应该是单向的，通过传递值到子组件，并通过传递一个回调方法在子组件来更改对应父组件的值来完成通信。',
         ],
         pchild: [
-          `可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 propValue="{state.value}" propValue="{repeatValue}" propFunction="{@fn}" 的引号包裹花括号的写法传递值与方法。`,
+          '可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 propValue="{state.value}" propValue="{repeatValue}" propFunction="{@fn}" 的引号包裹花括号的写法传递值与方法。',
           '例如在下面例子，在 hero-component 内可以用循环 state.a (nv-repeat)的value persion 并且可以直接在实例方法中触发 handelClick 回调。',
           '但是渲染的时候，不可以在模板上直接使用 props 的值，仅仅可以使用 class 实例的方法和 this.state 的值。',
           '在生命周期 constructor 和 nvOnInit 之后，会开启对 this.state 的监听，此监听会监听每个挂载到 this.state 上的属性及属性的属性，因此如果不对 this.state 添加新的属性或对属性的属性添加新的属性的话，可以直接对某个属性赋值。',
           '相反，如果要对 this.state 上的属性 增加属性或删除，则需要使用  setState<S>(newState: {[key: string]: S}) 方法对 this.state 重新添加监听',
+          '可以直接引用 InDiv 的 SetState 来为 setState方法声明类型。',
         ],
         code: `
   import { Component, SetState, OnInit, ReceiveProps } from 'InDiv';
@@ -177,15 +178,15 @@ export const componentInfo = [
           '在 TypeScript 中，引用 InDiv 提供的 interface，通过 implements 的方式让类去实现被预先定义好的生命周期，而在 JavaScript 中，你只能自己手动去定义应该实现的生命周期方法。',
         ],
         pchild: [
-          `1. constructor 在类被实例化的时候回触发，你可以在这里预先定义你的 state`,
-          `2. nvOnInit(): void; constructor 之后，在这个生命周期中，可以通过 this.props 获取 props，并定义 state，此生命周期会在开启监听前被触发，并且之后再也不会触发`,
-          `3. nvBeforeMount(): void; 在 nvOnInit 之后，template 挂载页面之前被触发，每次触发渲染页面都会被触发`,
-          `4. nvAfterMount(): void; 在 nvBeforeMount 之后，template 挂载页面之后被触发，每次触发渲染页面（render）都会被触发`,
-          `5. nvHasRender(): void; 在 nvAfterMount 之后，渲染完成后被触发，每次触发渲染页面（render）都会被触发`,
-          `6. nvRouteChange(lastRoute?: string, newRoute?: string): void; 监听路由变化，当更换路由后被触发`,
-          `7. nvOnDestory(): void; 仅仅在路由决定销毁此组件时被触发`,
-          `8. nvWatchState(oldData?: any, newData?: any): void; 监听 state 变化，当 state 被更改时被触发`,
-          `9. nvReceiveProps(nextProps: any): void; 监听 props 变化，当 props 被更改时被触发`,
+          '1. constructor 在类被实例化的时候回触发，你可以在这里预先定义你的 state',
+          '2. nvOnInit(): void; constructor 之后，在这个生命周期中，可以通过 this.props 获取 props，并定义 state，此生命周期会在开启监听前被触发，并且之后再也不会触发',
+          '3. nvBeforeMount(): void; 在 nvOnInit 之后，template 挂载页面之前被触发，每次触发渲染页面都会被触发',
+          '4. nvAfterMount(): void; 在 nvBeforeMount 之后，template 挂载页面之后被触发，每次触发渲染页面（render）都会被触发',
+          '5. nvHasRender(): void; 在 nvAfterMount 之后，渲染完成后被触发，每次触发渲染页面（render）都会被触发',
+          '6. nvRouteChange(lastRoute?: string, newRoute?: string): void; 监听路由变化，当更换路由后被触发',
+          '7. nvOnDestory(): void; 仅仅在路由决定销毁此组件时被触发',
+          '8. nvWatchState(oldData?: any, newData?: any): void; 监听 state 变化，当 state 被更改时被触发',
+          '9. nvReceiveProps(nextProps: any): void; 监听 props 变化，当 props 被更改时被触发',
         ],
         code: `
  import { Component, OnInit, BeforeMount, AfterMount, HasRender, OnDestory, WatchState, ReceiveProps } from 'InDiv';

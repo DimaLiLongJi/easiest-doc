@@ -20,7 +20,7 @@ export const content = [
         p: '你也可以和我们一起做贡献！你可以到 什么是InDiv 在 Github 上的仓库中提出文档方面的问题，并创建Pull Requests。',
     },
     {
-        h1: '1111',
-        p: 'InDiv 是单词 individual 的缩写，我在设计时借鉴了很多 angular 和 react 的模式与概念，致敬 angular 和 react。',
+        h1: '关于 InDiv',
+        p: 'InDiv 是单词 individual 的缩写，我在设计时借鉴了很多 angular 和 react 的模式与概念，致敬 angular 和 react。本网站可能是世界上第一个用 InDiv 写的App。',
     },
 ];

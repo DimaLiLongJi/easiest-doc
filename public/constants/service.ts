@@ -13,12 +13,13 @@ export const serviceInfo = [
           '@Service 装饰器会指出紧随其后的那个类是个服务，并为其指定元数据。',
           '@Service 接收1个参数: { isSingletonMode?: boolean; }。 用来指出是否为 单例服务。',
           '@Injectable 不接受任何参数，而是用来提示 InDiv 该 class 有需要注入的服务。',
+          '@Injectable 可以用在 组件（component） 和 服务（service） 上。',
         ],
         pchild: [
           '1. isSingletonMode: boolean; 用来告诉 模块 该服务是否为单例服务。',
           '2. 服务里可以被注入其他服务',
           '3. 在 TypeScript 中，在视同我们可以直接在 构造函数 的参数中声明出参数及其类型，类型为需要被注入的 服务，并可以直接在实例中拿到，',
-          '4, 但是在 JavaScript 中，只能通过在 构造函数 的参数中，把 需要被注入服务的开头字母 小写的方式来声明被注入的 服务。 例如：需要注入 HeroService，则写作 heroService',
+          '4, 但是在 JavaScript 中，只能通过在 构造函数 的参数中，把 需要被注入 服务（service） 的开头字母 小写的方式来声明被注入的 服务（service）。 例如：需要注入 HeroService，则写作 heroService',
         ],
         code: `
   // in TypeScript

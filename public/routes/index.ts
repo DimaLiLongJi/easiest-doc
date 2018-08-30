@@ -1,10 +1,10 @@
 // import { Router } from 'easiest';
-import { Router } from '../../../easiest/src';
+import { Router, TRouter } from '../../../easiest/src';
 
 const router = new Router();
 
 
-const routes = [
+const routes: TRouter[] = [
     {
         path: '/',
         redirectTo: '/introduction',
@@ -38,6 +38,14 @@ const routes = [
                     {
                         path: '/module',
                         component: 'docs-module-container',
+                    },
+                    {
+                        path: '/route',
+                        component: 'docs-route-container',
+                    },
+                    {
+                        path: '/indiv',
+                        component: 'docs-indiv-container',
                     },
                 ],
             },
