@@ -5,6 +5,7 @@ import DocsContainer from '../pages/docs';
 import DocsComponentContainer from '../pages/docs/component';
 import DocsTemplateContainer from '../pages/docs/template';
 import DocsModuleContainer from '../pages/docs/module';
+import DocsServiceContainer from '../pages/docs/service';
 
 @NvModule({
     imports: [
@@ -14,6 +15,7 @@ import DocsModuleContainer from '../pages/docs/module';
         DocsComponentContainer,
         DocsTemplateContainer,
         DocsModuleContainer,
+        DocsServiceContainer,
     ],
     providers: [
     ],
@@ -22,6 +24,7 @@ import DocsModuleContainer from '../pages/docs/module';
         DocsComponentContainer,
         DocsTemplateContainer,
         DocsModuleContainer,
+        DocsServiceContainer,
     ],
 })
 export default class DocsModule { }

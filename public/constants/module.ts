@@ -14,9 +14,9 @@ export const moduleInfo = [
           '@NvModule 接收5个参数。',
         ],
         pchild: [
-          '声明某些组件、服务和管道属于这个模块',
+          '声明某些组件（component）、服务（service）属于这个模块',
           '公开其中的部分组件，以便其它模块中的组件模板中可以使用它们',
-          '导入其它带有组件、服务的模块，这些模块中的元件都是本模块所需的',
+          '导入其它带有组件、服务的模块（NvModule），这些模块中的元件都是本模块所需的',
           '提供一些供应用中的其它组件使用的服务',
         ],
         code: `
@@ -64,7 +64,7 @@ export const moduleInfo = [
         ],
         pchild: [
           'imports 数组 会告诉 InDiv 哪些其它的 模块 是当前 模块 所需的',
-          'imports 数组中的这些模块与 JavaScript 模块不同，它们都是 NvModule 而不是常规的 JavaScript 模块。',
+          'imports 数组中的这些模块（NvModule）与 JavaScript 模块不同，它们都是 NvModule 而不是常规的 JavaScript 模块。',
           '而是因为它带有 @NvModule 装饰器及其元数据。',
           '被 imports 的 模块 一定要有 exports，否则将无效。',
         ],
@@ -224,9 +224,9 @@ export const moduleInfo = [
           'exports?: Function[];',
         ],
         pchild: [
-          'exports 用来声明模块被导出的组件。',
+          'exports 用来声明模块被导出的组件（component）。',
           '模块只能导出可声明的类。它不会声明或导出任何其它类型的类。',
-          '被模块导出的组件，可以随意在 导入该模块的模块 中的 组件 使用。',
+          '被模块导出的组件，可以随意在 导入该模块的模块（NvModule） 中的 组件 使用。',
         ],
         code: `
   // NvModule M2
@@ -291,8 +291,8 @@ export const moduleInfo = [
         ],
         pchild: [
           '从分类上说，入口组件是 InDiv 命令式加载的任意组件。',
-          '如果你没有使用路由，则需要在 根模块 中将一个 组件 声明给该项。',
-          '被声明的 组件 将作为 入口组件 被 InDiv 渲染到页面。',
+          '如果你没有使用路由，则需要在 根模块 中将一个 组件 声明给该项，被声明的 组件 将作为 入口组件 被 InDiv 渲染到页面。',
+          '如果你使用路由，则无需对此项赋值，因为路由会自动根据配置去找到需要渲染的页面。',
         ],
         code: `
   @Component({

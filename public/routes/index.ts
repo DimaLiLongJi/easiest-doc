@@ -32,6 +32,10 @@ const routes = [
                         component: 'docs-template-container',
                     },
                     {
+                        path: '/service',
+                        component: 'docs-service-container',
+                    },
+                    {
                         path: '/module',
                         component: 'docs-module-container',
                     },
@@ -42,8 +46,8 @@ const routes = [
 ];
 router.setRootPath('/easiest-doc');
 router.init(routes);
-router.routeChange = function (old: string, next: string) {
-    console.log('$routeChange', old, next);
+router.routeChange = (old: string, next: string) => {
+    // console.log('$routeChange', old, next);
 };
 
 export default router;

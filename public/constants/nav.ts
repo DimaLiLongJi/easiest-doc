@@ -20,6 +20,10 @@ export const navs = [
                 to: '/docs/template',
             },
             {
+                name: '服务 与 依赖注入',
+                to: '/docs/service',
+            },
+            {
                 name: '模块',
                 to: '/docs/module',
             },

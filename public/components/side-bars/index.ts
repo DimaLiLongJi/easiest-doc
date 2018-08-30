@@ -1,7 +1,7 @@
 import './style.less';
 
 // import { Component, OnInit, WatchState, SetState, SetLocation, GetLocation } from 'easiest';
-import { Component, OnInit, WatchState, SetState, SetLocation, GetLocation } from '../../../../easiest/src';
+import { Component, OnInit, WatchState, RouteChange, SetState, SetLocation, GetLocation } from '../../../../easiest/src';
 
 import { navs } from '../../constants/nav';
 
@@ -20,15 +20,15 @@ interface State {
     template: (`
         <div class="side-bar-container">
             <div class="nav-wrap" nv-class="nav.active" nv-repeat="let nav in state.navs">
-                <a class="nav" nv-on:click="@goTo(nav.to, $index)">{{nav.name}}</a>
+                <a class="nav" nv-on:click="@setLocation(nav.to)">{{nav.name}}</a>
                 <div class="child-wrap" nv-if="nav.child">
-                    <a class="nav nav-child" nv-repeat="let child in nav.child" nv-on:click="@goTo(child.to)">{{child.name}}</a>
+                    <a class="nav nav-child" nv-class="child.active" nv-repeat="let child in nav.child" nv-on:click="@setLocation(child.to)">{{child.name}}</a>
                 </div>
             </div>
         </div>
     `),
 })
-export default class SideBar implements OnInit, WatchState {
+export default class SideBar implements OnInit, WatchState, RouteChange {
     public state: State;
     public props: any;
     public getLocation: GetLocation;
@@ -43,6 +43,11 @@ export default class SideBar implements OnInit, WatchState {
         console.log('SideBar onInit');
     }
 
+    public nvRouteChange(lastRoute?: string, newRoute?: string): void {
+        console.log(111111, newRoute);
+        this.showColor();
+    }
+
     public showColor() {
         const location = this.getLocation();
         this.state.navs.forEach(nav => {
@@ -50,17 +55,14 @@ export default class SideBar implements OnInit, WatchState {
             if (nav.to === location.path) return nav.active = 'active';
             if (nav.child) {
                 nav.child.forEach(n => {
-                    if (n.to === location.path) nav.active = 'active';
+                    n.active = null;
+                    if (n.to === location.path) {
+                        nav.active = 'active';
+                        n.active = 'active';
+                    }
                 });
             }
         });
-    }
-
-    public goTo(to: string, index?: number) {
-        this.setLocation(to);
-        if (index || index === 0) {
-            this.showColor();
-        }
     }
 
     public nvWatchState(oldData: string, newData: string) {

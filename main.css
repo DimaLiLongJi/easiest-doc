@@ -227,6 +227,9 @@ a:hover {
 .side-bar-container .nav-wrap.active .child-wrap {
   height: auto;
 }
+.side-bar-container .nav-wrap.active .child-wrap > a.active {
+  color: #1976d2;
+}
 .side-bar-container .nav {
   font-size: 14px;
   font-weight: 400;
