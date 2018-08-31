@@ -1,5 +1,4 @@
-// import { NvModule } from 'easiest';
-import { NvModule } from '../../../InDiv/src';
+import { NvModule } from 'indiv';
 
 import IntroductionModule from './introduction.module';
 import ArchitectureModule from './architecture.module';

@@ -1,4 +1,3 @@
-// import { Component, HasRender, SetState } from 'easiest';
 import { Component, HasRender, SetState, Injectable, WatchState, OnInit } from '../../../../../InDiv/src';
 import { componentInfo } from '../../../constants/component';
 

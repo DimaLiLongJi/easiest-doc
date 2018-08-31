@@ -1,8 +1,7 @@
 import './styles/reset';
 import './styles/global';
 
-// import { InDiv } from 'easiest';
-import { InDiv } from '../../InDiv/src';
+import { InDiv } from 'indiv';
 
 import router from './routes';
 

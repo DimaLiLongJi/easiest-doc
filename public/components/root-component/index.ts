@@ -1,7 +1,6 @@
 import './style.less';
 
-// import { Component, OnInit, WatchState } from 'easiest';
-import { Component, OnInit, WatchState } from '../../../../InDiv/src';
+import { Component } from 'indiv';
 
 @Component({
     selector: 'root-component',
@@ -12,11 +11,4 @@ import { Component, OnInit, WatchState } from '../../../../InDiv/src';
         </div>
     `),
 })
-export default class RootComponent implements OnInit, WatchState {
-    public nvOnInit() { }
-
-    public nvWatchState(oldData: string, newData: string) {
-        console.log('oldData Component:', oldData);
-        console.log('newData Component:', newData);
-    }
-}
+export default class RootComponent {}

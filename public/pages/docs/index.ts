@@ -1,7 +1,6 @@
 import './style.less';
 
-// import { Component } from 'easiest';
-import { Component } from '../../../../InDiv/src';
+import { Component } from 'indiv';
 
 @Component<any>({
   selector: 'docs-container',

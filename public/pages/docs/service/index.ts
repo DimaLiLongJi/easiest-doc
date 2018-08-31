@@ -1,5 +1,4 @@
-// import { Component, HasRender, SetState } from 'easiest';
-import { Component, HasRender, SetState, OnDestory } from '../../../../../InDiv/src';
+import { Component, HasRender, SetState, OnDestory } from 'indiv';
 import { serviceInfo } from '../../../constants/service';
 
 interface Info {

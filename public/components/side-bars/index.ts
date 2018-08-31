@@ -1,7 +1,6 @@
 import './style.less';
 
-// import { Component, OnInit, WatchState, SetState, SetLocation, GetLocation } from 'easiest';
-import { Component, OnInit, WatchState, RouteChange, SetState, SetLocation, GetLocation, Injectable } from '../../../../InDiv/src';
+import { Component, OnInit, WatchState, RouteChange, SetState, SetLocation, GetLocation, Injectable } from 'indiv';
 
 import { navs } from '../../constants/nav';
 
@@ -73,10 +72,5 @@ export default class SideBar implements OnInit, WatchState, RouteChange {
             }
         });
         console.log('service data', this.testS.getData());
-    }
-
-    public nvWatchState(oldData: string, newData: string) {
-        console.log('oldData Component:', oldData);
-        console.log('newData Component:', newData);
     }
 }

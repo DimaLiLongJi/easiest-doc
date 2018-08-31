@@ -1,4 +1,4 @@
-import { Service } from '../../../InDiv/src';
+import { Service } from 'indiv';
 
 @Service({
   isSingletonMode: true,
