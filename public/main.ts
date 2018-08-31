@@ -2,7 +2,7 @@ import './styles/reset';
 import './styles/global';
 
 // import { InDiv } from 'easiest';
-import { InDiv } from '../../easiest/src';
+import { InDiv } from '../../InDiv/src';
 
 import router from './routes';
 

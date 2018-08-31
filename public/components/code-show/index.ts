@@ -1,7 +1,7 @@
 import './style.less';
 
 // import { Component, OnInit, WatchState, SetState, SetLocation, GetLocation } from 'easiest';
-import { Component, OnInit, SetState, SetLocation, GetLocation } from '../../../../easiest/src';
+import { Component, OnInit, SetState, SetLocation, GetLocation } from '../../../../InDiv/src';
 
 interface State {
     codes: string;

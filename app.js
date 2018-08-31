@@ -11,7 +11,7 @@ app.set('view engine', 'html');
 app.set('views', './');
 app.use(express.static('./'));
 
-app.use('/easiest-doc', (req, res, next) => {
+app.use('/indiv-doc', (req, res, next) => {
   res.render('dev.html');
 });
 

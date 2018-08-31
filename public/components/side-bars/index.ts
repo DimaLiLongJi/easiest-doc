@@ -1,7 +1,7 @@
 import './style.less';
 
 // import { Component, OnInit, WatchState, SetState, SetLocation, GetLocation } from 'easiest';
-import { Component, OnInit, WatchState, RouteChange, SetState, SetLocation, GetLocation, Injectable } from '../../../../easiest/src';
+import { Component, OnInit, WatchState, RouteChange, SetState, SetLocation, GetLocation, Injectable } from '../../../../InDiv/src';
 
 import { navs } from '../../constants/nav';
 

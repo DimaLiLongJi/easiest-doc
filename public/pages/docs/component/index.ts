@@ -1,5 +1,5 @@
 // import { Component, HasRender, SetState } from 'easiest';
-import { Component, HasRender, SetState, Injectable, WatchState, OnInit } from '../../../../../easiest/src';
+import { Component, HasRender, SetState, Injectable, WatchState, OnInit } from '../../../../../InDiv/src';
 import { componentInfo } from '../../../constants/component';
 
 import TestService from '../../../service/test.service';

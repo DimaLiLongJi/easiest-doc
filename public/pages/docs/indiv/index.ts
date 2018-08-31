@@ -1,5 +1,5 @@
 // import { Component, HasRender, SetState } from 'easiest';
-import { Component, SetState } from '../../../../../easiest/src';
+import { Component, SetState } from '../../../../../InDiv/src';
 import { inDivInfo } from '../../../constants/indiv';
 
 interface Info {

@@ -1,5 +1,5 @@
 // import { NvModule } from 'easiest';
-import { NvModule } from '../../../easiest/src';
+import { NvModule } from '../../../InDiv/src';
 
 import DocsContainer from '../pages/docs';
 import DocsComponentContainer from '../pages/docs/component';

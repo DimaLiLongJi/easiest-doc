@@ -1,5 +1,5 @@
 // import { Router } from 'easiest';
-import { Router, TRouter } from '../../../easiest/src';
+import { Router, TRouter } from '../../../InDiv/src';
 
 const router = new Router();
 
@@ -60,7 +60,7 @@ const routes: TRouter[] = [
         ],
     },
 ];
-router.setRootPath('/easiest-doc');
+router.setRootPath('/indiv-doc');
 router.init(routes);
 router.routeChange = (old: string, next: string) => {
     // console.log('$routeChange', old, next);

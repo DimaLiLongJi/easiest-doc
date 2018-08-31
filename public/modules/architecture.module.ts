@@ -1,5 +1,5 @@
 // import { NvModule } from 'easiest';
-import { NvModule } from '../../../easiest/src';
+import { NvModule } from '../../../InDiv/src';
 
 import ArchitectureContainer from '../pages/architecture';
 

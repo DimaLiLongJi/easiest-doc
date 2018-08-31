@@ -1,7 +1,7 @@
 {
-  "name": "easiest-doc",
+  "name": "indiv-doc",
   "version": "1.0.0",
-  "description": "easiest doc",
+  "description": "indiv doc",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,18 +10,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DimaLiLongJi/easiest-doc.git"
+    "url": "git+https://github.com/DimaLiLongJi/indiv-doc.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DimaLiLongJi/easiest-doc/issues"
+    "url": "https://github.com/DimaLiLongJi/indiv-doc/issues"
   },
-  "homepage": "https://github.com/DimaLiLongJi/easiest-doc#readme",
+  "homepage": "https://github.com/DimaLiLongJi/indiv-doc#readme",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "easier-cookie": "^1.1.1",
-    "easiest": "^1.2.3"
+    "easier-cookie": "^1.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",

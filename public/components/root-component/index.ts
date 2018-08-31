@@ -1,7 +1,7 @@
 import './style.less';
 
 // import { Component, OnInit, WatchState } from 'easiest';
-import { Component, OnInit, WatchState } from '../../../../easiest/src';
+import { Component, OnInit, WatchState } from '../../../../InDiv/src';
 
 @Component({
     selector: 'root-component',
