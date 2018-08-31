@@ -47,7 +47,7 @@ export default class DocsModuleContainer implements HasRender {
 
   constructor() {
     this.state = {
-      info: moduleInfo,
+      info: moduleInfo(),
     };
   }
 

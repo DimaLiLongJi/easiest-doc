@@ -1,4 +1,4 @@
-export const content = [
+export const content = () => [
   {
     h1: '架构概览',
     p: 'InDiv 的基本构造块是 NvModule，它为组件提供了编译的上下文环境。 NvModule 会把相关的代码收集到一些功能集中。InDiv 应用就是由一组 NvModule 定义出的。 应用至少会有一个用于引导应用的根模块，通常还会有很多特性模块。 Component 作为页面元素的基本单位，由定义的 NvModule 统一提供给编译器或路由使用。Route 被委托管理页面渲染，根据访问的url的不同来获取不用的识图渲染。',

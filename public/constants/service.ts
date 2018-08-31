@@ -1,4 +1,4 @@
-export const serviceInfo = [
+export const serviceInfo = () => [
   {
     h1: '服务 与 依赖注入',
     p: [

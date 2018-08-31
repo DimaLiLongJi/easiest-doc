@@ -47,7 +47,7 @@ export default class DocsRouteContainer {
 
   constructor() {
     this.state = {
-      info: routeInfo,
+      info: routeInfo(),
     };
   }
 }

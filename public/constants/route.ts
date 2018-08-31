@@ -1,4 +1,4 @@
-export const routeInfo = [
+export const routeInfo = () => [
   {
     h1: '路由 与 导航',
     p: [

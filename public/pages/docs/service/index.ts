@@ -47,7 +47,7 @@ export default class DocsServiceContainer implements HasRender, OnDestory {
 
   constructor() {
     this.state = {
-      info: serviceInfo,
+      info: serviceInfo(),
     };
   }
 

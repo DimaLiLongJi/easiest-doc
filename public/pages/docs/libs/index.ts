@@ -47,7 +47,7 @@ export default class DocsLibsContainer {
 
   constructor() {
     this.state = {
-      info: libInfo,
+      info: libInfo(),
     };
   }
 }

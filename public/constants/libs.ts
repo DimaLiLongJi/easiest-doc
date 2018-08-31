@@ -1,4 +1,4 @@
-export const libInfo = [
+export const libInfo = () => [
   {
     h1: '工具函数',
     p: [

@@ -1,4 +1,4 @@
-export const templateInfo = [
+export const templateInfo = () => [
   {
     h1: '模板语法',
     p: [

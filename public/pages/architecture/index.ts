@@ -29,7 +29,7 @@ export default class ArchitectureContainer {
   public state: State;
   constructor() {
     this.state = {
-      info: content,
+      info: content(),
     };
   }
 }

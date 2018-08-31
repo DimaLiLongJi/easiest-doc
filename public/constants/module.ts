@@ -1,4 +1,4 @@
-export const moduleInfo = [
+export const moduleInfo = () => [
   {
     h1: 'InDiv 模块',
     p: [

@@ -47,7 +47,7 @@ export default class DocsInDivContainer {
 
   constructor() {
     this.state = {
-      info: inDivInfo,
+      info: inDivInfo(),
     };
   }
 }

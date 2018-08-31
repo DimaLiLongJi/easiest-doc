@@ -46,7 +46,7 @@ export default class SideBar implements OnInit, WatchState, RouteChange {
 
     public nvOnInit() {
         this.state = {
-            navs: navs,
+            navs: navs(),
         };
         this.showColor();
         console.log('SideBar onInit');

@@ -1,4 +1,4 @@
-export const componentInfo = [
+export const componentInfo = () => [
   {
     h1: '组件与模板',
     p: [

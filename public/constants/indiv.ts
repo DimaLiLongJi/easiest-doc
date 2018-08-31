@@ -1,4 +1,4 @@
-export const inDivInfo = [
+export const inDivInfo = () => [
   {
     h1: '启动',
     p: [

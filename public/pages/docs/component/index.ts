@@ -1,5 +1,5 @@
 // import { Component, HasRender, SetState } from 'easiest';
-import { Component, HasRender, SetState, Injectable } from '../../../../../easiest/src';
+import { Component, HasRender, SetState, Injectable, WatchState, OnInit } from '../../../../../easiest/src';
 import { componentInfo } from '../../../constants/component';
 
 import TestService from '../../../service/test.service';
@@ -44,7 +44,7 @@ interface State {
     </div>
   `),
 })
-export default class DocsComponentContainer implements HasRender {
+export default class DocsComponentContainer implements OnInit, HasRender, WatchState {
   public state: State;
   public func: string;
   public setState: SetState;
@@ -53,13 +53,21 @@ export default class DocsComponentContainer implements HasRender {
     private testS: TestService,
   ) {
     this.state = {
-      info: componentInfo,
+      info: componentInfo(),
     };
+  }
+
+  public nvOnInit() {
+    console.log('DocsComponentContainer has oninit');
+  }
+  
+  public nvWatchState(o: State, n: State) {
+    console.log('oooooo', o);
+    console.log('nnnnnn', n);
   }
 
   public click(code: any, index: number) {
     code.title = '1';
-    console.log('this.state.info', this.state.info);
     this.testS.setData(3);
     console.log(22222, this.testS.getData());
   }

@@ -1,4 +1,4 @@
-export const navs = [
+export const navs = () => [
     {
         name: '介绍',
         to: '/introduction',
