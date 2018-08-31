@@ -51,6 +51,10 @@ const routes: TRouter[] = [
                         path: '/libs',
                         component: 'docs-libs-container',
                     },
+                    {
+                        path: '/http',
+                        component: 'docs-http-container',
+                    },
                 ],
             },
         ],

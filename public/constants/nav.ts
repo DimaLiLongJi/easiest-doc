@@ -39,6 +39,10 @@ export const navs = () => [
                 name: '工具函数',
                 to: '/docs/libs',
             },
+            {
+                name: 'HTTP',
+                to: '/docs/libs',
+            },
         ],
     },
 ];

@@ -9,10 +9,9 @@ import DocsServiceContainer from '../pages/docs/service';
 import DocsRouteContainer from '../pages/docs/route';
 import DocsInDivContainer from '../pages/docs/indiv';
 import DocsLibsContainer from '../pages/docs/libs';
+import DocsHttpContainer from '../pages/docs/http';
 
 @NvModule({
-    imports: [
-    ],
     components: [
         DocsContainer,
         DocsComponentContainer,
@@ -22,6 +21,7 @@ import DocsLibsContainer from '../pages/docs/libs';
         DocsRouteContainer,
         DocsInDivContainer,
         DocsLibsContainer,
+        DocsHttpContainer,
     ],
     providers: [
     ],
@@ -34,6 +34,7 @@ import DocsLibsContainer from '../pages/docs/libs';
         DocsRouteContainer,
         DocsInDivContainer,
         DocsLibsContainer,
+        DocsHttpContainer,
     ],
 })
 export default class DocsModule { }
