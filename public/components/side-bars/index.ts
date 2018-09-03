@@ -1,6 +1,6 @@
 import './style.less';
 
-import { Component, OnInit, WatchState, RouteChange, SetState, SetLocation, GetLocation, Injectable } from 'indiv';
+import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injectable } from 'indiv';
 
 import { navs } from '../../constants/nav';
 
@@ -30,7 +30,7 @@ interface State {
         </div>
     `),
 })
-export default class SideBar implements OnInit, WatchState, RouteChange {
+export default class SideBar implements OnInit, RouteChange {
     public state: State;
     public props: any;
     public getLocation: GetLocation;
