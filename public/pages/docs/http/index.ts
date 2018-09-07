@@ -1,4 +1,4 @@
-import { Component, SetState } from '../../../../../InDiv/src';
+import { Component, SetState } from 'indiv';
 import { httpInfo } from '../../../constants/http';
 
 interface Info {

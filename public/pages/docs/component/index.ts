@@ -1,4 +1,4 @@
-import { Component, HasRender, SetState, Injectable, WatchState, OnInit } from '../../../../../InDiv/src';
+import { Component, HasRender, SetState, Injectable, WatchState, OnInit } from 'indiv';
 import { componentInfo } from '../../../constants/component';
 
 import TestService from '../../../service/test.service';
