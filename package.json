@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf build && parcel build pubilc/main.ts -d ./",
+    "build": "parcel build pubilc/main.ts -d ./",
     "start": "parcel watch public/main.ts -d ./ & nodemon app.js"
   },
   "repository": {
