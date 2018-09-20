@@ -21,7 +21,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "easier-cookie": "^1.1.1",
-    "indiv": "^1.0.1"
+    "indiv": "^1.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",

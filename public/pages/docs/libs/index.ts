@@ -1,4 +1,5 @@
 import { Component, HasRender, SetState } from 'indiv';
+// import { Component, HasRender, SetState } from '../../../../../InDiv/src';
 import { libInfo } from '../../../constants/libs';
 
 interface Info {

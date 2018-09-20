@@ -1,6 +1,7 @@
 import './style.less';
 
 import { Component } from 'indiv';
+// import { Component } from '../../../../InDiv/src';
 
 @Component({
     selector: 'root-component',

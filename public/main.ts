@@ -2,6 +2,7 @@ import './styles/reset';
 import './styles/global';
 
 import { InDiv } from 'indiv';
+// import { InDiv } from '../../InDiv/src';
 
 import router from './routes';
 

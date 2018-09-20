@@ -1,4 +1,5 @@
 import { Component, HasRender, SetState, OnDestory } from 'indiv';
+// import { Component, HasRender, SetState, OnDestory } from '../../../../../InDiv/src';
 import { serviceInfo } from '../../../constants/service';
 
 interface Info {
