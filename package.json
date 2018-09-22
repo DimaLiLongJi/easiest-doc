@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build pubilc/main.ts -d ./",
-    "start": "parcel watch public/main.ts -d ./ & nodemon app.js"
+    "start": "parcel watch public/main.ts -d ./ & nodemon app.js",
+    "start-win": "parcel ./win.html -d dist --open"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,8 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "easier-cookie": "^1.1.1",
-    "indiv": "^1.1.0"
+    "indiv": "^1.1.0",
+    "rxjs": "^6.3.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",

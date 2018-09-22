@@ -91,7 +91,7 @@ export const componentInfo = () => [
  `,
       },
       {
-        title: '组件通信: props 与 state',
+        title: '组件通信1: props 与 state',
         p: [
           'InDiv 的组件之间可以 props 来通信。',
           '组件间通信应该是单向的，通过传递值到子组件，并通过传递一个回调方法在子组件调用来更改对应父组件的值来完成通信。',
@@ -169,6 +169,82 @@ export const componentInfo = () => [
     }
   }
  `,
+      },
+      {
+        title: '组件通信2: service 与 RxJS',
+        p: [
+          '父子组件的通信可以通过 props , 但跨层级组件间的通信该怎么办？',
+          '相比于构建全局变量，InDiv 的服务显然更适合这种场景。',
+        ],
+        pchild: [
+          '1. InDiv 的组件之间可以通过注入同一个 单例service。（既全局仅仅产生一个实例）',
+          '2. 通过 RxJS 订阅同一个 可观察者对象（详细 RxJS 用法请关注 RxJS 文档 https://rxjs-dev.firebaseapp.com/）',
+          '3. 通过用一个 可观察者对象 获得组件之间通信或状态变更',
+        ],
+//         code: `
+//   import { Component, SetState, OnInit, ReceiveProps } from 'InDiv';
+//   @Component({
+//     selector: 'hero-component',
+//     template: ('
+//       <div>
+//         <p>来自父组件的stateValue: {{state.stateValue}}</p>
+//         <p>idValue: {{state.idValue}}</p>
+//       </div>
+//     '),
+//   })
+//   class HeroComponent implements OnInit, ReceiveProps {
+//     public setState: SetState;
+//     public state: any;
+//     public props: any;
+
+//     public nvOnInit() {
+//       state: {
+//         idValue: this.props.idValue,
+//         stateValue: this.props.stateValue,
+//       },
+//     }
+
+//     public show(a: any) {
+//       this.props.handelClick(a);
+//     }
+
+//     public nvReceiveProps(nextProps: any): void {
+//       this.state.idValue = nextProps.idValue;
+//       this.setState({
+//         stateValue: nextProps.stateValue,
+//       });
+//     }
+//   }
+
+//  @Component({
+//     selector: 'container-component',
+//     template: ('
+//       <div>
+//         <div nv-repeat="let person in state.b" nv-key="person.id">
+//           <hero-component handelClick="@show" stateValue="state.a" idValue="person.id" ></hero-component>
+//         </div>
+//       </div>
+//     '),
+//   })
+//   class ContainerComponent {
+//     constructor() {
+//       this.state = {
+//         a: {
+//           id: 3,
+//           name: '码农3',
+//         },
+//         b: [
+//           {id: 1, name: '码农1'},
+//           {id: 2, name: '码农2'},
+//         ],
+//       }
+//     }
+
+//     public show(a: any) {
+//       console.log(a);
+//     }
+//   }
+//  `,
       },
       {
         title: '生命周期钩子',

@@ -57,6 +57,10 @@ const routes: TRouter[] = [
                     },
                 ],
             },
+            {
+                path: '/ssr',
+                component: 'ssr-container',
+            },
         ],
     },
 ];
