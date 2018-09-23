@@ -8,12 +8,13 @@ export const serviceInfo = () => [
     ],
     info: [
       {
-        title: '装饰器 Service 和 Injectable',
+        title: '装饰器 Service, Injectable 和 Injectable, Injected',
         p: [
-          '@Service 装饰器会指出紧随其后的那个类是个服务，并为其指定元数据。',
-          '@Service 接收1个参数: { isSingletonMode?: boolean; }。 用来指出是否为 单例服务。',
-          '@Injectable 不接受任何参数，而是用来提示 InDiv 该 class 有需要注入的服务。',
-          '@Injectable 可以用在 组件（component） 和 服务（service） 上。',
+          '由于作者英语水平过差，将Injectable用错，因此v1.2.0版本开始将由 Injectable, Injected 分别代替1.1.0版本及以下的 Service, Injectable',
+          'v1.1.0版本@Service / v1.2.0及以上版本: @Injectable: 会指出紧随其后的那个类是个服务，并为其指定元数据。',
+          'v1.1.0版本@Service / v1.2.0及以上版本: @Injectable: 接收1个参数: { isSingletonMode?: boolean; }。 用来指出是否为 单例服务。',
+          'v1.1.0版本: @Injectable / v1.2.0及以上版本: @Injected: 不接受任何参数，而是用来提示 InDiv 该 class 有需要注入的服务。',
+          'v1.1.0版本: @Injectable / v1.2.0及以上版本: @Injected: 可以用在 组件（component） 和 服务（service） 上。',
         ],
         pchild: [
           '1. isSingletonMode: boolean; 用来告诉 模块 该服务是否为单例服务。',
@@ -23,8 +24,14 @@ export const serviceInfo = () => [
         ],
         code: `
   // in TypeScript
-  @Injectable
-  @Service()
+
+  // v1.1.0
+  // @Injectable
+  // @Service({ isSingletonMode: false })
+
+  // v1.2.0+
+  @Injected
+  @Injectable({ isSingletonMode: false })
   export default class HeroSearchService {
     public hsr: HeroSearchService1; // 服务 HeroSearchService1 被注入, 可以直接用 this.hsr
     constructor(
@@ -43,7 +50,12 @@ export const serviceInfo = () => [
       this.hsr.test();
     }
   }
-  Service({
+  // v1.1.0
+  // Service({
+  //   isSingletonMode: false,
+  // })(HeroSearchService);
+  // v1.2.0+
+  Injectable({
     isSingletonMode: false,
   })(HeroSearchService);
  `,
@@ -57,7 +69,7 @@ export const serviceInfo = () => [
         ],
         pchild: [
           '1. 在 NvModule 中的 providers: Function[] 传入 需要被注入的 服务。',
-          '2. 该模块（NvModule）中的所有 组件 和 服务 都可以 使用 @Injectable 注解来声明被注入的服务。',
+          '2. 该模块（NvModule）中的所有 组件 和 服务 都可以 使用 (v1.1.0版本@Injectable / v1.2.0及以上版本@Injected) 注解来声明被注入的服务。',
           '3. 模块导出（exports）的 组件 在其他模块（NvModule）也可以使用该 模块 的 服务。',
           '4. 无需一个一个 new 出对应的 服务，直接注入即可。',
         ],
