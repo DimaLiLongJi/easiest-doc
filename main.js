@@ -103,7 +103,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+})({"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -133,7 +133,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -164,17 +164,17 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/bundle-url.js"}],"styles/reset.less":[function(require,module,exports) {
+},{"./bundle-url":"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\bundle-url.js"}],"styles\\reset.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/css-loader.js"}],"styles/global.less":[function(require,module,exports) {
+},{"_css_loader":"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\css-loader.js"}],"styles\\global.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/indiv/build/index.js":[function(require,module,exports) {
+},{"_css_loader":"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\css-loader.js"}],"..\\node_modules\\indiv\\build\\index.js":[function(require,module,exports) {
 var define;
 parcelRequire=function(e,r,n,t){var i="function"==typeof parcelRequire&&parcelRequire,o="function"==typeof require&&require;function u(n,t){if(!r[n]){if(!e[n]){var f="function"==typeof parcelRequire&&parcelRequire;if(!t&&f)return f(n,!0);if(i)return i(n,!0);if(o&&"string"==typeof n)return o(n);var c=new Error("Cannot find module '"+n+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[n][1][r]||r};var l=r[n]=new u.Module(n);e[n][0].call(l.exports,p,l,l.exports,this)}return r[n].exports;function p(e){return u(p.resolve(e))}}u.isParcelRequire=!0,u.Module=function(e){this.id=e,this.bundle=u,this.exports={}},u.modules=e,u.cache=r,u.parent=i,u.register=function(r,n){e[r]=[function(e,r){r.exports=n},{}]};for(var f=0;f<n.length;f++)u(n[f]);if(n.length){var c=u(n[n.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=c:"function"==typeof define&&define.amd?define(function(){return c}):t&&(this[t]=c)}return u}({"5qf4":[function(require,module,exports) {
 
@@ -697,7 +697,7 @@ module.exports=require("./lib/axios");
 },{"axios":"dZBD"}],"7QCb":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),require("core-js/modules/es6.typed.array-buffer"),require("core-js/modules/es6.typed.int8-array"),require("core-js/modules/es6.typed.uint8-array"),require("core-js/modules/es6.typed.uint8-clamped-array"),require("core-js/modules/es6.typed.int16-array"),require("core-js/modules/es6.typed.uint16-array"),require("core-js/modules/es6.typed.int32-array"),require("core-js/modules/es6.typed.uint32-array"),require("core-js/modules/es6.typed.float32-array"),require("core-js/modules/es6.typed.float64-array"),require("core-js/modules/es6.map"),require("core-js/modules/es6.set"),require("core-js/modules/es6.weak-map"),require("core-js/modules/es6.weak-set"),require("core-js/modules/es6.reflect.apply"),require("core-js/modules/es6.reflect.construct"),require("core-js/modules/es6.reflect.define-property"),require("core-js/modules/es6.reflect.delete-property"),require("core-js/modules/es6.reflect.get"),require("core-js/modules/es6.reflect.get-own-property-descriptor"),require("core-js/modules/es6.reflect.get-prototype-of"),require("core-js/modules/es6.reflect.has"),require("core-js/modules/es6.reflect.is-extensible"),require("core-js/modules/es6.reflect.own-keys"),require("core-js/modules/es6.reflect.prevent-extensions"),require("core-js/modules/es6.reflect.set"),require("core-js/modules/es6.reflect.set-prototype-of"),require("core-js/modules/es6.promise"),require("core-js/modules/es6.symbol"),require("core-js/modules/es6.object.freeze"),require("core-js/modules/es6.object.seal"),require("core-js/modules/es6.object.prevent-extensions"),require("core-js/modules/es6.object.is-frozen"),require("core-js/modules/es6.object.is-sealed"),require("core-js/modules/es6.object.is-extensible"),require("core-js/modules/es6.object.get-own-property-descriptor"),require("core-js/modules/es6.object.get-prototype-of"),require("core-js/modules/es6.object.keys"),require("core-js/modules/es6.object.get-own-property-names"),require("core-js/modules/es6.object.assign"),require("core-js/modules/es6.object.is"),require("core-js/modules/es6.object.set-prototype-of"),require("core-js/modules/es6.function.name"),require("core-js/modules/es6.string.raw"),require("core-js/modules/es6.string.from-code-point"),require("core-js/modules/es6.string.code-point-at"),require("core-js/modules/es6.string.repeat"),require("core-js/modules/es6.string.starts-with"),require("core-js/modules/es6.string.ends-with"),require("core-js/modules/es6.string.includes"),require("core-js/modules/es6.regexp.flags"),require("core-js/modules/es6.regexp.match"),require("core-js/modules/es6.regexp.replace"),require("core-js/modules/es6.regexp.split"),require("core-js/modules/es6.regexp.search"),require("core-js/modules/es6.array.from"),require("core-js/modules/es6.array.of"),require("core-js/modules/es6.array.copy-within"),require("core-js/modules/es6.array.find"),require("core-js/modules/es6.array.find-index"),require("core-js/modules/es6.array.fill"),require("core-js/modules/es6.array.iterator"),require("core-js/modules/es6.number.is-finite"),require("core-js/modules/es6.number.is-integer"),require("core-js/modules/es6.number.is-safe-integer"),require("core-js/modules/es6.number.is-nan"),require("core-js/modules/es6.number.epsilon"),require("core-js/modules/es6.number.min-safe-integer"),require("core-js/modules/es6.number.max-safe-integer"),require("core-js/modules/es6.math.acosh"),require("core-js/modules/es6.math.asinh"),require("core-js/modules/es6.math.atanh"),require("core-js/modules/es6.math.cbrt"),require("core-js/modules/es6.math.clz32"),require("core-js/modules/es6.math.cosh"),require("core-js/modules/es6.math.expm1"),require("core-js/modules/es6.math.fround"),require("core-js/modules/es6.math.hypot"),require("core-js/modules/es6.math.imul"),require("core-js/modules/es6.math.log1p"),require("core-js/modules/es6.math.log10"),require("core-js/modules/es6.math.log2"),require("core-js/modules/es6.math.sign"),require("core-js/modules/es6.math.sinh"),require("core-js/modules/es6.math.tanh"),require("core-js/modules/es6.math.trunc"),require("core-js/modules/es7.array.includes"),require("core-js/modules/es7.object.values"),require("core-js/modules/es7.object.entries"),require("core-js/modules/es7.object.get-own-property-descriptors"),require("core-js/modules/es7.string.pad-start"),require("core-js/modules/es7.string.pad-end"),require("core-js/modules/web.timers"),require("core-js/modules/web.immediate"),require("core-js/modules/web.dom.iterable"),require("regenerator-runtime/runtime");var e=require("./Utils");exports.Utils=e.default;var r=require("./Lifecycle");exports.OnInit=r.OnInit,exports.BeforeMount=r.BeforeMount,exports.AfterMount=r.AfterMount,exports.OnDestory=r.OnDestory,exports.HasRender=r.HasRender,exports.WatchState=r.WatchState,exports.RouteChange=r.RouteChange,exports.ReceiveProps=r.ReceiveProps,exports.SetState=r.SetState,exports.SetLocation=r.SetLocation,exports.GetLocation=r.GetLocation;var s=require("./Watcher");exports.Watcher=s.default;var o=require("./KeyWatcher");exports.KeyWatcher=o.default;var t=require("./Compile");exports.Compile=t.default;var u=require("./CompileUtils");exports.CompileUtilForRepeat=u.CompileUtilForRepeat,exports.CompileUtil=u.CompileUtil;var i=require("./Component");exports.Component=i.default;var c=require("./Router");exports.Router=c.Router,exports.TRouter=c.TRouter;var l=require("./InDiv");exports.InDiv=l.default;var m=require("./NvModule");exports.NvModule=m.NvModule,exports.factoryModule=m.factoryModule;var a=require("./Service");exports.Service=a.default;var d=require("./Http");exports.nvHttp=d.default;var j=require("./Injectable");exports.Injectable=j.Injectable,exports.injector=j.injector,exports.factoryCreator=j.factoryCreator;
 },{"core-js/modules/es6.typed.array-buffer":"4NJ0","core-js/modules/es6.typed.int8-array":"wqM+","core-js/modules/es6.typed.uint8-array":"QTtY","core-js/modules/es6.typed.uint8-clamped-array":"Kqgs","core-js/modules/es6.typed.int16-array":"fEGw","core-js/modules/es6.typed.uint16-array":"xyd6","core-js/modules/es6.typed.int32-array":"hIko","core-js/modules/es6.typed.uint32-array":"tNPN","core-js/modules/es6.typed.float32-array":"/wis","core-js/modules/es6.typed.float64-array":"9mbT","core-js/modules/es6.map":"ioKM","core-js/modules/es6.set":"coyu","core-js/modules/es6.weak-map":"D6DP","core-js/modules/es6.weak-set":"bRUR","core-js/modules/es6.reflect.apply":"F0Xu","core-js/modules/es6.reflect.construct":"4JlF","core-js/modules/es6.reflect.define-property":"S841","core-js/modules/es6.reflect.delete-property":"JRlJ","core-js/modules/es6.reflect.get":"kv8Z","core-js/modules/es6.reflect.get-own-property-descriptor":"zj1X","core-js/modules/es6.reflect.get-prototype-of":"d0aC","core-js/modules/es6.reflect.has":"OWTq","core-js/modules/es6.reflect.is-extensible":"deHu","core-js/modules/es6.reflect.own-keys":"e6SV","core-js/modules/es6.reflect.prevent-extensions":"BmyK","core-js/modules/es6.reflect.set":"K46i","core-js/modules/es6.reflect.set-prototype-of":"L5z5","core-js/modules/es6.promise":"Pjta","core-js/modules/es6.symbol":"uVn9","core-js/modules/es6.object.freeze":"EO7q","core-js/modules/es6.object.seal":"+4GY","core-js/modules/es6.object.prevent-extensions":"3llM","core-js/modules/es6.object.is-frozen":"Z1rp","core-js/modules/es6.object.is-sealed":"Fckj","core-js/modules/es6.object.is-extensible":"1EYb","core-js/modules/es6.object.get-own-property-descriptor":"nIty","core-js/modules/es6.object.get-prototype-of":"ud3u","core-js/modules/es6.object.keys":"m9aB","core-js/modules/es6.object.get-own-property-names":"i23/","core-js/modules/es6.object.assign":"K3/J","core-js/modules/es6.object.is":"MlqR","core-js/modules/es6.object.set-prototype-of":"0JGj","core-js/modules/es6.function.name":"N3yi","core-js/modules/es6.string.raw":"t2/9","core-js/modules/es6.string.from-code-point":"xSM3","core-js/modules/es6.string.code-point-at":"zR9y","core-js/modules/es6.string.repeat":"C85R","core-js/modules/es6.string.starts-with":"w2SA","core-js/modules/es6.string.ends-with":"zRn7","core-js/modules/es6.string.includes":"fH7p","core-js/modules/es6.regexp.flags":"pDhD","core-js/modules/es6.regexp.match":"RTfC","core-js/modules/es6.regexp.replace":"KGao","core-js/modules/es6.regexp.split":"a/o/","core-js/modules/es6.regexp.search":"zOab","core-js/modules/es6.array.from":"RRcs","core-js/modules/es6.array.of":"RB6b","core-js/modules/es6.array.copy-within":"tWTB","core-js/modules/es6.array.find":"Qppk","core-js/modules/es6.array.find-index":"7sVm","core-js/modules/es6.array.fill":"hUQ6","core-js/modules/es6.array.iterator":"6w+v","core-js/modules/es6.number.is-finite":"FuY7","core-js/modules/es6.number.is-integer":"pwRL","core-js/modules/es6.number.is-safe-integer":"5qVI","core-js/modules/es6.number.is-nan":"SsgJ","core-js/modules/es6.number.epsilon":"DzYy","core-js/modules/es6.number.min-safe-integer":"+ifB","core-js/modules/es6.number.max-safe-integer":"4shx","core-js/modules/es6.math.acosh":"py3/","core-js/modules/es6.math.asinh":"ob11","core-js/modules/es6.math.atanh":"iUik","core-js/modules/es6.math.cbrt":"YRuK","core-js/modules/es6.math.clz32":"R2Qc","core-js/modules/es6.math.cosh":"nEse","core-js/modules/es6.math.expm1":"AmoX","core-js/modules/es6.math.fround":"vmlq","core-js/modules/es6.math.hypot":"kLut","core-js/modules/es6.math.imul":"A8J8","core-js/modules/es6.math.log1p":"qtpC","core-js/modules/es6.math.log10":"VUW8","core-js/modules/es6.math.log2":"1Jo9","core-js/modules/es6.math.sign":"mZl9","core-js/modules/es6.math.sinh":"m0zb","core-js/modules/es6.math.tanh":"Fnqw","core-js/modules/es6.math.trunc":"tiOR","core-js/modules/es7.array.includes":"TLss","core-js/modules/es7.object.values":"Ltmz","core-js/modules/es7.object.entries":"gxEP","core-js/modules/es7.object.get-own-property-descriptors":"BQD8","core-js/modules/es7.string.pad-start":"9SWN","core-js/modules/es7.string.pad-end":"n20m","core-js/modules/web.timers":"OTsy","core-js/modules/web.immediate":"5hZL","core-js/modules/web.dom.iterable":"v6Aj","regenerator-runtime/runtime":"QVnC","./Utils":"H8Ea","./Lifecycle":"OPet","./Watcher":"w9Fr","./KeyWatcher":"9pTu","./Compile":"twql","./CompileUtils":"bsu5","./Component":"7Ulo","./Router":"JJ5c","./InDiv":"QanZ","./NvModule":"Kb/p","./Service":"ezG2","./Http":"VWVa","./Injectable":"tZRA"}]},{},["7QCb"], null)
-},{}],"routes/index.ts":[function(require,module,exports) {
+},{}],"routes\\index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -743,6 +743,9 @@ var routes = [{
             path: '/http',
             component: 'docs-http-container'
         }]
+    }, {
+        path: '/ssr',
+        component: 'ssr-container'
     }]
 }];
 router.setRootPath('/indiv-doc');
@@ -751,13 +754,13 @@ router.routeChange = function (old, next) {
     // console.log('$routeChange', old, next);
 };
 exports.default = router;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9yb3V0ZXMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSwrQkFBd0M7QUFDeEMsd0RBQXdEO0FBRXhELElBQU0sTUFBTSxHQUFHLElBQUksY0FBTSxFQUFFLENBQUM7QUFHNUIsSUFBTSxNQUFNLEdBQWM7SUFDdEI7UUFDSSxJQUFJLEVBQUUsR0FBRztRQUNULFVBQVUsRUFBRSxlQUFlO1FBQzNCLFNBQVMsRUFBRSxnQkFBZ0I7UUFDM0IsUUFBUSxFQUFFO1lBQ047Z0JBQ0ksSUFBSSxFQUFFLGVBQWU7Z0JBQ3JCLFNBQVMsRUFBRSx3QkFBd0I7YUFDdEM7WUFDRDtnQkFDSSxJQUFJLEVBQUUsZUFBZTtnQkFDckIsU0FBUyxFQUFFLHdCQUF3QjthQUN0QztZQUNEO2dCQUNJLElBQUksRUFBRSxPQUFPO2dCQUNiLFVBQVUsRUFBRSxpQkFBaUI7Z0JBQzdCLFNBQVMsRUFBRSxnQkFBZ0I7Z0JBQzNCLFFBQVEsRUFBRTtvQkFDTjt3QkFDSSxJQUFJLEVBQUUsWUFBWTt3QkFDbEIsU0FBUyxFQUFFLDBCQUEwQjtxQkFDeEM7b0JBQ0Q7d0JBQ0ksSUFBSSxFQUFFLFdBQVc7d0JBQ2pCLFNBQVMsRUFBRSx5QkFBeUI7cUJBQ3ZDO29CQUNEO3dCQUNJLElBQUksRUFBRSxVQUFVO3dCQUNoQixTQUFTLEVBQUUsd0JBQXdCO3FCQUN0QztvQkFDRDt3QkFDSSxJQUFJLEVBQUUsU0FBUzt3QkFDZixTQUFTLEVBQUUsdUJBQXVCO3FCQUNyQztvQkFDRDt3QkFDSSxJQUFJLEVBQUUsUUFBUTt3QkFDZCxTQUFTLEVBQUUsc0JBQXNCO3FCQUNwQztvQkFDRDt3QkFDSSxJQUFJLEVBQUUsUUFBUTt3QkFDZCxTQUFTLEVBQUUsc0JBQXNCO3FCQUNwQztvQkFDRDt3QkFDSSxJQUFJLEVBQUUsT0FBTzt3QkFDYixTQUFTLEVBQUUscUJBQXFCO3FCQUNuQztvQkFDRDt3QkFDSSxJQUFJLEVBQUUsT0FBTzt3QkFDYixTQUFTLEVBQUUscUJBQXFCO3FCQUNuQztpQkFDSjthQUNKO1NBQ0o7S0FDSjtDQUNKLENBQUM7QUFDRixNQUFNLENBQUMsV0FBVyxDQUFDLFlBQVksQ0FBQyxDQUFDO0FBQ2pDLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLENBQUM7QUFDcEIsTUFBTSxDQUFDLFdBQVcsR0FBRyxVQUFDLEdBQVcsRUFBRSxJQUFZO0lBQzNDLDBDQUEwQztBQUM5QyxDQUFDLENBQUM7QUFFRixrQkFBZSxNQUFNLENBQUMifQ==
-},{"indiv":"../node_modules/indiv/build/index.js"}],"pages/introduction/style.less":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9yb3V0ZXMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSwrQkFBd0M7QUFDeEMsd0RBQXdEO0FBRXhELElBQU0sTUFBTSxHQUFHLElBQUksY0FBTSxFQUFFLENBQUM7QUFHNUIsSUFBTSxNQUFNLEdBQWM7SUFDdEI7UUFDSSxJQUFJLEVBQUUsR0FBRztRQUNULFVBQVUsRUFBRSxlQUFlO1FBQzNCLFNBQVMsRUFBRSxnQkFBZ0I7UUFDM0IsUUFBUSxFQUFFO1lBQ047Z0JBQ0ksSUFBSSxFQUFFLGVBQWU7Z0JBQ3JCLFNBQVMsRUFBRSx3QkFBd0I7YUFDdEM7WUFDRDtnQkFDSSxJQUFJLEVBQUUsZUFBZTtnQkFDckIsU0FBUyxFQUFFLHdCQUF3QjthQUN0QztZQUNEO2dCQUNJLElBQUksRUFBRSxPQUFPO2dCQUNiLFVBQVUsRUFBRSxpQkFBaUI7Z0JBQzdCLFNBQVMsRUFBRSxnQkFBZ0I7Z0JBQzNCLFFBQVEsRUFBRTtvQkFDTjt3QkFDSSxJQUFJLEVBQUUsWUFBWTt3QkFDbEIsU0FBUyxFQUFFLDBCQUEwQjtxQkFDeEM7b0JBQ0Q7d0JBQ0ksSUFBSSxFQUFFLFdBQVc7d0JBQ2pCLFNBQVMsRUFBRSx5QkFBeUI7cUJBQ3ZDO29CQUNEO3dCQUNJLElBQUksRUFBRSxVQUFVO3dCQUNoQixTQUFTLEVBQUUsd0JBQXdCO3FCQUN0QztvQkFDRDt3QkFDSSxJQUFJLEVBQUUsU0FBUzt3QkFDZixTQUFTLEVBQUUsdUJBQXVCO3FCQUNyQztvQkFDRDt3QkFDSSxJQUFJLEVBQUUsUUFBUTt3QkFDZCxTQUFTLEVBQUUsc0JBQXNCO3FCQUNwQztvQkFDRDt3QkFDSSxJQUFJLEVBQUUsUUFBUTt3QkFDZCxTQUFTLEVBQUUsc0JBQXNCO3FCQUNwQztvQkFDRDt3QkFDSSxJQUFJLEVBQUUsT0FBTzt3QkFDYixTQUFTLEVBQUUscUJBQXFCO3FCQUNuQztvQkFDRDt3QkFDSSxJQUFJLEVBQUUsT0FBTzt3QkFDYixTQUFTLEVBQUUscUJBQXFCO3FCQUNuQztpQkFDSjthQUNKO1lBQ0Q7Z0JBQ0ksSUFBSSxFQUFFLE1BQU07Z0JBQ1osU0FBUyxFQUFFLGVBQWU7YUFDN0I7U0FDSjtLQUNKO0NBQ0osQ0FBQztBQUNGLE1BQU0sQ0FBQyxXQUFXLENBQUMsWUFBWSxDQUFDLENBQUM7QUFDakMsTUFBTSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsQ0FBQztBQUNwQixNQUFNLENBQUMsV0FBVyxHQUFHLFVBQUMsR0FBVyxFQUFFLElBQVk7SUFDM0MsMENBQTBDO0FBQzlDLENBQUMsQ0FBQztBQUVGLGtCQUFlLE1BQU0sQ0FBQyJ9
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js"}],"pages\\introduction\\style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/css-loader.js"}],"constants/introduction.ts":[function(require,module,exports) {
+},{"_css_loader":"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\css-loader.js"}],"constants\\introduction.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -783,7 +786,7 @@ exports.content = function () {
     }];
 };
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW50cm9kdWN0aW9uLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vY29uc3RhbnRzL2ludHJvZHVjdGlvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsT0FBTyxHQUFHLGNBQU0sT0FBQTtJQUN6QjtRQUNJLEVBQUUsRUFBRSxVQUFVO1FBQ2QsQ0FBQyxFQUFFO1lBQ0MseURBQXlEO1NBQzVEO1FBQ0QsSUFBSSxFQUFFO1lBQ0YsNkRBQTZEO1lBQzdELDBCQUEwQjtZQUMxQiwyQ0FBMkM7U0FDOUM7S0FDSjtJQUNEO1FBQ0ksRUFBRSxFQUFFLE1BQU07UUFDVixDQUFDLEVBQUU7WUFDQyxrREFBa0Q7WUFDbEQseURBQXlEO1NBQzVEO0tBQ0o7SUFDRDtRQUNJLEVBQUUsRUFBRSxPQUFPO1FBQ1gsQ0FBQyxFQUFFO1lBQ0MsdUNBQXVDO1NBQzFDO1FBQ0QsSUFBSSxFQUFFO1lBQ0Ysd0NBQXdDO1lBQ3hDLGdEQUFnRDtTQUNuRDtLQUNKO0lBQ0Q7UUFDSSxFQUFFLEVBQUUsTUFBTTtRQUNWLENBQUMsRUFBRTtZQUNDLG1DQUFtQztZQUNuQyxpREFBaUQ7U0FDcEQ7UUFDRCxJQUFJLEVBQUU7WUFDRix1Q0FBdUM7WUFDdkMsa0NBQWtDO1NBQ3JDO0tBQ0o7SUFDRDtRQUNJLEVBQUUsRUFBRSxJQUFJO1FBQ1IsQ0FBQyxFQUFFO1lBQ0MseURBQXlEO1lBQ3pELDhCQUE4QjtTQUNqQztLQUNKO0NBQ0osRUEvQzRCLENBK0M1QixDQUFDIn0=
-},{}],"pages/introduction/index.ts":[function(require,module,exports) {
+},{}],"pages\\introduction\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -818,7 +821,7 @@ var IntroductionContainer = /** @class */function () {
 }();
 exports.default = IntroductionContainer;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9pbnRyb2R1Y3Rpb24vaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSx3QkFBc0I7QUFFdEIsK0JBQWtDO0FBQ2xDLHFEQUFxRDtBQUVyRCw2REFBdUQ7QUE0QnZEO0lBRUk7UUFDSSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1QsSUFBSSxFQUFFLHNCQUFPLEVBQUU7U0FDbEIsQ0FBQztJQUNOLENBQUM7SUFOZ0IscUJBQXFCO1FBaEJ6QyxpQkFBUyxDQUFRO1lBQ2QsUUFBUSxFQUFFLHdCQUF3QjtZQUNsQyxRQUFRLEVBQUUsQ0FBQyxzZkFZVixDQUFDO1NBQ0wsQ0FBQzs7T0FDbUIscUJBQXFCLENBT3pDO0lBQUQsNEJBQUM7Q0FBQSxBQVBELElBT0M7a0JBUG9CLHFCQUFxQiJ9
-},{"./style.less":"pages/introduction/style.less","indiv":"../node_modules/indiv/build/index.js","../../constants/introduction":"constants/introduction.ts"}],"modules/introduction.module.ts":[function(require,module,exports) {
+},{"./style.less":"pages\\introduction\\style.less","indiv":"..\\node_modules\\indiv\\build\\index.js","../../constants/introduction":"constants\\introduction.ts"}],"modules\\introduction.module.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -850,12 +853,12 @@ var IntroductionModule = /** @class */function () {
 }();
 exports.default = IntroductionModule;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW50cm9kdWN0aW9uLm1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uL21vZHVsZXMvaW50cm9kdWN0aW9uLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQUFBLCtCQUFpQztBQUNqQyxpREFBaUQ7QUFFakQsdUVBQTBEO0FBYzFEO0lBQUE7SUFBMEMsQ0FBQztJQUF0QixrQkFBa0I7UUFadEMsZ0JBQVEsQ0FBQztZQUNOLE9BQU8sRUFBRSxFQUNSO1lBQ0QsVUFBVSxFQUFFO2dCQUNSLHNCQUFxQjthQUN4QjtZQUNELFNBQVMsRUFBRSxFQUNWO1lBQ0QsT0FBTyxFQUFFO2dCQUNMLHNCQUFxQjthQUN4QjtTQUNKLENBQUM7T0FDbUIsa0JBQWtCLENBQUk7SUFBRCx5QkFBQztDQUFBLEFBQTNDLElBQTJDO2tCQUF0QixrQkFBa0IifQ==
-},{"indiv":"../node_modules/indiv/build/index.js","../pages/introduction":"pages/introduction/index.ts"}],"pages/architecture/style.less":[function(require,module,exports) {
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","../pages/introduction":"pages\\introduction\\index.ts"}],"pages\\architecture\\style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/css-loader.js"}],"constants/start.ts":[function(require,module,exports) {
+},{"_css_loader":"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\css-loader.js"}],"constants\\start.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -883,7 +886,7 @@ exports.content = function () {
     }];
 };
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RhcnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb25zdGFudHMvc3RhcnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBYSxRQUFBLE9BQU8sR0FBRyxjQUFNLE9BQUE7SUFDM0I7UUFDRSxFQUFFLEVBQUUsTUFBTTtRQUNWLENBQUMsRUFBRTtZQUNELHFDQUFxQztZQUNyQyw0QkFBNEI7WUFDNUIsaURBQWlEO1NBQ2xEO1FBQ0QsSUFBSSxFQUFFO1lBQ0oseUNBQXlDO1lBQ3pDLDRCQUE0QjtZQUM1Qiw4REFBOEQ7WUFDOUQsb0RBQW9EO1lBQ3BELHdDQUF3QztTQUN6QztLQUNGO0lBQ0Q7UUFDRSxFQUFFLEVBQUUsSUFBSTtRQUNSLENBQUMsRUFBRTtZQUNELG1GQUFtRjtTQUNwRjtRQUNELElBQUksRUFBRTtZQUNKLHFDQUFxQztZQUNyQyxtQkFBbUI7WUFDbkIsaUNBQWlDO1NBQ2xDO0tBQ0Y7SUFDRDtRQUNFLEVBQUUsRUFBRSxJQUFJO1FBQ1IsQ0FBQyxFQUFFO1lBQ0QsaUNBQWlDO1NBQ2xDO1FBQ0QsSUFBSSxFQUFFO1lBQ0osa0RBQWtEO1lBQ2xELDhEQUE4RDtTQUMvRDtLQUNGO0lBQ0Q7UUFDRSxFQUFFLEVBQUUsSUFBSTtRQUNSLENBQUMsRUFBRTtZQUNELGdFQUFnRTtZQUNoRSw2QkFBNkI7U0FDOUI7UUFDRCxJQUFJLEVBQUU7WUFDSixrQ0FBa0M7WUFDbEMsa0NBQWtDO1lBQ2xDLGlDQUFpQztZQUNqQyxnRkFBZ0Y7U0FDakY7S0FDRjtJQUNEO1FBQ0UsRUFBRSxFQUFFLElBQUk7UUFDUixDQUFDLEVBQUU7WUFDRCx1RUFBdUU7WUFDdkUseUVBQXlFO1NBQzFFO1FBQ0QsSUFBSSxFQUFFO1lBQ0osNEJBQTRCO1lBQzVCLDJEQUEyRDtZQUMzRCxpREFBaUQ7U0FDbEQ7S0FDRjtDQUNGLEVBOUQ0QixDQThENUIsQ0FBQyJ9
-},{}],"pages/architecture/index.ts":[function(require,module,exports) {
+},{}],"pages\\architecture\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -918,7 +921,7 @@ var ArchitectureContainer = /** @class */function () {
 }();
 exports.default = ArchitectureContainer;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9hcmNoaXRlY3R1cmUvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSx3QkFBc0I7QUFFdEIsK0JBQWtDO0FBQ2xDLHFEQUFxRDtBQUVyRCwrQ0FBZ0Q7QUE0QmhEO0lBRUU7UUFDRSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1gsSUFBSSxFQUFFLGVBQU8sRUFBRTtTQUNoQixDQUFDO0lBQ0osQ0FBQztJQU5rQixxQkFBcUI7UUFoQnpDLGlCQUFTLENBQVE7WUFDaEIsUUFBUSxFQUFFLHdCQUF3QjtZQUNsQyxRQUFRLEVBQUUsQ0FBQyxzYkFZVixDQUFDO1NBQ0gsQ0FBQzs7T0FDbUIscUJBQXFCLENBT3pDO0lBQUQsNEJBQUM7Q0FBQSxBQVBELElBT0M7a0JBUG9CLHFCQUFxQiJ9
-},{"./style.less":"pages/architecture/style.less","indiv":"../node_modules/indiv/build/index.js","../../constants/start":"constants/start.ts"}],"modules/architecture.module.ts":[function(require,module,exports) {
+},{"./style.less":"pages\\architecture\\style.less","indiv":"..\\node_modules\\indiv\\build\\index.js","../../constants/start":"constants\\start.ts"}],"modules\\architecture.module.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -950,12 +953,12 @@ var ArchitectureModule = /** @class */function () {
 }();
 exports.default = ArchitectureModule;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXJjaGl0ZWN0dXJlLm1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uL21vZHVsZXMvYXJjaGl0ZWN0dXJlLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQUFBLCtCQUFpQztBQUNqQyxpREFBaUQ7QUFFakQsdUVBQTBEO0FBYzFEO0lBQUE7SUFBMEMsQ0FBQztJQUF0QixrQkFBa0I7UUFadEMsZ0JBQVEsQ0FBQztZQUNOLE9BQU8sRUFBRSxFQUNSO1lBQ0QsVUFBVSxFQUFFO2dCQUNSLHNCQUFxQjthQUN4QjtZQUNELFNBQVMsRUFBRSxFQUNWO1lBQ0QsT0FBTyxFQUFFO2dCQUNMLHNCQUFxQjthQUN4QjtTQUNKLENBQUM7T0FDbUIsa0JBQWtCLENBQUk7SUFBRCx5QkFBQztDQUFBLEFBQTNDLElBQTJDO2tCQUF0QixrQkFBa0IifQ==
-},{"indiv":"../node_modules/indiv/build/index.js","../pages/architecture":"pages/architecture/index.ts"}],"pages/docs/style.less":[function(require,module,exports) {
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","../pages/architecture":"pages\\architecture\\index.ts"}],"pages\\docs\\style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/css-loader.js"}],"pages/docs/index.ts":[function(require,module,exports) {
+},{"_css_loader":"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\css-loader.js"}],"pages\\docs\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -985,7 +988,7 @@ var DocsContainer = /** @class */function () {
 }();
 exports.default = DocsContainer;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsd0JBQXNCO0FBRXRCLCtCQUFrQztBQUNsQyxxREFBcUQ7QUFVckQ7SUFDRTtJQUFlLENBQUM7SUFERyxhQUFhO1FBUmpDLGlCQUFTLENBQU07WUFDZCxRQUFRLEVBQUUsZ0JBQWdCO1lBQzFCLFFBQVEsRUFBRSxDQUFDLG1HQUlWLENBQUM7U0FDSCxDQUFDOztPQUNtQixhQUFhLENBRWpDO0lBQUQsb0JBQUM7Q0FBQSxBQUZELElBRUM7a0JBRm9CLGFBQWEifQ==
-},{"./style.less":"pages/docs/style.less","indiv":"../node_modules/indiv/build/index.js"}],"constants/component.ts":[function(require,module,exports) {
+},{"./style.less":"pages\\docs\\style.less","indiv":"..\\node_modules\\indiv\\build\\index.js"}],"constants\\component.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1004,10 +1007,14 @@ exports.componentInfo = function () {
             pchild: ['往模板HTML字符串中添加绑定 nv- 开头的标记可以告诉 InDiv 该如何渲染它们。', '因为 InDiv 使用单向数据流，所以仅仅支持使用 this.state 内的值作为绑定数据， class 实例的方法作为事件方法。如果要在组件内使用 props ，请在 nvReceiveProps 或 nvOnInit 生命周期内用 props 对 state 赋值。'],
             code: "\n  @Component({\n    selector: 'container-component',\n    template: ('\n      <div nv-on:click=\"@show(state.a)\"> ContainerComponent {{state.a}}}/div>\n      '),\n  })\n  class ContainerComponent {\n    constructor() {\n      this.state = {\n        a: null,\n      };\n    }\n\n    public show(a: any) {\n      console.log(a);\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.a = nextProps.a;\n    }\n  }\n "
         }, {
-            title: '组件通信: props 与 state',
+            title: '组件通信1: props 与 state',
             p: ['InDiv 的组件之间可以 props 来通信。', '组件间通信应该是单向的，通过传递值到子组件，并通过传递一个回调方法在子组件调用来更改对应父组件的值来完成通信。'],
             pchild: ['可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 propValue="{state.value}" propValue="{repeatValue}" propFunction="{@fn}" 的引号包裹花括号的写法传递值与方法。', '例如在下面例子，在 hero-component 内可以用循环 state.a (nv-repeat)的value persion 并且可以直接在实例方法中触发 handelClick 回调。', '如果该 DOM 会发生频繁变化，并且有可追踪的唯一 key 值，可以添加指令 nv-key, 让 InDiv 直接追踪到 DOM 变化，帮助保存 组件 内的 state。', '但是渲染的时候，不可以在模板上直接使用 props 的值，仅仅可以使用 class 实例的方法和 this.state 的值。', '在生命周期 constructor 和 nvOnInit 之后，会开启对 this.state 的监听，此监听会监听每个挂载到 this.state 上的属性及属性的属性，因此如果不对 this.state 添加新的属性或对属性的属性添加新的属性的话，可以直接对某个属性赋值。', '相反，如果要对 this.state 上的属性 增加属性或删除，则需要使用  setState<S>(newState: {[key: string]: S}) 方法对 this.state 重新添加监听', '可以直接引用 InDiv 的 SetState 来为 setState方法声明类型。'],
             code: "\n  import { Component, SetState, OnInit, ReceiveProps } from 'InDiv';\n  @Component({\n    selector: 'hero-component',\n    template: ('\n      <div>\n        <p>\u6765\u81EA\u7236\u7EC4\u4EF6\u7684stateValue: {{state.stateValue}}</p>\n        <p>idValue: {{state.idValue}}</p>\n      </div>\n    '),\n  })\n  class HeroComponent implements OnInit, ReceiveProps {\n    public setState: SetState;\n    public state: any;\n    public props: any;\n\n    public nvOnInit() {\n      state: {\n        idValue: this.props.idValue,\n        stateValue: this.props.stateValue,\n      },\n    }\n\n    public show(a: any) {\n      this.props.handelClick(a);\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.idValue = nextProps.idValue;\n      this.setState({\n        stateValue: nextProps.stateValue,\n      });\n    }\n  }\n\n @Component({\n    selector: 'container-component',\n    template: ('\n      <div>\n        <div nv-repeat=\"let person in state.b\" nv-key=\"person.id\">\n          <hero-component handelClick=\"@show\" stateValue=\"state.a\" idValue=\"person.id\" ></hero-component>\n        </div>\n      </div>\n    '),\n  })\n  class ContainerComponent {\n    constructor() {\n      this.state = {\n        a: {\n          id: 3,\n          name: '\u7801\u519C3',\n        },\n        b: [\n          {id: 1, name: '\u7801\u519C1'},\n          {id: 2, name: '\u7801\u519C2'},\n        ],\n      }\n    }\n\n    public show(a: any) {\n      console.log(a);\n    }\n  }\n "
+        }, {
+            title: '组件通信2: service 与 RxJS',
+            p: ['父子组件的通信可以通过 props , 但跨层级组件间的通信该怎么办？', '相比于构建全局变量，InDiv 的服务显然更适合这种场景。'],
+            pchild: ['1. InDiv 的组件之间可以通过注入同一个 单例service。（既全局仅仅产生一个实例）', '2. 通过 RxJS 订阅同一个 可观察者对象（详细 RxJS 用法请关注 RxJS 文档 https://rxjs-dev.firebaseapp.com/）', '3. 通过用一个 可观察者对象 获得组件之间通信或状态变更']
         }, {
             title: '生命周期钩子',
             p: ['每个组件都有一个被 InDiv 管理的生命周期。', '生命周期钩子其实就是定义在实例中的一些方法，在 InDiv 中，通过不同的时刻调用不同的生命周期钩子，', '赋予你在它们发生时采取行动的能力。', '在 TypeScript 中，引用 InDiv 提供的 interface，通过 implements 的方式让类去实现被预先定义好的生命周期，而在 JavaScript 中，你只能自己手动去定义应该实现的生命周期方法。'],
@@ -1016,8 +1023,8 @@ exports.componentInfo = function () {
         }]
     }];
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vY29uc3RhbnRzL2NvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsYUFBYSxHQUFHLGNBQU0sT0FBQTtJQUNqQztRQUNFLEVBQUUsRUFBRSxPQUFPO1FBQ1gsQ0FBQyxFQUFFO1lBQ0QscURBQXFEO1NBQ3REO1FBQ0QsSUFBSSxFQUFFO1lBQ0o7Z0JBQ0UsS0FBSyxFQUFFLGVBQWU7Z0JBQ3RCLENBQUMsRUFBRTtvQkFDRCwwSUFBMEk7b0JBQzFJLG9CQUFvQjtpQkFDckI7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLDREQUE0RDtvQkFDNUQsc0NBQXNDO29CQUN0Qyx3REFBd0Q7aUJBQ3pEO2dCQUNELElBQUksRUFBRSwwcUJBc0NaO2FBQ0s7WUFDRDtnQkFDRSxLQUFLLEVBQUUsUUFBUTtnQkFDZixDQUFDLEVBQUU7b0JBQ0Qsd0dBQXdHO29CQUN4RywrQ0FBK0M7aUJBQ2hEO2dCQUNELE1BQU0sRUFBRTtvQkFDTiw4Q0FBOEM7b0JBQzlDLDBJQUEwSTtpQkFDM0k7Z0JBQ0QsSUFBSSxFQUFFLDBiQXNCWjthQUNLO1lBQ0Q7Z0JBQ0UsS0FBSyxFQUFFLHFCQUFxQjtnQkFDNUIsQ0FBQyxFQUFFO29CQUNELDBCQUEwQjtvQkFDMUIseURBQXlEO2lCQUMxRDtnQkFDRCxNQUFNLEVBQUU7b0JBQ04sdUlBQXVJO29CQUN2SSxrR0FBa0c7b0JBQ2xHLHVGQUF1RjtvQkFDdkYsaUVBQWlFO29CQUNqRSw0SUFBNEk7b0JBQzVJLHdHQUF3RztvQkFDeEcsNENBQTRDO2lCQUM3QztnQkFDRCxJQUFJLEVBQUUscStDQStEWjthQUNLO1lBQ0Q7Z0JBQ0UsS0FBSyxFQUFFLFFBQVE7Z0JBQ2YsQ0FBQyxFQUFFO29CQUNELDBCQUEwQjtvQkFDMUIscURBQXFEO29CQUNyRCxtQkFBbUI7b0JBQ25CLGdIQUFnSDtpQkFDakg7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLGdEQUFnRDtvQkFDaEQsNEdBQTRHO29CQUM1RywwRUFBMEU7b0JBQzFFLHNGQUFzRjtvQkFDdEYsMEVBQTBFO29CQUMxRSxpRkFBaUY7b0JBQ2pGLDBDQUEwQztvQkFDMUMsb0VBQW9FO29CQUNwRSxzRUFBc0U7aUJBQ3ZFO2dCQUNELElBQUksRUFBRSx1ekNBMERaO2FBQ0s7U0FDRjtLQUNGO0NBQ0YsRUE3UGtDLENBNlBsQyxDQUFDIn0=
-},{}],"service/test.service.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vY29uc3RhbnRzL2NvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsYUFBYSxHQUFHLGNBQU0sT0FBQTtJQUNqQztRQUNFLEVBQUUsRUFBRSxPQUFPO1FBQ1gsQ0FBQyxFQUFFO1lBQ0QscURBQXFEO1NBQ3REO1FBQ0QsSUFBSSxFQUFFO1lBQ0o7Z0JBQ0UsS0FBSyxFQUFFLGVBQWU7Z0JBQ3RCLENBQUMsRUFBRTtvQkFDRCwwSUFBMEk7b0JBQzFJLG9CQUFvQjtpQkFDckI7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLDREQUE0RDtvQkFDNUQsc0NBQXNDO29CQUN0Qyx3REFBd0Q7aUJBQ3pEO2dCQUNELElBQUksRUFBRSwwcUJBc0NaO2FBQ0s7WUFDRDtnQkFDRSxLQUFLLEVBQUUsUUFBUTtnQkFDZixDQUFDLEVBQUU7b0JBQ0Qsd0dBQXdHO29CQUN4RywrQ0FBK0M7aUJBQ2hEO2dCQUNELE1BQU0sRUFBRTtvQkFDTiw4Q0FBOEM7b0JBQzlDLDBJQUEwSTtpQkFDM0k7Z0JBQ0QsSUFBSSxFQUFFLDBiQXNCWjthQUNLO1lBQ0Q7Z0JBQ0UsS0FBSyxFQUFFLHNCQUFzQjtnQkFDN0IsQ0FBQyxFQUFFO29CQUNELDBCQUEwQjtvQkFDMUIseURBQXlEO2lCQUMxRDtnQkFDRCxNQUFNLEVBQUU7b0JBQ04sdUlBQXVJO29CQUN2SSxrR0FBa0c7b0JBQ2xHLHVGQUF1RjtvQkFDdkYsaUVBQWlFO29CQUNqRSw0SUFBNEk7b0JBQzVJLHdHQUF3RztvQkFDeEcsNENBQTRDO2lCQUM3QztnQkFDRCxJQUFJLEVBQUUscStDQStEWjthQUNLO1lBQ0Q7Z0JBQ0UsS0FBSyxFQUFFLHVCQUF1QjtnQkFDOUIsQ0FBQyxFQUFFO29CQUNELHFDQUFxQztvQkFDckMsK0JBQStCO2lCQUNoQztnQkFDRCxNQUFNLEVBQUU7b0JBQ04saURBQWlEO29CQUNqRCxrRkFBa0Y7b0JBQ2xGLCtCQUErQjtpQkFDaEM7YUFpRUY7WUFDRDtnQkFDRSxLQUFLLEVBQUUsUUFBUTtnQkFDZixDQUFDLEVBQUU7b0JBQ0QsMEJBQTBCO29CQUMxQixxREFBcUQ7b0JBQ3JELG1CQUFtQjtvQkFDbkIsZ0hBQWdIO2lCQUNqSDtnQkFDRCxNQUFNLEVBQUU7b0JBQ04sZ0RBQWdEO29CQUNoRCw0R0FBNEc7b0JBQzVHLDBFQUEwRTtvQkFDMUUsc0ZBQXNGO29CQUN0RiwwRUFBMEU7b0JBQzFFLGlGQUFpRjtvQkFDakYsMENBQTBDO29CQUMxQyxvRUFBb0U7b0JBQ3BFLHNFQUFzRTtpQkFDdkU7Z0JBQ0QsSUFBSSxFQUFFLHV6Q0EwRFo7YUFDSztTQUNGO0tBQ0Y7Q0FDRixFQXpVa0MsQ0F5VWxDLENBQUMifQ==
+},{}],"service\\test.service.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1054,7 +1061,7 @@ var TestService = /** @class */function () {
 }();
 exports.default = TestService;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGVzdC5zZXJ2aWNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vc2VydmljZS90ZXN0LnNlcnZpY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSwrQkFBZ0M7QUFDaEMsZ0RBQWdEO0FBTWhEO0lBRUU7UUFBQSxpQkFFQztRQUVNLFlBQU8sR0FBRztZQUNmLE9BQU8sS0FBSSxDQUFDLElBQUksQ0FBQztRQUNuQixDQUFDLENBQUE7UUFDTSxZQUFPLEdBQUcsVUFBQyxJQUFZO1lBQzVCLEtBQUksQ0FBQyxJQUFJLEdBQUcsSUFBSSxDQUFDO1FBQ25CLENBQUMsQ0FBQTtRQVJDLElBQUksQ0FBQyxJQUFJLEdBQUcsQ0FBQyxDQUFDO0lBQ2hCLENBQUM7SUFKa0IsV0FBVztRQUovQixlQUFPLENBQUM7WUFDUCxlQUFlLEVBQUUsSUFBSTtTQUN0QixDQUFDOztPQUVtQixXQUFXLENBWS9CO0lBQUQsa0JBQUM7Q0FBQSxBQVpELElBWUM7a0JBWm9CLFdBQVcifQ==
-},{"indiv":"../node_modules/indiv/build/index.js"}],"pages/docs/component/index.ts":[function(require,module,exports) {
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js"}],"pages\\docs\\component\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1102,13 +1109,13 @@ var DocsComponentContainer = /** @class */function () {
     var _a;
     DocsComponentContainer = __decorate([indiv_1.Injectable, indiv_1.Component({
         selector: 'docs-component-container',
-        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2 class=\"fucker\" nv-on:click=\"@click(code, $index)\">{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2 class=\"fucker\" nv-on:click=\"@click(code, $index)\">{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
     }), __metadata("design:paramtypes", [typeof (_a = typeof test_service_1.default !== "undefined" && test_service_1.default) === "function" && _a || Object])], DocsComponentContainer);
     return DocsComponentContainer;
 }();
 exports.default = DocsComponentContainer;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2NvbXBvbmVudC9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUFBLCtCQUF1RjtBQUN2Riw2R0FBNkc7QUFDN0csMERBQTZEO0FBRTdELCtFQUF3RDtBQTBDeEQ7SUFPRSxnQ0FDVSxLQUFrQjtRQUFsQixVQUFLLEdBQUwsS0FBSyxDQUFhO1FBRTFCLElBQUksQ0FBQyxLQUFLLEdBQUc7WUFDWCxJQUFJLEVBQUUseUJBQWEsRUFBRTtTQUN0QixDQUFDO0lBQ0osQ0FBQztJQUVNLHlDQUFRLEdBQWY7UUFDRSxPQUFPLENBQUMsR0FBRyxDQUFDLG1DQUFtQyxDQUFDLENBQUM7SUFDbkQsQ0FBQztJQUVNLDZDQUFZLEdBQW5CLFVBQW9CLFFBQWU7UUFDakMsT0FBTyxDQUFDLEdBQUcsQ0FBQyxlQUFlLEVBQUUsUUFBUSxDQUFDLENBQUM7SUFDekMsQ0FBQztJQUVNLHNDQUFLLEdBQVosVUFBYSxJQUFTLEVBQUUsS0FBYTtRQUNuQyxJQUFJLENBQUMsS0FBSyxHQUFHLE1BQU0sQ0FBQztRQUNwQixJQUFJLENBQUMsS0FBSyxDQUFDLE9BQU8sQ0FBQyxDQUFDLENBQUMsQ0FBQztRQUN0QixPQUFPLENBQUMsR0FBRyxDQUFDLEtBQUssRUFBRSxJQUFJLENBQUMsS0FBSyxDQUFDLE9BQU8sRUFBRSxDQUFDLENBQUM7SUFDM0MsQ0FBQztJQUVNLDRDQUFXLEdBQWxCO1FBQ0UsT0FBTyxDQUFDLEdBQUcsQ0FBQyxhQUFhLEVBQUUsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDO0lBQ3pDLENBQUM7O0lBL0JrQixzQkFBc0I7UUFwQjFDLGtCQUFVO1FBQ1YsaUJBQVMsQ0FBUTtZQUNoQixRQUFRLEVBQUUsMEJBQTBCO1lBQ3BDLFFBQVEsRUFBRSxDQUFDLHNwQkFlVixDQUFDO1NBQ0gsQ0FBQzs2REFTaUIsc0JBQVcsb0JBQVgsc0JBQVc7T0FSVCxzQkFBc0IsQ0FnQzFDO0lBQUQsNkJBQUM7Q0FBQSxBQWhDRCxJQWdDQztrQkFoQ29CLHNCQUFzQiJ9
-},{"indiv":"../node_modules/indiv/build/index.js","../../../constants/component":"constants/component.ts","../../../service/test.service":"service/test.service.ts"}],"constants/template.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2NvbXBvbmVudC9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUFBLCtCQUF1RjtBQUN2Riw2R0FBNkc7QUFDN0csMERBQTZEO0FBRTdELCtFQUF3RDtBQTBDeEQ7SUFPRSxnQ0FDVSxLQUFrQjtRQUFsQixVQUFLLEdBQUwsS0FBSyxDQUFhO1FBRTFCLElBQUksQ0FBQyxLQUFLLEdBQUc7WUFDWCxJQUFJLEVBQUUseUJBQWEsRUFBRTtTQUN0QixDQUFDO0lBQ0osQ0FBQztJQUVNLHlDQUFRLEdBQWY7UUFDRSxPQUFPLENBQUMsR0FBRyxDQUFDLG1DQUFtQyxDQUFDLENBQUM7SUFDbkQsQ0FBQztJQUVNLDZDQUFZLEdBQW5CLFVBQW9CLFFBQWU7UUFDakMsT0FBTyxDQUFDLEdBQUcsQ0FBQyxlQUFlLEVBQUUsUUFBUSxDQUFDLENBQUM7SUFDekMsQ0FBQztJQUVNLHNDQUFLLEdBQVosVUFBYSxJQUFTLEVBQUUsS0FBYTtRQUNuQyxJQUFJLENBQUMsS0FBSyxHQUFHLE1BQU0sQ0FBQztRQUNwQixJQUFJLENBQUMsS0FBSyxDQUFDLE9BQU8sQ0FBQyxDQUFDLENBQUMsQ0FBQztRQUN0QixPQUFPLENBQUMsR0FBRyxDQUFDLEtBQUssRUFBRSxJQUFJLENBQUMsS0FBSyxDQUFDLE9BQU8sRUFBRSxDQUFDLENBQUM7SUFDM0MsQ0FBQztJQUVNLDRDQUFXLEdBQWxCO1FBQ0UsT0FBTyxDQUFDLEdBQUcsQ0FBQyxhQUFhLEVBQUUsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDO0lBQ3pDLENBQUM7O0lBL0JrQixzQkFBc0I7UUFwQjFDLGtCQUFVO1FBQ1YsaUJBQVMsQ0FBUTtZQUNoQixRQUFRLEVBQUUsMEJBQTBCO1lBQ3BDLFFBQVEsRUFBRSxDQUFDLDBxQkFlVixDQUFDO1NBQ0gsQ0FBQzs2REFTaUIsc0JBQVcsb0JBQVgsc0JBQVc7T0FSVCxzQkFBc0IsQ0FnQzFDO0lBQUQsNkJBQUM7Q0FBQSxBQWhDRCxJQWdDQztrQkFoQ29CLHNCQUFzQiJ9
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","../../../constants/component":"constants\\component.ts","../../../service/test.service":"service\\test.service.ts"}],"constants\\template.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1155,7 +1162,7 @@ exports.templateInfo = function () {
     }];
 };
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGVtcGxhdGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb25zdGFudHMvdGVtcGxhdGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBYSxRQUFBLFlBQVksR0FBRyxjQUFNLE9BQUE7SUFDaEM7UUFDRSxFQUFFLEVBQUUsTUFBTTtRQUNWLENBQUMsRUFBRTtZQUNELGtFQUFrRTtZQUNsRSx3Q0FBd0M7WUFDeEMsMEVBQTBFO1lBQzFFLDhDQUE4QztZQUM5Qyx5Q0FBeUM7U0FDMUM7UUFDRCxJQUFJLEVBQUU7WUFDSjtnQkFDRSxLQUFLLEVBQUUsU0FBUztnQkFDaEIsQ0FBQyxFQUFFO29CQUNELHFHQUFxRztvQkFDckcsVUFBVTtpQkFDWDtnQkFDRCxNQUFNLEVBQUU7b0JBQ04sbUJBQW1CO29CQUNuQix5QkFBeUI7b0JBQ3pCLG9CQUFvQjtvQkFDcEIsbUJBQW1CO29CQUNuQix5R0FBbUM7b0JBQ25DLG9KQUEyRztpQkFDNUc7Z0JBQ0QsSUFBSSxFQUFFLHFPQU1aO2FBQ0s7WUFDRDtnQkFDRSxLQUFLLEVBQUUsWUFBWTtnQkFDbkIsQ0FBQyxFQUFFO29CQUNELG9DQUFvQztpQkFDckM7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLDBDQUEwQztpQkFDM0M7Z0JBQ0QsSUFBSSxFQUFFLDBEQUdaO2FBQ0s7WUFDRDtnQkFDRSxLQUFLLEVBQUUsWUFBWTtnQkFDbkIsQ0FBQyxFQUFFO29CQUNELHVDQUF1QztpQkFDeEM7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLDJCQUEyQjtpQkFDNUI7Z0JBQ0QsSUFBSSxFQUFFLG9DQUVaO2FBQ0s7WUFDRDtnQkFDRSxLQUFLLEVBQUUsYUFBYTtnQkFDcEIsQ0FBQyxFQUFFO29CQUNELG1DQUFtQztpQkFDcEM7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLDhEQUE4RDtpQkFDL0Q7Z0JBQ0QsSUFBSSxFQUFFLHNDQUVaO2FBQ0s7WUFDRDtnQkFDRSxLQUFLLEVBQUUsYUFBYTtnQkFDcEIsQ0FBQyxFQUFFO29CQUNELHVDQUF1QztpQkFDeEM7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLDBCQUEwQjtpQkFDM0I7Z0JBQ0QsSUFBSSxFQUFFLHNDQUVaO2FBQ0s7WUFDRDtnQkFDRSxLQUFLLEVBQUUsVUFBVTtnQkFDakIsQ0FBQyxFQUFFO29CQUNELG9EQUFvRDtpQkFDckQ7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLHVCQUF1QjtpQkFDeEI7Z0JBQ0QsSUFBSSxFQUFFLG1DQUVaO2FBQ0s7WUFDRDtnQkFDRSxLQUFLLEVBQUUsY0FBYztnQkFDckIsQ0FBQyxFQUFFO29CQUNELGtDQUFrQztvQkFDbEMsbUZBQW1GO2lCQUNwRjtnQkFDRCxNQUFNLEVBQUU7b0JBQ04sdUdBQXVHO29CQUN2RyxrQkFBa0I7aUJBQ25CO2dCQUNELElBQUksRUFBRSx5T0FLWjthQUNLO1NBQ0Y7S0FDRjtDQUNGLEVBakhpQyxDQWlIakMsQ0FBQyJ9
-},{}],"pages/docs/template/index.ts":[function(require,module,exports) {
+},{}],"pages\\docs\\template\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1186,13 +1193,13 @@ var DocsTemplateContainer = /** @class */function () {
     };
     DocsTemplateContainer = __decorate([indiv_1.Component({
         selector: 'docs-template-container',
-        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2 class=\"fucker\">{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2 class=\"fucker\">{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
     }), __metadata("design:paramtypes", [])], DocsTemplateContainer);
     return DocsTemplateContainer;
 }();
 exports.default = DocsTemplateContainer;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL3RlbXBsYXRlL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsK0JBQXVEO0FBQ3ZELDZFQUE2RTtBQUM3RSx3REFBMkQ7QUF3QzNEO0lBS0U7UUFDRSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1gsSUFBSSxFQUFFLHVCQUFZLEVBQUU7U0FDckIsQ0FBQztJQUNKLENBQUM7SUFFTSwyQ0FBVyxHQUFsQjtRQUNFLE9BQU8sQ0FBQyxHQUFHLENBQUMsbUNBQW1DLEVBQUUsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDO0lBQy9ELENBQUM7SUFia0IscUJBQXFCO1FBbkJ6QyxpQkFBUyxDQUFRO1lBQ2hCLFFBQVEsRUFBRSx5QkFBeUI7WUFDbkMsUUFBUSxFQUFFLENBQUMsaW5CQWVWLENBQUM7U0FDSCxDQUFDOztPQUNtQixxQkFBcUIsQ0FjekM7SUFBRCw0QkFBQztDQUFBLEFBZEQsSUFjQztrQkFkb0IscUJBQXFCIn0=
-},{"indiv":"../node_modules/indiv/build/index.js","../../../constants/template":"constants/template.ts"}],"constants/module.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL3RlbXBsYXRlL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsK0JBQXVEO0FBQ3ZELDZFQUE2RTtBQUM3RSx3REFBMkQ7QUF3QzNEO0lBS0U7UUFDRSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1gsSUFBSSxFQUFFLHVCQUFZLEVBQUU7U0FDckIsQ0FBQztJQUNKLENBQUM7SUFFTSwyQ0FBVyxHQUFsQjtRQUNFLE9BQU8sQ0FBQyxHQUFHLENBQUMsbUNBQW1DLEVBQUUsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDO0lBQy9ELENBQUM7SUFia0IscUJBQXFCO1FBbkJ6QyxpQkFBUyxDQUFRO1lBQ2hCLFFBQVEsRUFBRSx5QkFBeUI7WUFDbkMsUUFBUSxFQUFFLENBQUMscW9CQWVWLENBQUM7U0FDSCxDQUFDOztPQUNtQixxQkFBcUIsQ0FjekM7SUFBRCw0QkFBQztDQUFBLEFBZEQsSUFjQztrQkFkb0IscUJBQXFCIn0=
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","../../../constants/template":"constants\\template.ts"}],"constants\\module.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1234,7 +1241,7 @@ exports.moduleInfo = function () {
     }];
 };
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibW9kdWxlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vY29uc3RhbnRzL21vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsVUFBVSxHQUFHLGNBQU0sT0FBQTtJQUM5QjtRQUNFLEVBQUUsRUFBRSxVQUFVO1FBQ2QsQ0FBQyxFQUFFO1lBQ0QsK0RBQStEO1lBQy9ELHNDQUFzQztTQUN2QztRQUNELElBQUksRUFBRTtZQUNKO2dCQUNFLEtBQUssRUFBRSxjQUFjO2dCQUNyQixDQUFDLEVBQUU7b0JBQ0QsaUNBQWlDO29CQUNqQywyQ0FBMkM7b0JBQzNDLG1CQUFtQjtpQkFDcEI7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLHFDQUFxQztvQkFDckMsK0JBQStCO29CQUMvQiwyQ0FBMkM7b0JBQzNDLG9CQUFvQjtpQkFDckI7Z0JBQ0QsSUFBSSxFQUFFLCtqQkFvQ1o7YUFDSztZQUNEO2dCQUNFLEtBQUssRUFBRSxpQkFBaUI7Z0JBQ3hCLENBQUMsRUFBRTtvQkFDRCx1QkFBdUI7aUJBQ3hCO2dCQUNELE1BQU0sRUFBRTtvQkFDTiwwQ0FBMEM7b0JBQzFDLGlGQUFpRjtvQkFDakYsNkJBQTZCO29CQUM3QixvQ0FBb0M7aUJBQ3JDO2dCQUNELElBQUksRUFBRSxzWUE0Qlo7YUFDSztZQUNEO2dCQUNFLEtBQUssRUFBRSxvQkFBb0I7Z0JBQzNCLENBQUMsRUFBRTtvQkFDRCx5QkFBeUI7aUJBQzFCO2dCQUNELE1BQU0sRUFBRTtvQkFDTixzQkFBc0I7b0JBQ3RCLDRFQUE0RTtpQkFDN0U7Z0JBQ0QsSUFBSSxFQUFFLDZtQkE0Q1o7YUFDSztZQUNEO2dCQUNFLEtBQUssRUFBRSxtQkFBbUI7Z0JBQzFCLENBQUMsRUFBRTtvQkFDRCwwQkFBMEI7aUJBQzNCO2dCQUNELE1BQU0sRUFBRTtvQkFDTixxQkFBcUI7b0JBQ3JCLHVFQUF1RTtpQkFDeEU7Z0JBQ0QsSUFBSSxFQUFFLCt4QkFzRFo7YUFDSztZQUNEO2dCQUNFLEtBQUssRUFBRSxvQkFBb0I7Z0JBQzNCLENBQUMsRUFBRTtvQkFDRCx1QkFBdUI7aUJBQ3hCO2dCQUNELE1BQU0sRUFBRTtvQkFDTixrQ0FBa0M7b0JBQ2xDLCtCQUErQjtvQkFDL0Isd0RBQXdEO2lCQUN6RDtnQkFDRCxJQUFJLEVBQUUsK3hCQXNEWjthQUNLO1lBQ0Q7Z0JBQ0UsS0FBSyxFQUFFLG1CQUFtQjtnQkFDMUIsQ0FBQyxFQUFFO29CQUNELHVCQUF1QjtpQkFDeEI7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLCtCQUErQjtvQkFDL0Isa0VBQWtFO29CQUNsRSx5Q0FBeUM7aUJBQzFDO2dCQUNELElBQUksRUFBRSxxU0FtQlo7YUFDSztTQUNGO0tBQ0Y7Q0FDRixFQS9UK0IsQ0ErVC9CLENBQUMifQ==
-},{}],"pages/docs/module/index.ts":[function(require,module,exports) {
+},{}],"pages\\docs\\module\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1265,13 +1272,13 @@ var DocsModuleContainer = /** @class */function () {
     };
     DocsModuleContainer = __decorate([indiv_1.Component({
         selector: 'docs-module-container',
-        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
     }), __metadata("design:paramtypes", [])], DocsModuleContainer);
     return DocsModuleContainer;
 }();
 exports.default = DocsModuleContainer;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL21vZHVsZS9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQUFBLCtCQUF1RDtBQUN2RCw2RUFBNkU7QUFDN0Usb0RBQXVEO0FBd0N2RDtJQUtFO1FBQ0UsSUFBSSxDQUFDLEtBQUssR0FBRztZQUNYLElBQUksRUFBRSxtQkFBVSxFQUFFO1NBQ25CLENBQUM7SUFDSixDQUFDO0lBRU0seUNBQVcsR0FBbEI7UUFDRSxPQUFPLENBQUMsR0FBRyxDQUFDLG1DQUFtQyxFQUFFLElBQUksQ0FBQyxLQUFLLENBQUMsQ0FBQztJQUMvRCxDQUFDO0lBYmtCLG1CQUFtQjtRQW5CdkMsaUJBQVMsQ0FBUTtZQUNoQixRQUFRLEVBQUUsdUJBQXVCO1lBQ2pDLFFBQVEsRUFBRSxDQUFDLGdtQkFlVixDQUFDO1NBQ0gsQ0FBQzs7T0FDbUIsbUJBQW1CLENBY3ZDO0lBQUQsMEJBQUM7Q0FBQSxBQWRELElBY0M7a0JBZG9CLG1CQUFtQiJ9
-},{"indiv":"../node_modules/indiv/build/index.js","../../../constants/module":"constants/module.ts"}],"constants/service.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL21vZHVsZS9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQUFBLCtCQUF1RDtBQUN2RCw2RUFBNkU7QUFDN0Usb0RBQXVEO0FBd0N2RDtJQUtFO1FBQ0UsSUFBSSxDQUFDLEtBQUssR0FBRztZQUNYLElBQUksRUFBRSxtQkFBVSxFQUFFO1NBQ25CLENBQUM7SUFDSixDQUFDO0lBRU0seUNBQVcsR0FBbEI7UUFDRSxPQUFPLENBQUMsR0FBRyxDQUFDLG1DQUFtQyxFQUFFLElBQUksQ0FBQyxLQUFLLENBQUMsQ0FBQztJQUMvRCxDQUFDO0lBYmtCLG1CQUFtQjtRQW5CdkMsaUJBQVMsQ0FBUTtZQUNoQixRQUFRLEVBQUUsdUJBQXVCO1lBQ2pDLFFBQVEsRUFBRSxDQUFDLG9uQkFlVixDQUFDO1NBQ0gsQ0FBQzs7T0FDbUIsbUJBQW1CLENBY3ZDO0lBQUQsMEJBQUM7Q0FBQSxBQWRELElBY0M7a0JBZG9CLG1CQUFtQiJ9
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","../../../constants/module":"constants\\module.ts"}],"constants\\service.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1280,20 +1287,20 @@ exports.serviceInfo = function () {
         h1: '服务 与 依赖注入',
         p: ['组件不应该直接获取或保存数据，它们不应该了解是否在展示假数据。', '它们应该聚焦于展示数据，而把数据访问的职责委托给某个服务。', '不要使用 new 来创建服务，而要依靠 InDiv 的 依赖注入(DI) 机制把它注入到 组件或服务的 的构造函数中'],
         info: [{
-            title: '装饰器 Service 和 Injectable',
-            p: ['@Service 装饰器会指出紧随其后的那个类是个服务，并为其指定元数据。', '@Service 接收1个参数: { isSingletonMode?: boolean; }。 用来指出是否为 单例服务。', '@Injectable 不接受任何参数，而是用来提示 InDiv 该 class 有需要注入的服务。', '@Injectable 可以用在 组件（component） 和 服务（service） 上。'],
-            pchild: ['1. isSingletonMode: boolean; 用来告诉 模块 该服务是否为单例服务。', '2. 服务里可以被注入其他服务', '3. 在 TypeScript 中，在视同我们可以直接在 构造函数 的参数中声明出参数及其类型，类型为需要被注入的 服务，并可以直接在实例中拿到，', '4, 但是在 JavaScript 中，只能通过在 构造函数 的参数中，把 需要被注入 服务（service） 的开头字母 小写的方式来声明被注入的 服务（service）。 例如：需要注入 HeroService，则写作 heroService'],
-            code: "\n  // in TypeScript\n  @Injectable\n  @Service()\n  export default class HeroSearchService {\n    public hsr: HeroSearchService1; // \u670D\u52A1 HeroSearchService1 \u88AB\u6CE8\u5165, \u53EF\u4EE5\u76F4\u63A5\u7528 this.hsr\n    constructor(\n      private hsr: HeroSearchService1,\n    ) {\n      console.log(this.hsr)\n    }\n  }\n\n  // in JavaScript\n  export default class HeroSearchService {\n    constructor(\n      heroSearchService1, // \u670D\u52A1 HeroSearchService1 \u88AB\u6CE8\u5165\uFF0C \u8BE5\u5B9E\u4F8B\u5373\u4E3A \u53C2\u6570 heroSearchService1\n    ) {\n      this.hsr = heroSearchService1;\n      this.hsr.test();\n    }\n  }\n  Service({\n    isSingletonMode: false,\n  })(HeroSearchService);\n "
+            title: '装饰器 Service, Injectable 和 Injectable, Injected',
+            p: ['由于作者英语水平过差，将Injectable用错，因此v1.2.0版本开始将由 Injectable, Injected 分别代替1.1.0版本及以下的 Service, Injectable', 'v1.1.0版本@Service / v1.2.0及以上版本: @Injectable: 会指出紧随其后的那个类是个服务，并为其指定元数据。', 'v1.1.0版本@Service / v1.2.0及以上版本: @Injectable: 接收1个参数: { isSingletonMode?: boolean; }。 用来指出是否为 单例服务。', 'v1.1.0版本: @Injectable / v1.2.0及以上版本: @Injected: 不接受任何参数，而是用来提示 InDiv 该 class 有需要注入的服务。', 'v1.1.0版本: @Injectable / v1.2.0及以上版本: @Injected: 可以用在 组件（component） 和 服务（service） 上。'],
+            pchild: ['1. isSingletonMode: boolean; 用来告诉 模块 该服务是否为单例服务。', '2. 服务里可以被注入其他服务', '3. 在 TypeScript 中，在视同我们可以直接在 构造函数 的参数中声明出参数及其类型，类型为需要被注入的 服务，并可以直接在实例中拿到，', '4. 但是在 JavaScript 中，只能通过在 构造函数 的参数中，把 需要被注入 服务（service） 的开头字母 小写的方式来声明被注入的 服务（service）。 例如：需要注入 HeroService，则写作 heroService'],
+            code: "\n  // in TypeScript\n\n  // v1.1.0\n  // @Injectable\n  // @Service({ isSingletonMode: false })\n\n  // v1.2.0+\n  @Injected\n  @Injectable({ isSingletonMode: false })\n  export default class HeroSearchService {\n    public hsr: HeroSearchService1; // \u670D\u52A1 HeroSearchService1 \u88AB\u6CE8\u5165, \u53EF\u4EE5\u76F4\u63A5\u7528 this.hsr\n    constructor(\n      private hsr: HeroSearchService1,\n    ) {\n      console.log(this.hsr)\n    }\n  }\n\n  // in JavaScript\n  export default class HeroSearchService {\n    constructor(\n      heroSearchService1, // \u670D\u52A1 HeroSearchService1 \u88AB\u6CE8\u5165\uFF0C \u8BE5\u5B9E\u4F8B\u5373\u4E3A \u53C2\u6570 heroSearchService1\n    ) {\n      this.hsr = heroSearchService1;\n      this.hsr.test();\n    }\n  }\n  // v1.1.0\n  // Service({\n  //   isSingletonMode: false,\n  // })(HeroSearchService);\n  // v1.2.0+\n  Injectable({\n    isSingletonMode: false,\n  })(HeroSearchService);\n "
         }, {
             title: '依赖注入',
             p: ['依赖注入是一个很重要的设计模式。 它使用得非常广泛，以至于几乎每个人都把它简称为 DI 。', '依赖注入（DI）是用来创建对象及其依赖的其它对象的一种方式。 ', '当依赖注入系统创建某个对象实例时，会负责提供该对象所依赖的对象（称为该对象的依赖）。'],
-            pchild: ['1. 在 NvModule 中的 providers: Function[] 传入 需要被注入的 服务。', '2. 该模块（NvModule）中的所有 组件 和 服务 都可以 使用 @Injectable 注解来声明被注入的服务。', '3. 模块导出（exports）的 组件 在其他模块（NvModule）也可以使用该 模块 的 服务。', '4. 无需一个一个 new 出对应的 服务，直接注入即可。'],
+            pchild: ['1. 在 NvModule 中的 providers: Function[] 传入 需要被注入的 服务。', '2. 该模块（NvModule）中的所有 组件 和 服务 都可以 使用 (v1.1.0版本@Injectable / v1.2.0及以上版本@Injected) 注解来声明被注入的服务。', '3. 模块导出（exports）的 组件 在其他模块（NvModule）也可以使用该 模块 的 服务。', '4. 无需一个一个 new 出对应的 服务，直接注入即可。'],
             code: "\n  @NvModule({\n    imports: [\n    ],\n    components: [\n        DocsContainer,\n    ],\n    providers: [\n      HeroSearchService\n    ],\n    exports: [\n        DocsContainer,\n    ],\n  })\n  export default class DocsModule {}\n "
         }]
     }];
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2VydmljZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uL2NvbnN0YW50cy9zZXJ2aWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQWEsUUFBQSxXQUFXLEdBQUcsY0FBTSxPQUFBO0lBQy9CO1FBQ0UsRUFBRSxFQUFFLFdBQVc7UUFDZixDQUFDLEVBQUU7WUFDRCxpQ0FBaUM7WUFDakMsK0JBQStCO1lBQy9CLDREQUE0RDtTQUM3RDtRQUNELElBQUksRUFBRTtZQUNKO2dCQUNFLEtBQUssRUFBRSwwQkFBMEI7Z0JBQ2pDLENBQUMsRUFBRTtvQkFDRCx1Q0FBdUM7b0JBQ3ZDLGdFQUFnRTtvQkFDaEUsb0RBQW9EO29CQUNwRCxpREFBaUQ7aUJBQ2xEO2dCQUNELE1BQU0sRUFBRTtvQkFDTixrREFBa0Q7b0JBQ2xELGlCQUFpQjtvQkFDakIsMkVBQTJFO29CQUMzRSw2SEFBNkg7aUJBQzlIO2dCQUNELElBQUksRUFBRSxtdEJBeUJaO2FBQ0s7WUFDRDtnQkFDRSxLQUFLLEVBQUUsTUFBTTtnQkFDYixDQUFDLEVBQUU7b0JBQ0QsK0NBQStDO29CQUMvQyxpQ0FBaUM7b0JBQ2pDLDRDQUE0QztpQkFDN0M7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLHNEQUFzRDtvQkFDdEQsOERBQThEO29CQUM5RCxxREFBcUQ7b0JBQ3JELCtCQUErQjtpQkFDaEM7Z0JBQ0QsSUFBSSxFQUFFLDhPQWVaO2FBQ0s7U0FDRjtLQUNGO0NBQ0YsRUFsRmdDLENBa0ZoQyxDQUFDIn0=
-},{}],"pages/docs/service/index.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2VydmljZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uL2NvbnN0YW50cy9zZXJ2aWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQWEsUUFBQSxXQUFXLEdBQUcsY0FBTSxPQUFBO0lBQy9CO1FBQ0UsRUFBRSxFQUFFLFdBQVc7UUFDZixDQUFDLEVBQUU7WUFDRCxpQ0FBaUM7WUFDakMsK0JBQStCO1lBQy9CLDREQUE0RDtTQUM3RDtRQUNELElBQUksRUFBRTtZQUNKO2dCQUNFLEtBQUssRUFBRSxnREFBZ0Q7Z0JBQ3ZELENBQUMsRUFBRTtvQkFDRCxrR0FBa0c7b0JBQ2xHLHdFQUF3RTtvQkFDeEUsb0dBQW9HO29CQUNwRyx3RkFBd0Y7b0JBQ3hGLHFGQUFxRjtpQkFDdEY7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLGtEQUFrRDtvQkFDbEQsaUJBQWlCO29CQUNqQiwyRUFBMkU7b0JBQzNFLDZIQUE2SDtpQkFDOUg7Z0JBQ0QsSUFBSSxFQUFFLHE3QkFvQ1o7YUFDSztZQUNEO2dCQUNFLEtBQUssRUFBRSxNQUFNO2dCQUNiLENBQUMsRUFBRTtvQkFDRCwrQ0FBK0M7b0JBQy9DLGlDQUFpQztvQkFDakMsNENBQTRDO2lCQUM3QztnQkFDRCxNQUFNLEVBQUU7b0JBQ04sc0RBQXNEO29CQUN0RCwrRkFBK0Y7b0JBQy9GLHFEQUFxRDtvQkFDckQsK0JBQStCO2lCQUNoQztnQkFDRCxJQUFJLEVBQUUsOE9BZVo7YUFDSztTQUNGO0tBQ0Y7Q0FDRixFQTlGZ0MsQ0E4RmhDLENBQUMifQ==
+},{}],"pages\\docs\\service\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1327,13 +1334,13 @@ var DocsServiceContainer = /** @class */function () {
     };
     DocsServiceContainer = __decorate([indiv_1.Component({
         selector: 'docs-service-container',
-        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
     }), __metadata("design:paramtypes", [])], DocsServiceContainer);
     return DocsServiceContainer;
 }();
 exports.default = DocsServiceContainer;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL3NlcnZpY2UvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSwrQkFBa0U7QUFDbEUsd0ZBQXdGO0FBQ3hGLHNEQUF5RDtBQXdDekQ7SUFLRTtRQUNFLElBQUksQ0FBQyxLQUFLLEdBQUc7WUFDWCxJQUFJLEVBQUUscUJBQVcsRUFBRTtTQUNwQixDQUFDO0lBQ0osQ0FBQztJQUVNLDBDQUFXLEdBQWxCO1FBQ0UsT0FBTyxDQUFDLEdBQUcsQ0FBQyxJQUFJLEVBQUUsOEJBQThCLENBQUMsQ0FBQztJQUNwRCxDQUFDO0lBRU0sMENBQVcsR0FBbEI7UUFDRSxPQUFPLENBQUMsR0FBRyxDQUFDLGtDQUFrQyxFQUFFLElBQUksQ0FBQyxLQUFLLENBQUMsQ0FBQztJQUM5RCxDQUFDO0lBakJrQixvQkFBb0I7UUFuQnhDLGlCQUFTLENBQVE7WUFDaEIsUUFBUSxFQUFFLHdCQUF3QjtZQUNsQyxRQUFRLEVBQUUsQ0FBQyxnbUJBZVYsQ0FBQztTQUNILENBQUM7O09BQ21CLG9CQUFvQixDQWtCeEM7SUFBRCwyQkFBQztDQUFBLEFBbEJELElBa0JDO2tCQWxCb0Isb0JBQW9CIn0=
-},{"indiv":"../node_modules/indiv/build/index.js","../../../constants/service":"constants/service.ts"}],"constants/route.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL3NlcnZpY2UvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSwrQkFBa0U7QUFDbEUsd0ZBQXdGO0FBQ3hGLHNEQUF5RDtBQXdDekQ7SUFLRTtRQUNFLElBQUksQ0FBQyxLQUFLLEdBQUc7WUFDWCxJQUFJLEVBQUUscUJBQVcsRUFBRTtTQUNwQixDQUFDO0lBQ0osQ0FBQztJQUVNLDBDQUFXLEdBQWxCO1FBQ0UsT0FBTyxDQUFDLEdBQUcsQ0FBQyxJQUFJLEVBQUUsOEJBQThCLENBQUMsQ0FBQztJQUNwRCxDQUFDO0lBRU0sMENBQVcsR0FBbEI7UUFDRSxPQUFPLENBQUMsR0FBRyxDQUFDLGtDQUFrQyxFQUFFLElBQUksQ0FBQyxLQUFLLENBQUMsQ0FBQztJQUM5RCxDQUFDO0lBakJrQixvQkFBb0I7UUFuQnhDLGlCQUFTLENBQVE7WUFDaEIsUUFBUSxFQUFFLHdCQUF3QjtZQUNsQyxRQUFRLEVBQUUsQ0FBQyxvbkJBZVYsQ0FBQztTQUNILENBQUM7O09BQ21CLG9CQUFvQixDQWtCeEM7SUFBRCwyQkFBQztDQUFBLEFBbEJELElBa0JDO2tCQWxCb0Isb0JBQW9CIn0=
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","../../../constants/service":"constants\\service.ts"}],"constants\\route.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1360,7 +1367,7 @@ exports.routeInfo = function () {
     }];
 };
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicm91dGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb25zdGFudHMvcm91dGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBYSxRQUFBLFNBQVMsR0FBRyxjQUFNLE9BQUE7SUFDN0I7UUFDRSxFQUFFLEVBQUUsU0FBUztRQUNiLENBQUMsRUFBRTtZQUNELG1EQUFtRDtZQUNuRCwrQkFBK0I7WUFDL0Isc0NBQXNDO1lBQ3RDLHlFQUF5RTtZQUN6RSw2Q0FBNkM7WUFDN0MsK0NBQStDO1lBQy9DLDRDQUE0QztTQUM3QztRQUNELElBQUksRUFBRTtZQUNKO2dCQUNFLEtBQUssRUFBRSxNQUFNO2dCQUNiLENBQUMsRUFBRTtvQkFDRCx1R0FBdUI7b0JBQ3ZCLHFDQUFxQztpQkFDdEM7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLHNDQUFzQztvQkFDdEMsc0dBQXNHO29CQUN0RywrQ0FBK0M7b0JBQy9DLHVDQUF1QztpQkFDeEM7Z0JBQ0QsSUFBSSxFQUFFLGdyQkE2Qlo7YUFDSztZQUNEO2dCQUNFLEtBQUssRUFBRSxXQUFXO2dCQUNsQixDQUFDLEVBQUU7b0JBQ0QsNkRBQTZEO29CQUM3RCwwT0FBb0Y7b0JBQ3BGLHNDQUFzQztpQkFDdkM7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLGNBQWM7b0JBQ2QsVUFBVTtvQkFDVixVQUFVO29CQUNWLGFBQWE7aUJBQ2Q7Z0JBQ0QsSUFBSSxFQUFFLDRPQVVaO2FBQ0s7WUFDRDtnQkFDRSxLQUFLLEVBQUUsTUFBTTtnQkFDYixDQUFDLEVBQUU7b0JBQ0QsK0JBQStCO29CQUMvQixnQ0FBZ0M7aUJBQ2pDO2dCQUNELE1BQU0sRUFBRTtvQkFDTixrRkFBa0Y7b0JBQ2xGLHFFQUFxRTtvQkFDckUsdUJBQXVCO29CQUN2Qiw2Q0FBNkM7b0JBQzdDLHdCQUF3QjtpQkFDekI7Z0JBQ0QsSUFBSSxFQUFFLCtVQWFaO2FBQ0s7U0FDRjtLQUNGO0NBQ0YsRUEvRzhCLENBK0c5QixDQUFDIn0=
-},{}],"pages/docs/route/index.ts":[function(require,module,exports) {
+},{}],"pages\\docs\\route\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1388,13 +1395,13 @@ var DocsRouteContainer = /** @class */function () {
     }
     DocsRouteContainer = __decorate([indiv_1.Component({
         selector: 'docs-route-container',
-        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
     }), __metadata("design:paramtypes", [])], DocsRouteContainer);
     return DocsRouteContainer;
 }();
 exports.default = DocsRouteContainer;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL3JvdXRlL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsK0JBQTRDO0FBQzVDLGtFQUFrRTtBQUNsRSxrREFBcUQ7QUF3Q3JEO0lBS0U7UUFDRSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1gsSUFBSSxFQUFFLGlCQUFTLEVBQUU7U0FDbEIsQ0FBQztJQUNKLENBQUM7SUFUa0Isa0JBQWtCO1FBbkJ0QyxpQkFBUyxDQUFRO1lBQ2hCLFFBQVEsRUFBRSxzQkFBc0I7WUFDaEMsUUFBUSxFQUFFLENBQUMsZ21CQWVWLENBQUM7U0FDSCxDQUFDOztPQUNtQixrQkFBa0IsQ0FVdEM7SUFBRCx5QkFBQztDQUFBLEFBVkQsSUFVQztrQkFWb0Isa0JBQWtCIn0=
-},{"indiv":"../node_modules/indiv/build/index.js","../../../constants/route":"constants/route.ts"}],"constants/indiv.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL3JvdXRlL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsK0JBQTRDO0FBQzVDLGtFQUFrRTtBQUNsRSxrREFBcUQ7QUF3Q3JEO0lBS0U7UUFDRSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1gsSUFBSSxFQUFFLGlCQUFTLEVBQUU7U0FDbEIsQ0FBQztJQUNKLENBQUM7SUFUa0Isa0JBQWtCO1FBbkJ0QyxpQkFBUyxDQUFRO1lBQ2hCLFFBQVEsRUFBRSxzQkFBc0I7WUFDaEMsUUFBUSxFQUFFLENBQUMsb25CQWVWLENBQUM7U0FDSCxDQUFDOztPQUNtQixrQkFBa0IsQ0FVdEM7SUFBRCx5QkFBQztDQUFBLEFBVkQsSUFVQztrQkFWb0Isa0JBQWtCIn0=
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","../../../constants/route":"constants\\route.ts"}],"constants\\indiv.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1411,7 +1418,7 @@ exports.inDivInfo = function () {
     }];
 };
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kaXYuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb25zdGFudHMvaW5kaXYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBYSxRQUFBLFNBQVMsR0FBRyxjQUFNLE9BQUE7SUFDN0I7UUFDRSxFQUFFLEVBQUUsSUFBSTtRQUNSLENBQUMsRUFBRTtZQUNELG9CQUFvQjtTQUNyQjtRQUNELElBQUksRUFBRTtZQUNKO2dCQUNFLEtBQUssRUFBRSxNQUFNO2dCQUNiLENBQUMsRUFBRTtvQkFDRCx3QkFBd0I7b0JBQ3hCLGdCQUFnQjtpQkFDakI7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLGNBQWM7b0JBQ2Qsc0JBQXNCO29CQUN0Qiw2QkFBNkI7b0JBQzdCLHFCQUFxQjtpQkFDdEI7Z0JBQ0QsSUFBSSxFQUFFLHdHQUtaO2FBQ0s7U0FDRjtLQUNGO0NBQ0YsRUE1QjhCLENBNEI5QixDQUFDIn0=
-},{}],"pages/docs/indiv/index.ts":[function(require,module,exports) {
+},{}],"pages\\docs\\indiv\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1439,13 +1446,13 @@ var DocsInDivContainer = /** @class */function () {
     }
     DocsInDivContainer = __decorate([indiv_1.Component({
         selector: 'docs-indiv-container',
-        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
     }), __metadata("design:paramtypes", [])], DocsInDivContainer);
     return DocsInDivContainer;
 }();
 exports.default = DocsInDivContainer;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2luZGl2L2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsK0JBQTRDO0FBQzVDLGtFQUFrRTtBQUNsRSxrREFBcUQ7QUF3Q3JEO0lBS0U7UUFDRSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1gsSUFBSSxFQUFFLGlCQUFTLEVBQUU7U0FDbEIsQ0FBQztJQUNKLENBQUM7SUFUa0Isa0JBQWtCO1FBbkJ0QyxpQkFBUyxDQUFRO1lBQ2hCLFFBQVEsRUFBRSxzQkFBc0I7WUFDaEMsUUFBUSxFQUFFLENBQUMsZ21CQWVWLENBQUM7U0FDSCxDQUFDOztPQUNtQixrQkFBa0IsQ0FVdEM7SUFBRCx5QkFBQztDQUFBLEFBVkQsSUFVQztrQkFWb0Isa0JBQWtCIn0=
-},{"indiv":"../node_modules/indiv/build/index.js","../../../constants/indiv":"constants/indiv.ts"}],"constants/libs.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2luZGl2L2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsK0JBQTRDO0FBQzVDLGtFQUFrRTtBQUNsRSxrREFBcUQ7QUF3Q3JEO0lBS0U7UUFDRSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1gsSUFBSSxFQUFFLGlCQUFTLEVBQUU7U0FDbEIsQ0FBQztJQUNKLENBQUM7SUFUa0Isa0JBQWtCO1FBbkJ0QyxpQkFBUyxDQUFRO1lBQ2hCLFFBQVEsRUFBRSxzQkFBc0I7WUFDaEMsUUFBUSxFQUFFLENBQUMsb25CQWVWLENBQUM7U0FDSCxDQUFDOztPQUNtQixrQkFBa0IsQ0FVdEM7SUFBRCx5QkFBQztDQUFBLEFBVkQsSUFVQztrQkFWb0Isa0JBQWtCIn0=
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","../../../constants/indiv":"constants\\indiv.ts"}],"constants\\libs.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1462,7 +1469,7 @@ exports.libInfo = function () {
     }];
 };
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGlicy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uL2NvbnN0YW50cy9saWJzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQWEsUUFBQSxPQUFPLEdBQUcsY0FBTSxPQUFBO0lBQzNCO1FBQ0UsRUFBRSxFQUFFLE1BQU07UUFDVixDQUFDLEVBQUU7WUFDRCxnREFBZ0Q7U0FDakQ7UUFDRCxJQUFJLEVBQUU7WUFDSjtnQkFDRSxLQUFLLEVBQUUsT0FBTztnQkFDZCxDQUFDLEVBQUU7b0JBQ0QsZ0JBQWdCO2lCQUNqQjtnQkFDRCxNQUFNLEVBQUU7b0JBQ04sd0VBQXdFO29CQUN4RSw0Q0FBNEM7b0JBQzVDLG1EQUFtRDtvQkFDbkQsMERBQTBEO29CQUMxRCxrREFBa0Q7b0JBQ2xELG1EQUFtRDtpQkFDcEQ7Z0JBQ0QsSUFBSSxFQUFFLHFFQUlaO2FBQ0s7U0FDRjtLQUNGO0NBQ0YsRUE1QjRCLENBNEI1QixDQUFDIn0=
-},{}],"pages/docs/libs/index.ts":[function(require,module,exports) {
+},{}],"pages\\docs\\libs\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1490,13 +1497,13 @@ var DocsLibsContainer = /** @class */function () {
     }
     DocsLibsContainer = __decorate([indiv_1.Component({
         selector: 'docs-libs-container',
-        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
     }), __metadata("design:paramtypes", [])], DocsLibsContainer);
     return DocsLibsContainer;
 }();
 exports.default = DocsLibsContainer;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2xpYnMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSwrQkFBdUQ7QUFDdkQsNkVBQTZFO0FBQzdFLGdEQUFrRDtBQXdDbEQ7SUFLRTtRQUNFLElBQUksQ0FBQyxLQUFLLEdBQUc7WUFDWCxJQUFJLEVBQUUsY0FBTyxFQUFFO1NBQ2hCLENBQUM7SUFDSixDQUFDO0lBVGtCLGlCQUFpQjtRQW5CckMsaUJBQVMsQ0FBUTtZQUNoQixRQUFRLEVBQUUscUJBQXFCO1lBQy9CLFFBQVEsRUFBRSxDQUFDLGdtQkFlVixDQUFDO1NBQ0gsQ0FBQzs7T0FDbUIsaUJBQWlCLENBVXJDO0lBQUQsd0JBQUM7Q0FBQSxBQVZELElBVUM7a0JBVm9CLGlCQUFpQiJ9
-},{"indiv":"../node_modules/indiv/build/index.js","../../../constants/libs":"constants/libs.ts"}],"constants/http.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2xpYnMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSwrQkFBdUQ7QUFDdkQsNkVBQTZFO0FBQzdFLGdEQUFrRDtBQXdDbEQ7SUFLRTtRQUNFLElBQUksQ0FBQyxLQUFLLEdBQUc7WUFDWCxJQUFJLEVBQUUsY0FBTyxFQUFFO1NBQ2hCLENBQUM7SUFDSixDQUFDO0lBVGtCLGlCQUFpQjtRQW5CckMsaUJBQVMsQ0FBUTtZQUNoQixRQUFRLEVBQUUscUJBQXFCO1lBQy9CLFFBQVEsRUFBRSxDQUFDLG9uQkFlVixDQUFDO1NBQ0gsQ0FBQzs7T0FDbUIsaUJBQWlCLENBVXJDO0lBQUQsd0JBQUM7Q0FBQSxBQVZELElBVUM7a0JBVm9CLGlCQUFpQiJ9
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","../../../constants/libs":"constants\\libs.ts"}],"constants\\http.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1518,7 +1525,7 @@ exports.httpInfo = function () {
     }];
 };
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaHR0cC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uL2NvbnN0YW50cy9odHRwLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQWEsUUFBQSxRQUFRLEdBQUcsY0FBTSxPQUFBO0lBQzVCO1FBQ0UsRUFBRSxFQUFFLE1BQU07UUFDVixDQUFDLEVBQUU7WUFDRCx1Q0FBdUM7U0FDeEM7UUFDRCxJQUFJLEVBQUU7WUFDSjtnQkFDRSxLQUFLLEVBQUUsUUFBUTtnQkFDZixDQUFDLEVBQUU7b0JBQ0Qsd0NBQXdDO29CQUN4Qyw4Q0FBOEM7b0JBQzlDLGdDQUFnQztpQkFDakM7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLGtFQUFrRTtvQkFDbEUscUVBQXFFO29CQUNyRSxrRUFBa0U7b0JBQ2xFLGlFQUFpRTtvQkFDakUsbUVBQW1FO2lCQUNwRTtnQkFDRCxJQUFJLEVBQUUsNExBUVo7YUFDSztZQUNEO2dCQUNFLEtBQUssRUFBRSxRQUFRO2dCQUNmLENBQUMsRUFBRTtvQkFDRCx3Q0FBd0M7b0JBQ3hDLDhDQUE4QztpQkFDL0M7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLGtFQUFrRTtvQkFDbEUscUVBQXFFO29CQUNyRSxrRUFBa0U7b0JBQ2xFLGlFQUFpRTtvQkFDakUsbUVBQW1FO2lCQUNwRTtnQkFDRCxJQUFJLEVBQUUsNExBUVo7YUFDSztTQUNGO0tBQ0Y7Q0FDRixFQXhENkIsQ0F3RDdCLENBQUMifQ==
-},{}],"pages/docs/http/index.ts":[function(require,module,exports) {
+},{}],"pages\\docs\\http\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1546,13 +1553,13 @@ var DocsHttpContainer = /** @class */function () {
     }
     DocsHttpContainer = __decorate([indiv_1.Component({
         selector: 'docs-http-container',
-        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+        template: "\n    <div class=\"page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
     }), __metadata("design:paramtypes", [])], DocsHttpContainer);
     return DocsHttpContainer;
 }();
 exports.default = DocsHttpContainer;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2h0dHAvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSwrQkFBNEM7QUFDNUMsa0VBQWtFO0FBQ2xFLGdEQUFtRDtBQXdDbkQ7SUFLRTtRQUNFLElBQUksQ0FBQyxLQUFLLEdBQUc7WUFDWCxJQUFJLEVBQUUsZUFBUSxFQUFFO1NBQ2pCLENBQUM7SUFDSixDQUFDO0lBVGtCLGlCQUFpQjtRQW5CckMsaUJBQVMsQ0FBUTtZQUNoQixRQUFRLEVBQUUscUJBQXFCO1lBQy9CLFFBQVEsRUFBRSxDQUFDLGdtQkFlVixDQUFDO1NBQ0gsQ0FBQzs7T0FDbUIsaUJBQWlCLENBVXJDO0lBQUQsd0JBQUM7Q0FBQSxBQVZELElBVUM7a0JBVm9CLGlCQUFpQiJ9
-},{"indiv":"../node_modules/indiv/build/index.js","../../../constants/http":"constants/http.ts"}],"modules/docs.module.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9kb2NzL2h0dHAvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSwrQkFBNEM7QUFDNUMsa0VBQWtFO0FBQ2xFLGdEQUFtRDtBQXdDbkQ7SUFLRTtRQUNFLElBQUksQ0FBQyxLQUFLLEdBQUc7WUFDWCxJQUFJLEVBQUUsZUFBUSxFQUFFO1NBQ2pCLENBQUM7SUFDSixDQUFDO0lBVGtCLGlCQUFpQjtRQW5CckMsaUJBQVMsQ0FBUTtZQUNoQixRQUFRLEVBQUUscUJBQXFCO1lBQy9CLFFBQVEsRUFBRSxDQUFDLG9uQkFlVixDQUFDO1NBQ0gsQ0FBQzs7T0FDbUIsaUJBQWlCLENBVXJDO0lBQUQsd0JBQUM7Q0FBQSxBQVZELElBVUM7a0JBVm9CLGlCQUFpQiJ9
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","../../../constants/http":"constants\\http.ts"}],"modules\\docs.module.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1591,12 +1598,105 @@ var DocsModule = /** @class */function () {
 }();
 exports.default = DocsModule;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZG9jcy5tb2R1bGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9tb2R1bGVzL2RvY3MubW9kdWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsK0JBQWlDO0FBQ2pDLGlEQUFpRDtBQUVqRCx1REFBMEM7QUFDMUMsc0VBQTZEO0FBQzdELG9FQUEyRDtBQUMzRCxnRUFBdUQ7QUFDdkQsa0VBQXlEO0FBQ3pELDhEQUFxRDtBQUNyRCw4REFBcUQ7QUFDckQsNERBQW1EO0FBQ25ELDREQUFtRDtBQTRCbkQ7SUFBQTtJQUFrQyxDQUFDO0lBQWQsVUFBVTtRQTFCOUIsZ0JBQVEsQ0FBQztZQUNOLFVBQVUsRUFBRTtnQkFDUixjQUFhO2dCQUNiLG1CQUFzQjtnQkFDdEIsa0JBQXFCO2dCQUNyQixnQkFBbUI7Z0JBQ25CLGlCQUFvQjtnQkFDcEIsZUFBa0I7Z0JBQ2xCLGVBQWtCO2dCQUNsQixjQUFpQjtnQkFDakIsY0FBaUI7YUFDcEI7WUFDRCxTQUFTLEVBQUUsRUFDVjtZQUNELE9BQU8sRUFBRTtnQkFDTCxjQUFhO2dCQUNiLG1CQUFzQjtnQkFDdEIsa0JBQXFCO2dCQUNyQixnQkFBbUI7Z0JBQ25CLGlCQUFvQjtnQkFDcEIsZUFBa0I7Z0JBQ2xCLGVBQWtCO2dCQUNsQixjQUFpQjtnQkFDakIsY0FBaUI7YUFDcEI7U0FDSixDQUFDO09BQ21CLFVBQVUsQ0FBSTtJQUFELGlCQUFDO0NBQUEsQUFBbkMsSUFBbUM7a0JBQWQsVUFBVSJ9
-},{"indiv":"../node_modules/indiv/build/index.js","../pages/docs":"pages/docs/index.ts","../pages/docs/component":"pages/docs/component/index.ts","../pages/docs/template":"pages/docs/template/index.ts","../pages/docs/module":"pages/docs/module/index.ts","../pages/docs/service":"pages/docs/service/index.ts","../pages/docs/route":"pages/docs/route/index.ts","../pages/docs/indiv":"pages/docs/indiv/index.ts","../pages/docs/libs":"pages/docs/libs/index.ts","../pages/docs/http":"pages/docs/http/index.ts"}],"components/root-component/style.less":[function(require,module,exports) {
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","../pages/docs":"pages\\docs\\index.ts","../pages/docs/component":"pages\\docs\\component\\index.ts","../pages/docs/template":"pages\\docs\\template\\index.ts","../pages/docs/module":"pages\\docs\\module\\index.ts","../pages/docs/service":"pages\\docs\\service\\index.ts","../pages/docs/route":"pages\\docs\\route\\index.ts","../pages/docs/indiv":"pages\\docs\\indiv\\index.ts","../pages/docs/libs":"pages\\docs\\libs\\index.ts","../pages/docs/http":"pages\\docs\\http\\index.ts"}],"pages\\ssr\\style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/css-loader.js"}],"components/root-component/index.ts":[function(require,module,exports) {
+},{"_css_loader":"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\css-loader.js"}],"constants\\ssr.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ssrInfo = function () {
+    return [{
+        h1: '服务端渲染（SSR）',
+        p: ['标准的 InDiv 应用会运行在浏览器中，', '当 JavaScript 脚本加载完毕后，它会在 DOM 中渲染页面，以响应用户的操作。', '但是在特殊场景，比如 SEO，需要提升在低性能设备上的渲染速度，需要迅速显示首屏时，', '可能服务端渲染更适合。', '它可以生成这些页面，并在浏览器请求时直接用它们给出响应。'],
+        info: [{
+            title: '工作原理',
+            p: ['通过引入 @indiv/ssr-renderer 。', '@indiv/ssr-renderer 包提供了服务端的 DOM 实现，使得渲染 InDiv 应用不再依赖浏览器。', '通过 node 端，会把客户端对应用页面的请求传给 @indiv/ssr-renderer 中的 renderToString  函数，', '引入 indiv 实例和路由的配置对象，renderToString 会根据对应的路径，返回已经被渲染完的字符串模板。', '通过不同框架的渲染机制，将返回的字符串模板渲染到模板的 <div id="root"></div> 中。', '最后，服务器就会把渲染好的页面返回给客户端。'],
+            pchild: ['1. 生命周期受到限制，服务端渲染中仅仅支持 constructor 和 OnInit 的调用。', '2. 因为 InDiv 的 nvHttp 对象是封装的 axios 库，因此支持在 node 环境中使用 http 请求。', '3. 通过 nv-on:eventName 方式绑定的方法暂时无法渲染。']
+        }, {
+            title: '环境及使用',
+            p: ['Node.js: v6+', 'indiv: v1.1.0+', '@indiv/ssr-renderer: v1.0.0+', '本例子使用 express 及 ejs 模板，你也可以选择适合的 服务端框架 及 模板 。'],
+            pchild: ['1. 创建 InDiv app', '2. 创建一个用于处理请求的 express Web 服务器', '3. 创建一个 ejs 模板', '4. 引入 @indiv/ssr-renderer 包 renderToString: (url: string, routes: TRouter[], indiv: InDiv) => string', '5. 将 request 的 url， indiv app路由配置对象，和 indiv实例 作为参数依次传入 renderToString', '6. 最后 renderToString 的返回值渲染至模板中'],
+            code: "\n  // in index.ejs\n  <div id=\"root\">\n    <%- content %>\n  </div>\n\n  // in service side\n  const express = require('express');\n  const renderToString = require('@indiv/ssr-renderer');\n\n  const app = express();\n\n  app.use('/indiv-doc', (request, response, next) => {    \n    // import indiv app\n    const ssrData = require('./dist/main.js');\n    response.render('index.ejs', {\n      // use in ejs template\n      content: renderToString(request.url, ssrData.routes, ssrData.default.inDiv),\n    });\n  });\n    "
+        }]
+    }];
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3NyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vY29uc3RhbnRzL3Nzci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsT0FBTyxHQUFHLGNBQU0sT0FBQTtJQUN6QjtRQUNFLEVBQUUsRUFBRSxZQUFZO1FBQ2hCLENBQUMsRUFBRTtZQUNELHVCQUF1QjtZQUN2Qiw4Q0FBOEM7WUFDOUMsNENBQTRDO1lBQzVDLGFBQWE7WUFDYiw4QkFBOEI7U0FDL0I7UUFDRCxJQUFJLEVBQUU7WUFDSjtnQkFDRSxLQUFLLEVBQUUsTUFBTTtnQkFDYixDQUFDLEVBQUU7b0JBQ0QsNEJBQTRCO29CQUM1QiwyREFBMkQ7b0JBQzNELHNFQUFzRTtvQkFDdEUsNkRBQTZEO29CQUM3RCxzREFBc0Q7b0JBQ3RELHdCQUF3QjtpQkFDekI7Z0JBQ0QsTUFBTSxFQUFFO29CQUNOLGtEQUFrRDtvQkFDbEQsK0RBQStEO29CQUMvRCxzQ0FBc0M7aUJBQ3ZDO2FBQ0Y7WUFDRDtnQkFDRSxLQUFLLEVBQUUsT0FBTztnQkFDZCxDQUFDLEVBQUU7b0JBQ0QsY0FBYztvQkFDZCxnQkFBZ0I7b0JBQ2hCLDhCQUE4QjtvQkFDOUIsK0NBQStDO2lCQUNoRDtnQkFDRCxNQUFNLEVBQUU7b0JBQ04saUJBQWlCO29CQUNqQixnQ0FBZ0M7b0JBQ2hDLGdCQUFnQjtvQkFDaEIsc0dBQXNHO29CQUN0Ryx1RUFBdUU7b0JBQ3ZFLGlDQUFpQztpQkFDbEM7Z0JBQ0QsSUFBSSxFQUFFLGdoQkFvQlg7YUFDSTtTQUNGO0tBQ0Y7Q0FDRixFQW5FMEIsQ0FtRTFCLENBQUMifQ==
+},{}],"pages\\ssr\\index.ts":[function(require,module,exports) {
+"use strict";
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    }return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = this && this.__metadata || function (k, v) {
+    if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+require("./style.less");
+var indiv_1 = require("indiv");
+// import { Component } from '../../../../InDiv/src';
+var ssr_1 = require("../../constants/ssr");
+var SSRContainer = /** @class */function () {
+    function SSRContainer() {
+        this.state = {
+            info: ssr_1.ssrInfo()
+        };
+    }
+    SSRContainer = __decorate([indiv_1.Component({
+        selector: 'ssr-container',
+        template: "\n        <div class=\"page-container\">\n            <div class=\"info-content\" nv-repeat=\"let info in state.info\">\n                <h1>{{info.h1}}</h1>\n                <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n                <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n                    <h2>{{code.title}}</h2>\n                    <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n                    <div class=\"pchild\" nv-if=\"code.pchild\">\n                    <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n                    </div>\n                    <code-shower nv-if=\"code.code\" codes=\"{code.code}\"></code-shower>\n                </div>\n            </div>\n        </div>\n    "
+    }), __metadata("design:paramtypes", [])], SSRContainer);
+    return SSRContainer;
+}();
+exports.default = SSRContainer;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9wYWdlcy9zc3IvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSx3QkFBc0I7QUFFdEIsK0JBQWtDO0FBQ2xDLHFEQUFxRDtBQUVyRCwyQ0FBOEM7QUF3QzlDO0lBRUk7UUFDSSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1QsSUFBSSxFQUFFLGFBQU8sRUFBRTtTQUNsQixDQUFDO0lBQ04sQ0FBQztJQU5nQixZQUFZO1FBbkJoQyxpQkFBUyxDQUFRO1lBQ2QsUUFBUSxFQUFFLGVBQWU7WUFDekIsUUFBUSxFQUFFLENBQUMsc3VCQWVWLENBQUM7U0FDTCxDQUFDOztPQUNtQixZQUFZLENBT2hDO0lBQUQsbUJBQUM7Q0FBQSxBQVBELElBT0M7a0JBUG9CLFlBQVkifQ==
+},{"./style.less":"pages\\ssr\\style.less","indiv":"..\\node_modules\\indiv\\build\\index.js","../../constants/ssr":"constants\\ssr.ts"}],"modules\\ssr.module.ts":[function(require,module,exports) {
+"use strict";
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    }return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = this && this.__importDefault || function (mod) {
+    return mod && mod.__esModule ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var indiv_1 = require("indiv");
+// import { NvModule } from '../../../InDiv/src';
+var ssr_1 = __importDefault(require("../pages/ssr"));
+var SSRModule = /** @class */function () {
+    function SSRModule() {}
+    SSRModule = __decorate([indiv_1.NvModule({
+        imports: [],
+        components: [ssr_1.default],
+        providers: [],
+        exports: [ssr_1.default]
+    })], SSRModule);
+    return SSRModule;
+}();
+exports.default = SSRModule;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3NyLm1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uL21vZHVsZXMvc3NyLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQUFBLCtCQUFpQztBQUNqQyxpREFBaUQ7QUFFakQscURBQXdDO0FBY3hDO0lBQUE7SUFBaUMsQ0FBQztJQUFiLFNBQVM7UUFaN0IsZ0JBQVEsQ0FBQztZQUNOLE9BQU8sRUFBRSxFQUNSO1lBQ0QsVUFBVSxFQUFFO2dCQUNSLGFBQVk7YUFDZjtZQUNELFNBQVMsRUFBRSxFQUNWO1lBQ0QsT0FBTyxFQUFFO2dCQUNMLGFBQVk7YUFDZjtTQUNKLENBQUM7T0FDbUIsU0FBUyxDQUFJO0lBQUQsZ0JBQUM7Q0FBQSxBQUFsQyxJQUFrQztrQkFBYixTQUFTIn0=
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","../pages/ssr":"pages\\ssr\\index.ts"}],"components\\root-component\\style.less":[function(require,module,exports) {
+
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\css-loader.js"}],"components\\root-component\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1623,12 +1723,12 @@ var RootComponent = /** @class */function () {
 }();
 exports.default = RootComponent;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb21wb25lbnRzL3Jvb3QtY29tcG9uZW50L2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUEsd0JBQXNCO0FBRXRCLCtCQUFrQztBQUNsQyxxREFBcUQ7QUFXckQ7SUFBQTtJQUFvQyxDQUFDO0lBQWhCLGFBQWE7UUFUakMsaUJBQVMsQ0FBQztZQUNQLFFBQVEsRUFBRSxnQkFBZ0I7WUFDMUIsUUFBUSxFQUFFLENBQUMsK0lBS1YsQ0FBQztTQUNMLENBQUM7T0FDbUIsYUFBYSxDQUFHO0lBQUQsb0JBQUM7Q0FBQSxBQUFyQyxJQUFxQztrQkFBaEIsYUFBYSJ9
-},{"./style.less":"components/root-component/style.less","indiv":"../node_modules/indiv/build/index.js"}],"components/side-bars/style.less":[function(require,module,exports) {
+},{"./style.less":"components\\root-component\\style.less","indiv":"..\\node_modules\\indiv\\build\\index.js"}],"components\\side-bars\\style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/css-loader.js"}],"constants/nav.ts":[function(require,module,exports) {
+},{"_css_loader":"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\css-loader.js"}],"constants\\nav.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1667,10 +1767,13 @@ exports.navs = function () {
             name: 'HTTP',
             to: '/docs/http'
         }]
+    }, {
+        name: '服务端渲染',
+        to: '/ssr'
     }];
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmF2LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vY29uc3RhbnRzL25hdi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsSUFBSSxHQUFHLGNBQU0sT0FBQTtJQUN0QjtRQUNJLElBQUksRUFBRSxJQUFJO1FBQ1YsRUFBRSxFQUFFLGVBQWU7S0FDdEI7SUFDRDtRQUNJLElBQUksRUFBRSxJQUFJO1FBQ1YsRUFBRSxFQUFFLGVBQWU7S0FDdEI7SUFDRDtRQUNJLElBQUksRUFBRSxJQUFJO1FBQ1YsRUFBRSxFQUFFLE9BQU87UUFDWCxLQUFLLEVBQUU7WUFDSDtnQkFDSSxJQUFJLEVBQUUsSUFBSTtnQkFDVixFQUFFLEVBQUUsaUJBQWlCO2FBQ3hCO1lBQ0Q7Z0JBQ0ksSUFBSSxFQUFFLE1BQU07Z0JBQ1osRUFBRSxFQUFFLGdCQUFnQjthQUN2QjtZQUNEO2dCQUNJLElBQUksRUFBRSxXQUFXO2dCQUNqQixFQUFFLEVBQUUsZUFBZTthQUN0QjtZQUNEO2dCQUNJLElBQUksRUFBRSxJQUFJO2dCQUNWLEVBQUUsRUFBRSxjQUFjO2FBQ3JCO1lBQ0Q7Z0JBQ0ksSUFBSSxFQUFFLFNBQVM7Z0JBQ2YsRUFBRSxFQUFFLGFBQWE7YUFDcEI7WUFDRDtnQkFDSSxJQUFJLEVBQUUsTUFBTTtnQkFDWixFQUFFLEVBQUUsYUFBYTthQUNwQjtZQUNEO2dCQUNJLElBQUksRUFBRSxNQUFNO2dCQUNaLEVBQUUsRUFBRSxZQUFZO2FBQ25CO1lBQ0Q7Z0JBQ0ksSUFBSSxFQUFFLE1BQU07Z0JBQ1osRUFBRSxFQUFFLFlBQVk7YUFDbkI7U0FDSjtLQUNKO0NBQ0osRUEvQ3lCLENBK0N6QixDQUFDIn0=
-},{}],"components/side-bars/index.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmF2LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vY29uc3RhbnRzL25hdi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFhLFFBQUEsSUFBSSxHQUFHLGNBQU0sT0FBQTtJQUN0QjtRQUNJLElBQUksRUFBRSxJQUFJO1FBQ1YsRUFBRSxFQUFFLGVBQWU7S0FDdEI7SUFDRDtRQUNJLElBQUksRUFBRSxJQUFJO1FBQ1YsRUFBRSxFQUFFLGVBQWU7S0FDdEI7SUFDRDtRQUNJLElBQUksRUFBRSxJQUFJO1FBQ1YsRUFBRSxFQUFFLE9BQU87UUFDWCxLQUFLLEVBQUU7WUFDSDtnQkFDSSxJQUFJLEVBQUUsSUFBSTtnQkFDVixFQUFFLEVBQUUsaUJBQWlCO2FBQ3hCO1lBQ0Q7Z0JBQ0ksSUFBSSxFQUFFLE1BQU07Z0JBQ1osRUFBRSxFQUFFLGdCQUFnQjthQUN2QjtZQUNEO2dCQUNJLElBQUksRUFBRSxXQUFXO2dCQUNqQixFQUFFLEVBQUUsZUFBZTthQUN0QjtZQUNEO2dCQUNJLElBQUksRUFBRSxJQUFJO2dCQUNWLEVBQUUsRUFBRSxjQUFjO2FBQ3JCO1lBQ0Q7Z0JBQ0ksSUFBSSxFQUFFLFNBQVM7Z0JBQ2YsRUFBRSxFQUFFLGFBQWE7YUFDcEI7WUFDRDtnQkFDSSxJQUFJLEVBQUUsTUFBTTtnQkFDWixFQUFFLEVBQUUsYUFBYTthQUNwQjtZQUNEO2dCQUNJLElBQUksRUFBRSxNQUFNO2dCQUNaLEVBQUUsRUFBRSxZQUFZO2FBQ25CO1lBQ0Q7Z0JBQ0ksSUFBSSxFQUFFLE1BQU07Z0JBQ1osRUFBRSxFQUFFLFlBQVk7YUFDbkI7U0FDSjtLQUNKO0lBQ0Q7UUFDSSxJQUFJLEVBQUUsT0FBTztRQUNiLEVBQUUsRUFBRSxNQUFNO0tBQ2I7Q0FDSixFQW5EeUIsQ0FtRHpCLENBQUMifQ==
+},{}],"components\\side-bars\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1737,12 +1840,12 @@ var SideBar = /** @class */function () {
 }();
 exports.default = SideBar;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb21wb25lbnRzL3NpZGUtYmFycy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUFBLHdCQUFzQjtBQUV0QiwrQkFBdUc7QUFDdkcsMEhBQTBIO0FBRTFILDJDQUEyQztBQUUzQyw0RUFBcUQ7QUEwQnJEO0lBT0ksaUJBQ1ksS0FBa0I7UUFBbEIsVUFBSyxHQUFMLEtBQUssQ0FBYTtRQUUxQixPQUFPLENBQUMsR0FBRyxDQUFDLGNBQWMsRUFBRSxJQUFJLENBQUMsS0FBSyxDQUFDLE9BQU8sRUFBRSxDQUFDLENBQUM7SUFDdEQsQ0FBQztJQUVNLDBCQUFRLEdBQWY7UUFDSSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1QsSUFBSSxFQUFFLFVBQUksRUFBRTtTQUNmLENBQUM7UUFDRixJQUFJLENBQUMsU0FBUyxFQUFFLENBQUM7UUFDakIsT0FBTyxDQUFDLEdBQUcsQ0FBQyxnQkFBZ0IsQ0FBQyxDQUFDO0lBQ2xDLENBQUM7SUFFTSwrQkFBYSxHQUFwQixVQUFxQixTQUFrQixFQUFFLFFBQWlCO1FBQ3RELE9BQU8sQ0FBQyxHQUFHLENBQUMsTUFBTSxFQUFFLFFBQVEsQ0FBQyxDQUFDO1FBQzlCLElBQUksQ0FBQyxTQUFTLEVBQUUsQ0FBQztJQUNyQixDQUFDO0lBRU0sMkJBQVMsR0FBaEI7UUFDSSxJQUFNLFFBQVEsR0FBRyxJQUFJLENBQUMsV0FBVyxFQUFFLENBQUM7UUFDcEMsSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFDLFVBQUEsR0FBRztZQUN2QixHQUFHLENBQUMsTUFBTSxHQUFHLElBQUksQ0FBQztZQUNsQixJQUFJLEdBQUcsQ0FBQyxFQUFFLEtBQUssUUFBUSxDQUFDLElBQUk7Z0JBQUUsT0FBTyxHQUFHLENBQUMsTUFBTSxHQUFHLFFBQVEsQ0FBQztZQUMzRCxJQUFJLEdBQUcsQ0FBQyxLQUFLLEVBQUU7Z0JBQ1gsR0FBRyxDQUFDLEtBQUssQ0FBQyxPQUFPLENBQUMsVUFBQSxDQUFDO29CQUNmLENBQUMsQ0FBQyxNQUFNLEdBQUcsSUFBSSxDQUFDO29CQUNoQixJQUFJLENBQUMsQ0FBQyxFQUFFLEtBQUssUUFBUSxDQUFDLElBQUksRUFBRTt3QkFDeEIsR0FBRyxDQUFDLE1BQU0sR0FBRyxRQUFRLENBQUM7d0JBQ3RCLENBQUMsQ0FBQyxNQUFNLEdBQUcsUUFBUSxDQUFDO3FCQUN2QjtnQkFDTCxDQUFDLENBQUMsQ0FBQzthQUNOO1FBQ0wsQ0FBQyxDQUFDLENBQUM7UUFDSCxPQUFPLENBQUMsR0FBRyxDQUFDLGNBQWMsRUFBRSxJQUFJLENBQUMsS0FBSyxDQUFDLE9BQU8sRUFBRSxDQUFDLENBQUM7SUFDdEQsQ0FBQzs7SUExQ2dCLE9BQU87UUFkM0Isa0JBQVU7UUFDVixpQkFBUyxDQUFRO1lBQ2QsUUFBUSxFQUFFLFVBQVU7WUFDcEIsUUFBUSxFQUFFLENBQUMsbWhCQVNWLENBQUM7U0FDTCxDQUFDOzZEQVNxQixzQkFBVyxvQkFBWCxzQkFBVztPQVJiLE9BQU8sQ0EyQzNCO0lBQUQsY0FBQztDQUFBLEFBM0NELElBMkNDO2tCQTNDb0IsT0FBTyJ9
-},{"./style.less":"components/side-bars/style.less","indiv":"../node_modules/indiv/build/index.js","../../constants/nav":"constants/nav.ts","../../service/test.service":"service/test.service.ts"}],"components/code-show/style.less":[function(require,module,exports) {
+},{"./style.less":"components\\side-bars\\style.less","indiv":"..\\node_modules\\indiv\\build\\index.js","../../constants/nav":"constants\\nav.ts","../../service/test.service":"service\\test.service.ts"}],"components\\code-show\\style.less":[function(require,module,exports) {
 
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/css-loader.js"}],"components/code-show/index.ts":[function(require,module,exports) {
+},{"_css_loader":"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\css-loader.js"}],"components\\code-show\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1776,7 +1879,7 @@ var CodeShower = /** @class */function () {
 }();
 exports.default = CodeShower;
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9jb21wb25lbnRzL2NvZGUtc2hvdy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBLHdCQUFzQjtBQUV0QiwrQkFBOEU7QUFtQjlFO0lBQUE7SUFnQkEsQ0FBQztJQVRVLDZCQUFRLEdBQWY7UUFDSSxJQUFJLENBQUMsS0FBSyxHQUFHO1lBQ1QsS0FBSyxFQUFFLElBQUksQ0FBQyxLQUFLLENBQUMsS0FBSztTQUMxQixDQUFDO0lBQ04sQ0FBQztJQUVNLHlCQUFJLEdBQVg7UUFDSSxPQUFPLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxLQUFLLENBQUMsS0FBSyxDQUFDLENBQUE7SUFDakMsQ0FBQztJQWZnQixVQUFVO1FBWjlCLGlCQUFTLENBQVE7WUFDZCxRQUFRLEVBQUUsYUFBYTtZQUN2QixRQUFRLEVBQUUsQ0FBQyxtUEFRVixDQUFDO1NBQ0wsQ0FBQztPQUNtQixVQUFVLENBZ0I5QjtJQUFELGlCQUFDO0NBQUEsQUFoQkQsSUFnQkM7a0JBaEJvQixVQUFVIn0=
-},{"./style.less":"components/code-show/style.less","indiv":"../node_modules/indiv/build/index.js"}],"modules/index.ts":[function(require,module,exports) {
+},{"./style.less":"components\\code-show\\style.less","indiv":"..\\node_modules\\indiv\\build\\index.js"}],"modules\\index.ts":[function(require,module,exports) {
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1798,6 +1901,7 @@ var indiv_1 = require("indiv");
 var introduction_module_1 = __importDefault(require("./introduction.module"));
 var architecture_module_1 = __importDefault(require("./architecture.module"));
 var docs_module_1 = __importDefault(require("./docs.module"));
+var ssr_module_1 = __importDefault(require("./ssr.module"));
 var root_component_1 = __importDefault(require("../components/root-component"));
 var side_bars_1 = __importDefault(require("../components/side-bars"));
 var code_show_1 = __importDefault(require("../components/code-show"));
@@ -1805,15 +1909,15 @@ var test_service_1 = __importDefault(require("../service/test.service"));
 var RootModule = /** @class */function () {
     function RootModule() {}
     RootModule = __decorate([indiv_1.NvModule({
-        imports: [introduction_module_1.default, architecture_module_1.default, docs_module_1.default],
+        imports: [introduction_module_1.default, architecture_module_1.default, docs_module_1.default, ssr_module_1.default],
         components: [side_bars_1.default, root_component_1.default, code_show_1.default],
         providers: [test_service_1.default]
     })], RootModule);
     return RootModule;
 }();
 exports.default = RootModule;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9tb2R1bGVzL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsK0JBQWlDO0FBQ2pDLGlEQUFpRDtBQUVqRCw4RUFBdUQ7QUFDdkQsOEVBQXVEO0FBQ3ZELDhEQUF1QztBQUV2QyxnRkFBeUQ7QUFDekQsc0VBQThDO0FBQzlDLHNFQUFpRDtBQUVqRCx5RUFBa0Q7QUFpQmxEO0lBQUE7SUFBa0MsQ0FBQztJQUFkLFVBQVU7UUFmOUIsZ0JBQVEsQ0FBQztZQUNSLE9BQU8sRUFBRTtnQkFDUCw2QkFBa0I7Z0JBQ2xCLDZCQUFrQjtnQkFDbEIscUJBQVU7YUFDWDtZQUNELFVBQVUsRUFBRTtnQkFDVixtQkFBTztnQkFDUCx3QkFBYTtnQkFDYixtQkFBVTthQUNYO1lBQ0QsU0FBUyxFQUFFO2dCQUNULHNCQUFXO2FBQ1o7U0FDRixDQUFDO09BQ21CLFVBQVUsQ0FBSTtJQUFELGlCQUFDO0NBQUEsQUFBbkMsSUFBbUM7a0JBQWQsVUFBVSJ9
-},{"indiv":"../node_modules/indiv/build/index.js","./introduction.module":"modules/introduction.module.ts","./architecture.module":"modules/architecture.module.ts","./docs.module":"modules/docs.module.ts","../components/root-component":"components/root-component/index.ts","../components/side-bars":"components/side-bars/index.ts","../components/code-show":"components/code-show/index.ts","../service/test.service":"service/test.service.ts"}],"main.ts":[function(require,module,exports) {
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9tb2R1bGVzL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsK0JBQWlDO0FBQ2pDLGlEQUFpRDtBQUVqRCw4RUFBdUQ7QUFDdkQsOEVBQXVEO0FBQ3ZELDhEQUF1QztBQUN2Qyw0REFBcUM7QUFFckMsZ0ZBQXlEO0FBQ3pELHNFQUE4QztBQUM5QyxzRUFBaUQ7QUFFakQseUVBQWtEO0FBa0JsRDtJQUFBO0lBQWtDLENBQUM7SUFBZCxVQUFVO1FBaEI5QixnQkFBUSxDQUFDO1lBQ1IsT0FBTyxFQUFFO2dCQUNQLDZCQUFrQjtnQkFDbEIsNkJBQWtCO2dCQUNsQixxQkFBVTtnQkFDVixvQkFBUzthQUNWO1lBQ0QsVUFBVSxFQUFFO2dCQUNWLG1CQUFPO2dCQUNQLHdCQUFhO2dCQUNiLG1CQUFVO2FBQ1g7WUFDRCxTQUFTLEVBQUU7Z0JBQ1Qsc0JBQVc7YUFDWjtTQUNGLENBQUM7T0FDbUIsVUFBVSxDQUFJO0lBQUQsaUJBQUM7Q0FBQSxBQUFuQyxJQUFtQztrQkFBZCxVQUFVIn0=
+},{"indiv":"..\\node_modules\\indiv\\build\\index.js","./introduction.module":"modules\\introduction.module.ts","./architecture.module":"modules\\architecture.module.ts","./docs.module":"modules\\docs.module.ts","./ssr.module":"modules\\ssr.module.ts","../components/root-component":"components\\root-component\\index.ts","../components/side-bars":"components\\side-bars\\index.ts","../components/code-show":"components\\code-show\\index.ts","../service/test.service":"service\\test.service.ts"}],"main.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -1832,7 +1936,7 @@ inDiv.use(routes_1.default);
 inDiv.init();
 console.log('indiv', inDiv);
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uL21haW4udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSwwQkFBd0I7QUFDeEIsMkJBQXlCO0FBRXpCLCtCQUE4QjtBQUM5QiwyQ0FBMkM7QUFFM0Msb0RBQThCO0FBRTlCLHNEQUFtQztBQUVuQyxJQUFNLEtBQUssR0FBRyxJQUFJLGFBQUssRUFBRSxDQUFDO0FBQzFCLEtBQUssQ0FBQyxlQUFlLENBQUMsaUJBQVUsQ0FBQyxDQUFDO0FBQ2xDLEtBQUssQ0FBQyxHQUFHLENBQUMsZ0JBQU0sQ0FBQyxDQUFDO0FBQ2xCLEtBQUssQ0FBQyxJQUFJLEVBQUUsQ0FBQztBQUNiLE9BQU8sQ0FBQyxHQUFHLENBQUMsT0FBTyxFQUFFLEtBQUssQ0FBQyxDQUFDIn0=
-},{"./styles/reset":"styles/reset.less","./styles/global":"styles/global.less","indiv":"../node_modules/indiv/build/index.js","./routes":"routes/index.ts","./modules":"modules/index.ts"}],"../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./styles/reset":"styles\\reset.less","./styles/global":"styles\\global.less","indiv":"..\\node_modules\\indiv\\build\\index.js","./routes":"routes\\index.ts","./modules":"modules\\index.ts"}],"..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -1861,7 +1965,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '55612' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '65303' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -2002,5 +2106,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["../node_modules/_parcel-bundler@1.9.7@parcel-bundler/src/builtins/hmr-runtime.js","main.ts"], null)
+},{}]},{},["..\\node_modules\\_parcel-bundler@1.9.7@parcel-bundler\\src\\builtins\\hmr-runtime.js","main.ts"], null)
 //# sourceMappingURL=/main.map
