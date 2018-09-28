@@ -1,6 +1,6 @@
 {
   "name": "indiv-doc",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "indiv doc",
   "main": "index.js",
   "scripts": {

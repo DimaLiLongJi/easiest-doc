@@ -1,10 +1,7 @@
-import { Service } from 'indiv';
-// import { Service } from '../../../InDiv/src';
+// import { Injectable } from 'indiv';
+import { Injectable } from '../../../InDiv/src';
 
-@Service({
-  isSingletonMode: true,
-})
-
+@Injectable()
 export default class TestService {
   public data: number;
   constructor() {

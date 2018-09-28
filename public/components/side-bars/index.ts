@@ -1,7 +1,7 @@
 import './style.less';
 
-import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injectable } from 'indiv';
-// import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injectable } from '../../../../InDiv/src';
+// import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected } from 'indiv';
+import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected } from '../../../../InDiv/src';
 
 import { navs } from '../../constants/nav';
 
@@ -17,7 +17,7 @@ interface State {
     navs: nav[];
 }
 
-@Injectable
+@Injected
 @Component<State>({
     selector: 'side-bar',
     template: (`

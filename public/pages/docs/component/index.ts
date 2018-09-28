@@ -1,5 +1,5 @@
-import { Component, HasRender, SetState, Injectable, WatchState, OnInit } from 'indiv';
-// import { Component, HasRender, SetState, Injectable, WatchState, OnInit } from '../../../../../InDiv/src';
+// import { Component, HasRender, SetState, Injected, WatchState, OnInit } from 'indiv';
+import { Component, HasRender, SetState, Injected, WatchState, OnInit } from '../../../../../InDiv/src';
 import { componentInfo } from '../../../constants/component';
 
 import TestService from '../../../service/test.service';
@@ -24,7 +24,7 @@ interface State {
   info: Info[];
 }
 
-@Injectable
+@Injected
 @Component<State>({
   selector: 'docs-component-container',
   template: (`
