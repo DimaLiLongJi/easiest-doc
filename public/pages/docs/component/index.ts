@@ -33,7 +33,7 @@ interface State {
         <h1>{{info.h1}}</h1>
         <p nv-repeat="let rp in info.p">{{rp}}</p>
         <div class="child-info" nv-repeat="let code in info.info">
-          <h2 class="fucker" nv-on:click="@click(code, $index)">{{code.title}}</h2>
+          <h2 class="fucker" nv-on:click="@click(code, $index)">{{@showText(code.title)}}</h2>
           <p nv-repeat="let pli in code.p">{{pli}}</p>
           <div class="pchild" nv-if="code.pchild">
             <p nv-repeat="let child in code.pchild">{{child}}</p>
@@ -43,6 +43,12 @@ interface State {
       </div>
     </div>
   `),
+  // providers: [
+  //   {
+  //     provide: TestService,
+  //     useClass: TestService,
+  //   },
+  // ],
 })
 export default class DocsComponentContainer implements OnInit, HasRender, WatchState {
   public state: State;
@@ -71,6 +77,10 @@ export default class DocsComponentContainer implements OnInit, HasRender, WatchS
     code.title = '3232';
     this.testS.setData(3);
     console.log(22222, this.testS.getData());
+  }
+  
+  public showText(text: any) {
+    return text;
   }
 
   public nvHasRender() {
