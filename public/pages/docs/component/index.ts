@@ -1,5 +1,6 @@
+import { Subscription } from 'rxjs';
 // import { Component, HasRender, SetState, Injected, WatchState, OnInit } from 'indiv';
-import { Component, HasRender, SetState, Injected, WatchState, OnInit } from '../../../../../InDiv/src';
+import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory } from '../../../../../InDiv/src';
 import { componentInfo } from '../../../constants/component';
 
 import TestService from '../../../service/test.service';
@@ -50,10 +51,11 @@ interface State {
   //   },
   // ],
 })
-export default class DocsComponentContainer implements OnInit, HasRender, WatchState {
+export default class DocsComponentContainer implements OnInit, HasRender, WatchState, OnDestory {
   public state: State;
   public func: string;
   public setState: SetState;
+  public subscribeToken: Subscription;
   public reRender: () => void;
   public stateWatcher: () => void;
 
@@ -63,6 +65,7 @@ export default class DocsComponentContainer implements OnInit, HasRender, WatchS
     this.state = {
       info: componentInfo(),
     };
+    this.subscribeToken = this.testS.subscribe(this.subscribe);
   }
 
   public nvOnInit() {
@@ -73,10 +76,13 @@ export default class DocsComponentContainer implements OnInit, HasRender, WatchS
     console.log('oldState is: ', oldState);
   }
 
+  public subscribe(value: any) {
+    console.log('RXJS value from DocsComponentContainer', value);
+  }
+
   public click(code: any, index: number) {
     code.title = '3232';
-    this.testS.setData(3);
-    console.log(22222, this.testS.getData());
+    this.testS.update(3);
   }
   
   public showText(text: any) {
@@ -85,5 +91,10 @@ export default class DocsComponentContainer implements OnInit, HasRender, WatchS
 
   public nvHasRender() {
     console.log('nvHasRender', this.state);
+  }
+
+  public nvOnDestory() {
+    console.log('DocsComponentContainer nvOnDestory');
+    this.subscribeToken.unsubscribe();
   }
 }

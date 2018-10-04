@@ -221,8 +221,8 @@ export const componentInfo = () => [
         ],
         pchild: [
           '1. InDiv 的组件之间可以通过注入同一个 单例service。（既全局仅仅产生一个实例）',
-          '2. 通过 RxJS 订阅同一个 可观察者对象（详细 RxJS 用法请关注 RxJS 文档 https://rxjs-dev.firebaseapp.com/）',
-          '3. 通过用一个 可观察者对象 获得组件之间通信或状态变更',
+          '2. 通过 RxJS 实现订阅与通知（RxJS 详细：https://rxjs-dev.firebaseapp.com/）',
+          '3. 通过RxJS可观察者对象，获得组件之间通信或状态变更',
         ],
       },
       {
