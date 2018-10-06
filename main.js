@@ -11826,9 +11826,9 @@ function Component(options) {
 
     if (options.providers && options.providers.length > 0) {
       vm.$providerList = new Map();
-      var length = options.providers.length - 1;
+      var length = options.providers.length;
 
-      for (var i = 0; i <= length; i++) {
+      for (var i = 0; i < length; i++) {
         var service = options.providers[i];
 
         if (service.provide) {
@@ -11879,10 +11879,14 @@ function Component(options) {
       var dom = this.renderDom;
       var compile = new Compile_1.default(dom, this);
       this.mountComponent(dom);
-      this.$componentList.forEach(function (component) {
+      var length = this.$componentList.length;
+
+      for (var i = 0; i < length; i++) {
+        var component = this.$componentList[i];
         if (component.scope.render) component.scope.render();
         if (component.scope.nvAfterMount) component.scope.nvAfterMount();
-      });
+      }
+
       if (this.nvHasRender) this.nvHasRender();
     };
 
@@ -11891,26 +11895,31 @@ function Component(options) {
       var routerRenderDom = dom.querySelectorAll(this.$vm.$routeDOMKey)[0];
       var compile = new Compile_1.default(dom, this, routerRenderDom);
       this.mountComponent(dom);
-      this.$componentList.forEach(function (component) {
+      var length = this.$componentList.length;
+
+      for (var i = 0; i < length; i++) {
+        var component = this.$componentList[i];
         if (component.scope.render) component.scope.reRender();
         if (component.scope.nvAfterMount) component.scope.nvAfterMount();
-      });
+      }
+
       if (this.nvHasRender) this.nvHasRender();
     };
 
     vm.mountComponent = function (dom) {
-      var _this = this;
-
-      var cacheStates = [];
-      this.$componentList.forEach(function (component) {
-        cacheStates.push(component);
-      });
+      var cacheStates = this.$componentList.slice();
       this.componentsConstructor(dom);
-      this.$componentList.forEach(function (component) {
-        // find Component from cache
-        var cacheComponent = cacheStates.find(function (cache) {
+      var componentListLength = this.$componentList.length;
+
+      var _loop_1 = function _loop_1(i) {
+        var component = this_1.$componentList[i]; // find Component from cache
+
+        var cacheComponentIndex = cacheStates.findIndex(function (cache) {
           return cache.dom === component.dom;
         });
+        var cacheComponent = cacheStates[cacheComponentIndex]; // clear cache and the rest need to be destoried
+
+        if (cacheComponentIndex !== -1) cacheStates.splice(cacheComponentIndex, 1);
 
         if (cacheComponent) {
           component.scope = cacheComponent.scope; // old props: component.scope.props
@@ -11922,12 +11931,26 @@ function Component(options) {
           }
         }
 
-        component.scope.$vm = _this.$vm;
-        component.scope.$components = _this.$components;
+        component.scope.$vm = this_1.$vm;
+        component.scope.$components = this_1.$components;
         if (component.scope.nvOnInit && !cacheComponent) component.scope.nvOnInit();
         if (component.scope.watchData) component.scope.watchData();
         if (component.scope.nvBeforeMount) component.scope.nvBeforeMount();
-      });
+      };
+
+      var this_1 = this;
+
+      for (var i = 0; i < componentListLength; i++) {
+        _loop_1(i);
+      } // the rest should use nvOnDestory
+
+
+      var cacheStatesLength = cacheStates.length;
+
+      for (var i = 0; i < cacheStatesLength; i++) {
+        var cache = cacheStates[i];
+        if (cache.scope.nvOnDestory) cache.scope.nvOnDestory();
+      }
     };
 
     vm.componentsConstructor = function (dom) {
@@ -11935,15 +11958,25 @@ function Component(options) {
 
       this.$componentList = [];
       var routerRenderDom = dom.querySelectorAll(this.$vm.$routeDOMKey)[0];
+      var injectedComponentsLength = this.constructor._injectedComponents.length;
 
-      this.constructor._injectedComponents.forEach(function (injectedComponent) {
-        if (!_this.$components.find(function (component) {
+      var _loop_2 = function _loop_2(i) {
+        var injectedComponent = this_2.constructor._injectedComponents[i];
+        if (!this_2.$components.find(function (component) {
           return component.$selector === injectedComponent.$selector;
-        })) _this.$components.push(injectedComponent);
-      });
+        })) this_2.$components.push(injectedComponent);
+      };
 
-      var _loop_1 = function _loop_1(i) {
-        var name = this_1.$components[i].$selector;
+      var this_2 = this;
+
+      for (var i = 0; i < injectedComponentsLength; i++) {
+        _loop_2(i);
+      }
+
+      var componentsLength = this.$components.length;
+
+      var _loop_3 = function _loop_3(i) {
+        var name = this_3.$components[i].$selector;
         var tags = dom.getElementsByTagName(name);
         Array.from(tags).forEach(function (node) {
           //  protect component in <router-render>
@@ -12035,10 +12068,10 @@ function Component(options) {
         });
       };
 
-      var this_1 = this;
+      var this_3 = this;
 
-      for (var i = 0; i <= this.$components.length - 1; i++) {
-        _loop_1(i);
+      for (var i = 0; i < componentsLength; i++) {
+        _loop_3(i);
       }
     };
 
@@ -12446,15 +12479,13 @@ function () {
         }
 
         if (needRenderComponent) {
-          var component = this_1.instantiateComponent(needRenderComponent, renderDom);
+          var component = this_1.instantiateComponent(needRenderComponent, renderDom); // insert needRenderComponent on index in this.hasRenderComponentList,and remove other component which index >= index of needRenderComponent
 
           if (component) {
-            if (this_1.hasRenderComponentList[index]) {
-              this_1.hasRenderComponentList[index + 1] = this_1.hasRenderComponentList[index];
-              this_1.hasRenderComponentList[index] = component;
-            }
-
+            if (this_1.hasRenderComponentList[index]) this_1.hasRenderComponentList.splice(index, 0, component);
             if (!this_1.hasRenderComponentList[index]) this_1.hasRenderComponentList[index] = component;
+          } else {
+            throw new Error("route error: path " + needRenderRoute_1.path + " need a component");
           }
 
           this_1.routerChangeEvent(index);
@@ -12616,15 +12647,15 @@ function () {
   Router.prototype.routerChangeEvent = function (index) {
     var _this = this;
 
-    this.hasRenderComponentList.forEach(function (c, i) {
-      if (c.nvRouteChange) c.nvRouteChange(_this.lastRoute, _this.currentUrl);
+    this.hasRenderComponentList.forEach(function (component, i) {
+      if (component.nvRouteChange) component.nvRouteChange(_this.lastRoute, _this.currentUrl);
 
-      _this.emitComponentEvent(c.$componentList, 'nvRouteChange');
+      _this.emitComponentEvent(component.$componentList, 'nvRouteChange');
 
       if (i >= index + 1) {
-        if (c.nvOnDestory) c.nvOnDestory();
+        if (component.nvOnDestory) component.nvOnDestory();
 
-        _this.emitComponentEvent(c.$componentList, 'nvOnDestory');
+        _this.emitComponentEvent(component.$componentList, 'nvOnDestory');
       }
     });
     this.hasRenderComponentList.length = index + 1;
@@ -12706,9 +12737,9 @@ function NvModule(options) {
 
     vm.buildProviderList = function () {
       if (!this.$providers) return;
-      var length = this.$providers.length - 1;
+      var length = this.$providers.length;
 
-      for (var i = 0; i <= length; i++) {
+      for (var i = 0; i < length; i++) {
         var service = this.$providers[i];
 
         if (service.provide) {
@@ -12721,7 +12752,7 @@ function NvModule(options) {
 
     vm.buildProviders4Services = function () {
       if (!this.$providers) return;
-      var length = this.$providers.length - 1;
+      var length = this.$providers.length;
 
       var _loop_1 = function _loop_1(i) {
         var service = this_1.$providers[i];
@@ -12741,14 +12772,14 @@ function NvModule(options) {
 
       var this_1 = this;
 
-      for (var i = 0; i <= length; i++) {
+      for (var i = 0; i < length; i++) {
         _loop_1(i);
       }
     };
 
     vm.buildProviders4Components = function () {
       if (!this.$providers || !this.$components) return;
-      var length = this.$components.length - 1;
+      var length = this.$components.length;
 
       var _loop_2 = function _loop_2(i) {
         var component = this_2.$components[i];
@@ -12760,14 +12791,14 @@ function NvModule(options) {
 
       var this_2 = this;
 
-      for (var i = 0; i <= length; i++) {
+      for (var i = 0; i < length; i++) {
         _loop_2(i);
       }
     };
 
     vm.buildComponents4Components = function () {
       if (!this.$components) return;
-      var length = this.$components.length - 1;
+      var length = this.$components.length;
 
       var _loop_3 = function _loop_3(i) {
         var FindComponent = this_3.$components[i];
@@ -12781,19 +12812,19 @@ function NvModule(options) {
 
       var this_3 = this;
 
-      for (var i = 0; i <= length; i++) {
+      for (var i = 0; i < length; i++) {
         _loop_3(i);
       }
     };
 
     vm.buildImports = function () {
       if (!this.$imports) return;
-      var length = this.$imports.length - 1;
+      var length = this.$imports.length;
 
-      for (var i = 0; i <= length; i++) {
+      for (var i = 0; i < length; i++) {
         var ModuleImport = this.$imports[i];
         var moduleImport = factoryModule(ModuleImport);
-        var lengthExports = moduleImport.$exports.length - 1;
+        var exportsLength = moduleImport.$exports.length;
 
         var _loop_4 = function _loop_4(i_1) {
           var importComponent = moduleImport.$exports[i_1];
@@ -12807,7 +12838,7 @@ function NvModule(options) {
 
         var this_4 = this;
 
-        for (var i_1 = 0; i_1 <= lengthExports; i_1++) {
+        for (var i_1 = 0; i_1 < exportsLength; i_1++) {
           _loop_4(i_1);
         }
       }
@@ -14927,6 +14958,10 @@ var DocsContainer =
 function () {
   function DocsContainer() {}
 
+  DocsContainer.prototype.nvRouteChange = function (lastRoute, newRoute) {
+    console.log('DocsContainer nvRouteChange', lastRoute, newRoute);
+  };
+
   DocsContainer = __decorate([src_1.Component({
     selector: 'docs-container',
     template: "\n      <div class=\"page-container\">\n        <router-render></router-render>\n      </div>\n  "
@@ -14964,7 +14999,7 @@ exports.componentInfo = function () {
     }, {
       title: '组件通信2: service 与 RxJS',
       p: ['父子组件的通信可以通过 props , 但跨层级组件间的通信该怎么办？', '相比于构建全局变量，InDiv 的服务显然更适合这种场景。'],
-      pchild: ['1. InDiv 的组件之间可以通过注入同一个 单例service。（既全局仅仅产生一个实例）', '2. 通过 RxJS 实现订阅与通知（RxJS 详细：https://rxjs-dev.firebaseapp.com/）', '3. 通过RxJS可观察者对象，获得组件之间通信或状态变更']
+      pchild: ['1. InDiv 的组件之间可以通过注入同一个 单例service。（既全局仅仅产生一个实例）', '2. 通过 RxJS 实现订阅与通知（RxJS 详细：https://rxjs-dev.firebaseapp.com/）', '3. 通过RxJS可观察者对象，获得组件之间通信或状态变更', '4. 在 nvOnDestory 生命周期钩子里取消订阅']
     }, {
       title: '组件的依赖注入',
       p: ['通过依赖注入系统，可以无需关注任何过程直接拿到一个所需的服务实例。', '每个组件实例都拥有一个同级的注入器，负责调用组件和模块的 providers，获取组件依赖的实例。', '在 TypeScript 与 JavaScript 中，声明依赖的方式不一样', '组件 providers 中的服务在每个组件实例内都有独立的实例。而模块 providers 则根据 isSingletonMode 决定是否为 全局单例 还是每次都实现一个新的实例。'],
@@ -22048,6 +22083,10 @@ function () {
     this.subscribeToken.unsubscribe();
   };
 
+  DocsComponentContainer.prototype.nvRouteChange = function (lastRoute, newRoute) {
+    console.log('DocsComponentContainer nvRouteChange', lastRoute, newRoute);
+  };
+
   var _a;
 
   DocsComponentContainer = __decorate([src_1.Injected, src_1.Component({
@@ -22929,7 +22968,7 @@ function () {
   };
 
   SideBar.prototype.nvRouteChange = function (lastRoute, newRoute) {
-    console.log(111111, newRoute);
+    // console.log(111111, newRoute);
     this.showColor();
   };
 
@@ -23132,7 +23171,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54500" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49409" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 // import { Component, HasRender, SetState, Injected, WatchState, OnInit } from 'indiv';
-import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory } from '../../../../../InDiv/src';
+import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from '../../../../../InDiv/src';
 import { componentInfo } from '../../../constants/component';
 
 import TestService from '../../../service/test.service';
@@ -51,7 +51,7 @@ interface State {
   //   },
   // ],
 })
-export default class DocsComponentContainer implements OnInit, HasRender, WatchState, OnDestory {
+export default class DocsComponentContainer implements OnInit, HasRender, WatchState, OnDestory, RouteChange {
   public state: State;
   public func: string;
   public setState: SetState;
@@ -96,5 +96,9 @@ export default class DocsComponentContainer implements OnInit, HasRender, WatchS
   public nvOnDestory() {
     console.log('DocsComponentContainer nvOnDestory');
     this.subscribeToken.unsubscribe();
+  }
+
+  public nvRouteChange(lastRoute?: string, newRoute?: string) {
+    console.log('DocsComponentContainer nvRouteChange', lastRoute, newRoute);
   }
 }

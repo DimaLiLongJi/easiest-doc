@@ -59,7 +59,7 @@ export default class SideBar implements OnInit, RouteChange, OnDestory {
     }
 
     public nvRouteChange(lastRoute?: string, newRoute?: string): void {
-        console.log(111111, newRoute);
+        // console.log(111111, newRoute);
         this.showColor();
     }
 
