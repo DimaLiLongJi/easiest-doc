@@ -158,6 +158,8 @@ a:hover {
   margin-left: 200px;
   padding: 20px 3rem 1rem;
   height: auto;
+  transition: margin 0.25s ease;
+  overflow-x: hidden;
 }
 .info-content {
   margin: 0 0 24px;
@@ -199,12 +201,33 @@ a:hover {
   letter-spacing: 0.3px;
   font-weight: 400;
 }
+.app-container .github-corner {
+  border-bottom: 0;
+  position: fixed;
+  right: 0;
+  text-decoration: none;
+  top: 0;
+  z-index: 1;
+}
+.app-container .github-corner svg {
+  color: #fff;
+  fill: var(--theme-color, #1976d2);
+  height: 80px;
+  width: 80px;
+}
+.app-container.close .side-bar-container {
+  width: 0px;
+}
+.app-container.close .page-container {
+  margin-left: 0px;
+}
 .side-bar-container {
+  transition: width 0.25s ease-out;
   position: fixed;
   top: 0;
   left: 0;
   min-height: 100vh;
-  min-width: 200px;
+  width: 200px;
   background-color: #fafafa;
   box-shadow: 6px 0 6px rgba(0, 0, 0, 0.1);
   padding: 20px 0;
@@ -248,6 +271,26 @@ a:hover {
 .side-bar-container .nav-child {
   margin-left: 24px;
   color: #6e6e6e;
+}
+.side-bar-container .sidebar-toggle {
+  width: 200px;
+  background: none;
+  border: 0;
+  outline: none;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  transition: opacity 0.3s;
+  z-index: 4;
+}
+.side-bar-container .sidebar-toggle span {
+  background-color: var(--theme-color, #1976d2);
+  display: block;
+  margin-bottom: 4px;
+  width: 16px;
+  height: 2px;
 }
 .code-show-container blockquote {
   background: black;

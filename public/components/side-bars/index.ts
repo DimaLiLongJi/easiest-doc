@@ -18,8 +18,13 @@ interface State {
     navs: nav[];
 }
 
+interface Props {
+    handlesidebar: (value: string) => void;
+    show: string;
+}
+
 @Injected
-@Component<State>({
+@Component<State, Props>({
     selector: 'side-bar',
     template: (`
         <div class="side-bar-container">
@@ -29,12 +34,19 @@ interface State {
                     <a class="nav nav-child" nv-class="child.active" nv-repeat="let child in nav.child" nv-on:click="@setLocation(child.to)">{{child.name}}</a>
                 </div>
             </div>
+            <button class="sidebar-toggle" nv-on:click="@changeShowSideBar()">
+                <div class="sidebar-toggle-button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
         </div>
     `),
 })
 export default class SideBar implements OnInit, RouteChange, OnDestory {
     public state: State;
-    public props: any;
+    public props: Props;
     public getLocation: GetLocation;
     public setLocation: SetLocation;
     public setState: SetState;
@@ -59,20 +71,19 @@ export default class SideBar implements OnInit, RouteChange, OnDestory {
     }
 
     public nvRouteChange(lastRoute?: string, newRoute?: string): void {
-        // console.log(111111, newRoute);
         this.showColor();
     }
 
     public nvOnDestory() {
         console.log('SideBar nvOnDestory');
         this.subscribeToken.unsubscribe();
-      }
+    }
 
     public showColor() {
         const location = this.getLocation();
         this.state.navs.forEach(nav => {
             nav.active = null;
-            if (nav.to === location.path) return nav.active = 'active';
+            if (nav.to === location.path) nav.active = 'active';
             if (nav.child) {
                 nav.child.forEach(n => {
                     n.active = null;
@@ -83,5 +94,10 @@ export default class SideBar implements OnInit, RouteChange, OnDestory {
                 });
             }
         });
+    }
+
+    public changeShowSideBar() {
+        if (this.props.show === 'open') return this.props.handlesidebar('close');
+        if (this.props.show === 'close') return this.props.handlesidebar('open');
     }
 }

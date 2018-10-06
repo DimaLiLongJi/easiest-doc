@@ -24,7 +24,7 @@ interface State {
 @Component<State>({
   selector: 'docs-module-container',
   template: (`
-    <div class="page-wrapper">
+    <div class="child-page-wrapper">
       <div class="info-content" nv-repeat="let info in state.info">
         <h1>{{info.h1}}</h1>
         <p nv-repeat="let rp in info.p">{{rp}}</p>
