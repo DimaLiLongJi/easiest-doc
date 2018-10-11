@@ -181,2279 +181,2021 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.10.1@parcel-bundler/src/builtins/css-loader.js"}],"../../InDiv/node_modules/easier-cookie/build/index.js":[function(require,module,exports) {
-var define;
-parcelRequire=function(e,r,n,t){function i(n,t){function o(e){return i(o.resolve(e))}function c(r){return e[n][1][r]||r}if(!r[n]){if(!e[n]){var l="function"==typeof parcelRequire&&parcelRequire;if(!t&&l)return l(n,!0);if(u)return u(n,!0);if(f&&"string"==typeof n)return f(n);var p=new Error("Cannot find module '"+n+"'");throw p.code="MODULE_NOT_FOUND",p}o.resolve=c;var a=r[n]=new i.Module(n);e[n][0].call(a.exports,o,a,a.exports,this)}return r[n].exports}function o(e){this.id=e,this.bundle=i,this.exports={}}var u="function"==typeof parcelRequire&&parcelRequire,f="function"==typeof require&&require;i.isParcelRequire=!0,i.Module=o,i.modules=e,i.cache=r,i.parent=u;for(var c=0;c<n.length;c++)i(n[c]);if(n.length){var l=i(n[n.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=l:"function"==typeof define&&define.amd?define(function(){return l}):t&&(this[t]=l)}return i}({1:[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e={set:function(e,t){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},o="",n="",i="",c="";if(r.expires){var a=new Date;a.setDate(a.getDate()+r.expires),o=";expires="+a.toGMTString()}r.path&&(n=";path="+r.path),r.domain&&(i=";domain="+r.domain),c=t instanceof Object?encodeURI(JSON.stringify(t)):encodeURI(t),document.cookie=encodeURI(e)+"="+c+o+n+i},get:function(e){if(!e)return null;for(var t=document.cookie.split("; "),r=0;r<t.length;r++){var o=t[r].split("=");if(o[0]===decodeURI(e)){var n=void 0;try{n=JSON.parse(decodeURI(o[1]))}catch(e){n=decodeURI(o[1])}return""===n?null:n}}return null},remove:function(e){try{return this.set(e,"",-1),!0}catch(t){return console.error("remove cookie "+e+" failed:",t),!1}}};exports.default=e;
-},{}]},{},[1], null)
-},{}],"../../InDiv/src/Utils/index.ts":[function(require,module,exports) {
-"use strict";
+},{"_css_loader":"../node_modules/_parcel-bundler@1.10.1@parcel-bundler/src/builtins/css-loader.js"}],"../../InDiv/node_modules/core-js/modules/_global.js":[function(require,module,exports) {
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
+},{}],"../../InDiv/node_modules/core-js/modules/_core.js":[function(require,module,exports) {
+var core = module.exports = { version: '2.5.7' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
+},{}],"../../InDiv/node_modules/core-js/modules/_is-object.js":[function(require,module,exports) {
+module.exports = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
 };
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+},{}],"../../InDiv/node_modules/core-js/modules/_an-object.js":[function(require,module,exports) {
+var isObject = require('./_is-object');
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
 
-var easier_cookie_1 = __importDefault(require("easier-cookie"));
-/**
- * utils for InDiv
- *
- * @class Utils
- */
-
-
-var Utils =
-/** @class */
-function () {
-  /**
-   * Creates an instance of Utils.
-   * @memberof Utils
-   */
-  function Utils() {
-    this.toString = Object.prototype.toString;
-  }
-  /**
-   * set Cookie with easier-cookie
-   *
-   * @param {string} name
-   * @param {*} value
-   * @param {*} [options]
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.setCookie = function (name, value, options) {
-    easier_cookie_1.default.set(name, value, options);
-  };
-  /**
-   * get Cookie with easier-cookie
-   *
-   * @param {string} name
-   * @returns {*}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.getCookie = function (name) {
-    return easier_cookie_1.default.get(name);
-  };
-  /**
-   * remove Cookie with easier-cookie
-   *
-   * @param {string} name
-   * @returns {boolean}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.removeCookie = function (name) {
-    return easier_cookie_1.default.remove(name);
-  };
-  /**
-   * build url query
-   *
-   * @param {*} object
-   * @returns {string}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.buildQuery = function (object) {
-    if (!object || !(object instanceof Object)) return '';
-    var query = '?';
-
-    for (var key in object) {
-      if (!(object[key] instanceof Object)) {
-        query += key + "=" + object[key].toString() + "&";
-      } else {
-        query += key + "=" + JSON.stringify(object[key]) + "&";
-      }
-    }
-
-    return query.slice(0, query.length - 1);
-  };
-  /**
-   * get one url query
-   *
-   * @param {string} name
-   * @returns {string}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.getQuery = function (name) {
-    var parts = window.location.search.replace('?', '').split('&');
-    var params = {};
-
-    for (var i = 0; i < parts.length; i++) {
-      var pairs = parts[i].split('=');
-      params[pairs[0]] = pairs[1];
-    }
-
-    if (params[name]) {
-      return params[name];
-    } else {
-      return '';
-    }
-  };
-  /**
-   * judge something is Function or not
-   *
-   * @param {*} func
-   * @returns {boolean}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.isFunction = function (func) {
-    return this.toString.call(func) === '[object Function]';
-  };
-  /**
-   * judge two things are equal or not
-   *
-   * @param {*} a
-   * @param {*} b
-   * @param {any[]} [aStack]
-   * @param {any[]} [bStack]
-   * @returns {boolean}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.isEqual = function (a, b, aStack, bStack) {
-    // === 结果为 true 的区别出 +0 和 -0
-    if (a === b) return a !== 0 || 1 / a === 1 / b; // typeof null 的结果为 object ，这里做判断，是为了让有 null 的情况尽早退出函数
-
-    if (a == null || b == null) return false; // 判断 NaN
-
-    if (a !== a) return b !== b; // 判断参数 a 类型，如果是基本类型，在这里可以直接返回 false
-
-    var type = _typeof(a);
-
-    if (type !== 'function' && type !== 'object' && _typeof(b) !== 'object') return false; // 更复杂的对象使用 deepEq 函数进行深度比较
-
-    return this.deepIsEqual(a, b, aStack, bStack);
-  };
-  /**
-   * deep judge two things are equal or not
-   *
-   * @param {*} a
-   * @param {*} b
-   * @param {any[]} [aStack]
-   * @param {any[]} [bStack]
-   * @returns {boolean}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.deepIsEqual = function (a, b, aStack, bStack) {
-    // a 和 b 的内部属性 [[class]] 相同时 返回 true
-    var className = this.toString.call(a);
-    if (className !== this.toString.call(b)) return false;
-
-    switch (className) {
-      case '[object RegExp]':
-      case '[object String]':
-        return "" + a === "" + b;
-
-      case '[object Number]':
-        if (+a !== +a) return +b !== +b;
-        return +a === 0 ? 1 / +a === 1 / b : +a === +b;
-
-      case '[object Date]':
-      case '[object Boolean]':
-        return +a === +b;
-    }
-
-    var areArrays = className === '[object Array]'; // 不是数组
-
-    if (!areArrays) {
-      // 过滤掉两个函数的情况
-      if (_typeof(a) !== 'object' || _typeof(b) !== 'object') return false;
-      var aCtor = a.constructor;
-      var bCtor = b.constructor; // aCtor 和 bCtor 必须都存在并且都不是 Object 构造函数的情况下，aCtor 不等于 bCtor， 那这两个对象就真的不相等啦
-
-      if (aCtor !== bCtor && !(this.isFunction(aCtor) && aCtor instanceof aCtor && this.isFunction(bCtor) && bCtor instanceof bCtor) && 'constructor' in a && 'constructor' in b) {
-        return false;
-      }
-    }
-
-    aStack = aStack || [];
-    bStack = bStack || [];
-    var length = aStack.length; // 检查是否有循环引用的部分
-
-    while (length--) {
-      if (aStack[length] === a) {
-        return bStack[length] === b;
-      }
-    }
-
-    aStack.push(a);
-    bStack.push(b); // 数组判断
-
-    if (areArrays) {
-      length = a.length;
-      if (length !== b.length) return false;
-
-      while (length--) {
-        if (!this.isEqual(a[length], b[length], aStack, bStack)) return false;
-      }
-    } else {
-      var keys = Object.keys(a);
-      var key = void 0;
-      length = keys.length;
-      if (Object.keys(b).length !== length) return false;
-
-      while (length--) {
-        key = keys[length];
-        if (!(b.hasOwnProperty(key) && this.isEqual(a[key], b[key], aStack, bStack))) return false;
-      }
-    }
-
-    aStack.pop();
-    bStack.pop();
+},{"./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js"}],"../../InDiv/node_modules/core-js/modules/_fails.js":[function(require,module,exports) {
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (e) {
     return true;
-  };
-  /**
-   * format string for InnerHTML
-   *
-   * @param {string} inner
-   * @returns {string}
-   * @memberof Utils
-   */
+  }
+};
 
-
-  Utils.prototype.formatInnerHTML = function (inner) {
-    inner = inner.replace(/(\n\s*)/g, '');
-    inner = inner.replace(/^[^\S\n]+/gm, '');
-    return inner;
-  };
-  /**
-   * judge evn is browser or node
-   *
-   * @returns {boolean}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.isBrowser = function () {
-    return typeof window !== 'undefined' && typeof window.document !== 'undefined';
-  };
-
-  return Utils;
-}();
-
-exports.default = Utils;
-},{"easier-cookie":"../../InDiv/node_modules/easier-cookie/build/index.js"}],"../../InDiv/src/Lifecycle/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
+},{}],"../../InDiv/node_modules/core-js/modules/_descriptors.js":[function(require,module,exports) {
+// Thank's IE8 for his funny defineProperty
+module.exports = !require('./_fails')(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 });
-},{}],"../../InDiv/src/Watcher/index.ts":[function(require,module,exports) {
-"use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+},{"./_fails":"../../InDiv/node_modules/core-js/modules/_fails.js"}],"../../InDiv/node_modules/core-js/modules/_dom-create.js":[function(require,module,exports) {
+var isObject = require('./_is-object');
+var document = require('./_global').document;
+// typeof document.createElement is 'object' in old IE
+var is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+  return is ? document.createElement(it) : {};
+};
 
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
+},{"./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js","./_global":"../../InDiv/node_modules/core-js/modules/_global.js"}],"../../InDiv/node_modules/core-js/modules/_ie8-dom-define.js":[function(require,module,exports) {
+module.exports = !require('./_descriptors') && !require('./_fails')(function () {
+  return Object.defineProperty(require('./_dom-create')('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+},{"./_descriptors":"../../InDiv/node_modules/core-js/modules/_descriptors.js","./_fails":"../../InDiv/node_modules/core-js/modules/_fails.js","./_dom-create":"../../InDiv/node_modules/core-js/modules/_dom-create.js"}],"../../InDiv/node_modules/core-js/modules/_to-primitive.js":[function(require,module,exports) {
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = require('./_is-object');
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+},{"./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js"}],"../../InDiv/node_modules/core-js/modules/_object-dp.js":[function(require,module,exports) {
+var anObject = require('./_an-object');
+var IE8_DOM_DEFINE = require('./_ie8-dom-define');
+var toPrimitive = require('./_to-primitive');
+var dP = Object.defineProperty;
+
+exports.f = require('./_descriptors') ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
+};
+
+},{"./_an-object":"../../InDiv/node_modules/core-js/modules/_an-object.js","./_ie8-dom-define":"../../InDiv/node_modules/core-js/modules/_ie8-dom-define.js","./_to-primitive":"../../InDiv/node_modules/core-js/modules/_to-primitive.js","./_descriptors":"../../InDiv/node_modules/core-js/modules/_descriptors.js"}],"../../InDiv/node_modules/core-js/modules/_property-desc.js":[function(require,module,exports) {
+module.exports = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
   };
 };
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+},{}],"../../InDiv/node_modules/core-js/modules/_hide.js":[function(require,module,exports) {
+var dP = require('./_object-dp');
+var createDesc = require('./_property-desc');
+module.exports = require('./_descriptors') ? function (object, key, value) {
+  return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+},{"./_object-dp":"../../InDiv/node_modules/core-js/modules/_object-dp.js","./_property-desc":"../../InDiv/node_modules/core-js/modules/_property-desc.js","./_descriptors":"../../InDiv/node_modules/core-js/modules/_descriptors.js"}],"../../InDiv/node_modules/core-js/modules/_has.js":[function(require,module,exports) {
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+},{}],"../../InDiv/node_modules/core-js/modules/_uid.js":[function(require,module,exports) {
+var id = 0;
+var px = Math.random();
+module.exports = function (key) {
+  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
+};
+
+},{}],"../../InDiv/node_modules/core-js/modules/_redefine.js":[function(require,module,exports) {
+
+var global = require('./_global');
+var hide = require('./_hide');
+var has = require('./_has');
+var SRC = require('./_uid')('src');
+var TO_STRING = 'toString';
+var $toString = Function[TO_STRING];
+var TPL = ('' + $toString).split(TO_STRING);
+
+require('./_core').inspectSource = function (it) {
+  return $toString.call(it);
+};
+
+(module.exports = function (O, key, val, safe) {
+  var isFunction = typeof val == 'function';
+  if (isFunction) has(val, 'name') || hide(val, 'name', key);
+  if (O[key] === val) return;
+  if (isFunction) has(val, SRC) || hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
+  if (O === global) {
+    O[key] = val;
+  } else if (!safe) {
+    delete O[key];
+    hide(O, key, val);
+  } else if (O[key]) {
+    O[key] = val;
+  } else {
+    hide(O, key, val);
+  }
+// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
+})(Function.prototype, TO_STRING, function toString() {
+  return typeof this == 'function' && this[SRC] || $toString.call(this);
 });
 
-var Utils_1 = __importDefault(require("../Utils"));
+},{"./_global":"../../InDiv/node_modules/core-js/modules/_global.js","./_hide":"../../InDiv/node_modules/core-js/modules/_hide.js","./_has":"../../InDiv/node_modules/core-js/modules/_has.js","./_uid":"../../InDiv/node_modules/core-js/modules/_uid.js","./_core":"../../InDiv/node_modules/core-js/modules/_core.js"}],"../../InDiv/node_modules/core-js/modules/_a-function.js":[function(require,module,exports) {
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
 
-var utils = new Utils_1.default();
-/**
- * Watcher for InDiv
- *
- * @class Watcher
- */
-
-var Watcher =
-/** @class */
-function () {
-  /**
-   * Creates an instance of Watcher.
-   *
-   * data: watched data
-   * watcher: function for data change
-   * render: InDiv render
-   *
-   * @param {*} data
-   * @param {TFnWatcher} [watcher]
-   * @param {TFnRender} [render]
-   * @memberof Watcher
-   */
-  function Watcher(data, watcher, render) {
-    this.data = data;
-    this.watcher = watcher;
-    this.render = render;
-    this.watchData(this.data);
-  }
-
-  Watcher.prototype.watchData = function (data) {
-    if (!data || _typeof(data) !== 'object') return;
-    var vm = this;
-
-    var _loop_1 = function _loop_1(key) {
-      var val = data[key];
-      vm.watchData(val);
-      Object.defineProperty(data, key, {
-        configurable: true,
-        enumerable: true,
-        get: function get() {
-          return val;
-        },
-        set: function set(newVal) {
-          if (utils.isEqual(newVal, val)) return; // for watcher method
-
-          var oldData;
-          if (vm.watcher) oldData = JSON.parse(JSON.stringify(vm.data));
-          val = newVal;
-          vm.watchData(val);
-          if (vm.watcher) vm.watcher(oldData);
-          if (vm.render) vm.render();
-        }
-      });
+},{}],"../../InDiv/node_modules/core-js/modules/_ctx.js":[function(require,module,exports) {
+// optional / simple context binding
+var aFunction = require('./_a-function');
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
     };
-
-    for (var key in data) {
-      _loop_1(key);
-    }
-  };
-
-  return Watcher;
-}();
-
-exports.default = Watcher;
-},{"../Utils":"../../InDiv/src/Utils/index.ts"}],"../../InDiv/src/KeyWatcher/index.ts":[function(require,module,exports) {
-"use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
   };
 };
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+},{"./_a-function":"../../InDiv/node_modules/core-js/modules/_a-function.js"}],"../../InDiv/node_modules/core-js/modules/_export.js":[function(require,module,exports) {
+
+var global = require('./_global');
+var core = require('./_core');
+var hide = require('./_hide');
+var redefine = require('./_redefine');
+var ctx = require('./_ctx');
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] || (global[name] = {}) : (global[name] || {})[PROTOTYPE];
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE] || (exports[PROTOTYPE] = {});
+  var key, own, out, exp;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    // export native or passed
+    out = (own ? target : source)[key];
+    // bind timers to global for call from export context
+    exp = IS_BIND && own ? ctx(out, global) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // extend global
+    if (target) redefine(target, key, out, type & $export.U);
+    // export
+    if (exports[key] != out) hide(exports, key, exp);
+    if (IS_PROTO && expProto[key] != out) expProto[key] = out;
+  }
+};
+global.core = core;
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+module.exports = $export;
+
+},{"./_global":"../../InDiv/node_modules/core-js/modules/_global.js","./_core":"../../InDiv/node_modules/core-js/modules/_core.js","./_hide":"../../InDiv/node_modules/core-js/modules/_hide.js","./_redefine":"../../InDiv/node_modules/core-js/modules/_redefine.js","./_ctx":"../../InDiv/node_modules/core-js/modules/_ctx.js"}],"../../InDiv/node_modules/core-js/modules/_cof.js":[function(require,module,exports) {
+var toString = {}.toString;
+
+module.exports = function (it) {
+  return toString.call(it).slice(8, -1);
+};
+
+},{}],"../../InDiv/node_modules/core-js/modules/_iobject.js":[function(require,module,exports) {
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = require('./_cof');
+// eslint-disable-next-line no-prototype-builtins
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+
+},{"./_cof":"../../InDiv/node_modules/core-js/modules/_cof.js"}],"../../InDiv/node_modules/core-js/modules/_defined.js":[function(require,module,exports) {
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function (it) {
+  if (it == undefined) throw TypeError("Can't call method on  " + it);
+  return it;
+};
+
+},{}],"../../InDiv/node_modules/core-js/modules/_to-object.js":[function(require,module,exports) {
+// 7.1.13 ToObject(argument)
+var defined = require('./_defined');
+module.exports = function (it) {
+  return Object(defined(it));
+};
+
+},{"./_defined":"../../InDiv/node_modules/core-js/modules/_defined.js"}],"../../InDiv/node_modules/core-js/modules/_to-integer.js":[function(require,module,exports) {
+// 7.1.4 ToInteger
+var ceil = Math.ceil;
+var floor = Math.floor;
+module.exports = function (it) {
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+
+},{}],"../../InDiv/node_modules/core-js/modules/_to-length.js":[function(require,module,exports) {
+// 7.1.15 ToLength
+var toInteger = require('./_to-integer');
+var min = Math.min;
+module.exports = function (it) {
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+};
+
+},{"./_to-integer":"../../InDiv/node_modules/core-js/modules/_to-integer.js"}],"../../InDiv/node_modules/core-js/modules/_is-array.js":[function(require,module,exports) {
+// 7.2.2 IsArray(argument)
+var cof = require('./_cof');
+module.exports = Array.isArray || function isArray(arg) {
+  return cof(arg) == 'Array';
+};
+
+},{"./_cof":"../../InDiv/node_modules/core-js/modules/_cof.js"}],"../../InDiv/node_modules/core-js/modules/_library.js":[function(require,module,exports) {
+module.exports = false;
+
+},{}],"../../InDiv/node_modules/core-js/modules/_shared.js":[function(require,module,exports) {
+
+var core = require('./_core');
+var global = require('./_global');
+var SHARED = '__core-js_shared__';
+var store = global[SHARED] || (global[SHARED] = {});
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: core.version,
+  mode: require('./_library') ? 'pure' : 'global',
+  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
 });
 
-var Utils_1 = __importDefault(require("../Utils"));
+},{"./_core":"../../InDiv/node_modules/core-js/modules/_core.js","./_global":"../../InDiv/node_modules/core-js/modules/_global.js","./_library":"../../InDiv/node_modules/core-js/modules/_library.js"}],"../../InDiv/node_modules/core-js/modules/_wks.js":[function(require,module,exports) {
+var store = require('./_shared')('wks');
+var uid = require('./_uid');
+var Symbol = require('./_global').Symbol;
+var USE_SYMBOL = typeof Symbol == 'function';
 
-var utils = new Utils_1.default();
-/**
- * watch a key of an Object
- *
- * @class KeyWatcher
- */
+var $exports = module.exports = function (name) {
+  return store[name] || (store[name] =
+    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
+};
 
-var KeyWatcher =
-/** @class */
-function () {
-  function KeyWatcher(data, key, watcher) {
-    this.data = data;
-    this.key = key;
-    this.watcher = watcher;
-    this.watchData(this.data, this.key);
+$exports.store = store;
+
+},{"./_shared":"../../InDiv/node_modules/core-js/modules/_shared.js","./_uid":"../../InDiv/node_modules/core-js/modules/_uid.js","./_global":"../../InDiv/node_modules/core-js/modules/_global.js"}],"../../InDiv/node_modules/core-js/modules/_array-species-constructor.js":[function(require,module,exports) {
+var isObject = require('./_is-object');
+var isArray = require('./_is-array');
+var SPECIES = require('./_wks')('species');
+
+module.exports = function (original) {
+  var C;
+  if (isArray(original)) {
+    C = original.constructor;
+    // cross-realm fallback
+    if (typeof C == 'function' && (C === Array || isArray(C.prototype))) C = undefined;
+    if (isObject(C)) {
+      C = C[SPECIES];
+      if (C === null) C = undefined;
+    }
+  } return C === undefined ? Array : C;
+};
+
+},{"./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js","./_is-array":"../../InDiv/node_modules/core-js/modules/_is-array.js","./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js"}],"../../InDiv/node_modules/core-js/modules/_array-species-create.js":[function(require,module,exports) {
+// 9.4.2.3 ArraySpeciesCreate(originalArray, length)
+var speciesConstructor = require('./_array-species-constructor');
+
+module.exports = function (original, length) {
+  return new (speciesConstructor(original))(length);
+};
+
+},{"./_array-species-constructor":"../../InDiv/node_modules/core-js/modules/_array-species-constructor.js"}],"../../InDiv/node_modules/core-js/modules/_array-methods.js":[function(require,module,exports) {
+// 0 -> Array#forEach
+// 1 -> Array#map
+// 2 -> Array#filter
+// 3 -> Array#some
+// 4 -> Array#every
+// 5 -> Array#find
+// 6 -> Array#findIndex
+var ctx = require('./_ctx');
+var IObject = require('./_iobject');
+var toObject = require('./_to-object');
+var toLength = require('./_to-length');
+var asc = require('./_array-species-create');
+module.exports = function (TYPE, $create) {
+  var IS_MAP = TYPE == 1;
+  var IS_FILTER = TYPE == 2;
+  var IS_SOME = TYPE == 3;
+  var IS_EVERY = TYPE == 4;
+  var IS_FIND_INDEX = TYPE == 6;
+  var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
+  var create = $create || asc;
+  return function ($this, callbackfn, that) {
+    var O = toObject($this);
+    var self = IObject(O);
+    var f = ctx(callbackfn, that, 3);
+    var length = toLength(self.length);
+    var index = 0;
+    var result = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
+    var val, res;
+    for (;length > index; index++) if (NO_HOLES || index in self) {
+      val = self[index];
+      res = f(val, index, O);
+      if (TYPE) {
+        if (IS_MAP) result[index] = res;   // map
+        else if (res) switch (TYPE) {
+          case 3: return true;             // some
+          case 5: return val;              // find
+          case 6: return index;            // findIndex
+          case 2: result.push(val);        // filter
+        } else if (IS_EVERY) return false; // every
+      }
+    }
+    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : result;
+  };
+};
+
+},{"./_ctx":"../../InDiv/node_modules/core-js/modules/_ctx.js","./_iobject":"../../InDiv/node_modules/core-js/modules/_iobject.js","./_to-object":"../../InDiv/node_modules/core-js/modules/_to-object.js","./_to-length":"../../InDiv/node_modules/core-js/modules/_to-length.js","./_array-species-create":"../../InDiv/node_modules/core-js/modules/_array-species-create.js"}],"../../InDiv/node_modules/core-js/modules/_add-to-unscopables.js":[function(require,module,exports) {
+// 22.1.3.31 Array.prototype[@@unscopables]
+var UNSCOPABLES = require('./_wks')('unscopables');
+var ArrayProto = Array.prototype;
+if (ArrayProto[UNSCOPABLES] == undefined) require('./_hide')(ArrayProto, UNSCOPABLES, {});
+module.exports = function (key) {
+  ArrayProto[UNSCOPABLES][key] = true;
+};
+
+},{"./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js","./_hide":"../../InDiv/node_modules/core-js/modules/_hide.js"}],"../../InDiv/node_modules/core-js/modules/es6.array.find.js":[function(require,module,exports) {
+'use strict';
+// 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
+var $export = require('./_export');
+var $find = require('./_array-methods')(5);
+var KEY = 'find';
+var forced = true;
+// Shouldn't skip holes
+if (KEY in []) Array(1)[KEY](function () { forced = false; });
+$export($export.P + $export.F * forced, 'Array', {
+  find: function find(callbackfn /* , that = undefined */) {
+    return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
   }
+});
+require('./_add-to-unscopables')(KEY);
 
-  KeyWatcher.prototype.watchData = function (data, key) {
-    if (!data || _typeof(data) !== 'object' || !data[key]) return;
-    var vm = this;
-    var val = data[key];
-    Object.defineProperty(data, key, {
-      configurable: true,
-      enumerable: true,
-      get: function get() {
-        return val;
+},{"./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_array-methods":"../../InDiv/node_modules/core-js/modules/_array-methods.js","./_add-to-unscopables":"../../InDiv/node_modules/core-js/modules/_add-to-unscopables.js"}],"../../InDiv/node_modules/core-js/modules/es6.array.find-index.js":[function(require,module,exports) {
+'use strict';
+// 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
+var $export = require('./_export');
+var $find = require('./_array-methods')(6);
+var KEY = 'findIndex';
+var forced = true;
+// Shouldn't skip holes
+if (KEY in []) Array(1)[KEY](function () { forced = false; });
+$export($export.P + $export.F * forced, 'Array', {
+  findIndex: function findIndex(callbackfn /* , that = undefined */) {
+    return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+require('./_add-to-unscopables')(KEY);
+
+},{"./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_array-methods":"../../InDiv/node_modules/core-js/modules/_array-methods.js","./_add-to-unscopables":"../../InDiv/node_modules/core-js/modules/_add-to-unscopables.js"}],"../../InDiv/node_modules/core-js/modules/_strict-method.js":[function(require,module,exports) {
+'use strict';
+var fails = require('./_fails');
+
+module.exports = function (method, arg) {
+  return !!method && fails(function () {
+    // eslint-disable-next-line no-useless-call
+    arg ? method.call(null, function () { /* empty */ }, 1) : method.call(null);
+  });
+};
+
+},{"./_fails":"../../InDiv/node_modules/core-js/modules/_fails.js"}],"../../InDiv/node_modules/core-js/modules/es6.array.for-each.js":[function(require,module,exports) {
+'use strict';
+var $export = require('./_export');
+var $forEach = require('./_array-methods')(0);
+var STRICT = require('./_strict-method')([].forEach, true);
+
+$export($export.P + $export.F * !STRICT, 'Array', {
+  // 22.1.3.10 / 15.4.4.18 Array.prototype.forEach(callbackfn [, thisArg])
+  forEach: function forEach(callbackfn /* , thisArg */) {
+    return $forEach(this, callbackfn, arguments[1]);
+  }
+});
+
+},{"./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_array-methods":"../../InDiv/node_modules/core-js/modules/_array-methods.js","./_strict-method":"../../InDiv/node_modules/core-js/modules/_strict-method.js"}],"../../InDiv/node_modules/core-js/modules/_iter-call.js":[function(require,module,exports) {
+// call something on iterator step with safe closing on error
+var anObject = require('./_an-object');
+module.exports = function (iterator, fn, value, entries) {
+  try {
+    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
+  // 7.4.6 IteratorClose(iterator, completion)
+  } catch (e) {
+    var ret = iterator['return'];
+    if (ret !== undefined) anObject(ret.call(iterator));
+    throw e;
+  }
+};
+
+},{"./_an-object":"../../InDiv/node_modules/core-js/modules/_an-object.js"}],"../../InDiv/node_modules/core-js/modules/_iterators.js":[function(require,module,exports) {
+module.exports = {};
+
+},{}],"../../InDiv/node_modules/core-js/modules/_is-array-iter.js":[function(require,module,exports) {
+// check on default Array iterator
+var Iterators = require('./_iterators');
+var ITERATOR = require('./_wks')('iterator');
+var ArrayProto = Array.prototype;
+
+module.exports = function (it) {
+  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
+};
+
+},{"./_iterators":"../../InDiv/node_modules/core-js/modules/_iterators.js","./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js"}],"../../InDiv/node_modules/core-js/modules/_create-property.js":[function(require,module,exports) {
+'use strict';
+var $defineProperty = require('./_object-dp');
+var createDesc = require('./_property-desc');
+
+module.exports = function (object, index, value) {
+  if (index in object) $defineProperty.f(object, index, createDesc(0, value));
+  else object[index] = value;
+};
+
+},{"./_object-dp":"../../InDiv/node_modules/core-js/modules/_object-dp.js","./_property-desc":"../../InDiv/node_modules/core-js/modules/_property-desc.js"}],"../../InDiv/node_modules/core-js/modules/_classof.js":[function(require,module,exports) {
+// getting tag from 19.1.3.6 Object.prototype.toString()
+var cof = require('./_cof');
+var TAG = require('./_wks')('toStringTag');
+// ES3 wrong here
+var ARG = cof(function () { return arguments; }()) == 'Arguments';
+
+// fallback for IE11 Script Access Denied error
+var tryGet = function (it, key) {
+  try {
+    return it[key];
+  } catch (e) { /* empty */ }
+};
+
+module.exports = function (it) {
+  var O, T, B;
+  return it === undefined ? 'Undefined' : it === null ? 'Null'
+    // @@toStringTag case
+    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
+    // builtinTag case
+    : ARG ? cof(O)
+    // ES3 arguments fallback
+    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+};
+
+},{"./_cof":"../../InDiv/node_modules/core-js/modules/_cof.js","./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js"}],"../../InDiv/node_modules/core-js/modules/core.get-iterator-method.js":[function(require,module,exports) {
+var classof = require('./_classof');
+var ITERATOR = require('./_wks')('iterator');
+var Iterators = require('./_iterators');
+module.exports = require('./_core').getIteratorMethod = function (it) {
+  if (it != undefined) return it[ITERATOR]
+    || it['@@iterator']
+    || Iterators[classof(it)];
+};
+
+},{"./_classof":"../../InDiv/node_modules/core-js/modules/_classof.js","./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js","./_iterators":"../../InDiv/node_modules/core-js/modules/_iterators.js","./_core":"../../InDiv/node_modules/core-js/modules/_core.js"}],"../../InDiv/node_modules/core-js/modules/_iter-detect.js":[function(require,module,exports) {
+var ITERATOR = require('./_wks')('iterator');
+var SAFE_CLOSING = false;
+
+try {
+  var riter = [7][ITERATOR]();
+  riter['return'] = function () { SAFE_CLOSING = true; };
+  // eslint-disable-next-line no-throw-literal
+  Array.from(riter, function () { throw 2; });
+} catch (e) { /* empty */ }
+
+module.exports = function (exec, skipClosing) {
+  if (!skipClosing && !SAFE_CLOSING) return false;
+  var safe = false;
+  try {
+    var arr = [7];
+    var iter = arr[ITERATOR]();
+    iter.next = function () { return { done: safe = true }; };
+    arr[ITERATOR] = function () { return iter; };
+    exec(arr);
+  } catch (e) { /* empty */ }
+  return safe;
+};
+
+},{"./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js"}],"../../InDiv/node_modules/core-js/modules/es6.array.from.js":[function(require,module,exports) {
+'use strict';
+var ctx = require('./_ctx');
+var $export = require('./_export');
+var toObject = require('./_to-object');
+var call = require('./_iter-call');
+var isArrayIter = require('./_is-array-iter');
+var toLength = require('./_to-length');
+var createProperty = require('./_create-property');
+var getIterFn = require('./core.get-iterator-method');
+
+$export($export.S + $export.F * !require('./_iter-detect')(function (iter) { Array.from(iter); }), 'Array', {
+  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
+  from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
+    var O = toObject(arrayLike);
+    var C = typeof this == 'function' ? this : Array;
+    var aLen = arguments.length;
+    var mapfn = aLen > 1 ? arguments[1] : undefined;
+    var mapping = mapfn !== undefined;
+    var index = 0;
+    var iterFn = getIterFn(O);
+    var length, result, step, iterator;
+    if (mapping) mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
+    // if object isn't iterable or it's array with default iterator - use simple case
+    if (iterFn != undefined && !(C == Array && isArrayIter(iterFn))) {
+      for (iterator = iterFn.call(O), result = new C(); !(step = iterator.next()).done; index++) {
+        createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
+      }
+    } else {
+      length = toLength(O.length);
+      for (result = new C(length); length > index; index++) {
+        createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
+      }
+    }
+    result.length = index;
+    return result;
+  }
+});
+
+},{"./_ctx":"../../InDiv/node_modules/core-js/modules/_ctx.js","./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_to-object":"../../InDiv/node_modules/core-js/modules/_to-object.js","./_iter-call":"../../InDiv/node_modules/core-js/modules/_iter-call.js","./_is-array-iter":"../../InDiv/node_modules/core-js/modules/_is-array-iter.js","./_to-length":"../../InDiv/node_modules/core-js/modules/_to-length.js","./_create-property":"../../InDiv/node_modules/core-js/modules/_create-property.js","./core.get-iterator-method":"../../InDiv/node_modules/core-js/modules/core.get-iterator-method.js","./_iter-detect":"../../InDiv/node_modules/core-js/modules/_iter-detect.js"}],"../../InDiv/node_modules/core-js/modules/_to-iobject.js":[function(require,module,exports) {
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = require('./_iobject');
+var defined = require('./_defined');
+module.exports = function (it) {
+  return IObject(defined(it));
+};
+
+},{"./_iobject":"../../InDiv/node_modules/core-js/modules/_iobject.js","./_defined":"../../InDiv/node_modules/core-js/modules/_defined.js"}],"../../InDiv/node_modules/core-js/modules/_to-absolute-index.js":[function(require,module,exports) {
+var toInteger = require('./_to-integer');
+var max = Math.max;
+var min = Math.min;
+module.exports = function (index, length) {
+  index = toInteger(index);
+  return index < 0 ? max(index + length, 0) : min(index, length);
+};
+
+},{"./_to-integer":"../../InDiv/node_modules/core-js/modules/_to-integer.js"}],"../../InDiv/node_modules/core-js/modules/_array-includes.js":[function(require,module,exports) {
+// false -> Array#indexOf
+// true  -> Array#includes
+var toIObject = require('./_to-iobject');
+var toLength = require('./_to-length');
+var toAbsoluteIndex = require('./_to-absolute-index');
+module.exports = function (IS_INCLUDES) {
+  return function ($this, el, fromIndex) {
+    var O = toIObject($this);
+    var length = toLength(O.length);
+    var index = toAbsoluteIndex(fromIndex, length);
+    var value;
+    // Array#includes uses SameValueZero equality algorithm
+    // eslint-disable-next-line no-self-compare
+    if (IS_INCLUDES && el != el) while (length > index) {
+      value = O[index++];
+      // eslint-disable-next-line no-self-compare
+      if (value != value) return true;
+    // Array#indexOf ignores holes, Array#includes - not
+    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
+      if (O[index] === el) return IS_INCLUDES || index || 0;
+    } return !IS_INCLUDES && -1;
+  };
+};
+
+},{"./_to-iobject":"../../InDiv/node_modules/core-js/modules/_to-iobject.js","./_to-length":"../../InDiv/node_modules/core-js/modules/_to-length.js","./_to-absolute-index":"../../InDiv/node_modules/core-js/modules/_to-absolute-index.js"}],"../../InDiv/node_modules/core-js/modules/es6.array.index-of.js":[function(require,module,exports) {
+'use strict';
+var $export = require('./_export');
+var $indexOf = require('./_array-includes')(false);
+var $native = [].indexOf;
+var NEGATIVE_ZERO = !!$native && 1 / [1].indexOf(1, -0) < 0;
+
+$export($export.P + $export.F * (NEGATIVE_ZERO || !require('./_strict-method')($native)), 'Array', {
+  // 22.1.3.11 / 15.4.4.14 Array.prototype.indexOf(searchElement [, fromIndex])
+  indexOf: function indexOf(searchElement /* , fromIndex = 0 */) {
+    return NEGATIVE_ZERO
+      // convert -0 to +0
+      ? $native.apply(this, arguments) || 0
+      : $indexOf(this, searchElement, arguments[1]);
+  }
+});
+
+},{"./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_array-includes":"../../InDiv/node_modules/core-js/modules/_array-includes.js","./_strict-method":"../../InDiv/node_modules/core-js/modules/_strict-method.js"}],"../../InDiv/node_modules/core-js/modules/es6.array.map.js":[function(require,module,exports) {
+'use strict';
+var $export = require('./_export');
+var $map = require('./_array-methods')(1);
+
+$export($export.P + $export.F * !require('./_strict-method')([].map, true), 'Array', {
+  // 22.1.3.15 / 15.4.4.19 Array.prototype.map(callbackfn [, thisArg])
+  map: function map(callbackfn /* , thisArg */) {
+    return $map(this, callbackfn, arguments[1]);
+  }
+});
+
+},{"./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_array-methods":"../../InDiv/node_modules/core-js/modules/_array-methods.js","./_strict-method":"../../InDiv/node_modules/core-js/modules/_strict-method.js"}],"../../InDiv/node_modules/core-js/modules/es6.array.sort.js":[function(require,module,exports) {
+'use strict';
+var $export = require('./_export');
+var aFunction = require('./_a-function');
+var toObject = require('./_to-object');
+var fails = require('./_fails');
+var $sort = [].sort;
+var test = [1, 2, 3];
+
+$export($export.P + $export.F * (fails(function () {
+  // IE8-
+  test.sort(undefined);
+}) || !fails(function () {
+  // V8 bug
+  test.sort(null);
+  // Old WebKit
+}) || !require('./_strict-method')($sort)), 'Array', {
+  // 22.1.3.25 Array.prototype.sort(comparefn)
+  sort: function sort(comparefn) {
+    return comparefn === undefined
+      ? $sort.call(toObject(this))
+      : $sort.call(toObject(this), aFunction(comparefn));
+  }
+});
+
+},{"./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_a-function":"../../InDiv/node_modules/core-js/modules/_a-function.js","./_to-object":"../../InDiv/node_modules/core-js/modules/_to-object.js","./_fails":"../../InDiv/node_modules/core-js/modules/_fails.js","./_strict-method":"../../InDiv/node_modules/core-js/modules/_strict-method.js"}],"../../InDiv/node_modules/core-js/modules/es6.object.define-property.js":[function(require,module,exports) {
+var $export = require('./_export');
+// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+$export($export.S + $export.F * !require('./_descriptors'), 'Object', { defineProperty: require('./_object-dp').f });
+
+},{"./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_descriptors":"../../InDiv/node_modules/core-js/modules/_descriptors.js","./_object-dp":"../../InDiv/node_modules/core-js/modules/_object-dp.js"}],"../../InDiv/node_modules/core-js/modules/es6.object.to-string.js":[function(require,module,exports) {
+'use strict';
+// 19.1.3.6 Object.prototype.toString()
+var classof = require('./_classof');
+var test = {};
+test[require('./_wks')('toStringTag')] = 'z';
+if (test + '' != '[object z]') {
+  require('./_redefine')(Object.prototype, 'toString', function toString() {
+    return '[object ' + classof(this) + ']';
+  }, true);
+}
+
+},{"./_classof":"../../InDiv/node_modules/core-js/modules/_classof.js","./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js","./_redefine":"../../InDiv/node_modules/core-js/modules/_redefine.js"}],"../../InDiv/node_modules/core-js/modules/_fix-re-wks.js":[function(require,module,exports) {
+'use strict';
+var hide = require('./_hide');
+var redefine = require('./_redefine');
+var fails = require('./_fails');
+var defined = require('./_defined');
+var wks = require('./_wks');
+
+module.exports = function (KEY, length, exec) {
+  var SYMBOL = wks(KEY);
+  var fns = exec(defined, SYMBOL, ''[KEY]);
+  var strfn = fns[0];
+  var rxfn = fns[1];
+  if (fails(function () {
+    var O = {};
+    O[SYMBOL] = function () { return 7; };
+    return ''[KEY](O) != 7;
+  })) {
+    redefine(String.prototype, KEY, strfn);
+    hide(RegExp.prototype, SYMBOL, length == 2
+      // 21.2.5.8 RegExp.prototype[@@replace](string, replaceValue)
+      // 21.2.5.11 RegExp.prototype[@@split](string, limit)
+      ? function (string, arg) { return rxfn.call(string, this, arg); }
+      // 21.2.5.6 RegExp.prototype[@@match](string)
+      // 21.2.5.9 RegExp.prototype[@@search](string)
+      : function (string) { return rxfn.call(string, this); }
+    );
+  }
+};
+
+},{"./_hide":"../../InDiv/node_modules/core-js/modules/_hide.js","./_redefine":"../../InDiv/node_modules/core-js/modules/_redefine.js","./_fails":"../../InDiv/node_modules/core-js/modules/_fails.js","./_defined":"../../InDiv/node_modules/core-js/modules/_defined.js","./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js"}],"../../InDiv/node_modules/core-js/modules/es6.regexp.match.js":[function(require,module,exports) {
+// @@match logic
+require('./_fix-re-wks')('match', 1, function (defined, MATCH, $match) {
+  // 21.1.3.11 String.prototype.match(regexp)
+  return [function match(regexp) {
+    'use strict';
+    var O = defined(this);
+    var fn = regexp == undefined ? undefined : regexp[MATCH];
+    return fn !== undefined ? fn.call(regexp, O) : new RegExp(regexp)[MATCH](String(O));
+  }, $match];
+});
+
+},{"./_fix-re-wks":"../../InDiv/node_modules/core-js/modules/_fix-re-wks.js"}],"../../InDiv/node_modules/core-js/modules/es6.regexp.replace.js":[function(require,module,exports) {
+// @@replace logic
+require('./_fix-re-wks')('replace', 2, function (defined, REPLACE, $replace) {
+  // 21.1.3.14 String.prototype.replace(searchValue, replaceValue)
+  return [function replace(searchValue, replaceValue) {
+    'use strict';
+    var O = defined(this);
+    var fn = searchValue == undefined ? undefined : searchValue[REPLACE];
+    return fn !== undefined
+      ? fn.call(searchValue, O, replaceValue)
+      : $replace.call(String(O), searchValue, replaceValue);
+  }, $replace];
+});
+
+},{"./_fix-re-wks":"../../InDiv/node_modules/core-js/modules/_fix-re-wks.js"}],"../../InDiv/node_modules/core-js/modules/_shared-key.js":[function(require,module,exports) {
+var shared = require('./_shared')('keys');
+var uid = require('./_uid');
+module.exports = function (key) {
+  return shared[key] || (shared[key] = uid(key));
+};
+
+},{"./_shared":"../../InDiv/node_modules/core-js/modules/_shared.js","./_uid":"../../InDiv/node_modules/core-js/modules/_uid.js"}],"../../InDiv/node_modules/core-js/modules/_object-keys-internal.js":[function(require,module,exports) {
+var has = require('./_has');
+var toIObject = require('./_to-iobject');
+var arrayIndexOf = require('./_array-includes')(false);
+var IE_PROTO = require('./_shared-key')('IE_PROTO');
+
+module.exports = function (object, names) {
+  var O = toIObject(object);
+  var i = 0;
+  var result = [];
+  var key;
+  for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
+  // Don't enum bug & hidden keys
+  while (names.length > i) if (has(O, key = names[i++])) {
+    ~arrayIndexOf(result, key) || result.push(key);
+  }
+  return result;
+};
+
+},{"./_has":"../../InDiv/node_modules/core-js/modules/_has.js","./_to-iobject":"../../InDiv/node_modules/core-js/modules/_to-iobject.js","./_array-includes":"../../InDiv/node_modules/core-js/modules/_array-includes.js","./_shared-key":"../../InDiv/node_modules/core-js/modules/_shared-key.js"}],"../../InDiv/node_modules/core-js/modules/_enum-bug-keys.js":[function(require,module,exports) {
+// IE 8- don't enum bug keys
+module.exports = (
+  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
+).split(',');
+
+},{}],"../../InDiv/node_modules/core-js/modules/_object-keys.js":[function(require,module,exports) {
+// 19.1.2.14 / 15.2.3.14 Object.keys(O)
+var $keys = require('./_object-keys-internal');
+var enumBugKeys = require('./_enum-bug-keys');
+
+module.exports = Object.keys || function keys(O) {
+  return $keys(O, enumBugKeys);
+};
+
+},{"./_object-keys-internal":"../../InDiv/node_modules/core-js/modules/_object-keys-internal.js","./_enum-bug-keys":"../../InDiv/node_modules/core-js/modules/_enum-bug-keys.js"}],"../../InDiv/node_modules/core-js/modules/_object-dps.js":[function(require,module,exports) {
+var dP = require('./_object-dp');
+var anObject = require('./_an-object');
+var getKeys = require('./_object-keys');
+
+module.exports = require('./_descriptors') ? Object.defineProperties : function defineProperties(O, Properties) {
+  anObject(O);
+  var keys = getKeys(Properties);
+  var length = keys.length;
+  var i = 0;
+  var P;
+  while (length > i) dP.f(O, P = keys[i++], Properties[P]);
+  return O;
+};
+
+},{"./_object-dp":"../../InDiv/node_modules/core-js/modules/_object-dp.js","./_an-object":"../../InDiv/node_modules/core-js/modules/_an-object.js","./_object-keys":"../../InDiv/node_modules/core-js/modules/_object-keys.js","./_descriptors":"../../InDiv/node_modules/core-js/modules/_descriptors.js"}],"../../InDiv/node_modules/core-js/modules/_html.js":[function(require,module,exports) {
+var document = require('./_global').document;
+module.exports = document && document.documentElement;
+
+},{"./_global":"../../InDiv/node_modules/core-js/modules/_global.js"}],"../../InDiv/node_modules/core-js/modules/_object-create.js":[function(require,module,exports) {
+// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+var anObject = require('./_an-object');
+var dPs = require('./_object-dps');
+var enumBugKeys = require('./_enum-bug-keys');
+var IE_PROTO = require('./_shared-key')('IE_PROTO');
+var Empty = function () { /* empty */ };
+var PROTOTYPE = 'prototype';
+
+// Create object with fake `null` prototype: use iframe Object with cleared prototype
+var createDict = function () {
+  // Thrash, waste and sodomy: IE GC bug
+  var iframe = require('./_dom-create')('iframe');
+  var i = enumBugKeys.length;
+  var lt = '<';
+  var gt = '>';
+  var iframeDocument;
+  iframe.style.display = 'none';
+  require('./_html').appendChild(iframe);
+  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
+  // createDict = iframe.contentWindow.Object;
+  // html.removeChild(iframe);
+  iframeDocument = iframe.contentWindow.document;
+  iframeDocument.open();
+  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
+  iframeDocument.close();
+  createDict = iframeDocument.F;
+  while (i--) delete createDict[PROTOTYPE][enumBugKeys[i]];
+  return createDict();
+};
+
+module.exports = Object.create || function create(O, Properties) {
+  var result;
+  if (O !== null) {
+    Empty[PROTOTYPE] = anObject(O);
+    result = new Empty();
+    Empty[PROTOTYPE] = null;
+    // add "__proto__" for Object.getPrototypeOf polyfill
+    result[IE_PROTO] = O;
+  } else result = createDict();
+  return Properties === undefined ? result : dPs(result, Properties);
+};
+
+},{"./_an-object":"../../InDiv/node_modules/core-js/modules/_an-object.js","./_object-dps":"../../InDiv/node_modules/core-js/modules/_object-dps.js","./_enum-bug-keys":"../../InDiv/node_modules/core-js/modules/_enum-bug-keys.js","./_shared-key":"../../InDiv/node_modules/core-js/modules/_shared-key.js","./_dom-create":"../../InDiv/node_modules/core-js/modules/_dom-create.js","./_html":"../../InDiv/node_modules/core-js/modules/_html.js"}],"../../InDiv/node_modules/core-js/modules/_redefine-all.js":[function(require,module,exports) {
+var redefine = require('./_redefine');
+module.exports = function (target, src, safe) {
+  for (var key in src) redefine(target, key, src[key], safe);
+  return target;
+};
+
+},{"./_redefine":"../../InDiv/node_modules/core-js/modules/_redefine.js"}],"../../InDiv/node_modules/core-js/modules/_an-instance.js":[function(require,module,exports) {
+module.exports = function (it, Constructor, name, forbiddenField) {
+  if (!(it instanceof Constructor) || (forbiddenField !== undefined && forbiddenField in it)) {
+    throw TypeError(name + ': incorrect invocation!');
+  } return it;
+};
+
+},{}],"../../InDiv/node_modules/core-js/modules/_for-of.js":[function(require,module,exports) {
+var ctx = require('./_ctx');
+var call = require('./_iter-call');
+var isArrayIter = require('./_is-array-iter');
+var anObject = require('./_an-object');
+var toLength = require('./_to-length');
+var getIterFn = require('./core.get-iterator-method');
+var BREAK = {};
+var RETURN = {};
+var exports = module.exports = function (iterable, entries, fn, that, ITERATOR) {
+  var iterFn = ITERATOR ? function () { return iterable; } : getIterFn(iterable);
+  var f = ctx(fn, that, entries ? 2 : 1);
+  var index = 0;
+  var length, step, iterator, result;
+  if (typeof iterFn != 'function') throw TypeError(iterable + ' is not iterable!');
+  // fast case for arrays with default iterator
+  if (isArrayIter(iterFn)) for (length = toLength(iterable.length); length > index; index++) {
+    result = entries ? f(anObject(step = iterable[index])[0], step[1]) : f(iterable[index]);
+    if (result === BREAK || result === RETURN) return result;
+  } else for (iterator = iterFn.call(iterable); !(step = iterator.next()).done;) {
+    result = call(iterator, f, step.value, entries);
+    if (result === BREAK || result === RETURN) return result;
+  }
+};
+exports.BREAK = BREAK;
+exports.RETURN = RETURN;
+
+},{"./_ctx":"../../InDiv/node_modules/core-js/modules/_ctx.js","./_iter-call":"../../InDiv/node_modules/core-js/modules/_iter-call.js","./_is-array-iter":"../../InDiv/node_modules/core-js/modules/_is-array-iter.js","./_an-object":"../../InDiv/node_modules/core-js/modules/_an-object.js","./_to-length":"../../InDiv/node_modules/core-js/modules/_to-length.js","./core.get-iterator-method":"../../InDiv/node_modules/core-js/modules/core.get-iterator-method.js"}],"../../InDiv/node_modules/core-js/modules/_set-to-string-tag.js":[function(require,module,exports) {
+var def = require('./_object-dp').f;
+var has = require('./_has');
+var TAG = require('./_wks')('toStringTag');
+
+module.exports = function (it, tag, stat) {
+  if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
+};
+
+},{"./_object-dp":"../../InDiv/node_modules/core-js/modules/_object-dp.js","./_has":"../../InDiv/node_modules/core-js/modules/_has.js","./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js"}],"../../InDiv/node_modules/core-js/modules/_iter-create.js":[function(require,module,exports) {
+'use strict';
+var create = require('./_object-create');
+var descriptor = require('./_property-desc');
+var setToStringTag = require('./_set-to-string-tag');
+var IteratorPrototype = {};
+
+// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+require('./_hide')(IteratorPrototype, require('./_wks')('iterator'), function () { return this; });
+
+module.exports = function (Constructor, NAME, next) {
+  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
+  setToStringTag(Constructor, NAME + ' Iterator');
+};
+
+},{"./_object-create":"../../InDiv/node_modules/core-js/modules/_object-create.js","./_property-desc":"../../InDiv/node_modules/core-js/modules/_property-desc.js","./_set-to-string-tag":"../../InDiv/node_modules/core-js/modules/_set-to-string-tag.js","./_hide":"../../InDiv/node_modules/core-js/modules/_hide.js","./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js"}],"../../InDiv/node_modules/core-js/modules/_object-gpo.js":[function(require,module,exports) {
+// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
+var has = require('./_has');
+var toObject = require('./_to-object');
+var IE_PROTO = require('./_shared-key')('IE_PROTO');
+var ObjectProto = Object.prototype;
+
+module.exports = Object.getPrototypeOf || function (O) {
+  O = toObject(O);
+  if (has(O, IE_PROTO)) return O[IE_PROTO];
+  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
+    return O.constructor.prototype;
+  } return O instanceof Object ? ObjectProto : null;
+};
+
+},{"./_has":"../../InDiv/node_modules/core-js/modules/_has.js","./_to-object":"../../InDiv/node_modules/core-js/modules/_to-object.js","./_shared-key":"../../InDiv/node_modules/core-js/modules/_shared-key.js"}],"../../InDiv/node_modules/core-js/modules/_iter-define.js":[function(require,module,exports) {
+'use strict';
+var LIBRARY = require('./_library');
+var $export = require('./_export');
+var redefine = require('./_redefine');
+var hide = require('./_hide');
+var Iterators = require('./_iterators');
+var $iterCreate = require('./_iter-create');
+var setToStringTag = require('./_set-to-string-tag');
+var getPrototypeOf = require('./_object-gpo');
+var ITERATOR = require('./_wks')('iterator');
+var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
+var FF_ITERATOR = '@@iterator';
+var KEYS = 'keys';
+var VALUES = 'values';
+
+var returnThis = function () { return this; };
+
+module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+  $iterCreate(Constructor, NAME, next);
+  var getMethod = function (kind) {
+    if (!BUGGY && kind in proto) return proto[kind];
+    switch (kind) {
+      case KEYS: return function keys() { return new Constructor(this, kind); };
+      case VALUES: return function values() { return new Constructor(this, kind); };
+    } return function entries() { return new Constructor(this, kind); };
+  };
+  var TAG = NAME + ' Iterator';
+  var DEF_VALUES = DEFAULT == VALUES;
+  var VALUES_BUG = false;
+  var proto = Base.prototype;
+  var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
+  var $default = $native || getMethod(DEFAULT);
+  var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
+  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
+  var methods, key, IteratorPrototype;
+  // Fix native
+  if ($anyNative) {
+    IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));
+    if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
+      // Set @@toStringTag to native iterators
+      setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if (!LIBRARY && typeof IteratorPrototype[ITERATOR] != 'function') hide(IteratorPrototype, ITERATOR, returnThis);
+    }
+  }
+  // fix Array#{values, @@iterator}.name in V8 / FF
+  if (DEF_VALUES && $native && $native.name !== VALUES) {
+    VALUES_BUG = true;
+    $default = function values() { return $native.call(this); };
+  }
+  // Define iterator
+  if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+    hide(proto, ITERATOR, $default);
+  }
+  // Plug for library
+  Iterators[NAME] = $default;
+  Iterators[TAG] = returnThis;
+  if (DEFAULT) {
+    methods = {
+      values: DEF_VALUES ? $default : getMethod(VALUES),
+      keys: IS_SET ? $default : getMethod(KEYS),
+      entries: $entries
+    };
+    if (FORCED) for (key in methods) {
+      if (!(key in proto)) redefine(proto, key, methods[key]);
+    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+  }
+  return methods;
+};
+
+},{"./_library":"../../InDiv/node_modules/core-js/modules/_library.js","./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_redefine":"../../InDiv/node_modules/core-js/modules/_redefine.js","./_hide":"../../InDiv/node_modules/core-js/modules/_hide.js","./_iterators":"../../InDiv/node_modules/core-js/modules/_iterators.js","./_iter-create":"../../InDiv/node_modules/core-js/modules/_iter-create.js","./_set-to-string-tag":"../../InDiv/node_modules/core-js/modules/_set-to-string-tag.js","./_object-gpo":"../../InDiv/node_modules/core-js/modules/_object-gpo.js","./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js"}],"../../InDiv/node_modules/core-js/modules/_iter-step.js":[function(require,module,exports) {
+module.exports = function (done, value) {
+  return { value: value, done: !!done };
+};
+
+},{}],"../../InDiv/node_modules/core-js/modules/_set-species.js":[function(require,module,exports) {
+
+'use strict';
+var global = require('./_global');
+var dP = require('./_object-dp');
+var DESCRIPTORS = require('./_descriptors');
+var SPECIES = require('./_wks')('species');
+
+module.exports = function (KEY) {
+  var C = global[KEY];
+  if (DESCRIPTORS && C && !C[SPECIES]) dP.f(C, SPECIES, {
+    configurable: true,
+    get: function () { return this; }
+  });
+};
+
+},{"./_global":"../../InDiv/node_modules/core-js/modules/_global.js","./_object-dp":"../../InDiv/node_modules/core-js/modules/_object-dp.js","./_descriptors":"../../InDiv/node_modules/core-js/modules/_descriptors.js","./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js"}],"../../InDiv/node_modules/core-js/modules/_meta.js":[function(require,module,exports) {
+var META = require('./_uid')('meta');
+var isObject = require('./_is-object');
+var has = require('./_has');
+var setDesc = require('./_object-dp').f;
+var id = 0;
+var isExtensible = Object.isExtensible || function () {
+  return true;
+};
+var FREEZE = !require('./_fails')(function () {
+  return isExtensible(Object.preventExtensions({}));
+});
+var setMeta = function (it) {
+  setDesc(it, META, { value: {
+    i: 'O' + ++id, // object ID
+    w: {}          // weak collections IDs
+  } });
+};
+var fastKey = function (it, create) {
+  // return primitive with prefix
+  if (!isObject(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
+  if (!has(it, META)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return 'F';
+    // not necessary to add metadata
+    if (!create) return 'E';
+    // add missing metadata
+    setMeta(it);
+  // return object ID
+  } return it[META].i;
+};
+var getWeak = function (it, create) {
+  if (!has(it, META)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return true;
+    // not necessary to add metadata
+    if (!create) return false;
+    // add missing metadata
+    setMeta(it);
+  // return hash weak collections IDs
+  } return it[META].w;
+};
+// add metadata on freeze-family methods calling
+var onFreeze = function (it) {
+  if (FREEZE && meta.NEED && isExtensible(it) && !has(it, META)) setMeta(it);
+  return it;
+};
+var meta = module.exports = {
+  KEY: META,
+  NEED: false,
+  fastKey: fastKey,
+  getWeak: getWeak,
+  onFreeze: onFreeze
+};
+
+},{"./_uid":"../../InDiv/node_modules/core-js/modules/_uid.js","./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js","./_has":"../../InDiv/node_modules/core-js/modules/_has.js","./_object-dp":"../../InDiv/node_modules/core-js/modules/_object-dp.js","./_fails":"../../InDiv/node_modules/core-js/modules/_fails.js"}],"../../InDiv/node_modules/core-js/modules/_validate-collection.js":[function(require,module,exports) {
+var isObject = require('./_is-object');
+module.exports = function (it, TYPE) {
+  if (!isObject(it) || it._t !== TYPE) throw TypeError('Incompatible receiver, ' + TYPE + ' required!');
+  return it;
+};
+
+},{"./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js"}],"../../InDiv/node_modules/core-js/modules/_collection-strong.js":[function(require,module,exports) {
+'use strict';
+var dP = require('./_object-dp').f;
+var create = require('./_object-create');
+var redefineAll = require('./_redefine-all');
+var ctx = require('./_ctx');
+var anInstance = require('./_an-instance');
+var forOf = require('./_for-of');
+var $iterDefine = require('./_iter-define');
+var step = require('./_iter-step');
+var setSpecies = require('./_set-species');
+var DESCRIPTORS = require('./_descriptors');
+var fastKey = require('./_meta').fastKey;
+var validate = require('./_validate-collection');
+var SIZE = DESCRIPTORS ? '_s' : 'size';
+
+var getEntry = function (that, key) {
+  // fast case
+  var index = fastKey(key);
+  var entry;
+  if (index !== 'F') return that._i[index];
+  // frozen object case
+  for (entry = that._f; entry; entry = entry.n) {
+    if (entry.k == key) return entry;
+  }
+};
+
+module.exports = {
+  getConstructor: function (wrapper, NAME, IS_MAP, ADDER) {
+    var C = wrapper(function (that, iterable) {
+      anInstance(that, C, NAME, '_i');
+      that._t = NAME;         // collection type
+      that._i = create(null); // index
+      that._f = undefined;    // first entry
+      that._l = undefined;    // last entry
+      that[SIZE] = 0;         // size
+      if (iterable != undefined) forOf(iterable, IS_MAP, that[ADDER], that);
+    });
+    redefineAll(C.prototype, {
+      // 23.1.3.1 Map.prototype.clear()
+      // 23.2.3.2 Set.prototype.clear()
+      clear: function clear() {
+        for (var that = validate(this, NAME), data = that._i, entry = that._f; entry; entry = entry.n) {
+          entry.r = true;
+          if (entry.p) entry.p = entry.p.n = undefined;
+          delete data[entry.i];
+        }
+        that._f = that._l = undefined;
+        that[SIZE] = 0;
       },
-      set: function set(newVal) {
-        if (utils.isEqual(newVal, val)) return;
-        var oldData;
-
-        if (vm.watcher) {
-          if (_typeof(val) === 'object') oldData = JSON.parse(JSON.stringify(val));
-          if (_typeof(val) !== 'object' && typeof val !== 'function') oldData = val;
+      // 23.1.3.3 Map.prototype.delete(key)
+      // 23.2.3.4 Set.prototype.delete(value)
+      'delete': function (key) {
+        var that = validate(this, NAME);
+        var entry = getEntry(that, key);
+        if (entry) {
+          var next = entry.n;
+          var prev = entry.p;
+          delete that._i[entry.i];
+          entry.r = true;
+          if (prev) prev.n = next;
+          if (next) next.p = prev;
+          if (that._f == entry) that._f = next;
+          if (that._l == entry) that._l = prev;
+          that[SIZE]--;
+        } return !!entry;
+      },
+      // 23.2.3.6 Set.prototype.forEach(callbackfn, thisArg = undefined)
+      // 23.1.3.5 Map.prototype.forEach(callbackfn, thisArg = undefined)
+      forEach: function forEach(callbackfn /* , that = undefined */) {
+        validate(this, NAME);
+        var f = ctx(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        var entry;
+        while (entry = entry ? entry.n : this._f) {
+          f(entry.v, entry.k, this);
+          // revert to the last existing entry
+          while (entry && entry.r) entry = entry.p;
         }
-
-        val = newVal;
-        if (vm.watcher) vm.watcher(oldData);
+      },
+      // 23.1.3.7 Map.prototype.has(key)
+      // 23.2.3.7 Set.prototype.has(value)
+      has: function has(key) {
+        return !!getEntry(validate(this, NAME), key);
       }
     });
-  };
-
-  return KeyWatcher;
-}();
-
-exports.default = KeyWatcher;
-},{"../Utils":"../../InDiv/src/Utils/index.ts"}],"../../InDiv/src/VirtualDOM/parse.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/**
- * Vnode
- *
- * @class Vnode
- */
-
-var Vnode =
-/** @class */
-function () {
-  /**
-   * Creates an instance of Vnode.
-   * @param {IVnode} info
-   * @memberof Vnode
-   */
-  function Vnode(info) {
-    this.tagName = info.tagName;
-    this.node = info.node;
-    this.parentNode = info.parentNode;
-    this.attributes = info.attributes;
-    this.childNodes = info.childNodes;
-    this.nodeValue = info.nodeValue;
-    this.type = info.type;
-    this.value = info.value;
-    this.repeatData = info.repeatData;
-    this.eventTypes = info.eventTypes;
-    this.key = info.key;
-    this.checked = false;
-  }
-
-  return Vnode;
-}();
-/**
- * bind nodeType and return type
- *
- * @param {Node} node
- * @returns {string}
- */
-
-
-function bindNodeType(node) {
-  if (node.nodeType === 1) return 'element';
-  if (node.nodeType === 3) return 'text';
-  if (node.nodeType === 11) return 'document-fragment';
-  return '';
-}
-/**
- * bind node attributes and return TAttributes
- *
- * @param {(DocumentFragment | Element)} node
- * @returns {TAttributes[]}
- */
-
-
-function bindAttributes(node) {
-  var nodeAttrs = node.attributes;
-  var attributes = [];
-
-  if (nodeAttrs) {
-    Array.from(nodeAttrs).forEach(function (attr) {
-      attributes.push({
-        name: attr.name,
-        value: attr.value
-      });
-    });
-  }
-
-  return attributes;
-}
-/**
- * parse node to VNode
- *
- * @param {(DocumentFragment | Element)} node
- * @returns {IVnode}
- */
-
-
-function parseToVnode(node) {
-  var childNodes = [];
-
-  if (node.childNodes) {
-    Array.from(node.childNodes).forEach(function (child) {
-      childNodes.push(parseToVnode(child));
-    });
-  }
-
-  return new Vnode({
-    tagName: node.tagName,
-    node: node,
-    parentNode: node.parentNode,
-    attributes: bindAttributes(node),
-    childNodes: childNodes,
-    nodeValue: node.nodeValue,
-    type: bindNodeType(node),
-    value: node.value,
-    repeatData: node.repeatData ? node.repeatData : null,
-    eventTypes: node.eventTypes ? node.eventTypes : null,
-    key: node.indiv_repeat_key ? node.indiv_repeat_key : null
-  });
-}
-
-exports.default = parseToVnode;
-},{}],"../../InDiv/src/VirtualDOM/diff.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/**
- * diff childNodes for diff VNode
- *
- * type: 0 removeChild
- * type: 1 change Child index
- *
- * @param {IVnode} newVnode
- * @param {IVnode} oldVnode
- * @param {IPatchList[]} patchList
- */
-
-function diffChildNodes(oldVnode, newVnode, patchList) {
-  if (oldVnode.childNodes.length > 0) {
-    oldVnode.childNodes.forEach(function (oChild, index) {
-      if (oChild.checked) return;
-      var sameCode = newVnode.childNodes.find(function (nChild) {
-        return nChild.node.isEqualNode(oChild.node) && nChild.key === oChild.key && !nChild.checked || nChild.tagName === oChild.tagName && nChild.key === oChild.key && !nChild.checked;
-      });
-
-      if (sameCode) {
-        var sameCodeIndex = newVnode.childNodes.findIndex(function (nChild) {
-          return nChild === sameCode;
-        });
-
-        if (sameCodeIndex !== index) {
-          patchList.push({
-            type: 1,
-            newIndex: sameCodeIndex,
-            oldVnode: oChild.node,
-            parentNode: oldVnode.node
-          });
-        }
-
-        diffVnode(oChild, sameCode, patchList);
-        sameCode.checked = true;
-      } else {
-        patchList.push({
-          type: 0,
-          node: oChild.node,
-          parentNode: oldVnode.node
-        });
-      }
-
-      oChild.checked = true;
-    });
-  }
-
-  if (newVnode.childNodes.length > 0) {
-    newVnode.childNodes.forEach(function (nChild, index) {
-      if (nChild.checked) return;
-      patchList.push({
-        type: 1,
-        newIndex: index,
-        oldVnode: nChild.node,
-        parentNode: oldVnode.node
-      });
-      nChild.checked = true;
-    });
-  }
-}
-/**
- * diff attributes for diff VNode
- *
- * type: 2 setAttribute
- * type: 3 removeAttribute
- *
- * @param {IVnode} oldVnode
- * @param {IVnode} newVnode
- * @param {IPatchList[]} patchList
- */
-
-
-function diffAttributes(oldVnode, newVnode, patchList) {
-  newVnode.attributes.forEach(function (attr) {
-    var oldVnodeAttr = oldVnode.attributes.find(function (at) {
-      return at.name === attr.name;
-    });
-
-    if (!oldVnodeAttr || oldVnodeAttr.value !== attr.value) {
-      patchList.push({
-        type: 2,
-        node: oldVnode.node,
-        newValue: attr,
-        oldValue: oldVnodeAttr
-      });
-    }
-  });
-  oldVnode.attributes.forEach(function (attr) {
-    var newVnodeAttr = newVnode.attributes.find(function (at) {
-      return at.name === attr.name;
-    });
-
-    if (!newVnodeAttr) {
-      patchList.push({
-        type: 3,
-        node: oldVnode.node,
-        oldValue: attr
-      });
-    }
-  });
-}
-/**
- * diff nodeValue for diff VNode
- *
- * type: 4 change text for node
- *
- * @param {IVnode} oldVnode
- * @param {IVnode} newVnode
- * @param {IPatchList[]} patchList
- * @returns {void}
- */
-
-
-function diffNodeValue(oldVnode, newVnode, patchList) {
-  if (oldVnode.nodeValue !== newVnode.nodeValue) {
-    patchList.push({
-      type: 4,
-      node: oldVnode.node,
-      newValue: newVnode.nodeValue,
-      oldValue: oldVnode.nodeValue
-    });
-  }
-}
-/**
- * diff value of input, textarea, select for diff VNode
- *
- * type: 5 change value of input
- *
- * @param {IVnode} newVnode
- * @param {IVnode} oldVnode
- * @param {IPatchList[]} patchList
- * @returns {void}
- */
-
-
-function diffInputValue(oldVnode, newVnode, patchList) {
-  if (oldVnode.value !== newVnode.value) {
-    patchList.push({
-      type: 5,
-      node: oldVnode.node,
-      newValue: newVnode.value,
-      oldValue: oldVnode.value
-    });
-  }
-}
-/**
- * diff repeatData of repeat node
- *
- * type: 6 change repeatData of node
- *
- * @param {IVnode} newVnode
- * @param {IVnode} oldVnode
- * @param {IPatchList[]} patchList
- * @returns {void}
- */
-
-
-function diffRepeatData(oldVnode, newVnode, patchList) {
-  patchList.push({
-    type: 6,
-    node: oldVnode.node,
-    newValue: newVnode.repeatData
-  });
-}
-/**
- * diff event of node
- *
- * type: 7 change event of node
- * type: 8 change eventTypes of node
- *
- * @param {IVnode} oldVnode
- * @param {IVnode} newVnode
- * @param {IPatchList[]} patchList
- */
-
-
-function diffEventTypes(oldVnode, newVnode, patchList) {
-  var oEventTypes = JSON.parse(oldVnode.eventTypes);
-  var nEventTypes = JSON.parse(newVnode.eventTypes); // 全部更新为新的事件
-
-  if (nEventTypes && nEventTypes.length > 0) {
-    nEventTypes.forEach(function (neventType) {
-      patchList.push({
-        type: 7,
-        node: oldVnode.node,
-        eventType: neventType,
-        newValue: newVnode.node["event" + neventType]
-      });
-    });
-  }
-
-  if (oEventTypes && oEventTypes.length > 0) {
-    // 如果新事件不存在，则删除事件
-    // 如果新事件找不到旧事件中的事件，则把旧事件的事件删除
-    oEventTypes.forEach(function (oeventType) {
-      if (!nEventTypes || nEventTypes.length <= 0) {
-        patchList.push({
-          type: 7,
-          node: oldVnode.node,
-          eventType: oeventType,
-          newValue: null
-        });
-      }
-
-      if (nEventTypes && nEventTypes.length > 0 && !nEventTypes.find(function (neventType) {
-        return neventType === oeventType;
-      })) {
-        patchList.push({
-          type: 7,
-          node: oldVnode.node,
-          eventType: oeventType,
-          newValue: null
-        });
+    if (DESCRIPTORS) dP(C.prototype, 'size', {
+      get: function () {
+        return validate(this, NAME)[SIZE];
       }
     });
-  } // 最后要更新下 eventTypes，否则下次 oldVnode.eventTypes 将为最开始的eventTypes
-
-
-  patchList.push({
-    type: 8,
-    node: oldVnode.node,
-    newValue: newVnode.eventTypes
-  });
-}
-/**
- * diff two Vnode
- *
- * @param {IVnode} oldVnode
- * @param {IVnode} newVnode
- * @param {IPatchList[]} patchList
- * @returns {void}
- */
-
-
-function diffVnode(oldVnode, newVnode, patchList) {
-  if (!patchList) throw new Error('patchList can not be null, diffVnode must need an Array');
-
-  if (newVnode.type === 'document-fragment') {
-    diffChildNodes(oldVnode, newVnode, patchList);
-    return;
-  }
-
-  diffAttributes(oldVnode, newVnode, patchList);
-  diffNodeValue(oldVnode, newVnode, patchList);
-  if (oldVnode.tagName === 'INPUT' || oldVnode.tagName === 'TEXTAREA textarea' || oldVnode.tagName === 'INPUT') diffInputValue(oldVnode, newVnode, patchList);
-  diffRepeatData(oldVnode, newVnode, patchList);
-  diffEventTypes(oldVnode, newVnode, patchList); // 如果为组件，则停止对比内部元素，交由对应组件diff
-
-  if (newVnode.node.isComponent && oldVnode.node) {
-    oldVnode.node.isComponent = true;
-    return;
-  }
-
-  diffChildNodes(oldVnode, newVnode, patchList);
-}
-
-exports.default = diffVnode;
-},{}],"../../InDiv/src/VirtualDOM/render.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/**
- * renderVnode 对比完render node
- *
- * REMOVETAG: 0, 移除dom: 0
- * REMOVETAG: 1, 移动位置: 1
- * ADDATTRIBUTES: 2, 增加属性: 2
- * REPLACEATTRIBUTES: 3, 移除属性: 3
- * TEXT: 4, 更改文字: 4
- * value: 5, 更改 input textarea select value 的值: 5
- * value: 6, 更改 node 的 repeatData: 6, render过来的的被复制的值
- * value: 7, 更改 node 的 event: 7, 修改事件
- * value: 8, 更改 node 的 eventTypes: 8, 修改node的eventTypes
- *
- * @param [] patchList
- */
-
-function renderVnode(patchList) {
-  patchList.sort(function (a, b) {
-    if (a.type === b.type && a.newIndex && b.newIndex) return a.newIndex - b.newIndex;
-    return a.type - b.type;
-  });
-  patchList.forEach(function (patch) {
-    switch (patch.type) {
-      case 0:
-        patch.parentNode.removeChild(patch.node);
-        break;
-
-      case 1:
-        if (!(Array.from(patch.parentNode.children).indexOf(patch.oldVnode) === patch.newIndex)) {
-          if (patch.parentNode.contains(patch.oldVnode)) patch.parentNode.removeChild(patch.oldVnode);
-
-          if (patch.parentNode.childNodes[patch.newIndex]) {
-            patch.parentNode.insertBefore(patch.oldVnode, patch.parentNode.childNodes[patch.newIndex]);
-          } else {
-            patch.parentNode.appendChild(patch.oldVnode);
-          }
-        }
-
-        break;
-
-      case 2:
-        patch.node.setAttribute(patch.newValue.name, patch.newValue.value);
-        break;
-
-      case 3:
-        patch.node.removeAttribute(patch.oldValue.name);
-        break;
-
-      case 4:
-        patch.node.nodeValue = patch.newValue;
-        break;
-
-      case 5:
-        patch.node.value = patch.newValue;
-        break;
-
-      case 6:
-        patch.node.repeatData = patch.newValue;
-        break;
-
-      case 7:
-        patch.node["on" + patch.eventType] = patch.newValue;
-        break;
-
-      case 8:
-        patch.node.eventTypes = patch.newValue;
-        break;
-    }
-  });
-}
-
-exports.default = renderVnode;
-},{}],"../../InDiv/src/VirtualDOM/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var parse_1 = require("./parse");
-
-exports.parseToVnode = parse_1.default;
-
-var diff_1 = require("./diff");
-
-exports.diffVnode = diff_1.default;
-
-var render_1 = require("./render");
-
-exports.renderVnode = render_1.default;
-},{"./parse":"../../InDiv/src/VirtualDOM/parse.ts","./diff":"../../InDiv/src/VirtualDOM/diff.ts","./render":"../../InDiv/src/VirtualDOM/render.ts"}],"../../InDiv/src/CompileUtils/index.ts":[function(require,module,exports) {
-"use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/**
- * compile util for nv-repeat DOM
- *
- * @export
- * @class CompileUtilForRepeat
- */
-
-var CompileUtilForRepeat =
-/** @class */
-function () {
-  /**
-   * Creates an instance of CompileUtilForRepeat.
-   *
-   * @param {(Element | DocumentFragment)} [fragment]
-   * @memberof CompileUtilForRepeat
-   */
-  function CompileUtilForRepeat(fragment) {
-    this.$fragment = fragment;
-  }
-  /**
-   * get value by key and anthor value
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @param {string} key
-   * @returns {*}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype._getValueByValue = function (vm, exp, key) {
-    var valueList = exp.replace('()', '').split('.');
-    var value = vm;
-    valueList.forEach(function (v, index) {
-      if (v === key && index === 0) return;
-      value = value[v];
-    });
-    return value;
-  };
-  /**
-   * set value by key and anthor value
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @param {string} key
-   * @param {*} setValue
-   * @returns {*}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype._setValueByValue = function (vm, exp, key, setValue) {
-    var valueList = exp.replace('()', '').split('.');
-    var value = vm;
-    var lastKey;
-    valueList.forEach(function (v, index) {
-      if (v === key && index === 0) return lastKey = v;
-      if (index < valueList.length) lastKey = v;
-      if (index < valueList.length - 1) value = value[v];
-    });
-    if (lastKey) value[lastKey] = setValue;
-  };
-  /**
-   * get value of VM
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @returns {*}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype._getVMVal = function (vm, exp) {
-    var valueList = exp.replace('()', '').split('.');
-    var value = vm;
-    valueList.forEach(function (v) {
-      value = value[v];
-    });
-    return value;
-  };
-  /**
-   * get value by repeat value
-   *
-   * @param {*} val
-   * @param {string} exp
-   * @param {string} key
-   * @returns {*}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype._getVMRepeatVal = function (val, exp, key) {
-    var value;
-    var valueList = exp.replace('()', '').split('.');
-    valueList.forEach(function (v, index) {
-      if (v === key && index === 0) {
-        value = val;
-        return;
-      }
-
-      value = value[v];
-    });
-    return value;
-  };
-  /**
-   * get Function for vm
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @returns {Function}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtilForRepeat.prototype._getVMFunction = function (vm, exp) {
-    var fnList = exp.replace(/^(\@)/, '').replace(/\(.*\)/, '').split('.');
-    var fn = vm;
-    fnList.forEach(function (f) {
-      fn = fn[f];
-    });
-    return fn;
-  };
-  /**
-   * get Function arguments for vm
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @param {Element} node
-   * @param {string} key
-   * @param {*} val
-   * @returns {any[]}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype._getVMFunctionArguments = function (vm, exp, node, key, val) {
-    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
-    var argsList = [];
-    var utilVm = this;
-    args.forEach(function (arg) {
-      if (arg === '') return false;
-      if (arg === '$element') return argsList.push(node);
-      if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
-      if (/(state.).*/g.test(arg)) return argsList.push(utilVm._getVMVal(vm, arg));
-      if (/\'.*\'/g.test(arg)) return argsList.push(arg.match(/\'(.*)\'/)[1]);
-      if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList.push(Number(arg));
-      if (arg.indexOf(key) === 0 || arg.indexOf(key + ".") === 0) return argsList.push(utilVm._getVMRepeatVal(val, arg, key));
-
-      if (node.repeatData) {
-        // $index in this
-        Object.keys(node.repeatData).forEach(function (data) {
-          if (arg.indexOf(data) === 0 || arg.indexOf(data + ".") === 0) return argsList.push(utilVm._getValueByValue(node.repeatData[data], arg, data));
-        });
-      }
-    });
-    return argsList;
-  };
-  /**
-   * bind handler for nv irective
-   *
-   * @param {Element} node
-   * @param {string} [key]
-   * @param {string} [dir]
-   * @param {string} [exp]
-   * @param {number} [index]
-   * @param {*} [vm]
-   * @param {*} [watchValue]
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.bind = function (node, key, dir, exp, index, vm, watchValue, val) {
-    var repeatValue = node.repeatData[key];
-    var value;
-
-    if (/^(\@)/.test(exp)) {
-      if (dir === 'model') throw new Error("directive: nv-model can't use " + exp + " as value"); // if @Function need function return value
-
-      var fn = this._getVMFunction(vm, exp);
-
-      var argsList = this._getVMFunctionArguments(vm, exp, node, key, val);
-
-      value = fn.apply(vm, argsList);
-    } else if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
-      // repeat value
-      value = this._getVMRepeatVal(repeatValue, exp, key);
-    } else if (/(state.).*/.test(exp)) {
-      // normal value
-      value = this._getVMVal(vm, exp);
+    return C;
+  },
+  def: function (that, key, value) {
+    var entry = getEntry(that, key);
+    var prev, index;
+    // change existing entry
+    if (entry) {
+      entry.v = value;
+    // create new entry
     } else {
-      throw new Error("directive: nv-" + dir + " can't use recognize this value " + exp);
-    }
-
-    if (!node.hasChildNodes()) this.templateUpdater(node, repeatValue, key, vm);
-    var updaterFn = this[dir + "Updater"];
-
-    switch (dir) {
-      case 'model':
-        var watchData = void 0;
-
-        if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
-          watchData = watchValue;
-        } else {
-          watchData = this._getVMVal(vm, exp);
-        }
-
-        if (updaterFn) updaterFn.call(this, node, value, exp, key, index, watchData, vm);
-        break;
-
-      case 'text':
-        if (updaterFn) updaterFn.call(this, node, value);
-        break;
-
-      case 'html':
-        if (updaterFn) updaterFn.call(this, node, value);
-        break;
-
-      case 'if':
-        if (updaterFn) updaterFn.call(this, node, value);
-        break;
-
-      case 'class':
-        if (updaterFn) updaterFn.call(this, node, value);
-        break;
-
-      case 'key':
-        if (updaterFn) updaterFn.call(this, node, value);
-        break;
-
-      default:
-        this.commonUpdater.call(this, node, value, dir);
-    }
-  };
-  /**
-   * update text for {{}}
-   *
-   * @param {Element} node
-   * @param {*} [val]
-   * @param {string} [key]
-   * @param {*} [vm]
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.templateUpdater = function (node, val, key, vm) {
-    var text = node.textContent;
-    var reg = /\{\{(.*)\}\}/g;
-
-    if (reg.test(text)) {
-      var textList = text.match(/(\{\{[^\{\}]+?\}\})/g);
-
-      if (textList && textList.length > 0) {
-        for (var i = 0; i < textList.length; i++) {
-          var exp = textList[i].replace('{{', '').replace('}}', '');
-          var value = null;
-
-          if (/^(\@)/.test(exp)) {
-            var fn = this._getVMFunction(vm, exp);
-
-            var argsList = this._getVMFunctionArguments(vm, exp, node, key, val);
-
-            value = fn.apply(vm, argsList);
-          } else if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
-            value = this._getVMRepeatVal(val, exp, key);
-          } else if (/(state.).*/.test(exp)) {
-            value = this._getVMVal(vm, exp);
-          } else {
-            throw new Error("directive: {{.*}} can't use recognize " + exp);
-          }
-
-          node.textContent = node.textContent.replace(textList[i], value);
-        }
+      that._l = entry = {
+        i: index = fastKey(key, true), // <- index
+        k: key,                        // <- key
+        v: value,                      // <- value
+        p: prev = that._l,             // <- previous entry
+        n: undefined,                  // <- next entry
+        r: false                       // <- removed
+      };
+      if (!that._f) that._f = entry;
+      if (prev) prev.n = entry;
+      that[SIZE]++;
+      // add to index
+      if (index !== 'F') that._i[index] = entry;
+    } return that;
+  },
+  getEntry: getEntry,
+  setStrong: function (C, NAME, IS_MAP) {
+    // add .keys, .values, .entries, [@@iterator]
+    // 23.1.3.4, 23.1.3.8, 23.1.3.11, 23.1.3.12, 23.2.3.5, 23.2.3.8, 23.2.3.10, 23.2.3.11
+    $iterDefine(C, NAME, function (iterated, kind) {
+      this._t = validate(iterated, NAME); // target
+      this._k = kind;                     // kind
+      this._l = undefined;                // previous
+    }, function () {
+      var that = this;
+      var kind = that._k;
+      var entry = that._l;
+      // revert to the last existing entry
+      while (entry && entry.r) entry = entry.p;
+      // get next entry
+      if (!that._t || !(that._l = entry = entry ? entry.n : that._t._f)) {
+        // or finish the iteration
+        that._t = undefined;
+        return step(1);
       }
-    }
-  };
-  /**
-   * update value of input for nv-model
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @param {string} exp
-   * @param {string} key
-   * @param {number} index
-   * @param {*} watchData
-   * @param {*} vm
-   * @memberof CompileUtilForRepeat
-   */
+      // return step by kind
+      if (kind == 'keys') return step(0, entry.k);
+      if (kind == 'values') return step(0, entry.v);
+      return step(0, [entry.k, entry.v]);
+    }, IS_MAP ? 'entries' : 'values', !IS_MAP, true);
 
-
-  CompileUtilForRepeat.prototype.modelUpdater = function (node, value, exp, key, index, watchData, vm) {
-    node.value = typeof value === 'undefined' ? '' : value;
-    var utilVm = this;
-
-    var func = function func(event) {
-      event.preventDefault();
-
-      if (/(state.).*/.test(exp)) {
-        var val = exp.replace(/(state.)/, '');
-        if (event.target.value === watchData) return;
-        vm.state[val] = event.target.value;
-      } else if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
-        if (_typeof(watchData[index]) !== 'object') watchData[index] = event.target.value;
-
-        if (_typeof(watchData[index]) === 'object') {
-          var vals = utilVm._getValueByValue(watchData[index], exp, key);
-
-          vals = event.target.value;
-
-          utilVm._setValueByValue(watchData[index], exp, key, vals);
-        }
-      } else {
-        throw new Error('directive: nv-model can\'t use recognize this value');
-      }
-    };
-
-    node.oninput = func;
-    node.eventinput = func;
-
-    if (node.eventTypes) {
-      var eventlist = JSON.parse(node.eventTypes);
-      eventlist.push('input');
-      node.eventTypes = JSON.stringify(eventlist);
-    }
-
-    if (!node.eventTypes) node.eventTypes = JSON.stringify(['input']);
-  };
-  /**
-   * update text for nv-text
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @returns {void}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.textUpdater = function (node, value) {
-    if (node.tagName.toLocaleLowerCase() === 'input') return node.value = value;
-    node.textContent = typeof value === 'undefined' ? '' : value;
-  };
-  /**
-   * update html for nv-html
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.htmlUpdater = function (node, value) {
-    node.innerHTML = typeof value === 'undefined' ? '' : value;
-  };
-  /**
-   * remove or show DOM for nv-if
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.ifUpdater = function (node, value) {
-    if (!value && this.$fragment.contains(node)) this.$fragment.removeChild(node);
-  };
-  /**
-   * update class for nv-class
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @returns {void}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.classUpdater = function (node, value) {
-    if (!value) return;
-    var className = node.className;
-    className = className.replace(/\s$/, '');
-    var space = className && String(value) ? ' ' : '';
-    node.className = className + space + value;
-  };
-  /**
-   * update value of repeat node for nv-key
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.keyUpdater = function (node, value) {
-    node.indiv_repeat_key = value;
-  };
-  /**
-   * commonUpdater for nv directive except repeat model text html if class
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @param {string} dir
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtilForRepeat.prototype.commonUpdater = function (node, value, dir) {
-    if (value) node[dir] = value;
-    if (!value && node[dir]) node[dir] = null;
-  };
-  /**
-   * compile event and build eventType in DOM
-   *
-   * @param {Element} node
-   * @param {*} vm
-   * @param {string} exp
-   * @param {string} eventName
-   * @param {string} key
-   * @param {*} val
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.eventHandler = function (node, vm, exp, eventName, key, val) {
-    var eventType = eventName.split(':')[1];
-
-    var fn = this._getVMFunction(vm, exp);
-
-    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/ /g, '').split(',');
-    var utilVm = this;
-
-    var func = function func(event) {
-      var _this = this;
-
-      var argsList = [];
-      args.forEach(function (arg) {
-        if (arg === '') return false;
-        if (arg === '$event') return argsList.push(event);
-        if (arg === '$element') return argsList.push(node);
-        if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
-        if (/(state.).*/g.test(arg)) return argsList.push(utilVm._getVMVal(vm, arg));
-        if (/\'.*\'/g.test(arg)) return argsList.push(arg.match(/\'(.*)\'/)[1]);
-        if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList.push(Number(arg));
-        if (arg.indexOf(key) === 0 || arg.indexOf(key + ".") === 0) return argsList.push(utilVm._getVMRepeatVal(val, arg, key));
-
-        if (_this.repeatData) {
-          // $index in this
-          Object.keys(_this.repeatData).forEach(function (data) {
-            if (arg.indexOf(data) === 0 || arg.indexOf(data + ".") === 0) return argsList.push(utilVm._getValueByValue(_this.repeatData[data], arg, data));
-          });
-        }
-      });
-      fn.apply(vm, argsList);
-    };
-
-    if (eventType && fn) {
-      node["on" + eventType] = func;
-      node["event" + eventType] = func;
-
-      if (node.eventTypes) {
-        var eventlist = JSON.parse(node.eventTypes);
-        eventlist.push(eventType);
-        node.eventTypes = JSON.stringify(eventlist);
-      }
-
-      if (!node.eventTypes) node.eventTypes = JSON.stringify([eventType]);
-    }
-  };
-
-  return CompileUtilForRepeat;
-}();
-
-exports.CompileUtilForRepeat = CompileUtilForRepeat;
-/**
- * compile util for Compiler
- *
- * @export
- * @class CompileUtil
- */
-
-var CompileUtil =
-/** @class */
-function () {
-  /**
-   * Creates an instance of CompileUtil.
-   *
-   * @param {(Element | DocumentFragment)} [fragment]
-   *  @memberof CompileUtil
-   */
-  function CompileUtil(fragment) {
-    this.$fragment = fragment;
+    // add [@@species], 23.1.2.2, 23.2.2.2
+    setSpecies(NAME);
   }
-  /**
-   * get value by key and anthor value
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @param {string} key
-   * @returns {*}
-   * @memberof CompileUtil
-   */
+};
 
+},{"./_object-dp":"../../InDiv/node_modules/core-js/modules/_object-dp.js","./_object-create":"../../InDiv/node_modules/core-js/modules/_object-create.js","./_redefine-all":"../../InDiv/node_modules/core-js/modules/_redefine-all.js","./_ctx":"../../InDiv/node_modules/core-js/modules/_ctx.js","./_an-instance":"../../InDiv/node_modules/core-js/modules/_an-instance.js","./_for-of":"../../InDiv/node_modules/core-js/modules/_for-of.js","./_iter-define":"../../InDiv/node_modules/core-js/modules/_iter-define.js","./_iter-step":"../../InDiv/node_modules/core-js/modules/_iter-step.js","./_set-species":"../../InDiv/node_modules/core-js/modules/_set-species.js","./_descriptors":"../../InDiv/node_modules/core-js/modules/_descriptors.js","./_meta":"../../InDiv/node_modules/core-js/modules/_meta.js","./_validate-collection":"../../InDiv/node_modules/core-js/modules/_validate-collection.js"}],"../../InDiv/node_modules/core-js/modules/_object-pie.js":[function(require,module,exports) {
+exports.f = {}.propertyIsEnumerable;
 
-  CompileUtil.prototype._getValueByValue = function (vm, exp, key) {
-    var valueList = exp.replace('()', '').split('.');
-    var value = vm;
-    valueList.forEach(function (v, index) {
-      if (v === key && index === 0) return;
-      value = value[v];
+},{}],"../../InDiv/node_modules/core-js/modules/_object-gopd.js":[function(require,module,exports) {
+var pIE = require('./_object-pie');
+var createDesc = require('./_property-desc');
+var toIObject = require('./_to-iobject');
+var toPrimitive = require('./_to-primitive');
+var has = require('./_has');
+var IE8_DOM_DEFINE = require('./_ie8-dom-define');
+var gOPD = Object.getOwnPropertyDescriptor;
+
+exports.f = require('./_descriptors') ? gOPD : function getOwnPropertyDescriptor(O, P) {
+  O = toIObject(O);
+  P = toPrimitive(P, true);
+  if (IE8_DOM_DEFINE) try {
+    return gOPD(O, P);
+  } catch (e) { /* empty */ }
+  if (has(O, P)) return createDesc(!pIE.f.call(O, P), O[P]);
+};
+
+},{"./_object-pie":"../../InDiv/node_modules/core-js/modules/_object-pie.js","./_property-desc":"../../InDiv/node_modules/core-js/modules/_property-desc.js","./_to-iobject":"../../InDiv/node_modules/core-js/modules/_to-iobject.js","./_to-primitive":"../../InDiv/node_modules/core-js/modules/_to-primitive.js","./_has":"../../InDiv/node_modules/core-js/modules/_has.js","./_ie8-dom-define":"../../InDiv/node_modules/core-js/modules/_ie8-dom-define.js","./_descriptors":"../../InDiv/node_modules/core-js/modules/_descriptors.js"}],"../../InDiv/node_modules/core-js/modules/_set-proto.js":[function(require,module,exports) {
+// Works with __proto__ only. Old v8 can't work with null proto objects.
+/* eslint-disable no-proto */
+var isObject = require('./_is-object');
+var anObject = require('./_an-object');
+var check = function (O, proto) {
+  anObject(O);
+  if (!isObject(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
+};
+module.exports = {
+  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
+    function (test, buggy, set) {
+      try {
+        set = require('./_ctx')(Function.call, require('./_object-gopd').f(Object.prototype, '__proto__').set, 2);
+        set(test, []);
+        buggy = !(test instanceof Array);
+      } catch (e) { buggy = true; }
+      return function setPrototypeOf(O, proto) {
+        check(O, proto);
+        if (buggy) O.__proto__ = proto;
+        else set(O, proto);
+        return O;
+      };
+    }({}, false) : undefined),
+  check: check
+};
+
+},{"./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js","./_an-object":"../../InDiv/node_modules/core-js/modules/_an-object.js","./_ctx":"../../InDiv/node_modules/core-js/modules/_ctx.js","./_object-gopd":"../../InDiv/node_modules/core-js/modules/_object-gopd.js"}],"../../InDiv/node_modules/core-js/modules/_inherit-if-required.js":[function(require,module,exports) {
+var isObject = require('./_is-object');
+var setPrototypeOf = require('./_set-proto').set;
+module.exports = function (that, target, C) {
+  var S = target.constructor;
+  var P;
+  if (S !== C && typeof S == 'function' && (P = S.prototype) !== C.prototype && isObject(P) && setPrototypeOf) {
+    setPrototypeOf(that, P);
+  } return that;
+};
+
+},{"./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js","./_set-proto":"../../InDiv/node_modules/core-js/modules/_set-proto.js"}],"../../InDiv/node_modules/core-js/modules/_collection.js":[function(require,module,exports) {
+
+'use strict';
+var global = require('./_global');
+var $export = require('./_export');
+var redefine = require('./_redefine');
+var redefineAll = require('./_redefine-all');
+var meta = require('./_meta');
+var forOf = require('./_for-of');
+var anInstance = require('./_an-instance');
+var isObject = require('./_is-object');
+var fails = require('./_fails');
+var $iterDetect = require('./_iter-detect');
+var setToStringTag = require('./_set-to-string-tag');
+var inheritIfRequired = require('./_inherit-if-required');
+
+module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
+  var Base = global[NAME];
+  var C = Base;
+  var ADDER = IS_MAP ? 'set' : 'add';
+  var proto = C && C.prototype;
+  var O = {};
+  var fixMethod = function (KEY) {
+    var fn = proto[KEY];
+    redefine(proto, KEY,
+      KEY == 'delete' ? function (a) {
+        return IS_WEAK && !isObject(a) ? false : fn.call(this, a === 0 ? 0 : a);
+      } : KEY == 'has' ? function has(a) {
+        return IS_WEAK && !isObject(a) ? false : fn.call(this, a === 0 ? 0 : a);
+      } : KEY == 'get' ? function get(a) {
+        return IS_WEAK && !isObject(a) ? undefined : fn.call(this, a === 0 ? 0 : a);
+      } : KEY == 'add' ? function add(a) { fn.call(this, a === 0 ? 0 : a); return this; }
+        : function set(a, b) { fn.call(this, a === 0 ? 0 : a, b); return this; }
+    );
+  };
+  if (typeof C != 'function' || !(IS_WEAK || proto.forEach && !fails(function () {
+    new C().entries().next();
+  }))) {
+    // create collection constructor
+    C = common.getConstructor(wrapper, NAME, IS_MAP, ADDER);
+    redefineAll(C.prototype, methods);
+    meta.NEED = true;
+  } else {
+    var instance = new C();
+    // early implementations not supports chaining
+    var HASNT_CHAINING = instance[ADDER](IS_WEAK ? {} : -0, 1) != instance;
+    // V8 ~  Chromium 40- weak-collections throws on primitives, but should return false
+    var THROWS_ON_PRIMITIVES = fails(function () { instance.has(1); });
+    // most early implementations doesn't supports iterables, most modern - not close it correctly
+    var ACCEPT_ITERABLES = $iterDetect(function (iter) { new C(iter); }); // eslint-disable-line no-new
+    // for early implementations -0 and +0 not the same
+    var BUGGY_ZERO = !IS_WEAK && fails(function () {
+      // V8 ~ Chromium 42- fails only with 5+ elements
+      var $instance = new C();
+      var index = 5;
+      while (index--) $instance[ADDER](index, index);
+      return !$instance.has(-0);
     });
-    return value;
-  };
-  /**
-   * get value of VM
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @returns {*}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype._getVMVal = function (vm, exp) {
-    var valueList = exp.replace('()', '').split('.');
-    var value = vm;
-    valueList.forEach(function (v) {
-      value = value[v];
-    });
-    return value;
-  };
-  /**
-   * get value by repeat value
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @returns {void}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype._getVMRepeatVal = function (vm, exp) {
-    var vlList = exp.split(' ');
-
-    var value = this._getVMVal(vm, vlList[3]);
-
-    return value;
-  };
-  /**
-   * get Function for vm
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @returns {Function}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype._getVMFunction = function (vm, exp) {
-    var fnList = exp.replace(/^(\@)/, '').replace(/\(.*\)/, '').split('.');
-    var fn = vm;
-    fnList.forEach(function (f) {
-      fn = fn[f];
-    });
-    return fn;
-  };
-  /**
-   * get Function arguments for vm
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @param {Element} node
-   * @returns {any[]}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype._getVMFunctionArguments = function (vm, exp, node) {
-    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
-    var argsList = [];
-    args.forEach(function (arg) {
-      if (arg === '') return false;
-      if (arg === '$element') return argsList.push(node);
-      if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
-      if (/(state.).*/g.test(arg)) return argsList.push(new CompileUtil()._getVMVal(vm, arg));
-      if (/\'.*\'/g.test(arg)) return argsList.push(arg.match(/\'(.*)\'/)[1]);
-      if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList.push(Number(arg));
-    });
-    return argsList;
-  };
-  /**
-   * bind handler for nv irective
-   *
-   * if node is repeat node and it will break compile and into CompileUtilForRepeat
-   *
-   * @param {Element} node
-   * @param {*} vm
-   * @param {string} exp
-   * @param {string} dir
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.bind = function (node, vm, exp, dir) {
-    var updaterFn = this[dir + "Updater"];
-    var isRepeatNode = this.isRepeatNode(node);
-
-    if (isRepeatNode) {
-      // compile repeatNode's attributes
-      switch (dir) {
-        case 'repeat':
-          if (updaterFn) updaterFn.call(this, node, this._getVMRepeatVal(vm, exp), exp, vm);
-          break;
-      }
-    } else {
-      var value = null; // for @Function(arg)
-
-      if (/^(\@)/.test(exp)) {
-        if (dir === 'model') throw new Error("directive: nv-model can't use " + exp + " as value"); // if @Function need function return value
-
-        var fn = this._getVMFunction(vm, exp);
-
-        var argsList = this._getVMFunctionArguments(vm, exp, node);
-
-        value = fn.apply(vm, argsList);
-      } else if (/(state.).*/.test(exp)) {
-        // normal value
-        value = this._getVMVal(vm, exp);
-      } else {
-        throw new Error("directive: nv-" + dir + " can't use recognize this value " + exp);
-      } // compile unrepeatNode's attributes
-
-
-      switch (dir) {
-        case 'model':
-          if (updaterFn) updaterFn.call(this, node, value, exp, vm);
-          break;
-
-        case 'text':
-          if (updaterFn) updaterFn.call(this, node, value);
-          break;
-
-        case 'html':
-          if (updaterFn) updaterFn.call(this, node, value);
-          break;
-
-        case 'if':
-          if (updaterFn) updaterFn.call(this, node, value);
-          break;
-
-        case 'class':
-          if (updaterFn) updaterFn.call(this, node, value);
-          break;
-
-        case 'key':
-          if (updaterFn) updaterFn.call(this, node, value);
-          break;
-
-        default:
-          this.commonUpdater.call(this, node, value, dir);
-      }
-
-      node.removeAttribute("nv-" + dir);
+    if (!ACCEPT_ITERABLES) {
+      C = wrapper(function (target, iterable) {
+        anInstance(target, C, NAME);
+        var that = inheritIfRequired(new Base(), target, C);
+        if (iterable != undefined) forOf(iterable, IS_MAP, that[ADDER], that);
+        return that;
+      });
+      C.prototype = proto;
+      proto.constructor = C;
     }
-  };
-  /**
-   * update text for {{}}
-   *
-   * @param {*} node
-   * @param {*} vm
-   * @param {string} exp
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.templateUpdater = function (node, vm, exp) {
-    var _exp = exp.replace('{{', '').replace('}}', '');
-
-    var value = null;
-
-    if (/^(\@)/.test(_exp)) {
-      var fn = this._getVMFunction(vm, _exp);
-
-      var argsList = this._getVMFunctionArguments(vm, _exp, node);
-
-      value = fn.apply(vm, argsList);
-    } else if (/(state.).*/.test(exp)) {
-      value = this._getVMVal(vm, _exp);
-    } else {
-      throw new Error('directive: {{.*}} can\'t use recognize this value');
+    if (THROWS_ON_PRIMITIVES || BUGGY_ZERO) {
+      fixMethod('delete');
+      fixMethod('has');
+      IS_MAP && fixMethod('get');
     }
+    if (BUGGY_ZERO || HASNT_CHAINING) fixMethod(ADDER);
+    // weak collections should not contains .clear method
+    if (IS_WEAK && proto.clear) delete proto.clear;
+  }
 
-    node.textContent = node.textContent.replace(exp, value);
-  };
-  /**
-   * update value of input for nv-model
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @param {string} exp
-   * @param {*} vm
-   * @memberof CompileUtil
-   */
+  setToStringTag(C, NAME);
+
+  O[NAME] = C;
+  $export($export.G + $export.W + $export.F * (C != Base), O);
+
+  if (!IS_WEAK) common.setStrong(C, NAME, IS_MAP);
+
+  return C;
+};
+
+},{"./_global":"../../InDiv/node_modules/core-js/modules/_global.js","./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_redefine":"../../InDiv/node_modules/core-js/modules/_redefine.js","./_redefine-all":"../../InDiv/node_modules/core-js/modules/_redefine-all.js","./_meta":"../../InDiv/node_modules/core-js/modules/_meta.js","./_for-of":"../../InDiv/node_modules/core-js/modules/_for-of.js","./_an-instance":"../../InDiv/node_modules/core-js/modules/_an-instance.js","./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js","./_fails":"../../InDiv/node_modules/core-js/modules/_fails.js","./_iter-detect":"../../InDiv/node_modules/core-js/modules/_iter-detect.js","./_set-to-string-tag":"../../InDiv/node_modules/core-js/modules/_set-to-string-tag.js","./_inherit-if-required":"../../InDiv/node_modules/core-js/modules/_inherit-if-required.js"}],"../../InDiv/node_modules/core-js/modules/es6.map.js":[function(require,module,exports) {
+'use strict';
+var strong = require('./_collection-strong');
+var validate = require('./_validate-collection');
+var MAP = 'Map';
+
+// 23.1 Map Objects
+module.exports = require('./_collection')(MAP, function (get) {
+  return function Map() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
+}, {
+  // 23.1.3.6 Map.prototype.get(key)
+  get: function get(key) {
+    var entry = strong.getEntry(validate(this, MAP), key);
+    return entry && entry.v;
+  },
+  // 23.1.3.9 Map.prototype.set(key, value)
+  set: function set(key, value) {
+    return strong.def(validate(this, MAP), key === 0 ? 0 : key, value);
+  }
+}, strong, true);
+
+},{"./_collection-strong":"../../InDiv/node_modules/core-js/modules/_collection-strong.js","./_validate-collection":"../../InDiv/node_modules/core-js/modules/_validate-collection.js","./_collection":"../../InDiv/node_modules/core-js/modules/_collection.js"}],"../../InDiv/node_modules/core-js/modules/_species-constructor.js":[function(require,module,exports) {
+// 7.3.20 SpeciesConstructor(O, defaultConstructor)
+var anObject = require('./_an-object');
+var aFunction = require('./_a-function');
+var SPECIES = require('./_wks')('species');
+module.exports = function (O, D) {
+  var C = anObject(O).constructor;
+  var S;
+  return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
+};
+
+},{"./_an-object":"../../InDiv/node_modules/core-js/modules/_an-object.js","./_a-function":"../../InDiv/node_modules/core-js/modules/_a-function.js","./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js"}],"../../InDiv/node_modules/core-js/modules/_invoke.js":[function(require,module,exports) {
+// fast apply, http://jsperf.lnkit.com/fast-apply/5
+module.exports = function (fn, args, that) {
+  var un = that === undefined;
+  switch (args.length) {
+    case 0: return un ? fn()
+                      : fn.call(that);
+    case 1: return un ? fn(args[0])
+                      : fn.call(that, args[0]);
+    case 2: return un ? fn(args[0], args[1])
+                      : fn.call(that, args[0], args[1]);
+    case 3: return un ? fn(args[0], args[1], args[2])
+                      : fn.call(that, args[0], args[1], args[2]);
+    case 4: return un ? fn(args[0], args[1], args[2], args[3])
+                      : fn.call(that, args[0], args[1], args[2], args[3]);
+  } return fn.apply(that, args);
+};
+
+},{}],"../../InDiv/node_modules/core-js/modules/_task.js":[function(require,module,exports) {
 
 
-  CompileUtil.prototype.modelUpdater = function (node, value, exp, vm) {
-    node.value = typeof value === 'undefined' ? '' : value;
-    var val = exp.replace(/(state.)/, '');
-
-    var func = function func(event) {
-      event.preventDefault();
-      if (/(state.).*/.test(exp)) vm.state[val] = event.target.value;
+var ctx = require('./_ctx');
+var invoke = require('./_invoke');
+var html = require('./_html');
+var cel = require('./_dom-create');
+var global = require('./_global');
+var process = global.process;
+var setTask = global.setImmediate;
+var clearTask = global.clearImmediate;
+var MessageChannel = global.MessageChannel;
+var Dispatch = global.Dispatch;
+var counter = 0;
+var queue = {};
+var ONREADYSTATECHANGE = 'onreadystatechange';
+var defer, channel, port;
+var run = function () {
+  var id = +this;
+  // eslint-disable-next-line no-prototype-builtins
+  if (queue.hasOwnProperty(id)) {
+    var fn = queue[id];
+    delete queue[id];
+    fn();
+  }
+};
+var listener = function (event) {
+  run.call(event.data);
+};
+// Node.js 0.9+ & IE10+ has setImmediate, otherwise:
+if (!setTask || !clearTask) {
+  setTask = function setImmediate(fn) {
+    var args = [];
+    var i = 1;
+    while (arguments.length > i) args.push(arguments[i++]);
+    queue[++counter] = function () {
+      // eslint-disable-next-line no-new-func
+      invoke(typeof fn == 'function' ? fn : Function(fn), args);
     };
-
-    node.oninput = func;
-    node.eventinput = func;
-
-    if (node.eventTypes) {
-      var eventlist = JSON.parse(node.eventTypes);
-      eventlist.push('input');
-      node.eventTypes = JSON.stringify(eventlist);
-    }
-
-    if (!node.eventTypes) node.eventTypes = JSON.stringify(['input']);
+    defer(counter);
+    return counter;
   };
-  /**
-   * update text for nv-text
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @returns {void}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.textUpdater = function (node, value) {
-    if (node.tagName.toLocaleLowerCase() === 'input') return node.value = value;
-    node.textContent = typeof value === 'undefined' ? '' : value;
+  clearTask = function clearImmediate(id) {
+    delete queue[id];
   };
-  /**
-   * update html for nv-html
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.htmlUpdater = function (node, value) {
-    node.innerHTML = typeof value === 'undefined' ? '' : value;
-  };
-  /**
-   * remove or show DOM for nv-if
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.ifUpdater = function (node, value) {
-    if (!value && this.$fragment.contains(node)) this.$fragment.removeChild(node);
-  };
-  /**
-   * update class for nv-class
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @returns {void}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.classUpdater = function (node, value) {
-    if (!value) return;
-    var className = node.className;
-    className = className.replace(/\s$/, '');
-    var space = className && String(value) ? ' ' : '';
-    node.className = className + space + value;
-  };
-  /**
-   * update value of repeat node for nv-key
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtil.prototype.keyUpdater = function (node, value) {
-    node.indiv_repeat_key = value;
-  };
-  /**
-   * commonUpdater for nv directive except repeat model text html if class
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @param {string} dir
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.commonUpdater = function (node, value, dir) {
-    if (value) node[dir] = value;
-    if (!value && node[dir]) node[dir] = null;
-  };
-  /**
-   * update repeat DOM for nv-repeat
-   *
-   * if it has child and it will into repeatChildrenUpdater
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @param {string} expFather
-   * @param {*} vm
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.repeatUpdater = function (node, value, expFather, vm) {
-    var _this = this;
-
-    if (!value) return;
-    if (value && !(value instanceof Array)) throw new Error('compile error: nv-repeat need an Array!');
-    var key = expFather.split(' ')[1];
-    value.forEach(function (val, index) {
-      var repeatData = {};
-      repeatData[key] = val;
-      repeatData.$index = index;
-
-      var newElement = _this.cloneNode(node, repeatData);
-
-      var nodeAttrs = newElement.attributes;
-      var text = newElement.textContent;
-      var reg = /\{\{(.*)\}\}/g;
-
-      _this.$fragment.insertBefore(newElement, node);
-
-      newElement.removeAttribute('nv-repeat');
-      if (_this.isTextNode(newElement) && reg.test(text)) new CompileUtilForRepeat(_this.$fragment).templateUpdater(newElement, val, key, vm);
-
-      if (nodeAttrs) {
-        Array.from(nodeAttrs).forEach(function (attr) {
-          var attrName = attr.name;
-
-          if (_this.isDirective(attrName) && attrName !== 'nv-repeat') {
-            var dir = attrName.substring(3);
-            var exp = attr.value;
-
-            if (_this.isEventDirective(dir)) {
-              new CompileUtilForRepeat(_this.$fragment).eventHandler(newElement, vm, exp, dir, key, val);
-            } else {
-              new CompileUtilForRepeat(_this.$fragment).bind(newElement, key, dir, exp, index, vm, value, val);
-            }
-
-            newElement.removeAttribute(attrName);
-          }
-        });
-      } // first insert node before repeatnode, and remove repeatnode in Compile
-
-
-      if (newElement.hasChildNodes() && _this.$fragment.contains(newElement)) _this.repeatChildrenUpdater(newElement, val, expFather, index, vm, value);
-    });
-  };
-  /**
-   * update child of nv-repeat DOM
-   *
-   * if child is an nv-repeat DOM, it will into CompileUtil repeatUpdater
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @param {string} expFather
-   * @param {number} index
-   * @param {*} vm
-   * @param {*} watchValue
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.repeatChildrenUpdater = function (node, value, expFather, index, vm, watchValue) {
-    var _this = this;
-
-    var key = expFather.split(' ')[1];
-    Array.from(node.childNodes).forEach(function (child) {
-      if (_this.isElementNode(child) && vm.$components.find(function (component) {
-        return component.$selector === child.tagName.toLocaleLowerCase();
-      })) child.isComponent = true;
-      child.repeatData = node.repeatData || {};
-      child.repeatData[key] = value;
-      child.repeatData.$index = index;
-      if (_this.isRepeatProp(child)) child.setAttribute("_prop-" + key, JSON.stringify(value));
-      var nodeAttrs = child.attributes;
-      var text = child.textContent;
-      var reg = /\{\{(.*)\}\}/g;
-      if (_this.isTextNode(child) && reg.test(text)) new CompileUtilForRepeat(node).templateUpdater(child, value, key, vm);
-
-      if (nodeAttrs) {
-        Array.from(nodeAttrs).forEach(function (attr) {
-          var attrName = attr.name;
-          var exp = attr.value;
-          var dir = attrName.substring(3);
-
-          if (_this.isDirective(attrName) && attrName !== 'nv-repeat' && new RegExp("(^" + key + ")|(^state)|(^@)").test(exp)) {
-            if (_this.isEventDirective(dir)) {
-              new CompileUtilForRepeat(node).eventHandler(child, vm, exp, dir, key, value);
-            } else {
-              new CompileUtilForRepeat(node).bind(child, key, dir, exp, index, vm, watchValue, value);
-            }
-
-            child.removeAttribute(attrName);
-          }
-        });
-      }
-
-      if (child.hasChildNodes() && !_this.isRepeatNode(child) && node.contains(child)) _this.repeatChildrenUpdater(child, value, expFather, index, vm, watchValue);
-      var newAttrs = child.attributes;
-
-      if (newAttrs && node.contains(child)) {
-        var restRepeat = Array.from(newAttrs).find(function (attr) {
-          return _this.isDirective(attr.name) && attr.name === 'nv-repeat';
-        });
-
-        if (restRepeat) {
-          var newWatchData = restRepeat.value.split(' ')[3]; // first compile and then remove repeatNode
-
-          if (/^(state\.)/.test(newWatchData)) {
-            new CompileUtil(node).bind(child, vm, restRepeat.value, restRepeat.name.substring(3));
-            if (node.contains(child)) node.removeChild(child);
-          }
-
-          if (new RegExp("(^" + key + ")").test(newWatchData)) {
-            new CompileUtil(node).repeatUpdater(child, _this._getValueByValue(value, newWatchData, key), restRepeat.value, vm);
-            if (node.contains(child)) node.removeChild(child);
-          }
-
-          node.removeAttribute('nv-repeat');
-        }
-      }
-    });
-  };
-  /**
-   * compile event and build eventType in DOM
-   *
-   * @param {Element} node
-   * @param {*} vm
-   * @param {string} exp
-   * @param {string} eventName
-   * @memberof Compile
-   */
-
-
-  CompileUtil.prototype.eventHandler = function (node, vm, exp, eventName) {
-    var eventType = eventName.split(':')[1];
-
-    var fn = this._getVMFunction(vm, exp);
-
-    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
-
-    var func = function func(event) {
-      var argsList = [];
-      args.forEach(function (arg) {
-        if (arg === '') return false;
-        if (arg === '$event') return argsList.push(event);
-        if (arg === '$element') return argsList.push(node);
-        if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
-        if (/(state.).*/g.test(arg)) return argsList.push(new CompileUtil()._getVMVal(vm, arg));
-        if (/\'.*\'/g.test(arg)) return argsList.push(arg.match(/\'(.*)\'/)[1]);
-        if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList.push(Number(arg));
-      });
-      fn.apply(vm, argsList);
+  // Node.js 0.8-
+  if (require('./_cof')(process) == 'process') {
+    defer = function (id) {
+      process.nextTick(ctx(run, id, 1));
     };
+  // Sphere (JS game engine) Dispatch API
+  } else if (Dispatch && Dispatch.now) {
+    defer = function (id) {
+      Dispatch.now(ctx(run, id, 1));
+    };
+  // Browsers with MessageChannel, includes WebWorkers
+  } else if (MessageChannel) {
+    channel = new MessageChannel();
+    port = channel.port2;
+    channel.port1.onmessage = listener;
+    defer = ctx(port.postMessage, port, 1);
+  // Browsers with postMessage, skip WebWorkers
+  // IE8 has postMessage, but it's sync & typeof its postMessage is 'object'
+  } else if (global.addEventListener && typeof postMessage == 'function' && !global.importScripts) {
+    defer = function (id) {
+      global.postMessage(id + '', '*');
+    };
+    global.addEventListener('message', listener, false);
+  // IE8-
+  } else if (ONREADYSTATECHANGE in cel('script')) {
+    defer = function (id) {
+      html.appendChild(cel('script'))[ONREADYSTATECHANGE] = function () {
+        html.removeChild(this);
+        run.call(id);
+      };
+    };
+  // Rest old browsers
+  } else {
+    defer = function (id) {
+      setTimeout(ctx(run, id, 1), 0);
+    };
+  }
+}
+module.exports = {
+  set: setTask,
+  clear: clearTask
+};
 
-    if (eventType && fn) {
-      node["on" + eventType] = func;
-      node["event" + eventType] = func;
+},{"./_ctx":"../../InDiv/node_modules/core-js/modules/_ctx.js","./_invoke":"../../InDiv/node_modules/core-js/modules/_invoke.js","./_html":"../../InDiv/node_modules/core-js/modules/_html.js","./_dom-create":"../../InDiv/node_modules/core-js/modules/_dom-create.js","./_global":"../../InDiv/node_modules/core-js/modules/_global.js","./_cof":"../../InDiv/node_modules/core-js/modules/_cof.js"}],"../../InDiv/node_modules/core-js/modules/_microtask.js":[function(require,module,exports) {
 
-      if (node.eventTypes) {
-        var eventlist = JSON.parse(node.eventTypes);
-        eventlist.push(eventType);
-        node.eventTypes = JSON.stringify(eventlist);
+
+var global = require('./_global');
+var macrotask = require('./_task').set;
+var Observer = global.MutationObserver || global.WebKitMutationObserver;
+var process = global.process;
+var Promise = global.Promise;
+var isNode = require('./_cof')(process) == 'process';
+
+module.exports = function () {
+  var head, last, notify;
+
+  var flush = function () {
+    var parent, fn;
+    if (isNode && (parent = process.domain)) parent.exit();
+    while (head) {
+      fn = head.fn;
+      head = head.next;
+      try {
+        fn();
+      } catch (e) {
+        if (head) notify();
+        else last = undefined;
+        throw e;
       }
-
-      if (!node.eventTypes) node.eventTypes = JSON.stringify([eventType]);
-    }
-  };
-  /**
-   * judge attribute is nv directive or not
-   *
-   * @param {string} attr
-   * @returns {boolean}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.isDirective = function (attr) {
-    return attr.indexOf('nv-') === 0;
-  };
-  /**
-   * judge attribute is nv event directive or not
-   *
-   * @param {string} event
-   * @returns {boolean}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.isEventDirective = function (event) {
-    return event.indexOf('on') === 0;
-  };
-  /**
-   * judge DOM is a element node or not
-   *
-   * @param {Element} node
-   * @returns {boolean}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.isElementNode = function (node) {
-    return node.nodeType === 1;
-  };
-  /**
-   * judge DOM is nv-repeat DOM or not
-   *
-   * @param {Element} node
-   * @returns {boolean}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.isRepeatNode = function (node) {
-    var nodeAttrs = node.attributes;
-    var result = false;
-
-    if (nodeAttrs) {
-      Array.from(nodeAttrs).forEach(function (attr) {
-        var attrName = attr.name;
-        if (attrName === 'nv-repeat') result = true;
-      });
-    }
-
-    return result;
-  };
-  /**
-   * judge DOM is a Component DOM in a repeat DOM or not
-   *
-   * @param {Element} node
-   * @returns {boolean}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.isRepeatProp = function (node) {
-    var nodeAttrs = node.attributes;
-    var result = false;
-    if (nodeAttrs) return !!Array.from(nodeAttrs).find(function (attr) {
-      return /^\{(.+)\}$/.test(attr.value);
-    });
-    return result;
-  };
-  /**
-   * judge DOM is text node or not
-   *
-   * @param {Element} node
-   * @returns {boolean}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.isTextNode = function (node) {
-    return node.nodeType === 3;
-  };
-  /**
-   * clone Node and clone it event
-   *
-   * event by attribute in DOM: eventTypes
-   * repeat data by attribute in DOM: repeatData
-   * isComponent: clone Component need add isComponent=true
-   *
-   * @param {Element} node
-   * @param {*} [repeatData]
-   * @returns {Node}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.cloneNode = function (node, repeatData) {
-    var newElement = node.cloneNode(true);
-
-    if (node.eventTypes) {
-      JSON.parse(node.eventTypes).forEach(function (eventType) {
-        newElement["on" + eventType] = node["event" + eventType];
-        newElement["event" + eventType] = node["event" + eventType];
-      });
-      newElement.eventTypes = node.eventTypes;
-    }
-
-    if (repeatData) newElement.repeatData = repeatData;
-    if (node.isComponent) newElement.isComponent = true;
-    return newElement;
+    } last = undefined;
+    if (parent) parent.enter();
   };
 
-  return CompileUtil;
-}();
+  // Node.js
+  if (isNode) {
+    notify = function () {
+      process.nextTick(flush);
+    };
+  // browsers with MutationObserver, except iOS Safari - https://github.com/zloirock/core-js/issues/339
+  } else if (Observer && !(global.navigator && global.navigator.standalone)) {
+    var toggle = true;
+    var node = document.createTextNode('');
+    new Observer(flush).observe(node, { characterData: true }); // eslint-disable-line no-new
+    notify = function () {
+      node.data = toggle = !toggle;
+    };
+  // environments with maybe non-completely correct, but existent Promise
+  } else if (Promise && Promise.resolve) {
+    // Promise.resolve without an argument throws an error in LG WebOS 2
+    var promise = Promise.resolve(undefined);
+    notify = function () {
+      promise.then(flush);
+    };
+  // for other environments - macrotask based on:
+  // - setImmediate
+  // - MessageChannel
+  // - window.postMessag
+  // - onreadystatechange
+  // - setTimeout
+  } else {
+    notify = function () {
+      // strange IE + webpack dev server bug - use .call(global)
+      macrotask.call(global, flush);
+    };
+  }
 
-exports.CompileUtil = CompileUtil;
-},{}],"../../InDiv/src/Compile/index.ts":[function(require,module,exports) {
-"use strict";
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
+  return function (fn) {
+    var task = { fn: fn, next: undefined };
+    if (last) last.next = task;
+    if (!head) {
+      head = task;
+      notify();
+    } last = task;
   };
 };
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+},{"./_global":"../../InDiv/node_modules/core-js/modules/_global.js","./_task":"../../InDiv/node_modules/core-js/modules/_task.js","./_cof":"../../InDiv/node_modules/core-js/modules/_cof.js"}],"../../InDiv/node_modules/core-js/modules/_new-promise-capability.js":[function(require,module,exports) {
+'use strict';
+// 25.4.1.5 NewPromiseCapability(C)
+var aFunction = require('./_a-function');
 
-var VirtualDOM_1 = require("../VirtualDOM");
+function PromiseCapability(C) {
+  var resolve, reject;
+  this.promise = new C(function ($$resolve, $$reject) {
+    if (resolve !== undefined || reject !== undefined) throw TypeError('Bad Promise constructor');
+    resolve = $$resolve;
+    reject = $$reject;
+  });
+  this.resolve = aFunction(resolve);
+  this.reject = aFunction(reject);
+}
 
-var Utils_1 = __importDefault(require("../Utils"));
+module.exports.f = function (C) {
+  return new PromiseCapability(C);
+};
 
-var CompileUtils_1 = require("../CompileUtils");
-
-var utils = new Utils_1.default();
-/**
- * main compiler
- *
- * @class Compile
- */
-
-var Compile =
-/** @class */
-function () {
-  /**
-   * Creates an instance of Compile.
-   * @param {(string | Element)} el
-   * @param {*} vm
-   * @param {Element} [routerRenderDom]
-   * @memberof Compile
-   */
-  function Compile(el, vm, routerRenderDom) {
-    this.$vm = vm;
-    this.$el = this.isElementNode(el) ? el : document.querySelector(el);
-
-    if (this.$el) {
-      this.$fragment = this.node2Fragment();
-      this.init();
-
-      if (routerRenderDom) {
-        // replace routeDom
-        var newRouterRenderDom = this.$fragment.querySelectorAll(this.$vm.$vm.$routeDOMKey)[0];
-        newRouterRenderDom.parentNode.replaceChild(routerRenderDom, newRouterRenderDom);
-      }
-
-      var oldVnode = VirtualDOM_1.parseToVnode(this.$el);
-      var newVnode = VirtualDOM_1.parseToVnode(this.$fragment);
-      var patchList = [];
-      VirtualDOM_1.diffVnode(oldVnode, newVnode, patchList);
-      VirtualDOM_1.renderVnode(patchList);
-      this.$fragment = null;
-      oldVnode = null;
-      newVnode = null;
-      patchList = null;
-    }
+},{"./_a-function":"../../InDiv/node_modules/core-js/modules/_a-function.js"}],"../../InDiv/node_modules/core-js/modules/_perform.js":[function(require,module,exports) {
+module.exports = function (exec) {
+  try {
+    return { e: false, v: exec() };
+  } catch (e) {
+    return { e: true, v: e };
   }
-  /**
-   * init compile
-   *
-   * @memberof Compile
-   */
+};
+
+},{}],"../../InDiv/node_modules/core-js/modules/_user-agent.js":[function(require,module,exports) {
+
+var global = require('./_global');
+var navigator = global.navigator;
+
+module.exports = navigator && navigator.userAgent || '';
+
+},{"./_global":"../../InDiv/node_modules/core-js/modules/_global.js"}],"../../InDiv/node_modules/core-js/modules/_promise-resolve.js":[function(require,module,exports) {
+var anObject = require('./_an-object');
+var isObject = require('./_is-object');
+var newPromiseCapability = require('./_new-promise-capability');
+
+module.exports = function (C, x) {
+  anObject(C);
+  if (isObject(x) && x.constructor === C) return x;
+  var promiseCapability = newPromiseCapability.f(C);
+  var resolve = promiseCapability.resolve;
+  resolve(x);
+  return promiseCapability.promise;
+};
+
+},{"./_an-object":"../../InDiv/node_modules/core-js/modules/_an-object.js","./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js","./_new-promise-capability":"../../InDiv/node_modules/core-js/modules/_new-promise-capability.js"}],"../../InDiv/node_modules/core-js/modules/es6.promise.js":[function(require,module,exports) {
 
 
-  Compile.prototype.init = function () {
-    this.compileElement(this.$fragment);
-  };
-  /**
-   * compile element
-   *
-   * @param {DocumentFragment} fragment
-   * @memberof Compile
-   */
+'use strict';
+var LIBRARY = require('./_library');
+var global = require('./_global');
+var ctx = require('./_ctx');
+var classof = require('./_classof');
+var $export = require('./_export');
+var isObject = require('./_is-object');
+var aFunction = require('./_a-function');
+var anInstance = require('./_an-instance');
+var forOf = require('./_for-of');
+var speciesConstructor = require('./_species-constructor');
+var task = require('./_task').set;
+var microtask = require('./_microtask')();
+var newPromiseCapabilityModule = require('./_new-promise-capability');
+var perform = require('./_perform');
+var userAgent = require('./_user-agent');
+var promiseResolve = require('./_promise-resolve');
+var PROMISE = 'Promise';
+var TypeError = global.TypeError;
+var process = global.process;
+var versions = process && process.versions;
+var v8 = versions && versions.v8 || '';
+var $Promise = global[PROMISE];
+var isNode = classof(process) == 'process';
+var empty = function () { /* empty */ };
+var Internal, newGenericPromiseCapability, OwnPromiseCapability, Wrapper;
+var newPromiseCapability = newGenericPromiseCapability = newPromiseCapabilityModule.f;
 
-
-  Compile.prototype.compileElement = function (fragment) {
-    var elementCreated = document.createElement('div');
-    elementCreated.innerHTML = utils.formatInnerHTML(this.$vm.$template);
-    var childNodes = elementCreated.childNodes;
-    this.recursiveDOM(childNodes, fragment);
-  };
-  /**
-   * recursive DOM for New State
-   *
-   * @param {(NodeListOf<Node & ChildNode>)} childNodes
-   * @param {(DocumentFragment | Element)} fragment
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.recursiveDOM = function (childNodes, fragment) {
-    var _this = this;
-
-    Array.from(childNodes).forEach(function (node) {
-      if (_this.isElementNode(node) && _this.$vm.$components.find(function (component) {
-        return component.$selector === node.tagName.toLocaleLowerCase();
-      })) node.isComponent = true;
-      if (node.hasChildNodes() && !_this.isRepeatNode(node)) _this.recursiveDOM(node.childNodes, node);
-      fragment.appendChild(node);
-      var text = node.textContent;
-      var reg = /\{\{(.*)\}\}/g;
-      if (_this.isElementNode(node)) _this.compile(node, fragment);
-
-      if (_this.isTextNode(node) && reg.test(text)) {
-        var textList = text.match(/(\{\{[^\{\}]+?\}\})/g);
-
-        if (textList && textList.length > 0) {
-          for (var i = 0; i < textList.length; i++) {
-            _this.compileText(node, textList[i]);
-          }
-        }
-      } // after compile repeatNode, remove repeatNode
-
-
-      if (_this.isRepeatNode(node) && fragment.contains(node)) fragment.removeChild(node);
-    });
-  };
-  /**
-   * compile string to DOM
-   *
-   * @param {Element} node
-   * @param {(DocumentFragment | Element)} fragment
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.compile = function (node, fragment) {
-    var _this = this;
-
-    var nodeAttrs = node.attributes;
-
-    if (nodeAttrs) {
-      Array.from(nodeAttrs).forEach(function (attr) {
-        var attrName = attr.name;
-
-        if (_this.isDirective(attrName)) {
-          var dir = attrName.substring(3);
-          var exp = attr.value;
-          var compileUtil = new CompileUtils_1.CompileUtil(fragment);
-
-          if (_this.isEventDirective(dir)) {
-            compileUtil.eventHandler(node, _this.$vm, exp, dir);
-            node.removeAttribute(attrName);
-          } else {
-            compileUtil.bind(node, _this.$vm, exp, dir);
-          }
-        }
-      });
-    }
-  };
-  /**
-   * create document fragment
-   *
-   * @returns {DocumentFragment}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.node2Fragment = function () {
-    return document.createDocumentFragment();
-  };
-  /**
-   * compile text and use CompileUtil templateUpdater
-   *
-   * @param {Element} node
-   * @param {string} exp
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.compileText = function (node, exp) {
-    new CompileUtils_1.CompileUtil(this.$fragment).templateUpdater(node, this.$vm, exp);
-  };
-  /**
-   * judge attribute is nv directive or not
-   *
-   * @param {string} attr
-   * @returns {boolean}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.isDirective = function (attr) {
-    return attr.indexOf('nv-') === 0;
-  };
-  /**
-   * judge attribute is nv event directive or not
-   *
-   * @param {string} eventName
-   * @returns {boolean}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.isEventDirective = function (eventName) {
-    return eventName.indexOf('on') === 0;
-  };
-  /**
-   * judge DOM is a element node or not
-   *
-   * @param {(Element | string)} node
-   * @returns {boolean}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.isElementNode = function (node) {
-    if (typeof node === 'string') return false;
-    return node.nodeType === 1;
-  };
-  /**
-   * judge DOM is nv-repeat dom or not
-   *
-   * @param {Element} node
-   * @returns {boolean}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.isRepeatNode = function (node) {
-    var nodeAttrs = node.attributes;
-    var result = false;
-
-    if (nodeAttrs) {
-      Array.from(nodeAttrs).forEach(function (attr) {
-        var attrName = attr.name;
-        if (attrName === 'nv-repeat') result = true;
-      });
-    }
-
-    return result;
-  };
-  /**
-   * judge DOM is text node or not
-   *
-   * @param {Element} node
-   * @returns {boolean}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.isTextNode = function (node) {
-    return node.nodeType === 3;
-  };
-
-  return Compile;
+var USE_NATIVE = !!function () {
+  try {
+    // correct subclassing with @@species support
+    var promise = $Promise.resolve(1);
+    var FakePromise = (promise.constructor = {})[require('./_wks')('species')] = function (exec) {
+      exec(empty, empty);
+    };
+    // unhandled rejections tracking support, NodeJS Promise without it fails @@species test
+    return (isNode || typeof PromiseRejectionEvent == 'function')
+      && promise.then(empty) instanceof FakePromise
+      // v8 6.6 (Node 10 and Chrome 66) have a bug with resolving custom thenables
+      // https://bugs.chromium.org/p/chromium/issues/detail?id=830565
+      // we can't detect it synchronously, so just check versions
+      && v8.indexOf('6.6') !== 0
+      && userAgent.indexOf('Chrome/66') === -1;
+  } catch (e) { /* empty */ }
 }();
 
-exports.default = Compile;
-},{"../VirtualDOM":"../../InDiv/src/VirtualDOM/index.ts","../Utils":"../../InDiv/src/Utils/index.ts","../CompileUtils":"../../InDiv/src/CompileUtils/index.ts"}],"../../InDiv/src/DI/injectable.ts":[function(require,module,exports) {
-"use strict";
+// helpers
+var isThenable = function (it) {
+  var then;
+  return isObject(it) && typeof (then = it.then) == 'function' ? then : false;
+};
+var notify = function (promise, isReject) {
+  if (promise._n) return;
+  promise._n = true;
+  var chain = promise._c;
+  microtask(function () {
+    var value = promise._v;
+    var ok = promise._s == 1;
+    var i = 0;
+    var run = function (reaction) {
+      var handler = ok ? reaction.ok : reaction.fail;
+      var resolve = reaction.resolve;
+      var reject = reaction.reject;
+      var domain = reaction.domain;
+      var result, then, exited;
+      try {
+        if (handler) {
+          if (!ok) {
+            if (promise._h == 2) onHandleUnhandled(promise);
+            promise._h = 1;
+          }
+          if (handler === true) result = value;
+          else {
+            if (domain) domain.enter();
+            result = handler(value); // may throw
+            if (domain) {
+              domain.exit();
+              exited = true;
+            }
+          }
+          if (result === reaction.promise) {
+            reject(TypeError('Promise-chain cycle'));
+          } else if (then = isThenable(result)) {
+            then.call(result, resolve, reject);
+          } else resolve(result);
+        } else reject(value);
+      } catch (e) {
+        if (domain && !exited) domain.exit();
+        reject(e);
+      }
+    };
+    while (chain.length > i) run(chain[i++]); // variable length - can't use forEach
+    promise._c = [];
+    promise._n = false;
+    if (isReject && !promise._h) onUnhandled(promise);
+  });
+};
+var onUnhandled = function (promise) {
+  task.call(global, function () {
+    var value = promise._v;
+    var unhandled = isUnhandled(promise);
+    var result, handler, console;
+    if (unhandled) {
+      result = perform(function () {
+        if (isNode) {
+          process.emit('unhandledRejection', value, promise);
+        } else if (handler = global.onunhandledrejection) {
+          handler({ promise: promise, reason: value });
+        } else if ((console = global.console) && console.error) {
+          console.error('Unhandled promise rejection', value);
+        }
+      });
+      // Browsers should not trigger `rejectionHandled` event if it was handled here, NodeJS - should
+      promise._h = isNode || isUnhandled(promise) ? 2 : 1;
+    } promise._a = undefined;
+    if (unhandled && result.e) throw result.v;
+  });
+};
+var isUnhandled = function (promise) {
+  return promise._h !== 1 && (promise._a || promise._c).length === 0;
+};
+var onHandleUnhandled = function (promise) {
+  task.call(global, function () {
+    var handler;
+    if (isNode) {
+      process.emit('rejectionHandled', promise);
+    } else if (handler = global.onrejectionhandled) {
+      handler({ promise: promise, reason: promise._v });
+    }
+  });
+};
+var $reject = function (value) {
+  var promise = this;
+  if (promise._d) return;
+  promise._d = true;
+  promise = promise._w || promise; // unwrap
+  promise._v = value;
+  promise._s = 2;
+  if (!promise._a) promise._a = promise._c.slice();
+  notify(promise, true);
+};
+var $resolve = function (value) {
+  var promise = this;
+  var then;
+  if (promise._d) return;
+  promise._d = true;
+  promise = promise._w || promise; // unwrap
+  try {
+    if (promise === value) throw TypeError("Promise can't be resolved itself");
+    if (then = isThenable(value)) {
+      microtask(function () {
+        var wrapper = { _w: promise, _d: false }; // wrap
+        try {
+          then.call(value, ctx($resolve, wrapper, 1), ctx($reject, wrapper, 1));
+        } catch (e) {
+          $reject.call(wrapper, e);
+        }
+      });
+    } else {
+      promise._v = value;
+      promise._s = 1;
+      notify(promise, false);
+    }
+  } catch (e) {
+    $reject.call({ _w: promise, _d: false }, e); // wrap
+  }
+};
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/**
- * Decorator @Injectable
- *
- * to decorate an InDiv Service
- *
- * @param {TInjectableOptions} [options]
- * @returns {(_constructor: Function) => void}
- */
-
-function Injectable(options) {
-  return function (_constructor) {
-    _constructor.isSingletonMode = true;
-    if (options) _constructor.isSingletonMode = options.isSingletonMode;
+// constructor polyfill
+if (!USE_NATIVE) {
+  // 25.4.3.1 Promise(executor)
+  $Promise = function Promise(executor) {
+    anInstance(this, $Promise, PROMISE, '_h');
+    aFunction(executor);
+    Internal.call(this);
+    try {
+      executor(ctx($resolve, this, 1), ctx($reject, this, 1));
+    } catch (err) {
+      $reject.call(this, err);
+    }
+  };
+  // eslint-disable-next-line no-unused-vars
+  Internal = function Promise(executor) {
+    this._c = [];             // <- awaiting reactions
+    this._a = undefined;      // <- checked in isUnhandled reactions
+    this._s = 0;              // <- state
+    this._d = false;          // <- done
+    this._v = undefined;      // <- value
+    this._h = 0;              // <- rejection state, 0 - default, 1 - handled, 2 - unhandled
+    this._n = false;          // <- notify
+  };
+  Internal.prototype = require('./_redefine-all')($Promise.prototype, {
+    // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)
+    then: function then(onFulfilled, onRejected) {
+      var reaction = newPromiseCapability(speciesConstructor(this, $Promise));
+      reaction.ok = typeof onFulfilled == 'function' ? onFulfilled : true;
+      reaction.fail = typeof onRejected == 'function' && onRejected;
+      reaction.domain = isNode ? process.domain : undefined;
+      this._c.push(reaction);
+      if (this._a) this._a.push(reaction);
+      if (this._s) notify(this, false);
+      return reaction.promise;
+    },
+    // 25.4.5.1 Promise.prototype.catch(onRejected)
+    'catch': function (onRejected) {
+      return this.then(undefined, onRejected);
+    }
+  });
+  OwnPromiseCapability = function () {
+    var promise = new Internal();
+    this.promise = promise;
+    this.resolve = ctx($resolve, promise, 1);
+    this.reject = ctx($reject, promise, 1);
+  };
+  newPromiseCapabilityModule.f = newPromiseCapability = function (C) {
+    return C === $Promise || C === Wrapper
+      ? new OwnPromiseCapability(C)
+      : newGenericPromiseCapability(C);
   };
 }
 
-exports.default = Injectable;
-},{}],"../node_modules/_process@0.11.10@process/browser.js":[function(require,module,exports) {
+$export($export.G + $export.W + $export.F * !USE_NATIVE, { Promise: $Promise });
+require('./_set-to-string-tag')($Promise, PROMISE);
+require('./_set-species')(PROMISE);
+Wrapper = require('./_core')[PROMISE];
+
+// statics
+$export($export.S + $export.F * !USE_NATIVE, PROMISE, {
+  // 25.4.4.5 Promise.reject(r)
+  reject: function reject(r) {
+    var capability = newPromiseCapability(this);
+    var $$reject = capability.reject;
+    $$reject(r);
+    return capability.promise;
+  }
+});
+$export($export.S + $export.F * (LIBRARY || !USE_NATIVE), PROMISE, {
+  // 25.4.4.6 Promise.resolve(x)
+  resolve: function resolve(x) {
+    return promiseResolve(LIBRARY && this === Wrapper ? $Promise : this, x);
+  }
+});
+$export($export.S + $export.F * !(USE_NATIVE && require('./_iter-detect')(function (iter) {
+  $Promise.all(iter)['catch'](empty);
+})), PROMISE, {
+  // 25.4.4.1 Promise.all(iterable)
+  all: function all(iterable) {
+    var C = this;
+    var capability = newPromiseCapability(C);
+    var resolve = capability.resolve;
+    var reject = capability.reject;
+    var result = perform(function () {
+      var values = [];
+      var index = 0;
+      var remaining = 1;
+      forOf(iterable, false, function (promise) {
+        var $index = index++;
+        var alreadyCalled = false;
+        values.push(undefined);
+        remaining++;
+        C.resolve(promise).then(function (value) {
+          if (alreadyCalled) return;
+          alreadyCalled = true;
+          values[$index] = value;
+          --remaining || resolve(values);
+        }, reject);
+      });
+      --remaining || resolve(values);
+    });
+    if (result.e) reject(result.v);
+    return capability.promise;
+  },
+  // 25.4.4.4 Promise.race(iterable)
+  race: function race(iterable) {
+    var C = this;
+    var capability = newPromiseCapability(C);
+    var reject = capability.reject;
+    var result = perform(function () {
+      forOf(iterable, false, function (promise) {
+        C.resolve(promise).then(capability.resolve, reject);
+      });
+    });
+    if (result.e) reject(result.v);
+    return capability.promise;
+  }
+});
+
+},{"./_library":"../../InDiv/node_modules/core-js/modules/_library.js","./_global":"../../InDiv/node_modules/core-js/modules/_global.js","./_ctx":"../../InDiv/node_modules/core-js/modules/_ctx.js","./_classof":"../../InDiv/node_modules/core-js/modules/_classof.js","./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js","./_a-function":"../../InDiv/node_modules/core-js/modules/_a-function.js","./_an-instance":"../../InDiv/node_modules/core-js/modules/_an-instance.js","./_for-of":"../../InDiv/node_modules/core-js/modules/_for-of.js","./_species-constructor":"../../InDiv/node_modules/core-js/modules/_species-constructor.js","./_task":"../../InDiv/node_modules/core-js/modules/_task.js","./_microtask":"../../InDiv/node_modules/core-js/modules/_microtask.js","./_new-promise-capability":"../../InDiv/node_modules/core-js/modules/_new-promise-capability.js","./_perform":"../../InDiv/node_modules/core-js/modules/_perform.js","./_user-agent":"../../InDiv/node_modules/core-js/modules/_user-agent.js","./_promise-resolve":"../../InDiv/node_modules/core-js/modules/_promise-resolve.js","./_wks":"../../InDiv/node_modules/core-js/modules/_wks.js","./_redefine-all":"../../InDiv/node_modules/core-js/modules/_redefine-all.js","./_set-to-string-tag":"../../InDiv/node_modules/core-js/modules/_set-to-string-tag.js","./_set-species":"../../InDiv/node_modules/core-js/modules/_set-species.js","./_core":"../../InDiv/node_modules/core-js/modules/_core.js","./_iter-detect":"../../InDiv/node_modules/core-js/modules/_iter-detect.js"}],"../../InDiv/node_modules/core-js/modules/_bind.js":[function(require,module,exports) {
+'use strict';
+var aFunction = require('./_a-function');
+var isObject = require('./_is-object');
+var invoke = require('./_invoke');
+var arraySlice = [].slice;
+var factories = {};
+
+var construct = function (F, len, args) {
+  if (!(len in factories)) {
+    for (var n = [], i = 0; i < len; i++) n[i] = 'a[' + i + ']';
+    // eslint-disable-next-line no-new-func
+    factories[len] = Function('F,a', 'return new F(' + n.join(',') + ')');
+  } return factories[len](F, args);
+};
+
+module.exports = Function.bind || function bind(that /* , ...args */) {
+  var fn = aFunction(this);
+  var partArgs = arraySlice.call(arguments, 1);
+  var bound = function (/* args... */) {
+    var args = partArgs.concat(arraySlice.call(arguments));
+    return this instanceof bound ? construct(fn, args.length, args) : invoke(fn, args, that);
+  };
+  if (isObject(fn.prototype)) bound.prototype = fn.prototype;
+  return bound;
+};
+
+},{"./_a-function":"../../InDiv/node_modules/core-js/modules/_a-function.js","./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js","./_invoke":"../../InDiv/node_modules/core-js/modules/_invoke.js"}],"../../InDiv/node_modules/core-js/modules/es6.function.bind.js":[function(require,module,exports) {
+// 19.2.3.2 / 15.3.4.5 Function.prototype.bind(thisArg, args...)
+var $export = require('./_export');
+
+$export($export.P, 'Function', { bind: require('./_bind') });
+
+},{"./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_bind":"../../InDiv/node_modules/core-js/modules/_bind.js"}],"../../InDiv/node_modules/core-js/modules/es6.reflect.construct.js":[function(require,module,exports) {
+// 26.1.2 Reflect.construct(target, argumentsList [, newTarget])
+var $export = require('./_export');
+var create = require('./_object-create');
+var aFunction = require('./_a-function');
+var anObject = require('./_an-object');
+var isObject = require('./_is-object');
+var fails = require('./_fails');
+var bind = require('./_bind');
+var rConstruct = (require('./_global').Reflect || {}).construct;
+
+// MS Edge supports only 2 arguments and argumentsList argument is optional
+// FF Nightly sets third argument as `new.target`, but does not create `this` from it
+var NEW_TARGET_BUG = fails(function () {
+  function F() { /* empty */ }
+  return !(rConstruct(function () { /* empty */ }, [], F) instanceof F);
+});
+var ARGS_BUG = !fails(function () {
+  rConstruct(function () { /* empty */ });
+});
+
+$export($export.S + $export.F * (NEW_TARGET_BUG || ARGS_BUG), 'Reflect', {
+  construct: function construct(Target, args /* , newTarget */) {
+    aFunction(Target);
+    anObject(args);
+    var newTarget = arguments.length < 3 ? Target : aFunction(arguments[2]);
+    if (ARGS_BUG && !NEW_TARGET_BUG) return rConstruct(Target, args, newTarget);
+    if (Target == newTarget) {
+      // w/o altered newTarget, optimization for 0-4 arguments
+      switch (args.length) {
+        case 0: return new Target();
+        case 1: return new Target(args[0]);
+        case 2: return new Target(args[0], args[1]);
+        case 3: return new Target(args[0], args[1], args[2]);
+        case 4: return new Target(args[0], args[1], args[2], args[3]);
+      }
+      // w/o altered newTarget, lot of arguments case
+      var $args = [null];
+      $args.push.apply($args, args);
+      return new (bind.apply(Target, $args))();
+    }
+    // with altered newTarget, not support built-in constructors
+    var proto = newTarget.prototype;
+    var instance = create(isObject(proto) ? proto : Object.prototype);
+    var result = Function.apply.call(Target, instance, args);
+    return isObject(result) ? result : instance;
+  }
+});
+
+},{"./_export":"../../InDiv/node_modules/core-js/modules/_export.js","./_object-create":"../../InDiv/node_modules/core-js/modules/_object-create.js","./_a-function":"../../InDiv/node_modules/core-js/modules/_a-function.js","./_an-object":"../../InDiv/node_modules/core-js/modules/_an-object.js","./_is-object":"../../InDiv/node_modules/core-js/modules/_is-object.js","./_fails":"../../InDiv/node_modules/core-js/modules/_fails.js","./_bind":"../../InDiv/node_modules/core-js/modules/_bind.js","./_global":"../../InDiv/node_modules/core-js/modules/_global.js"}],"../node_modules/_process@0.11.10@process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -4041,14 +3783,2301 @@ var Reflect;
     }
   });
 })(Reflect || (Reflect = {}));
-},{"process":"../node_modules/_process@0.11.10@process/browser.js"}],"../../InDiv/src/DI/injected.ts":[function(require,module,exports) {
+},{"process":"../node_modules/_process@0.11.10@process/browser.js"}],"../../InDiv/node_modules/easier-cookie/build/index.js":[function(require,module,exports) {
+var define;
+parcelRequire=function(e,r,n,t){function i(n,t){function o(e){return i(o.resolve(e))}function c(r){return e[n][1][r]||r}if(!r[n]){if(!e[n]){var l="function"==typeof parcelRequire&&parcelRequire;if(!t&&l)return l(n,!0);if(u)return u(n,!0);if(f&&"string"==typeof n)return f(n);var p=new Error("Cannot find module '"+n+"'");throw p.code="MODULE_NOT_FOUND",p}o.resolve=c;var a=r[n]=new i.Module(n);e[n][0].call(a.exports,o,a,a.exports,this)}return r[n].exports}function o(e){this.id=e,this.bundle=i,this.exports={}}var u="function"==typeof parcelRequire&&parcelRequire,f="function"==typeof require&&require;i.isParcelRequire=!0,i.Module=o,i.modules=e,i.cache=r,i.parent=u;for(var c=0;c<n.length;c++)i(n[c]);if(n.length){var l=i(n[n.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=l:"function"==typeof define&&define.amd?define(function(){return l}):t&&(this[t]=l)}return i}({1:[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e={set:function(e,t){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},o="",n="",i="",c="";if(r.expires){var a=new Date;a.setDate(a.getDate()+r.expires),o=";expires="+a.toGMTString()}r.path&&(n=";path="+r.path),r.domain&&(i=";domain="+r.domain),c=t instanceof Object?encodeURI(JSON.stringify(t)):encodeURI(t),document.cookie=encodeURI(e)+"="+c+o+n+i},get:function(e){if(!e)return null;for(var t=document.cookie.split("; "),r=0;r<t.length;r++){var o=t[r].split("=");if(o[0]===decodeURI(e)){var n=void 0;try{n=JSON.parse(decodeURI(o[1]))}catch(e){n=decodeURI(o[1])}return""===n?null:n}}return null},remove:function(e){try{return this.set(e,"",-1),!0}catch(t){return console.error("remove cookie "+e+" failed:",t),!1}}};exports.default=e;
+},{}]},{},[1], null)
+},{}],"../../InDiv/src/Utils/index.ts":[function(require,module,exports) {
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var easier_cookie_1 = __importDefault(require("easier-cookie"));
+/**
+ * utils for InDiv
+ *
+ * @class Utils
+ */
+
+
+var Utils =
+/** @class */
+function () {
+  /**
+   * Creates an instance of Utils.
+   * @memberof Utils
+   */
+  function Utils() {
+    this.toString = Object.prototype.toString;
+  }
+  /**
+   * set Cookie with easier-cookie
+   *
+   * @param {string} name
+   * @param {*} value
+   * @param {*} [options]
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.setCookie = function (name, value, options) {
+    easier_cookie_1.default.set(name, value, options);
+  };
+  /**
+   * get Cookie with easier-cookie
+   *
+   * @param {string} name
+   * @returns {*}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.getCookie = function (name) {
+    return easier_cookie_1.default.get(name);
+  };
+  /**
+   * remove Cookie with easier-cookie
+   *
+   * @param {string} name
+   * @returns {boolean}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.removeCookie = function (name) {
+    return easier_cookie_1.default.remove(name);
+  };
+  /**
+   * build url query
+   *
+   * @param {*} object
+   * @returns {string}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.buildQuery = function (object) {
+    if (!object || !(object instanceof Object)) return '';
+    var query = '?';
+
+    for (var key in object) {
+      if (!(object[key] instanceof Object)) {
+        query += key + "=" + object[key].toString() + "&";
+      } else {
+        query += key + "=" + JSON.stringify(object[key]) + "&";
+      }
+    }
+
+    return query.slice(0, query.length - 1);
+  };
+  /**
+   * get one url query
+   *
+   * @param {string} name
+   * @returns {string}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.getQuery = function (name) {
+    var parts = window.location.search.replace('?', '').split('&');
+    var params = {};
+
+    for (var i = 0; i < parts.length; i++) {
+      var pairs = parts[i].split('=');
+      params[pairs[0]] = pairs[1];
+    }
+
+    if (params[name]) {
+      return params[name];
+    } else {
+      return '';
+    }
+  };
+  /**
+   * judge something is Function or not
+   *
+   * @param {*} func
+   * @returns {boolean}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.isFunction = function (func) {
+    return this.toString.call(func) === '[object Function]';
+  };
+  /**
+   * judge two things are equal or not
+   *
+   * @param {*} a
+   * @param {*} b
+   * @param {any[]} [aStack]
+   * @param {any[]} [bStack]
+   * @returns {boolean}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.isEqual = function (a, b, aStack, bStack) {
+    // === 结果为 true 的区别出 +0 和 -0
+    if (a === b) return a !== 0 || 1 / a === 1 / b; // typeof null 的结果为 object ，这里做判断，是为了让有 null 的情况尽早退出函数
+
+    if (a == null || b == null) return false; // 判断 NaN
+
+    if (a !== a) return b !== b; // 判断参数 a 类型，如果是基本类型，在这里可以直接返回 false
+
+    var type = _typeof(a);
+
+    if (type !== 'function' && type !== 'object' && _typeof(b) !== 'object') return false; // 更复杂的对象使用 deepEq 函数进行深度比较
+
+    return this.deepIsEqual(a, b, aStack, bStack);
+  };
+  /**
+   * deep judge two things are equal or not
+   *
+   * @param {*} a
+   * @param {*} b
+   * @param {any[]} [aStack]
+   * @param {any[]} [bStack]
+   * @returns {boolean}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.deepIsEqual = function (a, b, aStack, bStack) {
+    // a 和 b 的内部属性 [[class]] 相同时 返回 true
+    var className = this.toString.call(a);
+    if (className !== this.toString.call(b)) return false;
+
+    switch (className) {
+      case '[object RegExp]':
+      case '[object String]':
+        return "" + a === "" + b;
+
+      case '[object Number]':
+        if (+a !== +a) return +b !== +b;
+        return +a === 0 ? 1 / +a === 1 / b : +a === +b;
+
+      case '[object Date]':
+      case '[object Boolean]':
+        return +a === +b;
+    }
+
+    var areArrays = className === '[object Array]'; // 不是数组
+
+    if (!areArrays) {
+      // 过滤掉两个函数的情况
+      if (_typeof(a) !== 'object' || _typeof(b) !== 'object') return false;
+      var aCtor = a.constructor;
+      var bCtor = b.constructor; // aCtor 和 bCtor 必须都存在并且都不是 Object 构造函数的情况下，aCtor 不等于 bCtor， 那这两个对象就真的不相等啦
+
+      if (aCtor !== bCtor && !(this.isFunction(aCtor) && aCtor instanceof aCtor && this.isFunction(bCtor) && bCtor instanceof bCtor) && 'constructor' in a && 'constructor' in b) {
+        return false;
+      }
+    }
+
+    aStack = aStack || [];
+    bStack = bStack || [];
+    var length = aStack.length; // 检查是否有循环引用的部分
+
+    while (length--) {
+      if (aStack[length] === a) {
+        return bStack[length] === b;
+      }
+    }
+
+    aStack.push(a);
+    bStack.push(b); // 数组判断
+
+    if (areArrays) {
+      length = a.length;
+      if (length !== b.length) return false;
+
+      while (length--) {
+        if (!this.isEqual(a[length], b[length], aStack, bStack)) return false;
+      }
+    } else {
+      var keys = Object.keys(a);
+      var key = void 0;
+      length = keys.length;
+      if (Object.keys(b).length !== length) return false;
+
+      while (length--) {
+        key = keys[length];
+        if (!(b.hasOwnProperty(key) && this.isEqual(a[key], b[key], aStack, bStack))) return false;
+      }
+    }
+
+    aStack.pop();
+    bStack.pop();
+    return true;
+  };
+  /**
+   * format string for InnerHTML
+   *
+   * @param {string} inner
+   * @returns {string}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.formatInnerHTML = function (inner) {
+    inner = inner.replace(/(\n\s*)/g, '');
+    inner = inner.replace(/^[^\S\n]+/gm, '');
+    return inner;
+  };
+  /**
+   * judge evn is browser or node
+   *
+   * @returns {boolean}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.isBrowser = function () {
+    return typeof window !== 'undefined' && typeof window.document !== 'undefined';
+  };
+
+  return Utils;
+}();
+
+exports.default = Utils;
+},{"easier-cookie":"../../InDiv/node_modules/easier-cookie/build/index.js"}],"../../InDiv/src/Lifecycle/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+},{}],"../../InDiv/src/Watcher/index.ts":[function(require,module,exports) {
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var Utils_1 = __importDefault(require("../Utils"));
+
+var utils = new Utils_1.default();
+/**
+ * Watcher for InDiv
+ *
+ * @class Watcher
+ */
+
+var Watcher =
+/** @class */
+function () {
+  /**
+   * Creates an instance of Watcher.
+   *
+   * data: watched data
+   * watcher: function for data change
+   * render: InDiv render
+   *
+   * @param {*} data
+   * @param {TFnWatcher} [watcher]
+   * @param {TFnRender} [render]
+   * @memberof Watcher
+   */
+  function Watcher(data, watcher, render) {
+    this.data = data;
+    this.watcher = watcher;
+    this.render = render;
+    this.watchData(this.data);
+  }
+
+  Watcher.prototype.watchData = function (data) {
+    if (!data || _typeof(data) !== 'object') return;
+    var vm = this;
+
+    var _loop_1 = function _loop_1(key) {
+      var val = data[key];
+      vm.watchData(val);
+      Object.defineProperty(data, key, {
+        configurable: true,
+        enumerable: true,
+        get: function get() {
+          return val;
+        },
+        set: function set(newVal) {
+          if (utils.isEqual(newVal, val)) return; // for watcher method
+
+          var oldData;
+          if (vm.watcher) oldData = JSON.parse(JSON.stringify(vm.data));
+          val = newVal;
+          vm.watchData(val);
+          if (vm.watcher) vm.watcher(oldData);
+          if (vm.render) vm.render();
+        }
+      });
+    };
+
+    for (var key in data) {
+      _loop_1(key);
+    }
+  };
+
+  return Watcher;
+}();
+
+exports.default = Watcher;
+},{"../Utils":"../../InDiv/src/Utils/index.ts"}],"../../InDiv/src/KeyWatcher/index.ts":[function(require,module,exports) {
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var Utils_1 = __importDefault(require("../Utils"));
+
+var utils = new Utils_1.default();
+/**
+ * watch a key of an Object
+ *
+ * @class KeyWatcher
+ */
+
+var KeyWatcher =
+/** @class */
+function () {
+  function KeyWatcher(data, key, watcher) {
+    this.data = data;
+    this.key = key;
+    this.watcher = watcher;
+    this.watchData(this.data, this.key);
+  }
+
+  KeyWatcher.prototype.watchData = function (data, key) {
+    if (!data || _typeof(data) !== 'object' || !data[key]) return;
+    var vm = this;
+    var val = data[key];
+    Object.defineProperty(data, key, {
+      configurable: true,
+      enumerable: true,
+      get: function get() {
+        return val;
+      },
+      set: function set(newVal) {
+        if (utils.isEqual(newVal, val)) return;
+        var oldData;
+
+        if (vm.watcher) {
+          if (_typeof(val) === 'object') oldData = JSON.parse(JSON.stringify(val));
+          if (_typeof(val) !== 'object' && typeof val !== 'function') oldData = val;
+        }
+
+        val = newVal;
+        if (vm.watcher) vm.watcher(oldData);
+      }
+    });
+  };
+
+  return KeyWatcher;
+}();
+
+exports.default = KeyWatcher;
+},{"../Utils":"../../InDiv/src/Utils/index.ts"}],"../../InDiv/src/VirtualDOM/parse.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * Vnode
+ *
+ * @class Vnode
+ */
+
+var Vnode =
+/** @class */
+function () {
+  /**
+   * Creates an instance of Vnode.
+   * @param {IVnode} info
+   * @memberof Vnode
+   */
+  function Vnode(info) {
+    this.tagName = info.tagName;
+    this.node = info.node;
+    this.parentNode = info.parentNode;
+    this.attributes = info.attributes;
+    this.childNodes = info.childNodes;
+    this.nodeValue = info.nodeValue;
+    this.type = info.type;
+    this.value = info.value;
+    this.repeatData = info.repeatData;
+    this.eventTypes = info.eventTypes;
+    this.key = info.key;
+    this.checked = false;
+  }
+
+  return Vnode;
+}();
+/**
+ * bind nodeType and return type
+ *
+ * @param {Node} node
+ * @returns {string}
+ */
+
+
+function bindNodeType(node) {
+  if (node.nodeType === 1) return 'element';
+  if (node.nodeType === 3) return 'text';
+  if (node.nodeType === 11) return 'document-fragment';
+  return '';
+}
+/**
+ * bind node attributes and return TAttributes
+ *
+ * @param {(DocumentFragment | Element)} node
+ * @returns {TAttributes[]}
+ */
+
+
+function bindAttributes(node) {
+  var nodeAttrs = node.attributes;
+  var attributes = [];
+
+  if (nodeAttrs) {
+    Array.from(nodeAttrs).forEach(function (attr) {
+      attributes.push({
+        name: attr.name,
+        value: attr.value
+      });
+    });
+  }
+
+  return attributes;
+}
+/**
+ * parse node to VNode
+ *
+ * @param {(DocumentFragment | Element)} node
+ * @returns {IVnode}
+ */
+
+
+function parseToVnode(node) {
+  var childNodes = [];
+
+  if (node.childNodes) {
+    Array.from(node.childNodes).forEach(function (child) {
+      childNodes.push(parseToVnode(child));
+    });
+  }
+
+  return new Vnode({
+    tagName: node.tagName,
+    node: node,
+    parentNode: node.parentNode,
+    attributes: bindAttributes(node),
+    childNodes: childNodes,
+    nodeValue: node.nodeValue,
+    type: bindNodeType(node),
+    value: node.value,
+    repeatData: node.repeatData ? node.repeatData : null,
+    eventTypes: node.eventTypes ? node.eventTypes : null,
+    key: node.indiv_repeat_key ? node.indiv_repeat_key : null
+  });
+}
+
+exports.default = parseToVnode;
+},{}],"../../InDiv/src/VirtualDOM/diff.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * diff childNodes for diff VNode
+ *
+ * type: 0 removeChild
+ * type: 1 change Child index
+ *
+ * @param {IVnode} newVnode
+ * @param {IVnode} oldVnode
+ * @param {IPatchList[]} patchList
+ * @param {(oldVnode: IVnode, newVnode: IVnode) => boolean} needDiffChildCallback
+ */
+
+function diffChildNodes(oldVnode, newVnode, patchList, needDiffChildCallback) {
+  if (oldVnode.childNodes.length > 0) {
+    oldVnode.childNodes.forEach(function (oChild, index) {
+      if (oChild.checked) return;
+      var sameCode = newVnode.childNodes.find(function (nChild) {
+        return nChild.node.isEqualNode(oChild.node) && nChild.key === oChild.key && !nChild.checked || nChild.tagName === oChild.tagName && nChild.key === oChild.key && !nChild.checked;
+      });
+
+      if (sameCode) {
+        var sameCodeIndex = newVnode.childNodes.findIndex(function (nChild) {
+          return nChild === sameCode;
+        });
+
+        if (sameCodeIndex !== index) {
+          patchList.push({
+            type: 1,
+            newIndex: sameCodeIndex,
+            oldVnode: oChild.node,
+            parentNode: oldVnode.node
+          });
+        }
+
+        diffVnode(oChild, sameCode, patchList, needDiffChildCallback);
+        sameCode.checked = true;
+      } else {
+        patchList.push({
+          type: 0,
+          node: oChild.node,
+          parentNode: oldVnode.node
+        });
+      }
+
+      oChild.checked = true;
+    });
+  }
+
+  if (newVnode.childNodes.length > 0) {
+    newVnode.childNodes.forEach(function (nChild, index) {
+      if (nChild.checked) return;
+      patchList.push({
+        type: 1,
+        newIndex: index,
+        oldVnode: nChild.node,
+        parentNode: oldVnode.node
+      });
+      nChild.checked = true;
+    });
+  }
+}
+/**
+ * diff attributes for diff VNode
+ *
+ * type: 2 setAttribute
+ * type: 3 removeAttribute
+ *
+ * @param {IVnode} oldVnode
+ * @param {IVnode} newVnode
+ * @param {IPatchList[]} patchList
+ */
+
+
+function diffAttributes(oldVnode, newVnode, patchList) {
+  newVnode.attributes.forEach(function (attr) {
+    var oldVnodeAttr = oldVnode.attributes.find(function (at) {
+      return at.name === attr.name;
+    });
+
+    if (!oldVnodeAttr || oldVnodeAttr.value !== attr.value) {
+      patchList.push({
+        type: 2,
+        node: oldVnode.node,
+        newValue: attr,
+        oldValue: oldVnodeAttr
+      });
+    }
+  });
+  oldVnode.attributes.forEach(function (attr) {
+    var newVnodeAttr = newVnode.attributes.find(function (at) {
+      return at.name === attr.name;
+    });
+
+    if (!newVnodeAttr) {
+      patchList.push({
+        type: 3,
+        node: oldVnode.node,
+        oldValue: attr
+      });
+    }
+  });
+}
+/**
+ * diff nodeValue for diff VNode
+ *
+ * type: 4 change text for node
+ *
+ * @param {IVnode} oldVnode
+ * @param {IVnode} newVnode
+ * @param {IPatchList[]} patchList
+ * @returns {void}
+ */
+
+
+function diffNodeValue(oldVnode, newVnode, patchList) {
+  if (oldVnode.nodeValue !== newVnode.nodeValue) {
+    patchList.push({
+      type: 4,
+      node: oldVnode.node,
+      newValue: newVnode.nodeValue,
+      oldValue: oldVnode.nodeValue
+    });
+  }
+}
+/**
+ * diff value of input, textarea, select for diff VNode
+ *
+ * type: 5 change value of input
+ *
+ * @param {IVnode} newVnode
+ * @param {IVnode} oldVnode
+ * @param {IPatchList[]} patchList
+ * @returns {void}
+ */
+
+
+function diffInputValue(oldVnode, newVnode, patchList) {
+  if (oldVnode.value !== newVnode.value) {
+    patchList.push({
+      type: 5,
+      node: oldVnode.node,
+      newValue: newVnode.value,
+      oldValue: oldVnode.value
+    });
+  }
+}
+/**
+ * diff repeatData of repeat node
+ *
+ * type: 6 change repeatData of node
+ *
+ * @param {IVnode} newVnode
+ * @param {IVnode} oldVnode
+ * @param {IPatchList[]} patchList
+ * @returns {void}
+ */
+
+
+function diffRepeatData(oldVnode, newVnode, patchList) {
+  patchList.push({
+    type: 6,
+    node: oldVnode.node,
+    newValue: newVnode.repeatData
+  });
+}
+/**
+ * diff event of node
+ *
+ * type: 7 change event of node
+ * type: 8 change eventTypes of node
+ *
+ * @param {IVnode} oldVnode
+ * @param {IVnode} newVnode
+ * @param {IPatchList[]} patchList
+ */
+
+
+function diffEventTypes(oldVnode, newVnode, patchList) {
+  var oEventTypes = JSON.parse(oldVnode.eventTypes);
+  var nEventTypes = JSON.parse(newVnode.eventTypes); // 全部更新为新的事件
+
+  if (nEventTypes && nEventTypes.length > 0) {
+    nEventTypes.forEach(function (neventType) {
+      patchList.push({
+        type: 7,
+        node: oldVnode.node,
+        eventType: neventType,
+        newValue: newVnode.node["event" + neventType]
+      });
+    });
+  }
+
+  if (oEventTypes && oEventTypes.length > 0) {
+    // 如果新事件不存在，则删除事件
+    // 如果新事件找不到旧事件中的事件，则把旧事件的事件删除
+    oEventTypes.forEach(function (oeventType) {
+      if (!nEventTypes || nEventTypes.length <= 0) {
+        patchList.push({
+          type: 7,
+          node: oldVnode.node,
+          eventType: oeventType,
+          newValue: null
+        });
+      }
+
+      if (nEventTypes && nEventTypes.length > 0 && !nEventTypes.find(function (neventType) {
+        return neventType === oeventType;
+      })) {
+        patchList.push({
+          type: 7,
+          node: oldVnode.node,
+          eventType: oeventType,
+          newValue: null
+        });
+      }
+    });
+  } // 最后要更新下 eventTypes，否则下次 oldVnode.eventTypes 将为最开始的eventTypes
+
+
+  patchList.push({
+    type: 8,
+    node: oldVnode.node,
+    newValue: newVnode.eventTypes
+  });
+}
+/**
+ * diff two Vnode
+ *
+ * if needDiffChildCallback return false, then stop diff childNodes
+ *
+ * @param {IVnode} oldVnode
+ * @param {IVnode} newVnode
+ * @param {IPatchList[]} patchList
+ * @param {(oldVnode: IVnode, newVnode: IVnode) => boolean} needDiffChildCallback
+ * @returns {void}
+ */
+
+
+function diffVnode(oldVnode, newVnode, patchList, needDiffChildCallback) {
+  if (!patchList) throw new Error('patchList can not be null, diffVnode must need an Array');
+
+  if (newVnode.type === 'document-fragment') {
+    diffChildNodes(oldVnode, newVnode, patchList, needDiffChildCallback);
+    return;
+  }
+
+  diffAttributes(oldVnode, newVnode, patchList);
+  diffNodeValue(oldVnode, newVnode, patchList);
+  if (oldVnode.tagName === 'INPUT' || oldVnode.tagName === 'TEXTAREA textarea' || oldVnode.tagName === 'INPUT') diffInputValue(oldVnode, newVnode, patchList);
+  diffRepeatData(oldVnode, newVnode, patchList);
+  diffEventTypes(oldVnode, newVnode, patchList);
+  if (needDiffChildCallback && !needDiffChildCallback(oldVnode, newVnode)) return;
+  diffChildNodes(oldVnode, newVnode, patchList, needDiffChildCallback);
+}
+
+exports.default = diffVnode;
+},{}],"../../InDiv/src/VirtualDOM/render.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * renderVnode 对比完render node
+ *
+ * REMOVETAG: 0, 移除dom: 0
+ * REMOVETAG: 1, 移动位置: 1
+ * ADDATTRIBUTES: 2, 增加属性: 2
+ * REPLACEATTRIBUTES: 3, 移除属性: 3
+ * TEXT: 4, 更改文字: 4
+ * value: 5, 更改 input textarea select value 的值: 5
+ * value: 6, 更改 node 的 repeatData: 6, render过来的的被复制的值
+ * value: 7, 更改 node 的 event: 7, 修改事件
+ * value: 8, 更改 node 的 eventTypes: 8, 修改node的eventTypes
+ *
+ * @param [] patchList
+ */
+
+function renderVnode(patchList) {
+  patchList.sort(function (a, b) {
+    if (a.type === b.type && a.newIndex && b.newIndex) return a.newIndex - b.newIndex;
+    return a.type - b.type;
+  });
+  patchList.forEach(function (patch) {
+    switch (patch.type) {
+      case 0:
+        patch.parentNode.removeChild(patch.node);
+        break;
+
+      case 1:
+        if (!(Array.from(patch.parentNode.children).indexOf(patch.oldVnode) === patch.newIndex)) {
+          if (patch.parentNode.contains(patch.oldVnode)) patch.parentNode.removeChild(patch.oldVnode);
+
+          if (patch.parentNode.childNodes[patch.newIndex]) {
+            patch.parentNode.insertBefore(patch.oldVnode, patch.parentNode.childNodes[patch.newIndex]);
+          } else {
+            patch.parentNode.appendChild(patch.oldVnode);
+          }
+        }
+
+        break;
+
+      case 2:
+        patch.node.setAttribute(patch.newValue.name, patch.newValue.value);
+        break;
+
+      case 3:
+        patch.node.removeAttribute(patch.oldValue.name);
+        break;
+
+      case 4:
+        patch.node.nodeValue = patch.newValue;
+        break;
+
+      case 5:
+        patch.node.value = patch.newValue;
+        break;
+
+      case 6:
+        patch.node.repeatData = patch.newValue;
+        break;
+
+      case 7:
+        patch.node["on" + patch.eventType] = patch.newValue;
+        break;
+
+      case 8:
+        patch.node.eventTypes = patch.newValue;
+        break;
+    }
+  });
+}
+
+exports.default = renderVnode;
+},{}],"../../InDiv/src/VirtualDOM/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-require("reflect-metadata");
+var parse_1 = require("./parse");
+
+exports.parseToVnode = parse_1.default;
+
+var diff_1 = require("./diff");
+
+exports.diffVnode = diff_1.default;
+
+var render_1 = require("./render");
+
+exports.renderVnode = render_1.default;
+},{"./parse":"../../InDiv/src/VirtualDOM/parse.ts","./diff":"../../InDiv/src/VirtualDOM/diff.ts","./render":"../../InDiv/src/VirtualDOM/render.ts"}],"../../InDiv/src/CompileUtils/index.ts":[function(require,module,exports) {
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * compile util for nv-repeat DOM
+ *
+ * @export
+ * @class CompileUtilForRepeat
+ */
+
+var CompileUtilForRepeat =
+/** @class */
+function () {
+  /**
+   * Creates an instance of CompileUtilForRepeat.
+   *
+   * @param {(Element | DocumentFragment)} [fragment]
+   * @memberof CompileUtilForRepeat
+   */
+  function CompileUtilForRepeat(fragment) {
+    this.$fragment = fragment;
+  }
+  /**
+   * get value by key and anthor value
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @param {string} key
+   * @returns {*}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype._getValueByValue = function (vm, exp, key) {
+    var valueList = exp.replace('()', '').split('.');
+    var value = vm;
+    valueList.forEach(function (v, index) {
+      if (v === key && index === 0) return;
+      value = value[v];
+    });
+    return value;
+  };
+  /**
+   * set value by key and anthor value
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @param {string} key
+   * @param {*} setValue
+   * @returns {*}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype._setValueByValue = function (vm, exp, key, setValue) {
+    var valueList = exp.replace('()', '').split('.');
+    var value = vm;
+    var lastKey;
+    valueList.forEach(function (v, index) {
+      if (v === key && index === 0) return lastKey = v;
+      if (index < valueList.length) lastKey = v;
+      if (index < valueList.length - 1) value = value[v];
+    });
+    if (lastKey) value[lastKey] = setValue;
+  };
+  /**
+   * get value of VM
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @returns {*}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype._getVMVal = function (vm, exp) {
+    var valueList = exp.replace('()', '').split('.');
+    var value = vm;
+    valueList.forEach(function (v) {
+      value = value[v];
+    });
+    return value;
+  };
+  /**
+   * get value by repeat value
+   *
+   * @param {*} val
+   * @param {string} exp
+   * @param {string} key
+   * @returns {*}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype._getVMRepeatVal = function (val, exp, key) {
+    var value;
+    var valueList = exp.replace('()', '').split('.');
+    valueList.forEach(function (v, index) {
+      if (v === key && index === 0) {
+        value = val;
+        return;
+      }
+
+      value = value[v];
+    });
+    return value;
+  };
+  /**
+   * get Function for vm
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @returns {Function}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtilForRepeat.prototype._getVMFunction = function (vm, exp) {
+    var fnList = exp.replace(/^(\@)/, '').replace(/\(.*\)/, '').split('.');
+    var fn = vm;
+    fnList.forEach(function (f) {
+      fn = fn[f];
+    });
+    return fn;
+  };
+  /**
+   * get Function arguments for vm
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @param {Element} node
+   * @param {string} key
+   * @param {*} val
+   * @returns {any[]}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype._getVMFunctionArguments = function (vm, exp, node, key, val) {
+    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
+    var argsList = [];
+    var utilVm = this;
+    args.forEach(function (arg) {
+      if (arg === '') return false;
+      if (arg === '$element') return argsList.push(node);
+      if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
+      if (/(state.).*/g.test(arg)) return argsList.push(utilVm._getVMVal(vm, arg));
+      if (/\'.*\'/g.test(arg)) return argsList.push(arg.match(/\'(.*)\'/)[1]);
+      if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList.push(Number(arg));
+      if (arg.indexOf(key) === 0 || arg.indexOf(key + ".") === 0) return argsList.push(utilVm._getVMRepeatVal(val, arg, key));
+
+      if (node.repeatData) {
+        // $index in this
+        Object.keys(node.repeatData).forEach(function (data) {
+          if (arg.indexOf(data) === 0 || arg.indexOf(data + ".") === 0) return argsList.push(utilVm._getValueByValue(node.repeatData[data], arg, data));
+        });
+      }
+    });
+    return argsList;
+  };
+  /**
+   * bind handler for nv irective
+   *
+   * @param {Element} node
+   * @param {string} [key]
+   * @param {string} [dir]
+   * @param {string} [exp]
+   * @param {number} [index]
+   * @param {*} [vm]
+   * @param {*} [watchValue]
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.bind = function (node, key, dir, exp, index, vm, watchValue, val) {
+    var repeatValue = node.repeatData[key];
+    var value;
+
+    if (/^(\@)/.test(exp)) {
+      if (dir === 'model') throw new Error("directive: nv-model can't use " + exp + " as value"); // if @Function need function return value
+
+      var fn = this._getVMFunction(vm, exp);
+
+      var argsList = this._getVMFunctionArguments(vm, exp, node, key, val);
+
+      value = fn.apply(vm, argsList);
+    } else if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
+      // repeat value
+      value = this._getVMRepeatVal(repeatValue, exp, key);
+    } else if (/(state.).*/.test(exp)) {
+      // normal value
+      value = this._getVMVal(vm, exp);
+    } else if (exp === '$index') {
+      value = index;
+    } else {
+      throw new Error("directive: nv-" + dir + " can't use recognize this value " + exp);
+    }
+
+    if (!node.hasChildNodes()) this.templateUpdater(node, repeatValue, key, vm);
+    var updaterFn = this[dir + "Updater"];
+
+    switch (dir) {
+      case 'model':
+        var watchData = void 0;
+
+        if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
+          watchData = watchValue;
+        } else {
+          watchData = this._getVMVal(vm, exp);
+        }
+
+        if (updaterFn) updaterFn.call(this, node, value, exp, key, index, watchData, vm);
+        break;
+
+      case 'text':
+        if (updaterFn) updaterFn.call(this, node, value);
+        break;
+
+      case 'html':
+        if (updaterFn) updaterFn.call(this, node, value);
+        break;
+
+      case 'if':
+        if (updaterFn) updaterFn.call(this, node, value);
+        break;
+
+      case 'class':
+        if (updaterFn) updaterFn.call(this, node, value);
+        break;
+
+      case 'key':
+        if (updaterFn) updaterFn.call(this, node, value);
+        break;
+
+      default:
+        this.commonUpdater.call(this, node, value, dir);
+    }
+  };
+  /**
+   * update text for {{}}
+   *
+   * @param {Element} node
+   * @param {*} [val]
+   * @param {string} [key]
+   * @param {*} [vm]
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.templateUpdater = function (node, val, key, vm) {
+    var text = node.textContent;
+    var reg = /\{\{(.*)\}\}/g;
+
+    if (reg.test(text)) {
+      var textList = text.match(/(\{\{[^\{\}]+?\}\})/g);
+
+      if (textList && textList.length > 0) {
+        for (var i = 0; i < textList.length; i++) {
+          var exp = textList[i].replace('{{', '').replace('}}', '');
+          var value = null;
+
+          if (/^(\@)/.test(exp)) {
+            var fn = this._getVMFunction(vm, exp);
+
+            var argsList = this._getVMFunctionArguments(vm, exp, node, key, val);
+
+            value = fn.apply(vm, argsList);
+          } else if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
+            value = this._getVMRepeatVal(val, exp, key);
+          } else if (/(state.).*/.test(exp)) {
+            value = this._getVMVal(vm, exp);
+          } else {
+            throw new Error("directive: {{.*}} can't use recognize " + exp);
+          }
+
+          node.textContent = node.textContent.replace(textList[i], value);
+        }
+      }
+    }
+  };
+  /**
+   * update value of input for nv-model
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @param {string} exp
+   * @param {string} key
+   * @param {number} index
+   * @param {*} watchData
+   * @param {*} vm
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.modelUpdater = function (node, value, exp, key, index, watchData, vm) {
+    node.value = typeof value === 'undefined' ? '' : value;
+    var utilVm = this;
+
+    var func = function func(event) {
+      event.preventDefault();
+
+      if (/(state.).*/.test(exp)) {
+        var val = exp.replace(/(state.)/, '');
+        if (event.target.value === watchData) return;
+        vm.state[val] = event.target.value;
+      } else if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
+        if (_typeof(watchData[index]) !== 'object') watchData[index] = event.target.value;
+
+        if (_typeof(watchData[index]) === 'object') {
+          var vals = utilVm._getValueByValue(watchData[index], exp, key);
+
+          vals = event.target.value;
+
+          utilVm._setValueByValue(watchData[index], exp, key, vals);
+        }
+      } else {
+        throw new Error('directive: nv-model can\'t use recognize this value');
+      }
+    };
+
+    node.oninput = func;
+    node.eventinput = func;
+
+    if (node.eventTypes) {
+      var eventlist = JSON.parse(node.eventTypes);
+      eventlist.push('input');
+      node.eventTypes = JSON.stringify(eventlist);
+    }
+
+    if (!node.eventTypes) node.eventTypes = JSON.stringify(['input']);
+  };
+  /**
+   * update text for nv-text
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @returns {void}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.textUpdater = function (node, value) {
+    if (node.tagName.toLocaleLowerCase() === 'input') return node.value = value;
+    node.textContent = typeof value === 'undefined' ? '' : value;
+  };
+  /**
+   * update html for nv-html
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.htmlUpdater = function (node, value) {
+    node.innerHTML = typeof value === 'undefined' ? '' : value;
+  };
+  /**
+   * remove or show DOM for nv-if
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.ifUpdater = function (node, value) {
+    if (!value && this.$fragment.contains(node)) this.$fragment.removeChild(node);
+  };
+  /**
+   * update class for nv-class
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @returns {void}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.classUpdater = function (node, value) {
+    if (!value) return;
+    var className = node.className;
+    className = className.replace(/\s$/, '');
+    var space = className && String(value) ? ' ' : '';
+    node.className = className + space + value;
+  };
+  /**
+   * update value of repeat node for nv-key
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.keyUpdater = function (node, value) {
+    node.indiv_repeat_key = value;
+  };
+  /**
+   * commonUpdater for nv directive except repeat model text html if class
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @param {string} dir
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtilForRepeat.prototype.commonUpdater = function (node, value, dir) {
+    if (value) node[dir] = value;
+    if (!value && node[dir]) node[dir] = null;
+  };
+  /**
+   * compile event and build eventType in DOM
+   *
+   * @param {Element} node
+   * @param {*} vm
+   * @param {string} exp
+   * @param {string} eventName
+   * @param {string} key
+   * @param {*} val
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.eventHandler = function (node, vm, exp, eventName, key, val) {
+    var eventType = eventName.split(':')[1];
+
+    var fn = this._getVMFunction(vm, exp);
+
+    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/ /g, '').split(',');
+    var utilVm = this;
+
+    var func = function func(event) {
+      var _this = this;
+
+      var argsList = [];
+      args.forEach(function (arg) {
+        if (arg === '') return false;
+        if (arg === '$event') return argsList.push(event);
+        if (arg === '$element') return argsList.push(node);
+        if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
+        if (/(state.).*/g.test(arg)) return argsList.push(utilVm._getVMVal(vm, arg));
+        if (/\'.*\'/g.test(arg)) return argsList.push(arg.match(/\'(.*)\'/)[1]);
+        if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList.push(Number(arg));
+        if (arg.indexOf(key) === 0 || arg.indexOf(key + ".") === 0) return argsList.push(utilVm._getVMRepeatVal(val, arg, key));
+
+        if (_this.repeatData) {
+          // $index in this
+          Object.keys(_this.repeatData).forEach(function (data) {
+            if (arg.indexOf(data) === 0 || arg.indexOf(data + ".") === 0) return argsList.push(utilVm._getValueByValue(_this.repeatData[data], arg, data));
+          });
+        }
+      });
+      fn.apply(vm, argsList);
+    };
+
+    if (eventType && fn) {
+      node["on" + eventType] = func;
+      node["event" + eventType] = func;
+
+      if (node.eventTypes) {
+        var eventlist = JSON.parse(node.eventTypes);
+        eventlist.push(eventType);
+        node.eventTypes = JSON.stringify(eventlist);
+      }
+
+      if (!node.eventTypes) node.eventTypes = JSON.stringify([eventType]);
+    }
+  };
+
+  return CompileUtilForRepeat;
+}();
+
+exports.CompileUtilForRepeat = CompileUtilForRepeat;
+/**
+ * compile util for Compiler
+ *
+ * @export
+ * @class CompileUtil
+ */
+
+var CompileUtil =
+/** @class */
+function () {
+  /**
+   * Creates an instance of CompileUtil.
+   *
+   * @param {(Element | DocumentFragment)} [fragment]
+   *  @memberof CompileUtil
+   */
+  function CompileUtil(fragment) {
+    this.$fragment = fragment;
+  }
+  /**
+   * get value by key and anthor value
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @param {string} key
+   * @returns {*}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype._getValueByValue = function (vm, exp, key) {
+    var valueList = exp.replace('()', '').split('.');
+    var value = vm;
+    valueList.forEach(function (v, index) {
+      if (v === key && index === 0) return;
+      value = value[v];
+    });
+    return value;
+  };
+  /**
+   * get value of VM
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @returns {*}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype._getVMVal = function (vm, exp) {
+    var valueList = exp.replace('()', '').split('.');
+    var value = vm;
+    valueList.forEach(function (v) {
+      value = value[v];
+    });
+    return value;
+  };
+  /**
+   * get value by repeat value
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @returns {void}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype._getVMRepeatVal = function (vm, exp) {
+    var vlList = exp.split(' ');
+
+    var value = this._getVMVal(vm, vlList[3]);
+
+    return value;
+  };
+  /**
+   * get Function for vm
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @returns {Function}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype._getVMFunction = function (vm, exp) {
+    var fnList = exp.replace(/^(\@)/, '').replace(/\(.*\)/, '').split('.');
+    var fn = vm;
+    fnList.forEach(function (f) {
+      fn = fn[f];
+    });
+    return fn;
+  };
+  /**
+   * get Function arguments for vm
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @param {Element} node
+   * @returns {any[]}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype._getVMFunctionArguments = function (vm, exp, node) {
+    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
+    var argsList = [];
+    args.forEach(function (arg) {
+      if (arg === '') return false;
+      if (arg === '$element') return argsList.push(node);
+      if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
+      if (/(state.).*/g.test(arg)) return argsList.push(new CompileUtil()._getVMVal(vm, arg));
+      if (/\'.*\'/g.test(arg)) return argsList.push(arg.match(/\'(.*)\'/)[1]);
+      if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList.push(Number(arg));
+    });
+    return argsList;
+  };
+  /**
+   * bind handler for nv irective
+   *
+   * if node is repeat node and it will break compile and into CompileUtilForRepeat
+   *
+   * @param {Element} node
+   * @param {*} vm
+   * @param {string} exp
+   * @param {string} dir
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.bind = function (node, vm, exp, dir) {
+    var updaterFn = this[dir + "Updater"];
+    var isRepeatNode = this.isRepeatNode(node);
+
+    if (isRepeatNode) {
+      // compile repeatNode's attributes
+      switch (dir) {
+        case 'repeat':
+          if (updaterFn) updaterFn.call(this, node, this._getVMRepeatVal(vm, exp), exp, vm);
+          break;
+      }
+    } else {
+      var value = null; // for @Function(arg)
+
+      if (/^(\@)/.test(exp)) {
+        if (dir === 'model') throw new Error("directive: nv-model can't use " + exp + " as value"); // if @Function need function return value
+
+        var fn = this._getVMFunction(vm, exp);
+
+        var argsList = this._getVMFunctionArguments(vm, exp, node);
+
+        value = fn.apply(vm, argsList);
+      } else if (/(state.).*/.test(exp)) {
+        // normal value
+        value = this._getVMVal(vm, exp);
+      } else {
+        throw new Error("directive: nv-" + dir + " can't use recognize this value " + exp);
+      } // compile unrepeatNode's attributes
+
+
+      switch (dir) {
+        case 'model':
+          if (updaterFn) updaterFn.call(this, node, value, exp, vm);
+          break;
+
+        case 'text':
+          if (updaterFn) updaterFn.call(this, node, value);
+          break;
+
+        case 'html':
+          if (updaterFn) updaterFn.call(this, node, value);
+          break;
+
+        case 'if':
+          if (updaterFn) updaterFn.call(this, node, value);
+          break;
+
+        case 'class':
+          if (updaterFn) updaterFn.call(this, node, value);
+          break;
+
+        case 'key':
+          if (updaterFn) updaterFn.call(this, node, value);
+          break;
+
+        default:
+          this.commonUpdater.call(this, node, value, dir);
+      }
+
+      node.removeAttribute("nv-" + dir);
+    }
+  };
+  /**
+   * update text for {{}}
+   *
+   * @param {*} node
+   * @param {*} vm
+   * @param {string} exp
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.templateUpdater = function (node, vm, exp) {
+    var _exp = exp.replace('{{', '').replace('}}', '');
+
+    var value = null;
+
+    if (/^(\@)/.test(_exp)) {
+      var fn = this._getVMFunction(vm, _exp);
+
+      var argsList = this._getVMFunctionArguments(vm, _exp, node);
+
+      value = fn.apply(vm, argsList);
+    } else if (/(state.).*/.test(exp)) {
+      value = this._getVMVal(vm, _exp);
+    } else {
+      throw new Error('directive: {{.*}} can\'t use recognize this value');
+    }
+
+    node.textContent = node.textContent.replace(exp, value);
+  };
+  /**
+   * update value of input for nv-model
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @param {string} exp
+   * @param {*} vm
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.modelUpdater = function (node, value, exp, vm) {
+    node.value = typeof value === 'undefined' ? '' : value;
+    var val = exp.replace(/(state.)/, '');
+
+    var func = function func(event) {
+      event.preventDefault();
+      if (/(state.).*/.test(exp)) vm.state[val] = event.target.value;
+    };
+
+    node.oninput = func;
+    node.eventinput = func;
+
+    if (node.eventTypes) {
+      var eventlist = JSON.parse(node.eventTypes);
+      eventlist.push('input');
+      node.eventTypes = JSON.stringify(eventlist);
+    }
+
+    if (!node.eventTypes) node.eventTypes = JSON.stringify(['input']);
+  };
+  /**
+   * update text for nv-text
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @returns {void}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.textUpdater = function (node, value) {
+    if (node.tagName.toLocaleLowerCase() === 'input') return node.value = value;
+    node.textContent = typeof value === 'undefined' ? '' : value;
+  };
+  /**
+   * update html for nv-html
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.htmlUpdater = function (node, value) {
+    node.innerHTML = typeof value === 'undefined' ? '' : value;
+  };
+  /**
+   * remove or show DOM for nv-if
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.ifUpdater = function (node, value) {
+    if (!value && this.$fragment.contains(node)) this.$fragment.removeChild(node);
+  };
+  /**
+   * update class for nv-class
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @returns {void}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.classUpdater = function (node, value) {
+    if (!value) return;
+    var className = node.className;
+    className = className.replace(/\s$/, '');
+    var space = className && String(value) ? ' ' : '';
+    node.className = className + space + value;
+  };
+  /**
+   * update value of repeat node for nv-key
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtil.prototype.keyUpdater = function (node, value) {
+    node.indiv_repeat_key = value;
+  };
+  /**
+   * commonUpdater for nv directive except repeat model text html if class
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @param {string} dir
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.commonUpdater = function (node, value, dir) {
+    if (value) node[dir] = value;
+    if (!value && node[dir]) node[dir] = null;
+  };
+  /**
+   * update repeat DOM for nv-repeat
+   *
+   * if it has child and it will into repeatChildrenUpdater
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @param {string} expFather
+   * @param {*} vm
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.repeatUpdater = function (node, value, expFather, vm) {
+    var _this = this;
+
+    if (!value) return;
+    if (value && !(value instanceof Array)) throw new Error('compile error: nv-repeat need an Array!');
+    var key = expFather.split(' ')[1];
+    value.forEach(function (val, index) {
+      var repeatData = {};
+      repeatData[key] = val;
+      repeatData.$index = index;
+
+      var newElement = _this.cloneNode(node, repeatData);
+
+      var nodeAttrs = newElement.attributes;
+      var text = newElement.textContent;
+      var reg = /\{\{(.*)\}\}/g;
+
+      _this.$fragment.insertBefore(newElement, node);
+
+      newElement.removeAttribute('nv-repeat');
+      if (_this.isTextNode(newElement) && reg.test(text)) new CompileUtilForRepeat(_this.$fragment).templateUpdater(newElement, val, key, vm);
+
+      if (nodeAttrs) {
+        Array.from(nodeAttrs).forEach(function (attr) {
+          var attrName = attr.name;
+
+          if (_this.isDirective(attrName) && attrName !== 'nv-repeat') {
+            var dir = attrName.substring(3);
+            var exp = attr.value;
+
+            if (_this.isEventDirective(dir)) {
+              new CompileUtilForRepeat(_this.$fragment).eventHandler(newElement, vm, exp, dir, key, val);
+            } else {
+              new CompileUtilForRepeat(_this.$fragment).bind(newElement, key, dir, exp, index, vm, value, val);
+            }
+
+            newElement.removeAttribute(attrName);
+          }
+        });
+      } // first insert node before repeatnode, and remove repeatnode in Compile
+
+
+      if (newElement.hasChildNodes() && _this.$fragment.contains(newElement)) _this.repeatChildrenUpdater(newElement, val, expFather, index, vm, value);
+    });
+  };
+  /**
+   * update child of nv-repeat DOM
+   *
+   * if child is an nv-repeat DOM, it will into CompileUtil repeatUpdater
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @param {string} expFather
+   * @param {number} index
+   * @param {*} vm
+   * @param {*} watchValue
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.repeatChildrenUpdater = function (node, value, expFather, index, vm, watchValue) {
+    var _this = this;
+
+    var key = expFather.split(' ')[1];
+    Array.from(node.childNodes).forEach(function (child) {
+      if (_this.isElementNode(child) && vm.$components.find(function (component) {
+        return component.$selector === child.tagName.toLocaleLowerCase();
+      })) child.isComponent = true;
+      child.repeatData = node.repeatData || {};
+      child.repeatData[key] = value;
+      child.repeatData.$index = index;
+      if (_this.isRepeatProp(child)) child.setAttribute("_prop-" + key, JSON.stringify(value));
+      var nodeAttrs = child.attributes;
+      var text = child.textContent;
+      var reg = /\{\{(.*)\}\}/g;
+      if (_this.isTextNode(child) && reg.test(text)) new CompileUtilForRepeat(node).templateUpdater(child, value, key, vm);
+
+      if (nodeAttrs) {
+        Array.from(nodeAttrs).forEach(function (attr) {
+          var attrName = attr.name;
+          var exp = attr.value;
+          var dir = attrName.substring(3);
+
+          if (_this.isDirective(attrName) && attrName !== 'nv-repeat' && new RegExp("(^" + key + ")|(^state)|(^@)").test(exp)) {
+            if (_this.isEventDirective(dir)) {
+              new CompileUtilForRepeat(node).eventHandler(child, vm, exp, dir, key, value);
+            } else {
+              new CompileUtilForRepeat(node).bind(child, key, dir, exp, index, vm, watchValue, value);
+            }
+
+            child.removeAttribute(attrName);
+          }
+        });
+      }
+
+      if (child.hasChildNodes() && !_this.isRepeatNode(child) && node.contains(child)) _this.repeatChildrenUpdater(child, value, expFather, index, vm, watchValue);
+      var newAttrs = child.attributes;
+
+      if (newAttrs && node.contains(child)) {
+        var restRepeat = Array.from(newAttrs).find(function (attr) {
+          return _this.isDirective(attr.name) && attr.name === 'nv-repeat';
+        });
+
+        if (restRepeat) {
+          var newWatchData = restRepeat.value.split(' ')[3]; // first compile and then remove repeatNode
+
+          if (/^(state\.)/.test(newWatchData)) {
+            new CompileUtil(node).bind(child, vm, restRepeat.value, restRepeat.name.substring(3));
+            if (node.contains(child)) node.removeChild(child);
+          }
+
+          if (new RegExp("(^" + key + ")").test(newWatchData)) {
+            new CompileUtil(node).repeatUpdater(child, _this._getValueByValue(value, newWatchData, key), restRepeat.value, vm);
+            if (node.contains(child)) node.removeChild(child);
+          }
+
+          node.removeAttribute('nv-repeat');
+        }
+      }
+    });
+  };
+  /**
+   * compile event and build eventType in DOM
+   *
+   * @param {Element} node
+   * @param {*} vm
+   * @param {string} exp
+   * @param {string} eventName
+   * @memberof Compile
+   */
+
+
+  CompileUtil.prototype.eventHandler = function (node, vm, exp, eventName) {
+    var eventType = eventName.split(':')[1];
+
+    var fn = this._getVMFunction(vm, exp);
+
+    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
+
+    var func = function func(event) {
+      var argsList = [];
+      args.forEach(function (arg) {
+        if (arg === '') return false;
+        if (arg === '$event') return argsList.push(event);
+        if (arg === '$element') return argsList.push(node);
+        if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
+        if (/(state.).*/g.test(arg)) return argsList.push(new CompileUtil()._getVMVal(vm, arg));
+        if (/\'.*\'/g.test(arg)) return argsList.push(arg.match(/\'(.*)\'/)[1]);
+        if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList.push(Number(arg));
+      });
+      fn.apply(vm, argsList);
+    };
+
+    if (eventType && fn) {
+      node["on" + eventType] = func;
+      node["event" + eventType] = func;
+
+      if (node.eventTypes) {
+        var eventlist = JSON.parse(node.eventTypes);
+        eventlist.push(eventType);
+        node.eventTypes = JSON.stringify(eventlist);
+      }
+
+      if (!node.eventTypes) node.eventTypes = JSON.stringify([eventType]);
+    }
+  };
+  /**
+   * judge attribute is nv directive or not
+   *
+   * @param {string} attr
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isDirective = function (attr) {
+    return attr.indexOf('nv-') === 0;
+  };
+  /**
+   * judge attribute is nv event directive or not
+   *
+   * @param {string} event
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isEventDirective = function (event) {
+    return event.indexOf('on') === 0;
+  };
+  /**
+   * judge DOM is a element node or not
+   *
+   * @param {Element} node
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isElementNode = function (node) {
+    return node.nodeType === 1;
+  };
+  /**
+   * judge DOM is nv-repeat DOM or not
+   *
+   * @param {Element} node
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isRepeatNode = function (node) {
+    var nodeAttrs = node.attributes;
+    var result = false;
+
+    if (nodeAttrs) {
+      Array.from(nodeAttrs).forEach(function (attr) {
+        var attrName = attr.name;
+        if (attrName === 'nv-repeat') result = true;
+      });
+    }
+
+    return result;
+  };
+  /**
+   * judge DOM is a Component DOM in a repeat DOM or not
+   *
+   * @param {Element} node
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isRepeatProp = function (node) {
+    var nodeAttrs = node.attributes;
+    var result = false;
+    if (nodeAttrs) return !!Array.from(nodeAttrs).find(function (attr) {
+      return /^\{(.+)\}$/.test(attr.value);
+    });
+    return result;
+  };
+  /**
+   * judge DOM is text node or not
+   *
+   * @param {Element} node
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isTextNode = function (node) {
+    return node.nodeType === 3;
+  };
+  /**
+   * clone Node and clone it event
+   *
+   * event by attribute in DOM: eventTypes
+   * repeat data by attribute in DOM: repeatData
+   * isComponent: clone Component need add isComponent=true
+   *
+   * @param {Element} node
+   * @param {*} [repeatData]
+   * @returns {Node}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.cloneNode = function (node, repeatData) {
+    var newElement = node.cloneNode(true);
+
+    if (node.eventTypes) {
+      JSON.parse(node.eventTypes).forEach(function (eventType) {
+        newElement["on" + eventType] = node["event" + eventType];
+        newElement["event" + eventType] = node["event" + eventType];
+      });
+      newElement.eventTypes = node.eventTypes;
+    }
+
+    if (repeatData) newElement.repeatData = repeatData;
+    if (node.isComponent) newElement.isComponent = true;
+    return newElement;
+  };
+
+  return CompileUtil;
+}();
+
+exports.CompileUtil = CompileUtil;
+},{}],"../../InDiv/src/Compile/index.ts":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var VirtualDOM_1 = require("../VirtualDOM");
+
+var Utils_1 = __importDefault(require("../Utils"));
+
+var CompileUtils_1 = require("../CompileUtils");
+
+var utils = new Utils_1.default();
+/**
+ * main compiler
+ *
+ * @class Compile
+ */
+
+var Compile =
+/** @class */
+function () {
+  /**
+   * Creates an instance of Compile.
+   * @param {(string | Element)} el
+   * @param {*} vm
+   * @memberof Compile
+   */
+  function Compile(el, vm) {
+    this.$vm = vm;
+    this.$el = this.isElementNode(el) ? el : document.querySelector(el);
+
+    if (this.$el) {
+      this.$fragment = this.node2Fragment();
+      this.init();
+      var oldVnode = VirtualDOM_1.parseToVnode(this.$el);
+      var newVnode = VirtualDOM_1.parseToVnode(this.$fragment);
+      var patchList = [];
+      VirtualDOM_1.diffVnode(oldVnode, newVnode, patchList, this.needDiffChildCallback.bind(this));
+      VirtualDOM_1.renderVnode(patchList);
+      this.$fragment = null;
+      oldVnode = null;
+      newVnode = null;
+      patchList = null;
+    }
+  }
+  /**
+   * needDiffChildCallback for Virtual DOM diff
+   *
+   * if newVnode.node.isComponent no need diff children
+   * if newVnode.tagName and oldVnode.tagName no need diff children
+   *
+   * @param {IVnode} oldVnode
+   * @param {IVnode} newVnode
+   * @returns {boolean}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.needDiffChildCallback = function (oldVnode, newVnode) {
+    // 如果为组件，则停止对比内部元素，交由对应组件diff
+    if (newVnode.node.isComponent && oldVnode.node) {
+      oldVnode.node.isComponent = true;
+      return false;
+    } // 如果为路由渲染层，则停止对比内部元素，交由router diff
+
+
+    if (oldVnode.tagName === newVnode.tagName && newVnode.tagName === this.$vm.$vm.$routeDOMKey.toLocaleUpperCase()) return false;
+    return true;
+  };
+  /**
+   * init compile
+   *
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.init = function () {
+    this.compileElement(this.$fragment);
+  };
+  /**
+   * compile element
+   *
+   * @param {DocumentFragment} fragment
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.compileElement = function (fragment) {
+    var elementCreated = document.createElement('div');
+    elementCreated.innerHTML = utils.formatInnerHTML(this.$vm.$template);
+    var childNodes = elementCreated.childNodes;
+    this.recursiveDOM(childNodes, fragment);
+  };
+  /**
+   * recursive DOM for New State
+   *
+   * @param {(NodeListOf<Node & ChildNode>)} childNodes
+   * @param {(DocumentFragment | Element)} fragment
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.recursiveDOM = function (childNodes, fragment) {
+    var _this = this;
+
+    Array.from(childNodes).forEach(function (node) {
+      if (_this.isElementNode(node) && _this.$vm.$components.find(function (component) {
+        return component.$selector === node.tagName.toLocaleLowerCase();
+      })) node.isComponent = true;
+      if (node.hasChildNodes() && !_this.isRepeatNode(node)) _this.recursiveDOM(node.childNodes, node);
+      fragment.appendChild(node);
+      var text = node.textContent;
+      var reg = /\{\{(.*)\}\}/g;
+      if (_this.isElementNode(node)) _this.compile(node, fragment);
+
+      if (_this.isTextNode(node) && reg.test(text)) {
+        var textList = text.match(/(\{\{[^\{\}]+?\}\})/g);
+
+        if (textList && textList.length > 0) {
+          for (var i = 0; i < textList.length; i++) {
+            _this.compileText(node, textList[i]);
+          }
+        }
+      } // after compile repeatNode, remove repeatNode
+
+
+      if (_this.isRepeatNode(node) && fragment.contains(node)) fragment.removeChild(node);
+    });
+  };
+  /**
+   * compile string to DOM
+   *
+   * @param {Element} node
+   * @param {(DocumentFragment | Element)} fragment
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.compile = function (node, fragment) {
+    var _this = this;
+
+    var nodeAttrs = node.attributes;
+
+    if (nodeAttrs) {
+      Array.from(nodeAttrs).forEach(function (attr) {
+        var attrName = attr.name;
+
+        if (_this.isDirective(attrName)) {
+          var dir = attrName.substring(3);
+          var exp = attr.value;
+          var compileUtil = new CompileUtils_1.CompileUtil(fragment);
+
+          if (_this.isEventDirective(dir)) {
+            compileUtil.eventHandler(node, _this.$vm, exp, dir);
+            node.removeAttribute(attrName);
+          } else {
+            compileUtil.bind(node, _this.$vm, exp, dir);
+          }
+        }
+      });
+    }
+  };
+  /**
+   * create document fragment
+   *
+   * @returns {DocumentFragment}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.node2Fragment = function () {
+    return document.createDocumentFragment();
+  };
+  /**
+   * compile text and use CompileUtil templateUpdater
+   *
+   * @param {Element} node
+   * @param {string} exp
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.compileText = function (node, exp) {
+    new CompileUtils_1.CompileUtil(this.$fragment).templateUpdater(node, this.$vm, exp);
+  };
+  /**
+   * judge attribute is nv directive or not
+   *
+   * @param {string} attr
+   * @returns {boolean}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.isDirective = function (attr) {
+    return attr.indexOf('nv-') === 0;
+  };
+  /**
+   * judge attribute is nv event directive or not
+   *
+   * @param {string} eventName
+   * @returns {boolean}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.isEventDirective = function (eventName) {
+    return eventName.indexOf('on') === 0;
+  };
+  /**
+   * judge DOM is a element node or not
+   *
+   * @param {(Element | string)} node
+   * @returns {boolean}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.isElementNode = function (node) {
+    if (typeof node === 'string') return false;
+    return node.nodeType === 1;
+  };
+  /**
+   * judge DOM is nv-repeat dom or not
+   *
+   * @param {Element} node
+   * @returns {boolean}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.isRepeatNode = function (node) {
+    var nodeAttrs = node.attributes;
+    var result = false;
+
+    if (nodeAttrs) {
+      Array.from(nodeAttrs).forEach(function (attr) {
+        var attrName = attr.name;
+        if (attrName === 'nv-repeat') result = true;
+      });
+    }
+
+    return result;
+  };
+  /**
+   * judge DOM is text node or not
+   *
+   * @param {Element} node
+   * @returns {boolean}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.isTextNode = function (node) {
+    return node.nodeType === 3;
+  };
+
+  return Compile;
+}();
+
+exports.default = Compile;
+},{"../VirtualDOM":"../../InDiv/src/VirtualDOM/index.ts","../Utils":"../../InDiv/src/Utils/index.ts","../CompileUtils":"../../InDiv/src/CompileUtils/index.ts"}],"../../InDiv/src/DI/injectable.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * Decorator @Injectable
+ *
+ * to decorate an InDiv Service
+ *
+ * @param {TInjectableOptions} [options]
+ * @returns {(_constructor: Function) => void}
+ */
+
+function Injectable(options) {
+  return function (_constructor) {
+    _constructor.isSingletonMode = true;
+    if (options) _constructor.isSingletonMode = options.isSingletonMode;
+  };
+}
+
+exports.default = Injectable;
+},{}],"../../InDiv/src/DI/injected.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * Decorator @Injected
  * declare Class which need be injected
@@ -4056,7 +6085,6 @@ require("reflect-metadata");
  * @export
  * @param {Function} _constructor
  */
-
 
 function Injected(_constructor) {
   // 通过反射机制，获取参数类型列表
@@ -4078,7 +6106,7 @@ function Injected(_constructor) {
 }
 
 exports.default = Injected;
-},{"reflect-metadata":"../../InDiv/node_modules/reflect-metadata/Reflect.js"}],"../../InDiv/src/DI/factory-creator.ts":[function(require,module,exports) {
+},{}],"../../InDiv/src/DI/factory-creator.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4317,34 +6345,51 @@ function Component(options) {
     };
 
     vm.render = function () {
+      var _this = this;
+
       var dom = this.renderDom;
-      var compile = new Compile_1.default(dom, this);
-      this.mountComponent(dom);
-      var length = this.$componentList.length;
+      return Promise.resolve().then(function () {
+        var compile = new Compile_1.default(dom, _this);
 
-      for (var i = 0; i < length; i++) {
-        var component = this.$componentList[i];
-        if (component.scope.render) component.scope.render();
-        if (component.scope.nvAfterMount) component.scope.nvAfterMount();
-      }
+        _this.mountComponent(dom);
 
-      if (this.nvHasRender) this.nvHasRender();
+        var length = _this.$componentList.length;
+
+        for (var i = 0; i < length; i++) {
+          var component = _this.$componentList[i];
+          if (component.scope.render) component.scope.render();
+          if (component.scope.nvAfterMount) component.scope.nvAfterMount();
+        }
+
+        if (_this.nvHasRender) _this.nvHasRender();
+        return _this;
+      }).catch(function (e) {
+        throw new Error("component " + options.selector + " render failed: " + e);
+      });
     };
 
     vm.reRender = function () {
+      var _this = this;
+
       var dom = this.renderDom;
-      var routerRenderDom = dom.querySelectorAll(this.$vm.$routeDOMKey)[0];
-      var compile = new Compile_1.default(dom, this, routerRenderDom);
-      this.mountComponent(dom);
-      var length = this.$componentList.length;
+      return Promise.resolve().then(function () {
+        var compile = new Compile_1.default(dom, _this);
 
-      for (var i = 0; i < length; i++) {
-        var component = this.$componentList[i];
-        if (component.scope.render) component.scope.reRender();
-        if (component.scope.nvAfterMount) component.scope.nvAfterMount();
-      }
+        _this.mountComponent(dom);
 
-      if (this.nvHasRender) this.nvHasRender();
+        var length = _this.$componentList.length;
+
+        for (var i = 0; i < length; i++) {
+          var component = _this.$componentList[i];
+          if (component.scope.render) component.scope.reRender();
+          if (component.scope.nvAfterMount) component.scope.nvAfterMount();
+        }
+
+        if (_this.nvHasRender) _this.nvHasRender();
+        return _this;
+      }).catch(function (e) {
+        throw new Error("component " + options.selector + " render failed: " + e);
+      });
     };
 
     vm.mountComponent = function (dom) {
@@ -4432,7 +6477,18 @@ function Component(options) {
             });
             attrList.forEach(function (attr) {
               var attrName = attr.name;
-              if (/^\_prop\-(.+)/.test(attr.name)) return;
+              if (/^\_prop\-(.+)/.test(attrName)) return;
+              var attrNameSplit = attrName.split('-');
+
+              if (attrNameSplit.length > 1) {
+                attrNameSplit.forEach(function (name, index) {
+                  if (index === 0) attrName = name;
+                  if (index !== 0) attrName += name.toLowerCase().replace(/( |^)[a-z]/g, function (L) {
+                    return L.toUpperCase();
+                  });
+                });
+              }
+
               var prop = /^\{(.+)\}$/.exec(attr.value);
 
               if (prop) {
@@ -4521,21 +6577,27 @@ function Component(options) {
         var _newState = newState();
 
         if (_newState && _newState instanceof Object) {
-          for (var key in _newState) {
-            if (this.state.hasOwnProperty(key) && this.state[key] !== _newState[key]) this.state[key] = _newState[key];
-            if (!this.state.hasOwnProperty(key)) this.state[key] = _newState[key];
-          }
+          if (utils.isEqual(this.state, _newState)) return;
 
+          var _state = JSON.parse(JSON.stringify(this.state));
+
+          Object.assign(_state, _newState);
+          this.state = _state;
+          if (this.nvWatchState) this.stateWatcher = new Watcher_1.default(this.state, this.nvWatchState.bind(this), this.reRender.bind(this));
+          if (!this.nvWatchState) this.stateWatcher = new Watcher_1.default(this.state, null, this.reRender.bind(this));
           this.reRender();
         }
       }
 
       if (newState && newState instanceof Object) {
-        for (var key in newState) {
-          if (this.state.hasOwnProperty(key) && this.state[key] !== newState[key]) this.state[key] = newState[key];
-          if (!this.state.hasOwnProperty(key)) this.state[key] = newState[key];
-        }
+        if (utils.isEqual(this.state, newState)) return;
 
+        var _state = JSON.parse(JSON.stringify(this.state));
+
+        Object.assign(_state, newState);
+        this.state = _state;
+        if (this.nvWatchState) this.stateWatcher = new Watcher_1.default(this.state, this.nvWatchState.bind(this), this.reRender.bind(this));
+        if (!this.nvWatchState) this.stateWatcher = new Watcher_1.default(this.state, null, this.reRender.bind(this));
         this.reRender();
       }
     };
@@ -4691,6 +6753,145 @@ exports.IWatcher = watcher_1.IWatcher;
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : new P(function (resolve) {
+        resolve(result.value);
+      }).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+var __generator = this && this.__generator || function (thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function sent() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  },
+      f,
+      y,
+      t,
+      g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+    return this;
+  }), g;
+
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
+
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
+
+          case 7:
+            op = _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
+      }
+    }
+
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+};
 
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
@@ -4850,232 +7051,389 @@ function () {
   /**
    * distribute routes and decide insert or general Routes
    *
+   * @returns {Promise<any>}
    * @memberof Router
    */
 
 
   Router.prototype.distributeRoutes = function () {
-    if (this.lastRoute && this.lastRoute !== this.currentUrl) {
-      // has rendered
-      this.$vm.$esRouteParmasObject = {};
-      this.insertRenderRoutes();
-    } else {
-      // first render
-      this.generalDistributeRoutes();
-    }
+    return __awaiter(this, void 0, Promise, function () {
+      return __generator(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            if (!(this.lastRoute && this.lastRoute !== this.currentUrl)) return [3
+            /*break*/
+            , 2]; // has rendered
 
-    if (this.routeChange) this.routeChange(this.lastRoute, this.currentUrl);
-    this.lastRoute = this.currentUrl;
+            this.$vm.$esRouteParmasObject = {};
+            return [4
+            /*yield*/
+            , this.insertRenderRoutes()];
 
-    if (this.needRedirectPath) {
-      this.redirectTo(this.needRedirectPath);
-      this.needRedirectPath = null;
-    }
+          case 1:
+            _a.sent();
+
+            return [3
+            /*break*/
+            , 4];
+
+          case 2:
+            // first render
+            return [4
+            /*yield*/
+            , this.generalDistributeRoutes()];
+
+          case 3:
+            // first render
+            _a.sent();
+
+            _a.label = 4;
+
+          case 4:
+            if (this.routeChange) this.routeChange(this.lastRoute, this.currentUrl);
+            this.lastRoute = this.currentUrl;
+
+            if (this.needRedirectPath) {
+              this.redirectTo(this.needRedirectPath);
+              this.needRedirectPath = null;
+            }
+
+            return [2
+            /*return*/
+            ];
+        }
+      });
+    });
   };
   /**
    * insert Routes and render
    *
    * if has rendered Routes, it will find which is different and render it
    *
-   * @returns {void}
+   * @returns {Promise<IComponent>}
    * @memberof Router
    */
 
 
   Router.prototype.insertRenderRoutes = function () {
-    var lastRouteList = this.lastRoute === '/' ? ['/'] : this.lastRoute.split('/');
-    lastRouteList[0] = '/';
+    return __awaiter(this, void 0, Promise, function () {
+      var lastRouteList, _loop_1, this_1, index, state_1;
 
-    var _loop_1 = function _loop_1(index) {
-      var path = this_1.renderRouteList[index];
+      return __generator(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            lastRouteList = this.lastRoute === '/' ? ['/'] : this.lastRoute.split('/');
+            lastRouteList[0] = '/';
 
-      if (index === 0) {
-        var rootRoute = this_1.routes.find(function (route) {
-          return route.path === "" + path || /^\/\:.+/.test(route.path);
-        });
-        if (!rootRoute) throw new Error("route error: wrong route instantiation in insertRenderRoutes: " + this_1.currentUrl);
-        this_1.routesList.push(rootRoute);
-      } else {
-        var lastRoute = this_1.routesList[index - 1].children;
-        if (!lastRoute || !(lastRoute instanceof Array)) throw new Error('route error: routes not exit or routes must be an array!');
-        var route = lastRoute.find(function (r) {
-          return r.path === "/" + path || /^\/\:.+/.test(r.path);
-        });
-        if (!route) throw new Error("route error: wrong route instantiation: " + this_1.currentUrl);
-        this_1.routesList.push(route);
-      }
+            _loop_1 = function _loop_1(index) {
+              var path, rootRoute, lastRoute, route, needRenderRoute_1, needRenderComponent, renderDom, key, component, needRenderRoute, key, renderDom, needRenderRoute;
+              return __generator(this, function (_a) {
+                switch (_a.label) {
+                  case 0:
+                    path = this_1.renderRouteList[index];
 
-      if (path !== lastRouteList[index]) {
-        var needRenderRoute_1 = this_1.routesList[index];
-        if (!needRenderRoute_1) throw new Error("route error: wrong route instantiation in insertRenderRoutes: " + this_1.currentUrl);
-        var needRenderComponent = this_1.$vm.$components.find(function (component) {
-          return component.$selector === needRenderRoute_1.component;
-        });
-        var renderDom = document.querySelectorAll('router-render')[index - 1];
-        if (!needRenderRoute_1.component && !needRenderRoute_1.redirectTo) throw new Error("route error: path " + needRenderRoute_1.path + " need a component which has children path or need a  redirectTo which has't children path");
+                    if (index === 0) {
+                      rootRoute = this_1.routes.find(function (route) {
+                        return route.path === "" + path || /^\/\:.+/.test(route.path);
+                      });
+                      if (!rootRoute) throw new Error("route error: wrong route instantiation in insertRenderRoutes: " + this_1.currentUrl);
+                      this_1.routesList.push(rootRoute);
+                    } else {
+                      lastRoute = this_1.routesList[index - 1].children;
+                      if (!lastRoute || !(lastRoute instanceof Array)) throw new Error('route error: routes not exit or routes must be an array!');
+                      route = lastRoute.find(function (r) {
+                        return r.path === "/" + path || /^\/\:.+/.test(r.path);
+                      });
+                      if (!route) throw new Error("route error: wrong route instantiation: " + this_1.currentUrl);
+                      this_1.routesList.push(route);
+                    }
 
-        if (/^\/\:.+/.test(needRenderRoute_1.path) && !needRenderRoute_1.redirectTo) {
-          var key = needRenderRoute_1.path.split('/:')[1];
-          this_1.$vm.$esRouteParmasObject[key] = path;
+                    if (!(path !== lastRouteList[index])) return [3
+                    /*break*/
+                    , 3];
+                    needRenderRoute_1 = this_1.routesList[index];
+                    if (!needRenderRoute_1) throw new Error("route error: wrong route instantiation in insertRenderRoutes: " + this_1.currentUrl);
+                    needRenderComponent = this_1.$vm.$components.find(function (component) {
+                      return component.$selector === needRenderRoute_1.component;
+                    });
+                    renderDom = document.querySelectorAll('router-render')[index - 1];
+                    if (!needRenderRoute_1.component && !needRenderRoute_1.redirectTo) throw new Error("route error: path " + needRenderRoute_1.path + " need a component which has children path or need a  redirectTo which has't children path");
+
+                    if (/^\/\:.+/.test(needRenderRoute_1.path) && !needRenderRoute_1.redirectTo) {
+                      key = needRenderRoute_1.path.split('/:')[1];
+                      this_1.$vm.$esRouteParmasObject[key] = path;
+                    }
+
+                    if (!needRenderComponent) return [3
+                    /*break*/
+                    , 2];
+                    return [4
+                    /*yield*/
+                    , this_1.instantiateComponent(needRenderComponent, renderDom)];
+
+                  case 1:
+                    component = _a.sent(); // insert needRenderComponent on index in this.hasRenderComponentList
+                    // and remove other component which index >= index of needRenderComponent
+
+                    if (component) {
+                      if (this_1.hasRenderComponentList[index]) this_1.hasRenderComponentList.splice(index, 0, component);
+                      if (!this_1.hasRenderComponentList[index]) this_1.hasRenderComponentList[index] = component;
+                    } else {
+                      throw new Error("route error: path " + needRenderRoute_1.path + " need a component");
+                    }
+
+                    this_1.routerChangeEvent(index);
+                    _a.label = 2;
+
+                  case 2:
+                    if (needRenderRoute_1.redirectTo && /^\/.*/.test(needRenderRoute_1.redirectTo) && index + 1 === this_1.renderRouteList.length) {
+                      this_1.needRedirectPath = needRenderRoute_1.redirectTo;
+                      return [2
+                      /*return*/
+                      , {
+                        value: void 0
+                      }];
+                    }
+
+                    _a.label = 3;
+
+                  case 3:
+                    // add parmas in $esRouteParmasObject
+                    if (path === lastRouteList[index]) {
+                      needRenderRoute = this_1.routesList[index];
+
+                      if (/^\/\:.+/.test(needRenderRoute.path) && !needRenderRoute.redirectTo) {
+                        key = needRenderRoute.path.split('/:')[1];
+                        this_1.$vm.$esRouteParmasObject[key] = path;
+                      }
+                    }
+
+                    if (index === this_1.renderRouteList.length - 1 && index < lastRouteList.length - 1) {
+                      renderDom = document.querySelectorAll('router-render')[index];
+                      this_1.routerChangeEvent(index);
+                      if (renderDom && renderDom.hasChildNodes()) renderDom.removeChild(renderDom.childNodes[0]);
+                      needRenderRoute = this_1.routesList[index];
+
+                      if (needRenderRoute.redirectTo && /^\/.*/.test(needRenderRoute.redirectTo) && index + 1 === this_1.renderRouteList.length) {
+                        this_1.needRedirectPath = needRenderRoute.redirectTo;
+                        return [2
+                        /*return*/
+                        , {
+                          value: void 0
+                        }];
+                      }
+                    }
+
+                    return [2
+                    /*return*/
+                    ];
+                }
+              });
+            };
+
+            this_1 = this;
+            index = 0;
+            _a.label = 1;
+
+          case 1:
+            if (!(index < this.renderRouteList.length)) return [3
+            /*break*/
+            , 4];
+            return [5
+            /*yield**/
+            , _loop_1(index)];
+
+          case 2:
+            state_1 = _a.sent();
+            if (_typeof(state_1) === "object") return [2
+            /*return*/
+            , state_1.value];
+            _a.label = 3;
+
+          case 3:
+            index++;
+            return [3
+            /*break*/
+            , 1];
+
+          case 4:
+            return [2
+            /*return*/
+            ];
         }
-
-        if (needRenderComponent) {
-          var component = this_1.instantiateComponent(needRenderComponent, renderDom); // insert needRenderComponent on index in this.hasRenderComponentList,and remove other component which index >= index of needRenderComponent
-
-          if (component) {
-            if (this_1.hasRenderComponentList[index]) this_1.hasRenderComponentList.splice(index, 0, component);
-            if (!this_1.hasRenderComponentList[index]) this_1.hasRenderComponentList[index] = component;
-          } else {
-            throw new Error("route error: path " + needRenderRoute_1.path + " need a component");
-          }
-
-          this_1.routerChangeEvent(index);
-        }
-
-        if (needRenderRoute_1.redirectTo && /^\/.*/.test(needRenderRoute_1.redirectTo) && index + 1 === this_1.renderRouteList.length) {
-          this_1.needRedirectPath = needRenderRoute_1.redirectTo;
-          return {
-            value: void 0
-          };
-        }
-      } // add parmas in $esRouteParmasObject
-
-
-      if (path === lastRouteList[index]) {
-        var needRenderRoute = this_1.routesList[index];
-
-        if (/^\/\:.+/.test(needRenderRoute.path) && !needRenderRoute.redirectTo) {
-          var key = needRenderRoute.path.split('/:')[1];
-          this_1.$vm.$esRouteParmasObject[key] = path;
-        }
-      }
-
-      if (index === this_1.renderRouteList.length - 1 && index < lastRouteList.length - 1) {
-        var renderDom = document.querySelectorAll('router-render')[index];
-        this_1.routerChangeEvent(index);
-        if (renderDom && renderDom.hasChildNodes()) renderDom.removeChild(renderDom.childNodes[0]);
-        var needRenderRoute = this_1.routesList[index];
-
-        if (needRenderRoute.redirectTo && /^\/.*/.test(needRenderRoute.redirectTo) && index + 1 === this_1.renderRouteList.length) {
-          this_1.needRedirectPath = needRenderRoute.redirectTo;
-          return {
-            value: void 0
-          };
-        }
-      }
-    };
-
-    var this_1 = this;
-
-    for (var index = 0; index < this.renderRouteList.length; index++) {
-      var state_1 = _loop_1(index);
-
-      if (_typeof(state_1) === "object") return state_1.value;
-    }
+      });
+    });
   };
   /**
    * render Routes
    *
    * first render
    *
-   * @returns {void}
+   * @returns {Promise<IComponent>}
    * @memberof Router
    */
 
 
   Router.prototype.generalDistributeRoutes = function () {
-    var _loop_2 = function _loop_2(index) {
-      var path = this_2.renderRouteList[index];
+    return __awaiter(this, void 0, Promise, function () {
+      var _loop_2, this_2, index, state_2;
 
-      if (index === 0) {
-        var rootRoute_1 = this_2.routes.find(function (route) {
-          return route.path === "" + path || /^\/\:.+/.test(route.path);
-        });
-        if (!rootRoute_1) throw new Error("route error: wrong route instantiation in generalDistributeRoutes: " + this_2.currentUrl);
-        var FindComponent = null;
+      return __generator(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            _loop_2 = function _loop_2(index) {
+              var path, rootRoute_1, FindComponent, key, rootDom, component, lastRoute, route_1, FindComponent, key, renderDom, component;
+              return __generator(this, function (_a) {
+                switch (_a.label) {
+                  case 0:
+                    path = this_2.renderRouteList[index];
+                    if (!(index === 0)) return [3
+                    /*break*/
+                    , 2];
+                    rootRoute_1 = this_2.routes.find(function (route) {
+                      return route.path === "" + path || /^\/\:.+/.test(route.path);
+                    });
+                    if (!rootRoute_1) throw new Error("route error: wrong route instantiation in generalDistributeRoutes: " + this_2.currentUrl);
+                    FindComponent = null;
 
-        if (this_2.$vm.$rootModule.$components.find(function (component) {
-          return component.$selector === rootRoute_1.component;
-        })) {
-          FindComponent = this_2.$vm.$rootModule.$components.find(function (component) {
-            return component.$selector === rootRoute_1.component;
-          });
-        } else {
-          throw new Error("route error: path " + rootRoute_1.path + " is undefined");
+                    if (this_2.$vm.$rootModule.$components.find(function (component) {
+                      return component.$selector === rootRoute_1.component;
+                    })) {
+                      FindComponent = this_2.$vm.$rootModule.$components.find(function (component) {
+                        return component.$selector === rootRoute_1.component;
+                      });
+                    } else {
+                      throw new Error("route error: path " + rootRoute_1.path + " is undefined");
+                    }
+
+                    if (/^\/\:.+/.test(rootRoute_1.path)) {
+                      key = rootRoute_1.path.split('/:')[1];
+                      this_2.$vm.$esRouteParmasObject[key] = path;
+                    }
+
+                    if (!utils.isBrowser()) return [2
+                    /*return*/
+                    , {
+                      value: void 0
+                    }];
+                    rootDom = document.querySelector('#root');
+                    this_2.routesList.push(rootRoute_1);
+                    return [4
+                    /*yield*/
+                    , this_2.instantiateComponent(FindComponent, rootDom)];
+
+                  case 1:
+                    component = _a.sent(); // 因为没有 所有要push进去
+
+                    if (component) this_2.hasRenderComponentList.push(component);
+                    if (index === this_2.renderRouteList.length - 1) this_2.routerChangeEvent(index);
+
+                    if (rootRoute_1.redirectTo && /^\/.*/.test(rootRoute_1.redirectTo) && index + 1 === this_2.renderRouteList.length) {
+                      this_2.needRedirectPath = rootRoute_1.redirectTo;
+                      this_2.renderRouteList.push(rootRoute_1.redirectTo);
+                      return [2
+                      /*return*/
+                      , {
+                        value: void 0
+                      }];
+                    }
+
+                    return [3
+                    /*break*/
+                    , 5];
+
+                  case 2:
+                    lastRoute = this_2.routesList[index - 1].children;
+                    if (!lastRoute || !(lastRoute instanceof Array)) throw new Error('route error: routes not exit or routes must be an array!');
+                    route_1 = lastRoute.find(function (r) {
+                      return r.path === "/" + path || /^\/\:.+/.test(r.path);
+                    });
+                    if (!route_1) throw new Error("route error: wrong route instantiation: " + this_2.currentUrl);
+                    FindComponent = null;
+
+                    if (this_2.$vm.$rootModule.$components.find(function (component) {
+                      return component.$selector === route_1.component;
+                    })) {
+                      FindComponent = this_2.$vm.$rootModule.$components.find(function (component) {
+                        return component.$selector === route_1.component;
+                      });
+                    }
+
+                    if (!route_1.component && !route_1.redirectTo) throw new Error("route error: path " + route_1.path + " need a component which has children path or need a  redirectTo which has't children path");
+
+                    if (/^\/\:.+/.test(route_1.path)) {
+                      key = route_1.path.split('/:')[1];
+                      this_2.$vm.$esRouteParmasObject[key] = path;
+                    }
+
+                    renderDom = document.querySelectorAll('router-render')[index - 1];
+                    this_2.routesList.push(route_1);
+                    if (!FindComponent) return [3
+                    /*break*/
+                    , 4];
+                    return [4
+                    /*yield*/
+                    , this_2.instantiateComponent(FindComponent, renderDom)];
+
+                  case 3:
+                    component = _a.sent();
+                    if (component) this_2.hasRenderComponentList.push(component);
+                    _a.label = 4;
+
+                  case 4:
+                    if (index === this_2.renderRouteList.length - 1) this_2.routerChangeEvent(index);
+
+                    if (route_1.redirectTo && /^\/.*/.test(route_1.redirectTo) && index + 1 === this_2.renderRouteList.length) {
+                      this_2.needRedirectPath = route_1.redirectTo;
+                      return [2
+                      /*return*/
+                      , {
+                        value: void 0
+                      }];
+                    }
+
+                    _a.label = 5;
+
+                  case 5:
+                    return [2
+                    /*return*/
+                    ];
+                }
+              });
+            };
+
+            this_2 = this;
+            index = 0;
+            _a.label = 1;
+
+          case 1:
+            if (!(index < this.renderRouteList.length)) return [3
+            /*break*/
+            , 4];
+            return [5
+            /*yield**/
+            , _loop_2(index)];
+
+          case 2:
+            state_2 = _a.sent();
+            if (_typeof(state_2) === "object") return [2
+            /*return*/
+            , state_2.value];
+            _a.label = 3;
+
+          case 3:
+            index++;
+            return [3
+            /*break*/
+            , 1];
+
+          case 4:
+            return [2
+            /*return*/
+            ];
         }
-
-        if (/^\/\:.+/.test(rootRoute_1.path)) {
-          var key = rootRoute_1.path.split('/:')[1];
-          this_2.$vm.$esRouteParmasObject[key] = path;
-        }
-
-        if (!utils.isBrowser()) return {
-          value: void 0
-        };
-        var rootDom = document.querySelector('#root');
-        this_2.routesList.push(rootRoute_1);
-        var component = this_2.instantiateComponent(FindComponent, rootDom); // 因为没有 所有要push进去
-
-        if (component) this_2.hasRenderComponentList.push(component);
-        if (index === this_2.renderRouteList.length - 1) this_2.routerChangeEvent(index);
-
-        if (rootRoute_1.redirectTo && /^\/.*/.test(rootRoute_1.redirectTo) && index + 1 === this_2.renderRouteList.length) {
-          this_2.needRedirectPath = rootRoute_1.redirectTo;
-          this_2.renderRouteList.push(rootRoute_1.redirectTo);
-          return {
-            value: void 0
-          };
-        }
-      } else {
-        var lastRoute = this_2.routesList[index - 1].children;
-        if (!lastRoute || !(lastRoute instanceof Array)) throw new Error('route error: routes not exit or routes must be an array!');
-        var route_1 = lastRoute.find(function (r) {
-          return r.path === "/" + path || /^\/\:.+/.test(r.path);
-        });
-        if (!route_1) throw new Error("route error: wrong route instantiation: " + this_2.currentUrl);
-        var FindComponent = null;
-
-        if (this_2.$vm.$rootModule.$components.find(function (component) {
-          return component.$selector === route_1.component;
-        })) {
-          FindComponent = this_2.$vm.$rootModule.$components.find(function (component) {
-            return component.$selector === route_1.component;
-          });
-        }
-
-        if (!route_1.component && !route_1.redirectTo) throw new Error("route error: path " + route_1.path + " need a component which has children path or need a  redirectTo which has't children path");
-
-        if (/^\/\:.+/.test(route_1.path)) {
-          var key = route_1.path.split('/:')[1];
-          this_2.$vm.$esRouteParmasObject[key] = path;
-        }
-
-        var renderDom = document.querySelectorAll('router-render')[index - 1];
-        this_2.routesList.push(route_1);
-
-        if (FindComponent) {
-          var component = this_2.instantiateComponent(FindComponent, renderDom);
-          if (component) this_2.hasRenderComponentList.push(component);
-        }
-
-        if (index === this_2.renderRouteList.length - 1) this_2.routerChangeEvent(index);
-
-        if (route_1.redirectTo && /^\/.*/.test(route_1.redirectTo) && index + 1 === this_2.renderRouteList.length) {
-          this_2.needRedirectPath = route_1.redirectTo;
-          return {
-            value: void 0
-          };
-        }
-      }
-    };
-
-    var this_2 = this;
-
-    for (var index = 0; index < this.renderRouteList.length; index++) {
-      var state_2 = _loop_2(index);
-
-      if (_typeof(state_2) === "object") return state_2.value;
-    }
+      });
+    });
   };
   /**
    * emit nvRouteChange and nvOnDestory for Components
@@ -5136,7 +7494,7 @@ function () {
    *
    * @param {Function} FindComponent
    * @param {Element} renderDom
-   * @returns {*}
+   * @returns {Promise<IComponent>}
    * @memberof Router
    */
 
@@ -5425,7 +7783,7 @@ function () {
    *
    * @param {Function} BootstrapComponent
    * @param {Element} renderDOM
-   * @returns {*}
+   * @returns {Promise<IComponent>}
    * @memberof InDiv
    */
 
@@ -5441,9 +7799,10 @@ function () {
 
     if (template && typeof template === 'string' && renderDOM) {
       if (component.nvBeforeMount) component.nvBeforeMount();
-      this.replaceDom(component, renderDOM);
-      if (component.nvAfterMount) component.nvAfterMount();
-      return component;
+      return this.replaceDom(component, renderDOM).then(function (_component) {
+        if (_component.nvAfterMount) _component.nvAfterMount();
+        return _component;
+      });
     } else {
       throw new Error('renderBootstrap failed: template or rootDom is not exit');
     }
@@ -5453,13 +7812,14 @@ function () {
    *
    * @param {IComponent} component
    * @param {Element} renderDOM
+   * @returns {Promise<IComponent>}
    * @memberof InDiv
    */
 
 
   InDiv.prototype.replaceDom = function (component, renderDOM) {
     component.renderDom = renderDOM;
-    component.render();
+    return component.render();
   };
 
   return InDiv;
@@ -6989,6 +9349,40 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+require("core-js/modules/es6.array.find");
+
+require("core-js/modules/es6.array.find-index");
+
+require("core-js/modules/es6.array.for-each");
+
+require("core-js/modules/es6.array.from");
+
+require("core-js/modules/es6.array.index-of");
+
+require("core-js/modules/es6.array.map");
+
+require("core-js/modules/es6.array.sort");
+
+require("core-js/modules/es6.object.define-property");
+
+require("core-js/modules/es6.object.to-string");
+
+require("core-js/modules/es6.regexp.match");
+
+require("core-js/modules/es6.regexp.replace");
+
+require("core-js/modules/es6.map");
+
+require("core-js/modules/es6.promise");
+
+require("core-js/modules/es6.function.bind");
+
+require("core-js/modules/es6.reflect.construct");
+
+require("core-js/modules/es6.promise");
+
+require("reflect-metadata");
+
 var Utils_1 = require("./Utils");
 
 exports.Utils = Utils_1.default;
@@ -7052,7 +9446,7 @@ exports.Injectable = DI_1.Injectable;
 exports.Injected = DI_1.Injected;
 exports.injector = DI_1.injector;
 exports.factoryCreator = DI_1.factoryCreator;
-},{"./Utils":"../../InDiv/src/Utils/index.ts","./Lifecycle":"../../InDiv/src/Lifecycle/index.ts","./Watcher":"../../InDiv/src/Watcher/index.ts","./KeyWatcher":"../../InDiv/src/KeyWatcher/index.ts","./Compile":"../../InDiv/src/Compile/index.ts","./CompileUtils":"../../InDiv/src/CompileUtils/index.ts","./Component":"../../InDiv/src/Component/index.ts","./Router":"../../InDiv/src/Router/index.ts","./InDiv":"../../InDiv/src/InDiv/index.ts","./NvModule":"../../InDiv/src/NvModule/index.ts","./Http":"../../InDiv/src/Http/index.ts","./DI":"../../InDiv/src/DI/index.ts"}],"routes/index.ts":[function(require,module,exports) {
+},{"core-js/modules/es6.array.find":"../../InDiv/node_modules/core-js/modules/es6.array.find.js","core-js/modules/es6.array.find-index":"../../InDiv/node_modules/core-js/modules/es6.array.find-index.js","core-js/modules/es6.array.for-each":"../../InDiv/node_modules/core-js/modules/es6.array.for-each.js","core-js/modules/es6.array.from":"../../InDiv/node_modules/core-js/modules/es6.array.from.js","core-js/modules/es6.array.index-of":"../../InDiv/node_modules/core-js/modules/es6.array.index-of.js","core-js/modules/es6.array.map":"../../InDiv/node_modules/core-js/modules/es6.array.map.js","core-js/modules/es6.array.sort":"../../InDiv/node_modules/core-js/modules/es6.array.sort.js","core-js/modules/es6.object.define-property":"../../InDiv/node_modules/core-js/modules/es6.object.define-property.js","core-js/modules/es6.object.to-string":"../../InDiv/node_modules/core-js/modules/es6.object.to-string.js","core-js/modules/es6.regexp.match":"../../InDiv/node_modules/core-js/modules/es6.regexp.match.js","core-js/modules/es6.regexp.replace":"../../InDiv/node_modules/core-js/modules/es6.regexp.replace.js","core-js/modules/es6.map":"../../InDiv/node_modules/core-js/modules/es6.map.js","core-js/modules/es6.promise":"../../InDiv/node_modules/core-js/modules/es6.promise.js","core-js/modules/es6.function.bind":"../../InDiv/node_modules/core-js/modules/es6.function.bind.js","core-js/modules/es6.reflect.construct":"../../InDiv/node_modules/core-js/modules/es6.reflect.construct.js","reflect-metadata":"../../InDiv/node_modules/reflect-metadata/Reflect.js","./Utils":"../../InDiv/src/Utils/index.ts","./Lifecycle":"../../InDiv/src/Lifecycle/index.ts","./Watcher":"../../InDiv/src/Watcher/index.ts","./KeyWatcher":"../../InDiv/src/KeyWatcher/index.ts","./Compile":"../../InDiv/src/Compile/index.ts","./CompileUtils":"../../InDiv/src/CompileUtils/index.ts","./Component":"../../InDiv/src/Component/index.ts","./Router":"../../InDiv/src/Router/index.ts","./InDiv":"../../InDiv/src/InDiv/index.ts","./NvModule":"../../InDiv/src/NvModule/index.ts","./Http":"../../InDiv/src/Http/index.ts","./DI":"../../InDiv/src/DI/index.ts"}],"routes/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7129,14 +9523,14 @@ exports.content = function () {
   return [{
     h1: '什么是InDiv',
     p: ['InDiv 是一个mvvm库。它能帮你构建 Web 应用。InDiv 字符串模板、依赖注入和一些实践于一身。'],
-    info: ['InDiv 是单词 individual 的缩写，我在设计时借鉴了很多 angular 和 react 的模式与概念。', '本网页是世界上第一个用 InDiv 构建的网页。', '在此致敬 angular 和 react的开发者们。感谢他们为前端做出的巨大贡献。']
+    info: ['InDiv 是单词 individual 的缩写，我撸的时候借鉴了很多 angular，react，vue 的模式与概念。', '本网页是世界上第一个用 InDiv 构建的网页。', '在此致敬 angular，react 和 vue的大佬开发者们。感谢他们为前端做出的巨大贡献。']
   }, {
     h1: '基本假设',
     p: ['本文档假设你已经熟悉了 JavaScript，TypeScript，和来自最新标准的一些知识，比如 class 和 esmodule。', '下列代码范例都是用最新版本的 TypeScript 写的，利用 类型 实现依赖注入，并使用装饰器来提供元数据。']
   }, {
     h1: '基本理念',
     p: ['InDiv 基于 mvvm, 本身使用 TypeScript编写。', '它将核心功能和可选功能作为一组 TypeScript 库进行实现，你可以把它们导入你的应用中。'],
-    info: ['InDiv 基本构造块是 NvModule，它为组件提供了编译的上下文环境和作用域', '整个app的最小单位为 Component，页面上的一切皆为组件']
+    info: ['InDiv 基本构造块是 NvModule，它为组件提供了编译的上下文环境和作用域', '整个app的最小单位为 Component，页面上的一切皆为组件', '异步渲染页面，尽量优化性能']
   }, {
     h1: '反馈',
     p: ['你可以和我一起做贡献！你可以到 Github 上的仓库中提出文档方面的问题，并创建Pull Requests。', '或者在 github 上联系我：DimaLiLongJi']
@@ -7426,13 +9820,13 @@ exports.componentInfo = function () {
     }, {
       title: '模板数据绑定',
       p: ['如果没有框架，你就要自己负责把数据渲染到 HTML 控件中，并把来自用户的响应转换成动作和对值的更新。 手动写这种数据推拉逻辑会很枯燥、容易出错，难以阅读 —— 用过 jQuery 的程序员一定深有体会。', 'InDiv 支持双向数据绑定，这是一种对模板中的各个部件与组件中的各个部件进行协调的机制。'],
-      pchild: ['1. 往模板HTML字符串中添加绑定 nv- 开头的标记可以告诉 InDiv 该如何渲染它们。', '2. 因为 InDiv 使用单向数据流，所以仅仅支持使用 this.state 内的值 或是 有返回值的实例上的方法 作为绑定数据， 实例的方法作为事件方法。', '3. 如果要在组件内使用 props ，请在 nvReceiveProps 或 nvOnInit 生命周期内用 props 对 state 赋值。', '4. 如果组件在 根模块（root NvModule）或模块（NvModule） 上的 components：Function[]; 声明过，则在其他同模块组件内的 template 可以像 HTML 标签一样使用组件。', '4. 模板上的组件可接受的 props的值 必须用 {} 包裹起来。', '5. props的值 有三种: <test-component man="{@countState(man.name)}" women="{man.name}" handler="{@getProps}"></test-component>', '(1) 直接使用 state上的值 或 nv-repeat 的值：women="{state.name} women="{man.name}"', '(2) 使用 @ 加 实例上带有返回值的方法，返回值将作为被传递的值：man="{@countState(man.name)}"', '(3) 使用 @ 加 实例上的方法，方法将作为 props 传递：handler="{@getProps}"'],
-      code: "\n  @Component({\n    selector: 'container-component',\n    template: ('\n      <div nv-on:click=\"@show(state.a)\">\n        ContainerComponent {{state.a}}\n        <test-component valueA=\"{state.a}\" show=\"{@show}\"></test-component>\n      </div>\n      '),\n  })\n  export default class ContainerComponent {\n    constructor() {\n      this.state = {\n        a: null,\n      };\n    }\n\n    public show(a: any) {\n      console.log(a);\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.a = nextProps.a;\n    }\n  }\n "
+      pchild: ['1. 往模板HTML字符串中添加绑定 nv- 开头的标记可以告诉 InDiv 该如何渲染它们。', '2. 因为 InDiv 使用单向数据流，所以仅仅支持使用 this.state 内的值 或是 有返回值的实例上的方法 作为绑定数据， 实例的方法作为事件方法。', '3. 如果要在组件内使用 props ，请在 nvReceiveProps 或 Class的getter setter方法 或 在 nvOnInit 生命周期内用 props 对 state 赋值。', '4. 如果组件在 根模块（root NvModule）或模块（NvModule） 上的 components：Function[]; 声明过，则在其他同模块组件内的 template 可以像 HTML 标签一样使用组件。', '4. 模板上的组件可接受的 props的值 必须用 {} 包裹起来。', '5. props的值 有三种: <test-component man="{@countState(man.name)}" women="{man.name}" handler="{@getProps}"></test-component>', '(1) 直接使用 state上的值 或 nv-repeat 的值：women="{state.name} women="{man.name}"', '(2) 使用 @ 加 实例上带有返回值的方法，返回值将作为被传递的值：man="{@countState(man.name)}"', '(3) 使用 @ 加 实例上的方法，方法将作为 props 传递：handler="{@getProps}"'],
+      code: "\n  @Component({\n    selector: 'container-component',\n    template: ('\n      <div nv-on:click=\"@show(state.a)\">\n        ContainerComponent {{state.a}}\n        <test-component value-a=\"{state.a}\" show=\"{@show}\"></test-component>\n      </div>\n      '),\n  })\n  export default class ContainerComponent {\n    constructor() {\n      this.state = {\n        a: null,\n      };\n    }\n\n    public show(a: any) {\n      console.log(a);\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.a = nextProps.a;\n    }\n  }\n "
     }, {
       title: '组件通信1: props 与 state',
-      p: ['InDiv 的组件之间可以 props 来通信。', '组件间通信应该是单向的，通过传递值到子组件，并通过传递一个回调方法在子组件调用来更改对应父组件的值来完成通信。'],
-      pchild: ['1. 可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 propValue="{state.value}" propValue="{@returnValue(state.value)}" propFunction="{@fn}" 的引号包裹花括号的写法传递值与方法。', '2. 例如在下面例子，在 hero-component 内可以用循环 nv-repeat 的value，也可以使用 实例上有返回值的方法，也可以直接在实例方法中触发 handelClick 回调。', '3. 如果该 DOM 会发生频繁变化，并且有可追踪的唯一 key 值，可以添加指令 nv-key, 让 InDiv 直接追踪到 DOM 变化，帮助保存 组件 内的 state。', '4. 但是渲染的时候，不可以在模板上直接使用 props 的值，仅仅可以使用 class 实例的方法和 this.state 的值。', '5. 在生命周期 constructor 和 nvOnInit 之后，会开启对 this.state 的监听，此监听会监听每个挂载到 this.state 上的属性及属性的属性，因此如果不对 this.state 添加新的属性或对属性的属性添加新的属性的话，可以直接对某个属性赋值。', '6. 相反，如果要对 this.state 上的属性 增加属性或删除，则需要使用  setState<S>(newState: {[key: string]: S}) 方法对 this.state 重新添加监听', '7. 可以直接引用 InDiv 的 SetState 来为 setState方法声明类型。'],
-      code: "\n  import { Component, SetState, OnInit, ReceiveProps } from 'InDiv';\n  @Component({\n    selector: 'hero-component',\n    template: ('\n      <div>\n        <p>\u6765\u81EA\u7236\u7EC4\u4EF6\u7684stateValue: {{state.stateValue}}</p>\n        <p>idValue: {{state.idValue}}</p>\n      </div>\n    '),\n  })\n  export default class HeroComponent implements OnInit, ReceiveProps {\n    public setState: SetState;\n    public state: any;\n    public props: any;\n\n    public nvOnInit() {\n      this.state = {\n        idValue: this.props.idValue,\n        stateValue: this.props.stateValue,\n      };\n    }\n\n    public show(a: any) {\n      this.props.handelClick(a);\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.idValue = nextProps.idValue;\n      this.setState({\n        stateValue: nextProps.stateValue,\n      });\n    }\n  }\n\n @Component({\n    selector: 'container-component',\n    template: ('\n      <div>\n        <div nv-repeat=\"let person in state.b\" nv-key=\"person.id\">\n          <hero-component handelClick=\"@show\" stateValue=\"state.a\" idValue=\"person.id\" ></hero-component>\n        </div>\n      </div>\n    '),\n  })\n  export default class ContainerComponent {\n    constructor() {\n      this.state = {\n        a: {\n          id: 3,\n          name: '\u7801\u519C3',\n        },\n        b: [\n          {id: 1, name: '\u7801\u519C1'},\n          {id: 2, name: '\u7801\u519C2'},\n        ],\n      };\n    }\n\n    public show(a: any) {\n      console.log(a);\n    }\n  }\n "
+      p: ['InDiv 的组件之间可以 props 来通信。', '组件间通信应该是单向的，通过传递值到子组件，并通过传递一个回调方法在子组件调用来更改对应父组件的值来完成通信。', '直接改变 state 上的值，或通过 setState 更改 state 的值时，state会被立刻改变，因此更改state的行为为 同步的。', '但是更改 state 值时，会触发异步的重新渲染，并在渲染后更新子组件的 props，', '因此，通过在子组件中调用 props 上的方法来更新父组件的 state 时，子组件的 props 并不会立即更新。', '如果想知道子组件的 props 何时被更新，应该通过生命周期 nvReceiveProps(nextProps: Props) 或 Class的getter setter方法去监听props的变化。'],
+      pchild: ['1. 可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 prop-value="{state.value}" prop-value="{@returnValue(state.value)}" pro-function="{@fn}" 的引号包裹花括号的写法传递值与方法。', '2. template 上组件内的传值应按照 下划线命名法(UnderScoreCase) 书写，而在组件Class中应按照 驼峰命名法(CamelCase) 使用。例如: prop-value="{state.value}" => this.props.propValue', '3. 例如在下面例子，在 hero-component 内可以用循环 nv-repeat 的value，也可以使用 实例上有返回值的方法，也可以直接在实例方法中触发 handelClick 回调。', '4. 如果该 DOM 会发生频繁变化，并且有可追踪的唯一 key 值，可以添加指令 nv-key, 让 InDiv 直接追踪到 DOM 变化，帮助保存 组件 内的 state。', '5. 但是渲染的时候，不可以在模板上直接使用 props 的值，仅仅可以使用 class 实例的方法和 this.state 的值。', '6. 在生命周期 constructor 和 nvOnInit 之后，会开启对 this.state 的监听，此监听会监听每个挂载到 this.state 上的属性及属性的属性，因此如果不对 this.state 添加新的属性或对属性的属性添加新的属性的话，可以直接对某个属性赋值。', '7. 相反，如果要对 this.state 上的属性 增加属性或删除，则需要使用 setState<S>(newState: {[key: string]: S}) 方法对 this.state 重新添加监听', '8. 可以直接引用 InDiv 的 SetState 来为 setState方法声明类型。', '9. 可以通过生命周期 nvReceiveProps(nextProps: Props) 或 Class的getter setter方法去监听props的变化。(nvReceiveProps会先于getter setter被触发)。'],
+      code: "\n  import { Component, SetState, OnInit, ReceiveProps } from 'InDiv';\n  @Component({\n    selector: 'hero-component',\n    template: ('\n      <div>\n        <p>\u6765\u81EA\u7236\u7EC4\u4EF6\u7684stateValue: {{state.stateValue}}</p>\n        <p>idValue: {{state.idValue}}</p>\n      </div>\n    '),\n  })\n  export default class HeroComponent implements OnInit, ReceiveProps {\n    public setState: SetState;\n    public state: any;\n    public props: any;\n    public _props: any;\n\n    public nvOnInit() {\n      this.state = {\n        idValue: this.props.idValue,\n        stateValue: this.props.stateValue,\n      };\n    }\n\n    public show(a: any) {\n      this.props.handelClick(a);\n    }\n\n    set props(props: any) {\n      this._props = props;\n    }\n\n    get props(): any {\n      return this._props;\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.idValue = nextProps.idValue;\n      this.setState({\n        stateValue: nextProps.stateValue,\n      });\n    }\n  }\n\n @Component({\n    selector: 'container-component',\n    template: ('\n      <div>\n        <div nv-repeat=\"let person in state.b\" nv-key=\"person.id\">\n          <hero-component handel-click=\"@show\" state-value=\"state.a\" id-value=\"person.id\" ></hero-component>\n        </div>\n      </div>\n    '),\n  })\n  export default class ContainerComponent {\n    constructor() {\n      this.state = {\n        a: {\n          id: 3,\n          name: '\u7801\u519C3',\n        },\n        b: [\n          {id: 1, name: '\u7801\u519C1'},\n          {id: 2, name: '\u7801\u519C2'},\n        ],\n      };\n    }\n\n    public show(a: any) {\n      console.log(a);\n    }\n  }\n "
     }, {
       title: '组件通信2: service 与 RxJS',
       p: ['父子组件的通信可以通过 props , 但跨层级组件间的通信该怎么办？', '相比于构建全局变量，InDiv 的服务显然更适合这种场景。'],
@@ -7445,7 +9839,7 @@ exports.componentInfo = function () {
     }, {
       title: '生命周期钩子',
       p: ['每个组件都有一个被 InDiv 管理的生命周期。', '生命周期钩子其实就是定义在实例中的一些方法，在 InDiv 中，通过不同的时刻调用不同的生命周期钩子，', '赋予你在它们发生时采取行动的能力。', '在 TypeScript 中，引用 InDiv 提供的 interface，通过 implements 的方式让类去实现被预先定义好的生命周期，而在 JavaScript 中，你只能自己手动去定义应该实现的生命周期方法。'],
-      pchild: ['1. constructor 在类被实例化的时候回触发，你可以在这里预先定义你的 state', '2. nvOnInit(): void; constructor 之后，在这个生命周期中，可以通过 this.props 获取 props，并定义 state，此生命周期会在开启监听前被触发，并且之后再也不会触发', '3. nvBeforeMount(): void; 在 nvOnInit 之后，template 挂载页面之前被触发，每次触发渲染页面都会被触发', '4. nvAfterMount(): void; 在 nvBeforeMount 之后，template 挂载页面之后被触发，每次触发渲染页面（render）都会被触发', '5. nvHasRender(): void; 在 nvAfterMount 之后，渲染完成后被触发，每次触发渲染页面（render）都会被触发', '6. nvRouteChange(lastRoute?: string, newRoute?: string): void; 监听路由变化，当更换路由后被触发', '7. nvOnDestory(): void; 仅仅在路由决定销毁此组件时被触发', '8. nvWatchState(oldState?: any): void; 监听 state 变化，当 state 被更改后触发', '9. nvReceiveProps(nextProps: any): void; 监听 props 变化，当 props 即将被更改时触发'],
+      pchild: ['1. constructor 在类被实例化的时候回触发，你可以在这里预先定义你的 state', '2. nvOnInit(): void; constructor 之后，在这个生命周期中，可以通过 this.props 获取 props，并定义 state，此生命周期会在开启监听前被触发，并且之后再也不会触发', '3. nvBeforeMount(): void; 在 nvOnInit 之后，template 挂载页面之前被触发，每次触发渲染页面都会被触发', '4. nvAfterMount(): void; 在 nvBeforeMount 之后，template 挂载页面之后被触发，每次触发渲染页面（render）都会被触发', '5. nvHasRender(): void; 在 nvAfterMount 之后，渲染完成后被触发，每次触发渲染页面（render）都会被触发', '6. nvRouteChange(lastRoute?: string, newRoute?: string): void; 监听路由变化，当更换路由后被触发', '7. nvOnDestory(): void; 仅仅在路由决定销毁此组件时被触发', '8. nvWatchState(oldState?: any): void; 监听 state 变化，当 state 被更改后触发', '9. nvReceiveProps(nextProps: any): void; 监听 props 变化，当 props 即将被更改时触发', '10. getter: 当监听 props 时，getter 会先于 nvReceiveProps 被触发', '11. setter: 当监听 state 时，setter 会晚于 nvWatchState 被触发'],
       code: "\n import { Component, OnInit, BeforeMount, AfterMount, HasRender, OnDestory, WatchState, ReceiveProps } from 'InDiv';\n\n @Component({\n    selector: 'hero-component',\n    template: ('\n      <div>\n        <p>\u6765\u81EA\u7236\u7EC4\u4EF6\u7684stateValue: {{state.stateValue}}</p>\n        <p>idValue: {{state.idValue}}</p>\n      </div>\n    '),\n  })\n  class HeroComponent implements\n    OnInit,\n    BeforeMount,\n    AfterMount,\n    HasRender,\n    WatchState,\n    ReceiveProps,\n  {\n    public setState: SetState;\n    public state: any;\n    public props: any;\n\n    public nvOnInit() {\n      this.state = {\n        idValue: this.props.idValue,\n        stateValue: this.props.stateValue,\n      };\n    }\n\n    public nvBeforeMount() {\n      console.log('component in BeforeMount');\n    }\n\n    public nvAfterMount() {\n      console.log('component in AfterMount');\n    }\n\n    public nvHasRender() {\n      console.log('component in HasRender');\n    }\n\n    public nvWatchState(oldState?: any) {\n      console.log('component in WatchState');\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.idValue = nextProps.idValue;\n      this.setState({\n        stateValue: nextProps.stateValue,\n      });\n    }\n\n    public show(a: any) {\n      this.props.handelClick(a);\n    }\n  }\n "
     }]
   }];
@@ -15153,11 +17547,11 @@ exports.ssrInfo = function () {
     p: ['标准的 InDiv 应用会运行在浏览器中，', '当 JavaScript 脚本加载完毕后，它会在 DOM 中渲染页面，以响应用户的操作。', '但是在特殊场景，比如 SEO，需要提升在低性能设备上的渲染速度，需要迅速显示首屏时，', '可能服务端渲染更适合。', '它可以生成这些页面，并在浏览器请求时直接用它们给出响应。'],
     info: [{
       title: '工作原理',
-      p: ['通过引入 @indiv/ssr-renderer 。', '@indiv/ssr-renderer 包提供了服务端的 DOM 实现，使得渲染 InDiv 应用不再依赖浏览器。', '通过 node 端，会把客户端对应用页面的请求传给 @indiv/ssr-renderer 中的 renderToString  函数，', '引入 indiv 实例和路由的配置对象，renderToString 会根据对应的路径，返回已经被渲染完的字符串模板。', '通过不同框架的渲染机制，将返回的字符串模板渲染到模板的 <div id="root"></div> 中。', '最后，服务器就会把渲染好的页面返回给客户端。'],
+      p: ['通过引入 @indiv/ssr-renderer v1.1.0+。', '@indiv/ssr-renderer 包提供了服务端的 DOM 实现，使得渲染 InDiv 应用不再依赖浏览器。', '通过 node 端，会把客户端对应用页面的请求传给 @indiv/ssr-renderer 中的 renderToString  函数，', '引入 indiv 实例和路由的配置对象，renderToString 会根据对应的路径，返回已经被渲染完的字符串模板。', '通过不同框架的渲染机制，将返回的字符串模板渲染到模板的 <div id="root"></div> 中。', '最后，服务器就会把渲染好的页面返回给客户端。'],
       pchild: ['1. 生命周期受到限制，服务端渲染中仅仅支持 constructor 和 OnInit 的调用。', '2. 因为 InDiv 的 nvHttp 对象是封装的 axios 库，因此支持在 node 环境中使用 http 请求。', '3. 通过 nv-on:eventName 方式绑定的方法暂时无法渲染。']
     }, {
       title: '环境及使用',
-      p: ['Node.js: v6+', 'indiv: v1.1.0+', '@indiv/ssr-renderer: v1.0.0+', '本例子使用 express 及 ejs 模板，你也可以选择适合的 服务端框架 及 模板 。'],
+      p: ['Node.js: v6+', 'indiv: v1.2.0+', '@indiv/ssr-renderer: v1.1.0+', '本例子使用 express 及 ejs 模板，你也可以选择适合的 服务端框架 及 模板 。'],
       pchild: ['1. 创建 InDiv app', '2. 创建一个用于处理请求的 express Web 服务器', '3. 创建一个 ejs 模板', '4. 引入 @indiv/ssr-renderer 包 renderToString: (url: string, routes: TRouter[], indiv: InDiv) => string', '5. 将 request 的 url， indiv app路由配置对象，和 indiv实例 作为参数依次传入 renderToString', '6. 最后 renderToString 的返回值渲染至模板中'],
       code: "\n  // in index.ejs\n  <div id=\"root\">\n    <%- content %>\n  </div>\n\n  // in service side\n  const express = require('express');\n  const renderToString = require('@indiv/ssr-renderer');\n\n  const app = express();\n\n  app.use('/indiv-doc', (request, response, next) => {    \n    // import indiv app\n    const ssrData = require('./dist/main.js');\n    response.render('index.ejs', {\n      // use in ejs template\n      content: renderToString(request.url, ssrData.routes, ssrData.default.inDiv),\n    });\n  });\n    "
     }]
@@ -15300,7 +17694,7 @@ function () {
 
   RootComponent = __decorate([src_1.Component({
     selector: 'root-component',
-    template: "\n        <div class=\"app-container\" nv-class=\"state.showSideBar\">\n            <a href=\"https://github.com/DimaLiLongJi/InDiv\" class=\"github-corner\" aria-label=\"View source on Github\"><svg viewBox=\"0 0 250 250\" aria-hidden=\"true\"><path d=\"M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z\"></path><path d=\"M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2\" fill=\"currentColor\" style=\"transform-origin: 130px 106px;\" class=\"octo-arm\"></path><path d=\"M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z\" fill=\"currentColor\" class=\"octo-body\"></path></svg></a>\n            <side-bar handleSideBar=\"{@changeShowSideBar}\" show=\"{state.showSideBar}\"></side-bar>\n            <router-render></router-render>\n        </div>\n    "
+    template: "\n        <div class=\"app-container\" nv-class=\"state.showSideBar\">\n            <a href=\"https://github.com/DimaLiLongJi/InDiv\" class=\"github-corner\" aria-label=\"View source on Github\"><svg viewBox=\"0 0 250 250\" aria-hidden=\"true\"><path d=\"M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z\"></path><path d=\"M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2\" fill=\"currentColor\" style=\"transform-origin: 130px 106px;\" class=\"octo-arm\"></path><path d=\"M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z\" fill=\"currentColor\" class=\"octo-body\"></path></svg></a>\n            <side-bar handle-side-bar=\"{@changeShowSideBar}\" show=\"{state.showSideBar}\"></side-bar>\n            <router-render></router-render>\n        </div>\n    "
   }), __metadata("design:paramtypes", [])], RootComponent);
   return RootComponent;
 }();
@@ -15410,7 +17804,8 @@ function () {
 
   SideBar.prototype.nvOnInit = function () {
     this.state = {
-      navs: nav_1.navs()
+      navs: nav_1.navs(),
+      num: 1
     };
     this.showColor();
     console.log('SideBar onInit');
@@ -15445,8 +17840,7 @@ function () {
   };
 
   SideBar.prototype.changeShowSideBar = function () {
-    if (this.props.show === 'open') return this.props.handlesidebar('close');
-    if (this.props.show === 'close') return this.props.handlesidebar('open');
+    this.props.handleSideBar();
   };
 
   var _a;
@@ -15624,7 +18018,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55115" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64858" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

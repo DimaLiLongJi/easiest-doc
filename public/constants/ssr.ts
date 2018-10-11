@@ -12,7 +12,7 @@ export const ssrInfo = () => [
         {
           title: '工作原理',
           p: [
-            '通过引入 @indiv/ssr-renderer 。',
+            '通过引入 @indiv/ssr-renderer v1.1.0+。',
             '@indiv/ssr-renderer 包提供了服务端的 DOM 实现，使得渲染 InDiv 应用不再依赖浏览器。',
             '通过 node 端，会把客户端对应用页面的请求传给 @indiv/ssr-renderer 中的 renderToString  函数，',
             '引入 indiv 实例和路由的配置对象，renderToString 会根据对应的路径，返回已经被渲染完的字符串模板。',
@@ -29,8 +29,8 @@ export const ssrInfo = () => [
           title: '环境及使用',
           p: [
             'Node.js: v6+',
-            'indiv: v1.1.0+',
-            '@indiv/ssr-renderer: v1.0.0+',
+            'indiv: v1.2.0+',
+            '@indiv/ssr-renderer: v1.1.0+',
             '本例子使用 express 及 ejs 模板，你也可以选择适合的 服务端框架 及 模板 。',
           ],
           pchild: [

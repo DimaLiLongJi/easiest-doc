@@ -98,7 +98,7 @@ export const componentInfo = () => [
         pchild: [
           '1. 往模板HTML字符串中添加绑定 nv- 开头的标记可以告诉 InDiv 该如何渲染它们。',
           '2. 因为 InDiv 使用单向数据流，所以仅仅支持使用 this.state 内的值 或是 有返回值的实例上的方法 作为绑定数据， 实例的方法作为事件方法。',
-          '3. 如果要在组件内使用 props ，请在 nvReceiveProps 或 nvOnInit 生命周期内用 props 对 state 赋值。',
+          '3. 如果要在组件内使用 props ，请在 nvReceiveProps 或 Class的getter setter方法 或 在 nvOnInit 生命周期内用 props 对 state 赋值。',
           '4. 如果组件在 根模块（root NvModule）或模块（NvModule） 上的 components：Function[]; 声明过，则在其他同模块组件内的 template 可以像 HTML 标签一样使用组件。',
           '4. 模板上的组件可接受的 props的值 必须用 {} 包裹起来。',
           '5. props的值 有三种: <test-component man="{@countState(man.name)}" women="{man.name}" handler="{@getProps}"></test-component>',
@@ -112,7 +112,7 @@ export const componentInfo = () => [
     template: ('
       <div nv-on:click="@show(state.a)">
         ContainerComponent {{state.a}}
-        <test-component valueA="{state.a}" show="{@show}"></test-component>
+        <test-component value-a="{state.a}" show="{@show}"></test-component>
       </div>
       '),
   })
@@ -138,15 +138,21 @@ export const componentInfo = () => [
         p: [
           'InDiv 的组件之间可以 props 来通信。',
           '组件间通信应该是单向的，通过传递值到子组件，并通过传递一个回调方法在子组件调用来更改对应父组件的值来完成通信。',
+          '直接改变 state 上的值，或通过 setState 更改 state 的值时，state会被立刻改变，因此更改state的行为为 同步的。',
+          '但是更改 state 值时，会触发异步的重新渲染，并在渲染后更新子组件的 props，',
+          '因此，通过在子组件中调用 props 上的方法来更新父组件的 state 时，子组件的 props 并不会立即更新。',
+          '如果想知道子组件的 props 何时被更新，应该通过生命周期 nvReceiveProps(nextProps: Props) 或 Class的getter setter方法去监听props的变化。',
         ],
         pchild: [
-          '1. 可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 propValue="{state.value}" propValue="{@returnValue(state.value)}" propFunction="{@fn}" 的引号包裹花括号的写法传递值与方法。',
-          '2. 例如在下面例子，在 hero-component 内可以用循环 nv-repeat 的value，也可以使用 实例上有返回值的方法，也可以直接在实例方法中触发 handelClick 回调。',
-          '3. 如果该 DOM 会发生频繁变化，并且有可追踪的唯一 key 值，可以添加指令 nv-key, 让 InDiv 直接追踪到 DOM 变化，帮助保存 组件 内的 state。',
-          '4. 但是渲染的时候，不可以在模板上直接使用 props 的值，仅仅可以使用 class 实例的方法和 this.state 的值。',
-          '5. 在生命周期 constructor 和 nvOnInit 之后，会开启对 this.state 的监听，此监听会监听每个挂载到 this.state 上的属性及属性的属性，因此如果不对 this.state 添加新的属性或对属性的属性添加新的属性的话，可以直接对某个属性赋值。',
-          '6. 相反，如果要对 this.state 上的属性 增加属性或删除，则需要使用  setState<S>(newState: {[key: string]: S}) 方法对 this.state 重新添加监听',
-          '7. 可以直接引用 InDiv 的 SetState 来为 setState方法声明类型。',
+          '1. 可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 prop-value="{state.value}" prop-value="{@returnValue(state.value)}" pro-function="{@fn}" 的引号包裹花括号的写法传递值与方法。',
+          '2. template 上组件内的传值应按照 下划线命名法(UnderScoreCase) 书写，而在组件Class中应按照 驼峰命名法(CamelCase) 使用。例如: prop-value="{state.value}" => this.props.propValue',
+          '3. 例如在下面例子，在 hero-component 内可以用循环 nv-repeat 的value，也可以使用 实例上有返回值的方法，也可以直接在实例方法中触发 handelClick 回调。',
+          '4. 如果该 DOM 会发生频繁变化，并且有可追踪的唯一 key 值，可以添加指令 nv-key, 让 InDiv 直接追踪到 DOM 变化，帮助保存 组件 内的 state。',
+          '5. 但是渲染的时候，不可以在模板上直接使用 props 的值，仅仅可以使用 class 实例的方法和 this.state 的值。',
+          '6. 在生命周期 constructor 和 nvOnInit 之后，会开启对 this.state 的监听，此监听会监听每个挂载到 this.state 上的属性及属性的属性，因此如果不对 this.state 添加新的属性或对属性的属性添加新的属性的话，可以直接对某个属性赋值。',
+          '7. 相反，如果要对 this.state 上的属性 增加属性或删除，则需要使用 setState<S>(newState: {[key: string]: S}) 方法对 this.state 重新添加监听',
+          '8. 可以直接引用 InDiv 的 SetState 来为 setState方法声明类型。',
+          '9. 可以通过生命周期 nvReceiveProps(nextProps: Props) 或 Class的getter setter方法去监听props的变化。(nvReceiveProps会先于getter setter被触发)。',
         ],
         code: `
   import { Component, SetState, OnInit, ReceiveProps } from 'InDiv';
@@ -163,6 +169,7 @@ export const componentInfo = () => [
     public setState: SetState;
     public state: any;
     public props: any;
+    public _props: any;
 
     public nvOnInit() {
       this.state = {
@@ -173,6 +180,14 @@ export const componentInfo = () => [
 
     public show(a: any) {
       this.props.handelClick(a);
+    }
+
+    set props(props: any) {
+      this._props = props;
+    }
+
+    get props(): any {
+      return this._props;
     }
 
     public nvReceiveProps(nextProps: any): void {
@@ -188,7 +203,7 @@ export const componentInfo = () => [
     template: ('
       <div>
         <div nv-repeat="let person in state.b" nv-key="person.id">
-          <hero-component handelClick="@show" stateValue="state.a" idValue="person.id" ></hero-component>
+          <hero-component handel-click="@show" state-value="state.a" id-value="person.id" ></hero-component>
         </div>
       </div>
     '),
@@ -315,6 +330,8 @@ export const componentInfo = () => [
           '7. nvOnDestory(): void; 仅仅在路由决定销毁此组件时被触发',
           '8. nvWatchState(oldState?: any): void; 监听 state 变化，当 state 被更改后触发',
           '9. nvReceiveProps(nextProps: any): void; 监听 props 变化，当 props 即将被更改时触发',
+          '10. getter: 当监听 props 时，getter 会先于 nvReceiveProps 被触发',
+          '11. setter: 当监听 state 时，setter 会晚于 nvWatchState 被触发',
         ],
         code: `
  import { Component, OnInit, BeforeMount, AfterMount, HasRender, OnDestory, WatchState, ReceiveProps } from 'InDiv';
