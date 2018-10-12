@@ -1,8 +1,8 @@
 import './style.less';
 
 import { Subscription } from 'rxjs';
-// import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected } from 'indiv';
-import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, ReceiveProps } from '../../../../InDiv/src';
+import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected } from 'indiv';
+// import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, ReceiveProps } from '../../../../InDiv/src';
 
 import { navs } from '../../constants/nav';
 
@@ -28,7 +28,7 @@ interface Props {
     selector: 'side-bar',
     template: (`
         <div class="side-bar-container">
-            <div class="nav-wrap" nv-class="nav.active" nv-repeat="let nav in state.navs">
+            <div class="nav-wrap" nv-class="nav.active" nv-repeat="let nav in $.navs">
                 <a class="nav" nv-on:click="@setLocation(nav.to)">{{nav.name}}</a>
                 <div class="child-wrap" nv-if="nav.child">
                     <a class="nav nav-child" nv-class="child.active" nv-repeat="let child in nav.child" nv-on:click="@setLocation(child.to)">{{child.name}}</a>

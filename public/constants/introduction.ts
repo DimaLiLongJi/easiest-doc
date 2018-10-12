@@ -5,8 +5,9 @@ export const content = () => [
             'InDiv 是一个mvvm库。它能帮你构建 Web 应用。InDiv 字符串模板、依赖注入和一些实践于一身。',
         ], 
         info: [
-            'InDiv 是单词 individual 的缩写，我撸的时候借鉴了很多 angular，react，vue 的模式与概念。',
+            'InDiv 是单词 individual 的缩写，我撸它的时候借鉴了很多 angular，react，vue 的模式与概念。',
             '本网页是世界上第一个用 InDiv 构建的网页。',
+            '请使用 indiv 1.2.0 + 版本',
             '在此致敬 angular，react 和 vue的大佬开发者们。感谢他们为前端做出的巨大贡献。',
         ],
     },
@@ -20,11 +21,11 @@ export const content = () => [
     {
         h1: '基本理念',
         p: [
-            'InDiv 基于 mvvm, 本身使用 TypeScript编写。',
+            'InDiv 是一个 mvvm 库, 本身使用 TypeScript编写。',
             '它将核心功能和可选功能作为一组 TypeScript 库进行实现，你可以把它们导入你的应用中。',
         ],
         info: [
-            'InDiv 基本构造块是 NvModule，它为组件提供了编译的上下文环境和作用域',
+            'InDiv 基本构造块是 NvModule，它为组件提供了上下文环境和作用域',
             '整个app的最小单位为 Component，页面上的一切皆为组件',
             '异步渲染页面，尽量优化性能',
         ],

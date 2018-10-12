@@ -9,9 +9,9 @@ export const templateInfo = () => [
       'InDiv 模板指令使用 nv- 开头，下面介绍一下 InDiv 的模板语法。',
       '1. 拥有特殊渲染方法的指令有 nv-model nv-text nv-html nv-if nv-class nv-repeat nv-key nv-on:Event。',
       '2. 如果属性可以通过 Element.attribute = value来设置的话，也可以使用 nv-attribute 来使用。例如：nv-src nv-href nv-alt',
-      '3. 内置指令接收2种字符串：',
-      '(1) state.xxx 和 nv-repeat的值：nv-text="state.text" nv-text="repeatData.text"',
-      '(2) 除 nv-on:Event 和 nv-model 外，其他指令的值可以接收@开头加组件实例上带返回值的方法，参数可以使用事件指令中除了$event之外的参数，指令渲染为方法返回值：nv-text="@bindText(state.text, $index, $element)"',
+      '3. 内置指令接收2种：',
+      '(1) $.xxx(指代this.state.xxx) 和 nv-repeat被循环的itme值：nv-text="$.text" nv-text="repeatData.text"',
+      '(2) （其实就是filter）除 nv-on:Event 和 nv-model 外，其他指令可以接收 @开头 加 组件实例上带返回值的方法 ，参数可以使用事件指令中除了$event之外的参数，指令的值渲染为方法返回值：nv-text="@bindText($.text, $index, $element)"',
     ],
     info: [
       {
@@ -27,11 +27,11 @@ export const templateInfo = () => [
           `- string => '1','2','3'`,
           ` - number => 1,2,3`,
           ` - index > $index`,
-          `- 变量: 仅能传递state上的值， 通过state.xxx标示`,
-          `- repeat value: 传递nv-repeat='let item in array'的item值，如： nv-on:click="@show(nav)" nv-repeat="let nav in state.navList" nv-key="nav.id"`,
+          `- 变量: 仅能传递state上的值， 通过 $.xxx 标示`,
+          `- repeat value: 传递nv-repeat='let item in array'的item值，如： nv-on:click="@show(nav)" nv-repeat="let nav in $.navList" nv-key="nav.id"`,
         ],
         code: `
-  <a class="nav" nv-on:click="@goTo($event, $index, 1, 'state', state.nav.to,)">{{state.nav.name}}</a>
+  <a class="nav" nv-on:click="@goTo($event, $index, 1, 'state', $.nav.to)">{{$.nav.name}}</a>
 
   public goTo(event: Event, index: number, aa: number, s: string, to: string) {
     this.$setLocation(to);
@@ -47,10 +47,10 @@ export const templateInfo = () => [
           '可以使用 nv-text 也可以使用模板语法 {{}}。',
         ],
         code: `
-  <p nv-text="state.b"></p>
-  <p nv-text="@returnValue(state.b)"></p>
-  <p>{{state.b}}</p>
-  <p>{{@returnValue(state.b)}}</p>
+  <p nv-text="$.b"></p>
+  <p nv-text="@returnValue($.b)"></p>
+  <p>{{$.b}}</p>
+  <p>{{@returnValue($.b)}}</p>
  `,
       },
       {
@@ -62,8 +62,8 @@ export const templateInfo = () => [
           '可以使用 nv-html。',
         ],
         code: `
-  <p nv-html="state.b"></p>
-  <p nv-html="@returnValue(state.b)"></p>
+  <p nv-html="$.b"></p>
+  <p nv-html="@returnValue($.b)"></p>
  `,
       },
       {
@@ -75,7 +75,7 @@ export const templateInfo = () => [
           '仅仅可以对 <input> 使用 nv-model, model会主动更新被绑定的值并更新视图。',
         ],
         code: `
-  <input nv-model="state.c"/>
+  <input nv-model="$.c"/>
  `,
       },
       {
@@ -87,8 +87,8 @@ export const templateInfo = () => [
           '使用 nv-class。',
         ],
         code: `
-  <input nv-class="state.d"/>
-  <input nv-class="@returnValue(state.d)"/>
+  <input nv-class="$.d"/>
+  <input nv-class="@returnValue($.d)"/>
  `,
       },
       {
@@ -100,8 +100,8 @@ export const templateInfo = () => [
           '使用 nv-if。',
         ],
         code: `
-  <input nv-if="state.e"/>
-  <input nv-if="@returnValue(state.e)"/>
+  <input nv-if="$.e"/>
+  <input nv-if="@returnValue($.e)"/>
  `,
       },
       {
@@ -119,7 +119,7 @@ export const templateInfo = () => [
           '此指令十分耗费性能，不建议多用，并且建议搭配 nv-key 使用。',
         ],
         code: `
-  <div nv-class="li.class" nv-repeat="let li in state.arrayList" nv-key="li.id">
+  <div nv-class="li.class" nv-repeat="let li in $.arrayList" nv-key="li.id">
     <input nv-model="l.value" nv-repeat="let l in li" nv-key="l.id"/>
     <demo-component value="{l}" nv-key="li.id"></demo-component>
   </div>
@@ -137,7 +137,7 @@ export const templateInfo = () => [
           '建议如果对 自定义组件的父元素 或 自定义组件本身 使用 nv-repeat，尽量加上 nv-key 指令来避免重复创建组件实例，并保存组件内部状态。',
         ],
         code: `
-  <div nv-class="li.class" nv-repeat="let li in state.arrayList" nv-key="li.id">
+  <div nv-class="li.class" nv-repeat="let li in $.arrayList" nv-key="li.id">
     <input nv-model="l.value" nv-repeat="let l in li" nv-key="l.id"/>
     <demo-component value="{l}" nv-key="li.id"></demo-component>
   </div>
@@ -152,8 +152,8 @@ export const templateInfo = () => [
           '例如：nv-src nv-href nv-alt等',
         ],
         code: `
-  <img nv-src="state.src" nv-alt="state.alt"/>
-  <img nv-src="@return(state.src)" nv-alt="@return(state.alt)"/>
+  <img nv-src="$.src" nv-alt="$.alt"/>
+  <img nv-src="@return($.src)" nv-alt="@return($.alt)"/>
  `,
       },
     ],

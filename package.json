@@ -20,9 +20,8 @@
   },
   "homepage": "https://github.com/DimaLiLongJi/indiv-doc#readme",
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
     "easier-cookie": "^1.1.1",
-    "indiv": "^1.1.0",
+    "indiv": "^1.2.0",
     "rxjs": "^6.3.2"
   },
   "devDependencies": {
