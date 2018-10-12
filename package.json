@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build pubilc/main.ts -d ./",
+    "build": "parcel build public/main.ts -d ./ & nodemon app.js",
     "start": "parcel watch public/main.ts -d ./ & nodemon app.js",
     "start-win": "parcel ./win.html -d dist --open"
   },
@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/DimaLiLongJi/indiv-doc#readme",
   "dependencies": {
+    "@types/highlight.js": "^9.12.3",
     "easier-cookie": "^1.1.1",
+    "highlight.js": "^9.12.0",
     "indiv": "^1.2.0",
     "rxjs": "^6.3.2"
   },

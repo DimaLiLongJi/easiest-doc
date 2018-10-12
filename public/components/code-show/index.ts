@@ -1,27 +1,34 @@
-import './style.less';
+import 'highlight.js/styles/atom-one-dark.css';
 
-import { Component, OnInit, SetState, SetLocation, GetLocation } from 'indiv';
+import { Component, OnInit, SetState, SetLocation, GetLocation, HasRender, ReceiveProps } from 'indiv';
 // import { Component, OnInit, SetState, SetLocation, GetLocation } from '../../../../InDiv/src';
+import hljs from 'highlight.js';
 
 interface State {
     codes: string;
+    type: string;
 }
 
-@Component<State>({
+interface Props {
+    codes: string;
+    type?: string;
+}
+
+@Component<State, Props>({
     selector: 'code-shower',
     template: (`
         <div nv-on:click="@show()" class="code-show-container">
             <blockquote>
                 <pre>
-                    <code>{{$.codes}}</code>
+                    <code nv-class="$.type">{{$.codes}}</code>
                 </pre>
             </blockquote>
         </div>
     `),
 })
-export default class CodeShower implements OnInit {
+export default class CodeShower implements OnInit, HasRender, ReceiveProps {
     public state: State;
-    public props: any;
+    public props: Props;
     public getLocation: GetLocation;
     public setLocation: SetLocation;
     public setState: SetState;
@@ -29,10 +36,23 @@ export default class CodeShower implements OnInit {
     public nvOnInit() {
         this.state = {
             codes: this.props.codes,
+            type: 'typescript',
         };
+        if (this.props.type) this.state.type = this.props.type;
     }
 
     public show() {
-        console.log(this.state.codes)
+        console.log(this.state.codes);
     }
+
+    public nvHasRender() {
+        document.querySelectorAll('pre code').forEach((dom) => {
+            hljs.highlightBlock(dom);
+        });
+    }
+
+    public nvReceiveProps(_props: Props) {
+        if (_props.type) this.state.type = _props.type;
+    }
+
 }

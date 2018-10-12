@@ -1,6 +1,6 @@
 export const content = () => [
   {
-    h1: '架构概览',
+    h1: '概览',
     p: [
       'InDiv 是一个 TypeScript 构建客户端应用的平台与框架。',
       'InDiv 本身使用 TypeScript 写成的。',

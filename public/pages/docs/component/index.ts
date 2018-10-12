@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, HasRender, SetState, Injected, WatchState, OnInit } from 'indiv';
+import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from 'indiv';
 // import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from '../../../../../InDiv/src';
 import { componentInfo } from '../../../constants/component';
 
@@ -81,8 +81,9 @@ export default class DocsComponentContainer implements OnInit, HasRender, WatchS
   }
 
   public click(code: any, index: number) {
-    code.title = '3232';
+    code.title = '啊哈哈恭喜你发现，打开控制台吧';
     this.testS.update(3);
+    console.log('刚刚更新了service中的值，下面应该就有打印了');
   }
   
   public showText(text: any) {

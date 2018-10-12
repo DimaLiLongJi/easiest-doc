@@ -20,6 +20,7 @@ interface Info {
 
 interface State {
   info: Info[];
+  codeType: string;
 }
 @Component<State>({
   selector: 'docs-template-container',
@@ -34,7 +35,7 @@ interface State {
           <div class="pchild" nv-if="code.pchild">
             <p nv-repeat="let child in code.pchild">{{child}}</p>
           </div>
-          <code-shower codes="{code.code}" nv-if="code.code"></code-shower>
+          <code-shower codes="{code.code}" type="{$.codeType}" nv-if="code.code"></code-shower>
         </div>
       </div>
     </div>
@@ -48,6 +49,7 @@ export default class DocsTemplateContainer implements HasRender {
   constructor() {
     this.state = {
       info: templateInfo(),
+      codeType: "html",
     };
   }
 

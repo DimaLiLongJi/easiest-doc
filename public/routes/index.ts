@@ -61,6 +61,10 @@ const routes: TRouter[] = [
                 path: '/ssr',
                 component: 'ssr-container',
             },
+            {
+                path: '/middleware',
+                component: 'middleware-container',
+            },
         ],
     },
 ];

@@ -3,7 +3,7 @@ import './style.less';
 import { Component } from 'indiv';
 // import { Component } from '../../../../InDiv/src';
 
-import { ssrInfo } from '../../constants/ssr';
+import { middlewareInfo } from '../../constants/middleware';
 
 interface Info {
     h1?: string;
@@ -26,7 +26,7 @@ interface State {
     codeType: string;
 }
 @Component<State>({
-    selector: 'ssr-container',
+    selector: 'middleware-container',
     template: (`
         <div class="page-container">
             <div class="info-content" nv-repeat="let info in $.info">
@@ -44,11 +44,11 @@ interface State {
         </div>
     `),
 })
-export default class SSRContainer {
+export default class MiddlewareContainer {
     public state: State;
     constructor() {
         this.state = {
-            info: ssrInfo(),
+            info: middlewareInfo(),
             codeType: 'javascript',
         };
     }

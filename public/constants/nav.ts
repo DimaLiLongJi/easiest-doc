@@ -4,7 +4,7 @@ export const navs = () => [
         to: '/introduction',
     },
     {
-        name: '构架',
+        name: '概览',
         to: '/architecture',
     },
     {
@@ -48,5 +48,9 @@ export const navs = () => [
     {
         name: '服务端渲染',
         to: '/ssr',
+    },
+    {
+        name: '中间件及其他开发',
+        to: '/middleware',
     },
 ];

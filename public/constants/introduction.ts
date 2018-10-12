@@ -23,6 +23,7 @@ export const content = () => [
         p: [
             'InDiv 是一个 mvvm 库, 本身使用 TypeScript编写。',
             '它将核心功能和可选功能作为一组 TypeScript 库进行实现，你可以把它们导入你的应用中。',
+            '通过 inDiv.use(modal: IMiddleware<InDiv>): number 方法，导入中间件并将indiv的全部权限暴露给中间件。',
         ],
         info: [
             'InDiv 基本构造块是 NvModule，它为组件提供了上下文环境和作用域',
