@@ -26,7 +26,7 @@ export default class RootComponent {
         };
     }
 
-    public changeShowSideBar(value: string) {
+    public changeShowSideBar() {
         if (this.state.showSideBar === 'open') {
             this.state.showSideBar = 'close';
         } else {

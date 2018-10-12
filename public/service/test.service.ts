@@ -25,6 +25,6 @@ export default class TestService {
   }
 
   public unsubscribe() {
-    this.subject.subscribe()
+    this.subject.subscribe();
   }
 }
