@@ -19,11 +19,13 @@ export const componentInfo = () => [
           '4. 在 JavaScript 中，只能把 装饰器Component 当做一个函数使用，最后应该导出被声明的类。',
           '5. 组件会优先去组件 providers 查找依赖，其次才会去模块 providers 查找依赖。',
           '6. 组件 providers 中的服务在每个组件实例内都有独立的实例。而模块 providers 则根据 isSingletonMode 决定是否为 全局单例 还是每次都实现一个新的实例。',
-          '7. 在 TypeScript 中 providers 仅仅能使用 providers: (Function | { provide: Function; useClass: Function; } | { provide: Function; useValue: any; })[]; 类型',
-          '8. 在 JavaScript 中 providers 仅仅能使用 providers: ({ provide: string; useClass: Function; } | { provide: string; useValue: any; })[]; 类型',
+          '7. 在 TypeScript 中 providers 仅仅能使用 providers: (Function | { provide: Function; useClass: Function; } | { provide: Function; useValue: any; })[]; 类型。',
+          '8. 在 JavaScript 中 providers 仅仅能使用 providers: ({ provide: string; useClass: Function; } | { provide: string; useValue: any; })[]; 类型。',
+          '9. 从v1.2.1开始，实例上将无法找到 setState, setLocation, getLocation 方法，你需要在 indiv包 中手动引入并赋值给实例的一个方法。但在v1.2.0及之前版本都存在于实例中。',
         ],
         code: `
   // in TypeScript
+  import { Component, setState, setLocation, getLocation, SetState, SetLocation, GetLocation } from 'indiv';
   @Component({
     selector: 'container-component'
     template: ('
@@ -45,6 +47,9 @@ export const componentInfo = () => [
     public state: {
       a: number;
     };
+    private setState: SetState;
+    private setLocation: SetLocation;
+    private getLocation: GetLocation;
 
     constructor(
       private: testService: TestService
@@ -52,10 +57,15 @@ export const componentInfo = () => [
       this.state = {
         a: 1
       };
+      this.setState = setState;
+      this.setLocation = setLocation;
+      this.getLocation = getLocation;
     }
   }
 
   // in JavaScript
+  import { Component, setState, setLocation, getLocation } from 'indiv';
+
   export default class ContainerComponent {
     static injectTokens = [
       'testService'
@@ -66,6 +76,9 @@ export const componentInfo = () => [
       this.state = {
         a: 1
       };
+      this.setState = setState;
+      this.setLocation = setLocation;
+      this.getLocation = getLocation;
     }
   }
   Component({
@@ -143,6 +156,7 @@ export const componentInfo = () => [
           '但是更改 state 值时，会触发异步的重新渲染，并在渲染后更新子组件的 props，',
           '因此，通过在子组件中调用 props 上的方法来更新父组件的 state 时，子组件的 props 并不会立即更新。',
           '如果想知道子组件的 props 何时被更新，应该通过生命周期 nvReceiveProps(nextProps: Props) 或 Class的getter setter方法去监听props的变化。',
+          '从v1.2.1开始，实例上将无法找到 setState 方法，你需要在 indiv包 中手动引入setState并赋值给实例的一个方法。但在v1.2.0及之前版本都存在于实例中。',
         ],
         pchild: [
           '1. 可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 prop-value="{$.value}" prop-value="{@returnValue($.value)}" pro-function="{@fn}" 的引号包裹花括号的写法传递值与方法。',
@@ -156,7 +170,7 @@ export const componentInfo = () => [
           '9. 可以通过生命周期 nvReceiveProps(nextProps: Props) 或 Class的getter setter方法去监听props的变化。(nvReceiveProps会先于getter setter被触发)。',
         ],
         code: `
-  import { Component, SetState, OnInit, ReceiveProps } from 'InDiv';
+  import { Component, SetState, OnInit, ReceiveProps, setState } from 'InDiv';
   @Component({
     selector: 'hero-component',
     template: ('
@@ -167,7 +181,7 @@ export const componentInfo = () => [
     '),
   })
   export default class HeroComponent implements OnInit, ReceiveProps {
-    public setState: SetState;
+    private setState: SetState;
     public state: any;
     public props: any;
     public _props: any;
@@ -177,6 +191,7 @@ export const componentInfo = () => [
         idValue: this.props.idValue,
         stateValue: this.props.stateValue,
       };
+      this.setState = setState;
     }
 
     public show(a: any) {

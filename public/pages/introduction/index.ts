@@ -2,6 +2,7 @@ import './style.less';
 
 import { Component } from 'indiv';
 // import { Component } from '../../../../InDiv/src';
+// import { Component } from '../../../../InDiv/build';
 
 import { content } from '../../constants/introduction';
 

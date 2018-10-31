@@ -97,15 +97,20 @@ export const routeInfo = () => [
           'params?: any; 如果该路径为 /:id 类似这种模式，则params 为 {id: 123}',
           'data?: any; 额外传递的值',
           'title?: string; 跳转路由时需要更改的 title',
+          '3. 从v1.2.1开始，实例上将无法找到 setLocation, getLocation 方法，你需要在 indiv包 中手动引入并赋值给实例的一个方法。但在v1.2.0及之前版本都存在于实例中。',
         ],
         code: `
-  import { GetLocation, SetLocation } from 'InDiv';
+  // import { GetLocation, SetLocation } from 'InDiv'; v1.2.1之前都可以在实例上找到，因此无需引入
+  import { GetLocation, SetLocation, setLocation, getLocation } from 'InDiv';
   
   class RoutrComponent {
     public getLocation: GetLocation;
     public setLocation: SetLocation;
 
-    constructor() {}
+    constructor() {
+      this.getLocation = getLocation;
+      this.setLocation = setLocation;
+    }
     public nvOnInit() {
       console.log('this.getLocation', this.getLocation());
       this.setLocation('/R1/C1/D1', { b: '1' });

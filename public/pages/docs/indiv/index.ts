@@ -1,5 +1,6 @@
 import { Component, SetState } from 'indiv';
 // import { Component, SetState } from '../../../../../InDiv/src';
+// import { Component, SetState } from '../../../../../InDiv/build';
 import { inDivInfo } from '../../../constants/indiv';
 
 interface Info {

@@ -1,5 +1,6 @@
 import { Router, TRouter } from 'indiv';
 // import { Router, TRouter } from '../../../InDiv/src';
+// import { Router, TRouter } from '../../../InDiv/build';
 
 const router = new Router();
 

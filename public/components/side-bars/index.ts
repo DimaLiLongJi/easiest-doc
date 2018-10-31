@@ -1,8 +1,9 @@
 import './style.less';
 
 import { Subscription } from 'rxjs';
-import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory } from 'indiv';
-// import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory } from '../../../../InDiv/src';
+import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from 'indiv';
+// import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from '../../../../InDiv/src';
+// import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from '../../../../InDiv/build';
 
 import { navs } from '../../constants/nav';
 
@@ -56,6 +57,9 @@ export default class SideBar implements OnInit, RouteChange, OnDestory {
     constructor(
         private testS: TestService,
     ) {
+        this.getLocation = getLocation;
+        this.setLocation = setLocation;
+        this.setState = setState;
         this.subscribeToken = this.testS.subscribe(this.subscribe);
     }
 

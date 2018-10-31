@@ -265,8 +265,21 @@ export const moduleInfo = () => [
           '模块只能导出可声明的类。它不会声明或导出任何其它类型的类。',
           '被模块导出的组件，可以随意在 导入该模块的模块（NvModule） 中的 组件（component） 使用。',
           '被模块导出的组件，只能获取模块本身声明的依赖，组件本身声明的依赖，和根模块声明的依赖。',
+          '从v1.2.1 除了组件外，模块可以导出其他模块。实际上相当于模块导出了 被导出模块 的exports。',
+          '依赖此模块可以导出模块的特性，你可以写一个公共模块导出一些基础的组件或其他模块，然后导入该公共模块到根模块提供给全局使用！',
         ],
         code: `
+  // common module
+  @NvModule({
+    components: [
+      SomeCommonComponent,
+    ],
+    exports: [
+      SomeCommonComponent,
+    ],
+  })
+  class CommonModule {}
+
   // NvModule M2
   @Injectable
   @Component({
@@ -294,6 +307,7 @@ export const moduleInfo = () => [
     ],
     exports: [
       PCChild,
+      CommonModule,
     ],
   })
   class M2 {}

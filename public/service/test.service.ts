@@ -1,6 +1,7 @@
 import { Subject, Subscription } from 'rxjs';
 import { Injectable } from 'indiv';
 // import { Injectable } from '../../../InDiv/src';
+// import { Injectable } from '../../../InDiv/build';
 
 @Injectable()
 export default class TestService {

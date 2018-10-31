@@ -25,7 +25,8 @@ export const middlewareInfo = () => [
             '7. $components: Function[]; 根模块暴露出的组件类',
             '8. setRootPath: (rootPath: string) => void; 更改设置根地址',
             '9. bootstrapModule: (NvModule: Function) => void; 引导初始化根模块',
-            '10. renderComponent: (BootstrapComponent: Function, renderDOM: Element) => Promise<IComponent>; 异步渲染组件，返回一个Promise<IComponent>',
+            '10. v1.2.1新增: render() => Promise<IComponent>; 组件初次异步渲染的方法，返回一个Promise<IComponent>',
+            '11. v1.2.1新增: reRender() => Promise<IComponent>; 组件非初次异步渲染的方法，返回一个Promise<IComponent>',
           ],
         },
         {
