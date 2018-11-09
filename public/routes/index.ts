@@ -1,5 +1,5 @@
-import { Router, TRouter } from 'indiv';
-// import { Router, TRouter } from '../../../InDiv/src';
+// import { Router, TRouter } from 'indiv';
+import { Router, TRouter } from '../../../InDiv/src';
 // import { Router, TRouter } from '../../../InDiv/build';
 
 const router = new Router();
@@ -13,16 +13,19 @@ const routes: TRouter[] = [
         children: [
             {
                 path: '/introduction',
-                component: 'introduction-container',
+                // component: 'introduction-container',
+                loadChild: () => import('../modules/introduction.module'),
             },
             {
                 path: '/architecture',
-                component: 'architecture-container',
+                // component: 'architecture-container',
+                loadChild: () => import('../modules/architecture.module'),
             },
             {
                 path: '/docs',
                 redirectTo: '/docs/component',
-                component: 'docs-container',
+                // component: 'docs-container',
+                loadChild: () => import('../modules/docs.module'),
                 children: [
                     {
                         path: '/component',
@@ -60,11 +63,13 @@ const routes: TRouter[] = [
             },
             {
                 path: '/ssr',
-                component: 'ssr-container',
+                // component: 'ssr-container',
+                loadChild: () => import('../modules/ssr.module'),
             },
             {
                 path: '/middleware',
-                component: 'middleware-container',
+                // component: 'middleware-container',
+                loadChild: () => import('../modules/middleware.module'),
             },
         ],
     },

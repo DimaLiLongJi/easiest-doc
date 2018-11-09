@@ -4,7 +4,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "build",
-    "module": "commonjs",
+    "module": "esnext",
+    "moduleResolution": "node",
     "target": "es5",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

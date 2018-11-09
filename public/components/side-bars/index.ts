@@ -1,8 +1,8 @@
 import './style.less';
 
 import { Subscription } from 'rxjs';
-import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from 'indiv';
-// import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from '../../../../InDiv/src';
+// import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from 'indiv';
+import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from '../../../../InDiv/src';
 // import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from '../../../../InDiv/build';
 
 import { navs } from '../../constants/nav';

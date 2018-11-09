@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
-import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from 'indiv';
-// import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from '../../../../../InDiv/src';
+// import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from 'indiv';
+import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from '../../../../../InDiv/src';
 // import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from '../../../../../InDiv/build';
 import { componentInfo } from '../../../constants/component';
 

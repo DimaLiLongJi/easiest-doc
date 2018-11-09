@@ -1,5 +1,5 @@
-import { NvModule } from 'indiv';
-// import { NvModule } from '../../../InDiv/src';
+// import { NvModule } from 'indiv';
+import { NvModule } from '../../../InDiv/src';
 // import { NvModule } from '../../../InDiv/build';
 
 import SSRContainer from '../pages/ssr';
@@ -11,5 +11,6 @@ import SSRContainer from '../pages/ssr';
     exports: [
         SSRContainer,
     ],
+    bootstrap: SSRContainer,
 })
-export default class SSRModule { }
+export default class SSRModule {}

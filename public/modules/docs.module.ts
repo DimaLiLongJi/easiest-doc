@@ -1,5 +1,5 @@
-import { NvModule } from 'indiv';
-// import { NvModule } from '../../../InDiv/src';
+// import { NvModule } from 'indiv';
+import { NvModule } from '../../../InDiv/src';
 // import { NvModule } from '../../../InDiv/build';
 
 import DocsContainer from '../pages/docs';
@@ -43,5 +43,10 @@ import TestService from '../service/test.service';
         DocsLibsContainer,
         DocsHttpContainer,
     ],
+    bootstrap: DocsContainer,
 })
-export default class DocsModule { }
+export default class DocsModule {
+    constructor () {
+        console.log(3333);
+    }
+}

@@ -1,5 +1,5 @@
-import { NvModule } from 'indiv';
-// import { NvModule } from '../../../InDiv/src';
+// import { NvModule } from 'indiv';
+import { NvModule } from '../../../InDiv/src';
 // import { NvModule } from '../../../InDiv/build';
 
 import IntroductionContainer from '../pages/introduction';
@@ -15,5 +15,6 @@ import IntroductionContainer from '../pages/introduction';
     exports: [
         IntroductionContainer,
     ],
+    bootstrap: IntroductionContainer,
 })
 export default class IntroductionModule { }
