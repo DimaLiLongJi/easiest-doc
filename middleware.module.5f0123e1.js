@@ -104,38 +104,36 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"pages/ssr/style.less":[function(require,module,exports) {
+})({"pages/middleware/style.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/css-loader.js"}],"constants/ssr.ts":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/css-loader.js"}],"constants/middleware.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ssrInfo = void 0;
+exports.middlewareInfo = void 0;
 
-var ssrInfo = function ssrInfo() {
+var middlewareInfo = function middlewareInfo() {
   return [{
-    h1: '服务端渲染（SSR）',
-    p: ['标准的 InDiv 应用会运行在浏览器中，', '当 JavaScript 脚本加载完毕后，它会在 DOM 中渲染页面，以响应用户的操作。', '但是在特殊场景，比如 SEO，需要提升在低性能设备上的渲染速度，需要迅速显示首屏时，', '可能服务端渲染更适合。', '它可以生成这些页面，并在浏览器请求时直接用它们给出响应。'],
+    h1: '中间件 及 其他开发',
+    p: ['中间件是一个在 InDiv 挂载根模块（bootstrapModule(NvModule: Function): void;）之后初始化程序（init: () => void;）之前被调用的对象。', '中间件接收 InDiv 实例上的全部属性及方法，因此中间件可以修改 InDiv 的行为。', '插件可以是 InDiv模块（NvModule），也可以就是一个可以提供给providers的服务。'],
     info: [{
-      title: '工作原理',
-      p: ['通过引入 @indiv/ssr-renderer v1.1.0+。', '@indiv/ssr-renderer 包提供了服务端的 DOM 实现，使得渲染 InDiv 应用不再依赖浏览器。', '通过 node 端，会把客户端对应用页面的请求传给 @indiv/ssr-renderer 中的 renderToString  函数，', '引入 indiv 实例和路由的配置对象，renderToString 会根据对应的路径，返回已经被渲染完的字符串模板。', '通过不同框架的渲染机制，将返回的字符串模板渲染到模板的 <div id="root"></div> 中。', '最后，服务器就会把渲染好的页面返回给客户端。'],
-      pchild: ['1. 生命周期受到限制，服务端渲染中仅仅支持 constructor 和 OnInit 的调用。', '2. 因为 InDiv 的 nvHttp 对象是封装的 axios 库，因此支持在 node 环境中使用 http 请求。', '3. 通过 nv-on:eventName 方式绑定的方法暂时无法渲染。']
+      title: '中间件',
+      p: ['中间件应该是一个类型为 interface IMiddleware<InDiv> { bootstrap(vm: InDiv): void; } 的对象。', '中间件对象应有 bootstrap 方法，接收整个 InDiv 实例。', '可以通过修改 InDiv 实例上的全部属性及方法，改变整个应用的行为。', 'InDiv 实例会暴露如下方法及属性：'],
+      pchild: ['1. modalList: IMiddleware<InDiv>[]; 中间件的列表', '2. rootDom: Element; 挂载在页面的元素', '3. $rootPath: string; 根地址，提供给路由器使用', '4. $canRenderModule: boolean; 可否渲染根模块提供的 bootstrap', '5. $routeDOMKey: string; 挂载路由的元素tagName', '6. $rootModule: INvModule; 根模块', '7. $components: Function[]; 根模块暴露出的组件类', '8. setRootPath: (rootPath: string) => void; 更改设置根地址', '9. bootstrapModule: (NvModule: Function) => void; 引导初始化根模块', '10. v1.2.1新增: render() => Promise<IComponent>; 组件初次异步渲染的方法，返回一个Promise<IComponent>', '11. v1.2.1新增: reRender() => Promise<IComponent>; 组件非初次异步渲染的方法，返回一个Promise<IComponent>']
     }, {
-      title: '环境及使用',
-      p: ['Node.js: v6+', 'indiv: v1.2.0+', '@indiv/ssr-renderer: v1.1.0+', '本例子使用 express 及 ejs 模板，你也可以选择适合的 服务端框架 及 模板 。'],
-      pchild: ['1. 创建 InDiv app', '2. 创建一个用于处理请求的 express Web 服务器', '3. 创建一个 ejs 模板', '4. 引入 @indiv/ssr-renderer 包 renderToString: (url: string, routes: TRouter[], indiv: InDiv) => string', '5. 将 request 的 url， indiv app路由配置对象，和 indiv实例 作为参数依次传入 renderToString', '6. 最后 renderToString 的返回值渲染至模板中'],
-      code: "\n  // in index.ejs\n  <div id=\"root\">\n    <%- content %>\n  </div>\n\n  // in service side\n  const express = require('express');\n  const renderToString = require('@indiv/ssr-renderer');\n\n  const app = express();\n\n  app.use('/indiv-doc', (request, response, next) => {    \n    // import indiv app\n    const ssrData = require('./dist/main.js');\n    response.render('index.ejs', {\n      // use in ejs template\n      content: renderToString(request.url, ssrData.routes, ssrData.default.inDiv),\n    });\n  });\n    "
+      title: '其他开发',
+      pchild: ['可以提供模块（NvModule），在 exports: Function[] 中导出提供给开发者的组件，并像普通的模块一样使用。', '也可以提供服务，并像普通的服务一样使用。']
     }]
   }];
 };
 
-exports.ssrInfo = ssrInfo;
-},{}],"pages/ssr/index.ts":[function(require,module,exports) {
+exports.middlewareInfo = middlewareInfo;
+},{}],"pages/middleware/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -147,7 +145,7 @@ require("./style.less");
 
 var _src = require("../../../../InDiv/src");
 
-var _ssr = require("../../constants/ssr");
+var _middleware = require("../../constants/middleware");
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -165,26 +163,26 @@ var __metadata = void 0 && (void 0).__metadata || function (k, v) {
   if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var SSRContainer =
+var MiddlewareContainer =
 /** @class */
 function () {
-  function SSRContainer() {
+  function MiddlewareContainer() {
     this.state = {
-      info: (0, _ssr.ssrInfo)(),
+      info: (0, _middleware.middlewareInfo)(),
       codeType: 'javascript'
     };
   }
 
-  SSRContainer = __decorate([(0, _src.Component)({
-    selector: 'ssr-container',
+  MiddlewareContainer = __decorate([(0, _src.Component)({
+    selector: 'middleware-container',
     template: "\n        <div class=\"page-container\">\n            <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n                <h1>{{info.h1}}</h1>\n                <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n                <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n                    <h2>{{code.title}}</h2>\n                    <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n                    <div class=\"pchild\" nv-if=\"code.pchild\">\n                    <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n                    </div>\n                    <code-shower nv-if=\"code.code\" type=\"{$.codeType}\" codes=\"{code.code}\"></code-shower>\n                </div>\n            </div>\n        </div>\n    "
-  }), __metadata("design:paramtypes", [])], SSRContainer);
-  return SSRContainer;
+  }), __metadata("design:paramtypes", [])], MiddlewareContainer);
+  return MiddlewareContainer;
 }();
 
-var _default = SSRContainer;
+var _default = MiddlewareContainer;
 exports.default = _default;
-},{"./style.less":"pages/ssr/style.less","../../../../InDiv/src":"../../InDiv/src/index.ts","../../constants/ssr":"constants/ssr.ts"}],"modules/ssr.module.ts":[function(require,module,exports) {
+},{"./style.less":"pages/middleware/style.less","../../../../InDiv/src":"../../InDiv/src/index.ts","../../constants/middleware":"constants/middleware.ts"}],"modules/middleware.module.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -194,7 +192,7 @@ exports.default = void 0;
 
 var _src = require("../../../InDiv/src");
 
-var _ssr = _interopRequireDefault(require("../pages/ssr"));
+var _middleware = _interopRequireDefault(require("../pages/middleware"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -211,22 +209,22 @@ var __decorate = void 0 && (void 0).__decorate || function (decorators, target, 
 }; // import { NvModule } from 'indiv';
 
 
-var SSRModule =
+var MiddlewareModule =
 /** @class */
 function () {
-  function SSRModule() {}
+  function MiddlewareModule() {}
 
-  SSRModule = __decorate([(0, _src.NvModule)({
-    components: [_ssr.default],
-    exports: [_ssr.default],
-    bootstrap: _ssr.default
-  })], SSRModule);
-  return SSRModule;
+  MiddlewareModule = __decorate([(0, _src.NvModule)({
+    components: [_middleware.default],
+    exports: [_middleware.default],
+    bootstrap: _middleware.default
+  })], MiddlewareModule);
+  return MiddlewareModule;
 }();
 
-var _default = SSRModule;
+var _default = MiddlewareModule;
 exports.default = _default;
-},{"../../../InDiv/src":"../../InDiv/src/index.ts","../pages/ssr":"pages/ssr/index.ts"}],"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../../../InDiv/src":"../../InDiv/src/index.ts","../pages/middleware":"pages/middleware/index.ts"}],"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -253,7 +251,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50966" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53640" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -396,4 +394,4 @@ function hmrAccept(bundle, id) {
   });
 }
 },{}]},{},["../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/ssr.module.01572ac7.map
+//# sourceMappingURL=/middleware.module.5f0123e1.map

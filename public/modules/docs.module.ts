@@ -26,12 +26,12 @@ import TestService from '../service/test.service';
         DocsLibsContainer,
         DocsHttpContainer,
     ],
-    providers: [
-        {
-            provide: TestService,
-            useClass: TestService,
-        },
-    ],
+    // providers: [
+    //     {
+    //         provide: TestService,
+    //         useClass: TestService,
+    //     },
+    // ],
     exports: [
         DocsContainer,
         DocsComponentContainer,

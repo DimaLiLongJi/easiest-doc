@@ -104,45 +104,38 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"pages/architecture/style.less":[function(require,module,exports) {
+})({"pages/ssr/style.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/css-loader.js"}],"constants/start.ts":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/css-loader.js"}],"constants/ssr.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.content = void 0;
+exports.ssrInfo = void 0;
 
-var content = function content() {
+var ssrInfo = function ssrInfo() {
   return [{
-    h1: '概览',
-    p: ['InDiv 是一个 TypeScript 构建客户端应用的平台与框架。', 'InDiv 本身使用 TypeScript 写成的。', '它将核心功能和可选功能作为一组 TypeScript 库进行实现，你可以把它们导入你的应用中。'],
-    info: ['InDiv 的基本构造块是 NvModule，它为组件提供了编译的上下文环境和作用域。', 'NvModule 会把相关的一些功能收集到集中工具函数中。', 'InDiv 应用就是由一组 NvModule 定义出的。 应用至少会有一个用于引导应用的根模块，通常还会有很多其他模块。', 'Component 作为页面元素的基本单位，由定义的 NvModule 统一提供给编译器或路由使用。', 'Route 被委托管理页面渲染，根据访问的url的不同来获取不用的识图渲染。']
-  }, {
-    h1: '模块',
-    p: ['NvModule 作为整个应用的基本构造块，可以从其他 NvModule 引入或是导出 Component , 也可以导入 Service 为全局使用或是本模块。'],
-    info: ['每个 InDiv 应用都有一个根模块，通常命名为 AppModule。', '根模块提供了用来启动应用的引导机制', '一个应用通常会包含很多功能模块，它们最后都应该被导入根模块中。']
-  }, {
-    h1: '组件',
-    p: ['组件控制屏幕上被称为视图的一小片区域。为识图提供交互和渲染模板'],
-    info: ['每个 InDiv 应用都至少有一个组件，也就是根组件，它会把组件树和页面中的 DOM 连接起来。', '每个组件都会定义一个类，其中包含应用的数据和逻辑，并与一个 字符串 模板相关联，该模板定义了一个供目标环境下显示的视图。']
-  }, {
-    h1: '服务',
-    p: ['服务是一个广义的概念，它包括应用所需的任何值、函数或特性。狭义的服务是一个明确定义了用途的类。它应该做一些具体的事，并做好。', 'InDiv 把组件和服务区分开，以提高模块性和复用性。'],
-    info: ['对于与特定视图无关并希望跨组件共享的数据或逻辑，可以创建服务类。', '服务类的定义通常紧跟在 “@Injectable” 装饰器之后。', '该装饰器提供的元数据可以让你的服务作为依赖被注入到客户组件中。', '依赖注入（或 DI）让你可以保持组件类的精简和高效。有了 DI，组件就不用从服务器获取数据、验证用户输入或直接把日志写到控制台，而是会把这些任务委托给服务。']
-  }, {
-    h1: '路由',
-    p: ['浏览器具有熟悉的导航模式，在地址栏输入 URL，浏览器就会导航到相应的页面。 InDiv 的 Router（即“路由器”）借鉴了这个模型。', '它把浏览器中的 URL 看做一个操作指南， 据此导航到一个由客户端生成的视图，并可以把参数传给支撑视图的相应组件，帮它决定具体该展现哪些内容。'],
-    info: ['要定义导航规则，你就要把导航路径和你的组件关联起来。', ' 路径（path）使用类似 URL 的语法来和程序数据整合在一起，就像模板语法会把你的视图和程序数据整合起来一样。', '然后你就可以用程序逻辑来决定要显示或隐藏哪些视图，以根据你制定的访问规则对用户的输入做出响应。']
+    h1: '服务端渲染（SSR）',
+    p: ['标准的 InDiv 应用会运行在浏览器中，', '当 JavaScript 脚本加载完毕后，它会在 DOM 中渲染页面，以响应用户的操作。', '但是在特殊场景，比如 SEO，需要提升在低性能设备上的渲染速度，需要迅速显示首屏时，', '可能服务端渲染更适合。', '它可以生成这些页面，并在浏览器请求时直接用它们给出响应。'],
+    info: [{
+      title: '工作原理',
+      p: ['通过引入 @indiv/ssr-renderer v1.1.0+。', '@indiv/ssr-renderer 包提供了服务端的 DOM 实现，使得渲染 InDiv 应用不再依赖浏览器。', '通过 node 端，会把客户端对应用页面的请求传给 @indiv/ssr-renderer 中的 renderToString  函数，', '引入 indiv 实例和路由的配置对象，renderToString 会根据对应的路径，返回已经被渲染完的字符串模板。', '通过不同框架的渲染机制，将返回的字符串模板渲染到模板的 <div id="root"></div> 中。', '最后，服务器就会把渲染好的页面返回给客户端。'],
+      pchild: ['1. 生命周期受到限制，服务端渲染中仅仅支持 constructor 和 OnInit 的调用。', '2. 因为 InDiv 的 nvHttp 对象是封装的 axios 库，因此支持在 node 环境中使用 http 请求。', '3. 通过 nv-on:eventName 方式绑定的方法暂时无法渲染。']
+    }, {
+      title: '环境及使用',
+      p: ['Node.js: v6+', 'indiv: v1.2.0+', '@indiv/ssr-renderer: v1.1.0+', '本例子使用 express 及 ejs 模板，你也可以选择适合的 服务端框架 及 模板 。'],
+      pchild: ['1. 创建 InDiv app', '2. 创建一个用于处理请求的 express Web 服务器', '3. 创建一个 ejs 模板', '4. 引入 @indiv/ssr-renderer 包 renderToString: (url: string, routes: TRouter[], indiv: InDiv) => string', '5. 将 request 的 url， indiv app路由配置对象，和 indiv实例 作为参数依次传入 renderToString', '6. 最后 renderToString 的返回值渲染至模板中'],
+      code: "\n  // in index.ejs\n  <div id=\"root\">\n    <%- content %>\n  </div>\n\n  // in service side\n  const express = require('express');\n  const renderToString = require('@indiv/ssr-renderer');\n\n  const app = express();\n\n  app.use('/indiv-doc', (request, response, next) => {    \n    // import indiv app\n    const ssrData = require('./dist/main.js');\n    response.render('index.ejs', {\n      // use in ejs template\n      content: renderToString(request.url, ssrData.routes, ssrData.default.inDiv),\n    });\n  });\n    "
+    }]
   }];
 };
 
-exports.content = content;
-},{}],"pages/architecture/index.ts":[function(require,module,exports) {
+exports.ssrInfo = ssrInfo;
+},{}],"pages/ssr/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -154,7 +147,7 @@ require("./style.less");
 
 var _src = require("../../../../InDiv/src");
 
-var _start = require("../../constants/start");
+var _ssr = require("../../constants/ssr");
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -172,25 +165,26 @@ var __metadata = void 0 && (void 0).__metadata || function (k, v) {
   if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ArchitectureContainer =
+var SSRContainer =
 /** @class */
 function () {
-  function ArchitectureContainer() {
+  function SSRContainer() {
     this.state = {
-      info: (0, _start.content)()
+      info: (0, _ssr.ssrInfo)(),
+      codeType: 'javascript'
     };
   }
 
-  ArchitectureContainer = __decorate([(0, _src.Component)({
-    selector: 'architecture-container',
-    template: "\n    <div class=\"page-container\">\n      <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n          <h1>{{info.h1}}</h1>\n          <p nv-repeat=\"let pp in info.p\">{{pp}}</p>\n          <div class=\"child-info\" nv-if=\"info.info\">\n              <div class=\"pchild\">\n                  <p nv-repeat=\"let child in info.info\">{{child}}</p>\n              </div>\n          </div>\n      </div>\n    </div>\n  "
-  }), __metadata("design:paramtypes", [])], ArchitectureContainer);
-  return ArchitectureContainer;
+  SSRContainer = __decorate([(0, _src.Component)({
+    selector: 'ssr-container',
+    template: "\n        <div class=\"page-container\">\n            <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n                <h1>{{info.h1}}</h1>\n                <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n                <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n                    <h2>{{code.title}}</h2>\n                    <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n                    <div class=\"pchild\" nv-if=\"code.pchild\">\n                    <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n                    </div>\n                    <code-shower nv-if=\"code.code\" type=\"{$.codeType}\" codes=\"{code.code}\"></code-shower>\n                </div>\n            </div>\n        </div>\n    "
+  }), __metadata("design:paramtypes", [])], SSRContainer);
+  return SSRContainer;
 }();
 
-var _default = ArchitectureContainer;
+var _default = SSRContainer;
 exports.default = _default;
-},{"./style.less":"pages/architecture/style.less","../../../../InDiv/src":"../../InDiv/src/index.ts","../../constants/start":"constants/start.ts"}],"modules/architecture.module.ts":[function(require,module,exports) {
+},{"./style.less":"pages/ssr/style.less","../../../../InDiv/src":"../../InDiv/src/index.ts","../../constants/ssr":"constants/ssr.ts"}],"modules/ssr.module.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -200,7 +194,7 @@ exports.default = void 0;
 
 var _src = require("../../../InDiv/src");
 
-var _architecture = _interopRequireDefault(require("../pages/architecture"));
+var _ssr = _interopRequireDefault(require("../pages/ssr"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -217,22 +211,22 @@ var __decorate = void 0 && (void 0).__decorate || function (decorators, target, 
 }; // import { NvModule } from 'indiv';
 
 
-var ArchitectureModule =
+var SSRModule =
 /** @class */
 function () {
-  function ArchitectureModule() {}
+  function SSRModule() {}
 
-  ArchitectureModule = __decorate([(0, _src.NvModule)({
-    components: [_architecture.default],
-    exports: [_architecture.default],
-    bootstrap: _architecture.default
-  })], ArchitectureModule);
-  return ArchitectureModule;
+  SSRModule = __decorate([(0, _src.NvModule)({
+    components: [_ssr.default],
+    exports: [_ssr.default],
+    bootstrap: _ssr.default
+  })], SSRModule);
+  return SSRModule;
 }();
 
-var _default = ArchitectureModule;
+var _default = SSRModule;
 exports.default = _default;
-},{"../../../InDiv/src":"../../InDiv/src/index.ts","../pages/architecture":"pages/architecture/index.ts"}],"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../../../InDiv/src":"../../InDiv/src/index.ts","../pages/ssr":"pages/ssr/index.ts"}],"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -259,7 +253,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50966" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53640" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -402,4 +396,4 @@ function hmrAccept(bundle, id) {
   });
 }
 },{}]},{},["../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/architecture.module.5a3de5ca.map
+//# sourceMappingURL=/ssr.module.01572ac7.map

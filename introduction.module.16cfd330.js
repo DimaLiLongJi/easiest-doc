@@ -104,36 +104,39 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"pages/middleware/style.less":[function(require,module,exports) {
+})({"pages/introduction/style.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/css-loader.js"}],"constants/middleware.ts":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/css-loader.js"}],"constants/introduction.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.middlewareInfo = void 0;
+exports.content = void 0;
 
-var middlewareInfo = function middlewareInfo() {
+var content = function content() {
   return [{
-    h1: '中间件 及 其他开发',
-    p: ['中间件是一个在 InDiv 挂载根模块（bootstrapModule(NvModule: Function): void;）之后初始化程序（init: () => void;）之前被调用的对象。', '中间件接收 InDiv 实例上的全部属性及方法，因此中间件可以修改 InDiv 的行为。', '插件可以是 InDiv模块（NvModule），也可以就是一个可以提供给providers的服务。'],
-    info: [{
-      title: '中间件',
-      p: ['中间件应该是一个类型为 interface IMiddleware<InDiv> { bootstrap(vm: InDiv): void; } 的对象。', '中间件对象应有 bootstrap 方法，接收整个 InDiv 实例。', '可以通过修改 InDiv 实例上的全部属性及方法，改变整个应用的行为。', 'InDiv 实例会暴露如下方法及属性：'],
-      pchild: ['1. modalList: IMiddleware<InDiv>[]; 中间件的列表', '2. rootDom: Element; 挂载在页面的元素', '3. $rootPath: string; 根地址，提供给路由器使用', '4. $canRenderModule: boolean; 可否渲染根模块提供的 bootstrap', '5. $routeDOMKey: string; 挂载路由的元素tagName', '6. $rootModule: INvModule; 根模块', '7. $components: Function[]; 根模块暴露出的组件类', '8. setRootPath: (rootPath: string) => void; 更改设置根地址', '9. bootstrapModule: (NvModule: Function) => void; 引导初始化根模块', '10. v1.2.1新增: render() => Promise<IComponent>; 组件初次异步渲染的方法，返回一个Promise<IComponent>', '11. v1.2.1新增: reRender() => Promise<IComponent>; 组件非初次异步渲染的方法，返回一个Promise<IComponent>']
-    }, {
-      title: '其他开发',
-      pchild: ['可以提供模块（NvModule），在 exports: Function[] 中导出提供给开发者的组件，并像普通的模块一样使用。', '也可以提供服务，并像普通的服务一样使用。']
-    }]
+    h1: '什么是InDiv',
+    p: ['InDiv 是一个mvvm库。它能帮你构建 Web 应用。InDiv 字符串模板、依赖注入和一些实践于一身。'],
+    info: ['InDiv 是单词 individual 的缩写，我撸它的时候借鉴了很多 angular，react，vue 的模式与概念。', '本网页是世界上第一个用 InDiv 构建的网页。', '请使用 indiv 1.2.0 + 版本', '在此致敬 angular，react 和 vue的大佬开发者们。感谢他们为前端做出的巨大贡献。']
+  }, {
+    h1: '基本假设',
+    p: ['本文档假设你已经熟悉了 JavaScript，TypeScript，和来自最新标准的一些知识，比如 class 和 esmodule。', '下列代码范例都是用最新版本的 TypeScript 写的，利用 类型 实现依赖注入，并使用装饰器来提供元数据。']
+  }, {
+    h1: '基本理念',
+    p: ['InDiv 是一个 mvvm 库, 本身使用 TypeScript编写。', '它将核心功能和可选功能作为一组 TypeScript 库进行实现，你可以把它们导入你的应用中。', '通过 inDiv.use(modal: IMiddleware<InDiv>): number 方法，导入中间件并将indiv的全部权限暴露给中间件。'],
+    info: ['InDiv 基本构造块是 NvModule，它为组件提供了上下文环境和作用域', '整个app的最小单位为 Component，页面上的一切皆为组件', '异步渲染页面，尽量优化性能']
+  }, {
+    h1: '反馈',
+    p: ['你可以和我一起做贡献！你可以到 Github 上的仓库中提出文档方面的问题，并创建Pull Requests。', '或者在 github 上联系我：DimaLiLongJi']
   }];
 };
 
-exports.middlewareInfo = middlewareInfo;
-},{}],"pages/middleware/index.ts":[function(require,module,exports) {
+exports.content = content;
+},{}],"pages/introduction/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -145,7 +148,7 @@ require("./style.less");
 
 var _src = require("../../../../InDiv/src");
 
-var _middleware = require("../../constants/middleware");
+var _introduction = require("../../constants/introduction");
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -163,26 +166,25 @@ var __metadata = void 0 && (void 0).__metadata || function (k, v) {
   if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var MiddlewareContainer =
+var IntroductionContainer =
 /** @class */
 function () {
-  function MiddlewareContainer() {
+  function IntroductionContainer() {
     this.state = {
-      info: (0, _middleware.middlewareInfo)(),
-      codeType: 'javascript'
+      info: (0, _introduction.content)()
     };
   }
 
-  MiddlewareContainer = __decorate([(0, _src.Component)({
-    selector: 'middleware-container',
-    template: "\n        <div class=\"page-container\">\n            <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n                <h1>{{info.h1}}</h1>\n                <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n                <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n                    <h2>{{code.title}}</h2>\n                    <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n                    <div class=\"pchild\" nv-if=\"code.pchild\">\n                    <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n                    </div>\n                    <code-shower nv-if=\"code.code\" type=\"{$.codeType}\" codes=\"{code.code}\"></code-shower>\n                </div>\n            </div>\n        </div>\n    "
-  }), __metadata("design:paramtypes", [])], MiddlewareContainer);
-  return MiddlewareContainer;
+  IntroductionContainer = __decorate([(0, _src.Component)({
+    selector: 'introduction-container',
+    template: "\n        <div class=\"page-container\">\n            <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n                <h1>{{info.h1}}</h1>\n                <p nv-repeat=\"let pp in info.p\">{{pp}}</p>\n                <div class=\"child-info\" nv-if=\"info.info\">\n                    <div class=\"pchild\">\n                        <p nv-repeat=\"let child in info.info\">{{child}}</p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    "
+  }), __metadata("design:paramtypes", [])], IntroductionContainer);
+  return IntroductionContainer;
 }();
 
-var _default = MiddlewareContainer;
+var _default = IntroductionContainer;
 exports.default = _default;
-},{"./style.less":"pages/middleware/style.less","../../../../InDiv/src":"../../InDiv/src/index.ts","../../constants/middleware":"constants/middleware.ts"}],"modules/middleware.module.ts":[function(require,module,exports) {
+},{"./style.less":"pages/introduction/style.less","../../../../InDiv/src":"../../InDiv/src/index.ts","../../constants/introduction":"constants/introduction.ts"}],"modules/introduction.module.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -192,7 +194,7 @@ exports.default = void 0;
 
 var _src = require("../../../InDiv/src");
 
-var _middleware = _interopRequireDefault(require("../pages/middleware"));
+var _introduction = _interopRequireDefault(require("../pages/introduction"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -209,22 +211,24 @@ var __decorate = void 0 && (void 0).__decorate || function (decorators, target, 
 }; // import { NvModule } from 'indiv';
 
 
-var MiddlewareModule =
+var IntroductionModule =
 /** @class */
 function () {
-  function MiddlewareModule() {}
+  function IntroductionModule() {}
 
-  MiddlewareModule = __decorate([(0, _src.NvModule)({
-    components: [_middleware.default],
-    exports: [_middleware.default],
-    bootstrap: _middleware.default
-  })], MiddlewareModule);
-  return MiddlewareModule;
+  IntroductionModule = __decorate([(0, _src.NvModule)({
+    imports: [],
+    components: [_introduction.default],
+    providers: [],
+    exports: [_introduction.default],
+    bootstrap: _introduction.default
+  })], IntroductionModule);
+  return IntroductionModule;
 }();
 
-var _default = MiddlewareModule;
+var _default = IntroductionModule;
 exports.default = _default;
-},{"../../../InDiv/src":"../../InDiv/src/index.ts","../pages/middleware":"pages/middleware/index.ts"}],"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../../../InDiv/src":"../../InDiv/src/index.ts","../pages/introduction":"pages/introduction/index.ts"}],"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -251,7 +255,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50966" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53640" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -394,4 +398,4 @@ function hmrAccept(bundle, id) {
   });
 }
 },{}]},{},["../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/middleware.module.5f0123e1.map
+//# sourceMappingURL=/introduction.module.16cfd330.map

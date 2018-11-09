@@ -900,8 +900,6 @@ var _libs = _interopRequireDefault(require("../pages/docs/libs"));
 
 var _http = _interopRequireDefault(require("../pages/docs/http"));
 
-var _test = _interopRequireDefault(require("../service/test.service"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -930,10 +928,12 @@ function () {
 
   DocsModule = __decorate([(0, _src.NvModule)({
     components: [_docs.default, _component.default, _template.default, _module.default, _service.default, _route.default, _indiv.default, _libs.default, _http.default],
-    providers: [{
-      provide: _test.default,
-      useClass: _test.default
-    }],
+    // providers: [
+    //     {
+    //         provide: TestService,
+    //         useClass: TestService,
+    //     },
+    // ],
     exports: [_docs.default, _component.default, _template.default, _module.default, _service.default, _route.default, _indiv.default, _libs.default, _http.default],
     bootstrap: _docs.default
   }), __metadata("design:paramtypes", [])], DocsModule);
@@ -942,7 +942,7 @@ function () {
 
 var _default = DocsModule;
 exports.default = _default;
-},{"../../../InDiv/src":"../../InDiv/src/index.ts","../pages/docs":"pages/docs/index.ts","../pages/docs/component":"pages/docs/component/index.ts","../pages/docs/template":"pages/docs/template/index.ts","../pages/docs/module":"pages/docs/module/index.ts","../pages/docs/service":"pages/docs/service/index.ts","../pages/docs/route":"pages/docs/route/index.ts","../pages/docs/indiv":"pages/docs/indiv/index.ts","../pages/docs/libs":"pages/docs/libs/index.ts","../pages/docs/http":"pages/docs/http/index.ts","../service/test.service":"service/test.service.ts"}],"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../../../InDiv/src":"../../InDiv/src/index.ts","../pages/docs":"pages/docs/index.ts","../pages/docs/component":"pages/docs/component/index.ts","../pages/docs/template":"pages/docs/template/index.ts","../pages/docs/module":"pages/docs/module/index.ts","../pages/docs/service":"pages/docs/service/index.ts","../pages/docs/route":"pages/docs/route/index.ts","../pages/docs/indiv":"pages/docs/indiv/index.ts","../pages/docs/libs":"pages/docs/libs/index.ts","../pages/docs/http":"pages/docs/http/index.ts"}],"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -969,7 +969,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50966" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53640" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
