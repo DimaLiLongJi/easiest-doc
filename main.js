@@ -181,7 +181,2600 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/_process@0.11.10@process/browser.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/css-loader.js"}],"../../InDiv/node_modules/easier-cookie/build/index.js":[function(require,module,exports) {
+var define;
+parcelRequire=function(e,r,n,t){function i(n,t){function o(e){return i(o.resolve(e))}function c(r){return e[n][1][r]||r}if(!r[n]){if(!e[n]){var l="function"==typeof parcelRequire&&parcelRequire;if(!t&&l)return l(n,!0);if(u)return u(n,!0);if(f&&"string"==typeof n)return f(n);var p=new Error("Cannot find module '"+n+"'");throw p.code="MODULE_NOT_FOUND",p}o.resolve=c;var a=r[n]=new i.Module(n);e[n][0].call(a.exports,o,a,a.exports,this)}return r[n].exports}function o(e){this.id=e,this.bundle=i,this.exports={}}var u="function"==typeof parcelRequire&&parcelRequire,f="function"==typeof require&&require;i.isParcelRequire=!0,i.Module=o,i.modules=e,i.cache=r,i.parent=u;for(var c=0;c<n.length;c++)i(n[c]);if(n.length){var l=i(n[n.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=l:"function"==typeof define&&define.amd?define(function(){return l}):t&&(this[t]=l)}return i}({1:[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e={set:function(e,t){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},o="",n="",i="",c="";if(r.expires){var a=new Date;a.setDate(a.getDate()+r.expires),o=";expires="+a.toGMTString()}r.path&&(n=";path="+r.path),r.domain&&(i=";domain="+r.domain),c=t instanceof Object?encodeURI(JSON.stringify(t)):encodeURI(t),document.cookie=encodeURI(e)+"="+c+o+n+i},get:function(e){if(!e)return null;for(var t=document.cookie.split("; "),r=0;r<t.length;r++){var o=t[r].split("=");if(o[0]===decodeURI(e)){var n=void 0;try{n=JSON.parse(decodeURI(o[1]))}catch(e){n=decodeURI(o[1])}return""===n?null:n}}return null},remove:function(e){try{return this.set(e,"",-1),!0}catch(t){return console.error("remove cookie "+e+" failed:",t),!1}}};exports.default=e;
+},{}]},{},[1], null)
+},{}],"../../InDiv/src/utils/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Utils = void 0;
+
+var _easierCookie = _interopRequireDefault(require("easier-cookie"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/**
+ * utils for InDiv
+ *
+ * @class Utils
+ */
+var Utils =
+/** @class */
+function () {
+  /**
+   * Creates an instance of Utils.
+   * @memberof Utils
+   */
+  function Utils() {
+    this.toString = Object.prototype.toString;
+  }
+  /**
+   * set Cookie with easier-cookie
+   *
+   * @param {string} name
+   * @param {*} value
+   * @param {*} [options]
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.setCookie = function (name, value, options) {
+    _easierCookie.default.set(name, value, options);
+  };
+  /**
+   * get Cookie with easier-cookie
+   *
+   * @param {string} name
+   * @returns {*}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.getCookie = function (name) {
+    return _easierCookie.default.get(name);
+  };
+  /**
+   * remove Cookie with easier-cookie
+   *
+   * @param {string} name
+   * @returns {boolean}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.removeCookie = function (name) {
+    return _easierCookie.default.remove(name);
+  };
+  /**
+   * build url query
+   *
+   * @param {*} object
+   * @returns {string}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.buildQuery = function (object) {
+    if (!object || !(object instanceof Object)) return '';
+    var query = '?';
+
+    for (var key in object) {
+      if (!(object[key] instanceof Object)) {
+        query += key + "=" + object[key].toString() + "&";
+      } else {
+        query += key + "=" + JSON.stringify(object[key]) + "&";
+      }
+    }
+
+    return query.slice(0, query.length - 1);
+  };
+  /**
+   * get one url query
+   *
+   * @param {string} name
+   * @returns {string}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.getQuery = function (name) {
+    var parts = window.location.search.replace('?', '').split('&');
+    var params = {};
+
+    for (var i = 0; i < parts.length; i++) {
+      var pairs = parts[i].split('=');
+      params[pairs[0]] = pairs[1];
+    }
+
+    if (params[name]) {
+      return params[name];
+    } else {
+      return '';
+    }
+  };
+  /**
+   * judge something is Function or not
+   *
+   * @param {*} func
+   * @returns {boolean}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.isFunction = function (func) {
+    return this.toString.call(func) === '[object Function]';
+  };
+  /**
+   * judge two things are equal or not
+   *
+   * @param {*} a
+   * @param {*} b
+   * @param {any[]} [aStack]
+   * @param {any[]} [bStack]
+   * @returns {boolean}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.isEqual = function (a, b, aStack, bStack) {
+    // === 结果为 true 的区别出 +0 和 -0
+    if (a === b) return a !== 0 || 1 / a === 1 / b; // typeof null 的结果为 object ，这里做判断，是为了让有 null 的情况尽早退出函数
+
+    if (a == null || b == null) return false; // 判断 NaN
+
+    if (a !== a) return b !== b; // 判断参数 a 类型，如果是基本类型，在这里可以直接返回 false
+
+    var type = _typeof(a);
+
+    if (type !== 'function' && type !== 'object' && _typeof(b) !== 'object') return false; // 更复杂的对象使用 deepEq 函数进行深度比较
+
+    return this.deepIsEqual(a, b, aStack, bStack);
+  };
+  /**
+   * deep judge two things are equal or not
+   *
+   * @param {*} a
+   * @param {*} b
+   * @param {any[]} [aStack]
+   * @param {any[]} [bStack]
+   * @returns {boolean}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.deepIsEqual = function (a, b, aStack, bStack) {
+    // a 和 b 的内部属性 [[class]] 相同时 返回 true
+    var className = this.toString.call(a);
+    if (className !== this.toString.call(b)) return false;
+
+    switch (className) {
+      case '[object RegExp]':
+      case '[object String]':
+        return "" + a === "" + b;
+
+      case '[object Number]':
+        if (+a !== +a) return +b !== +b;
+        return +a === 0 ? 1 / +a === 1 / b : +a === +b;
+
+      case '[object Date]':
+      case '[object Boolean]':
+        return +a === +b;
+    }
+
+    var areArrays = className === '[object Array]'; // 不是数组
+
+    if (!areArrays) {
+      // 过滤掉两个函数的情况
+      if (_typeof(a) !== 'object' || _typeof(b) !== 'object') return false;
+      var aCtor = a.constructor;
+      var bCtor = b.constructor; // aCtor 和 bCtor 必须都存在并且都不是 Object 构造函数的情况下，aCtor 不等于 bCtor， 那这两个对象就真的不相等啦
+
+      if (aCtor !== bCtor && !(this.isFunction(aCtor) && aCtor instanceof aCtor && this.isFunction(bCtor) && bCtor instanceof bCtor) && 'constructor' in a && 'constructor' in b) {
+        return false;
+      }
+    }
+
+    aStack = aStack || [];
+    bStack = bStack || [];
+    var length = aStack.length; // 检查是否有循环引用的部分
+
+    while (length--) {
+      if (aStack[length] === a) {
+        return bStack[length] === b;
+      }
+    }
+
+    aStack.push(a);
+    bStack.push(b); // 数组判断
+
+    if (areArrays) {
+      length = a.length;
+      if (length !== b.length) return false;
+
+      while (length--) {
+        if (!this.isEqual(a[length], b[length], aStack, bStack)) return false;
+      }
+    } else {
+      var keys = Object.keys(a);
+      var key = void 0;
+      length = keys.length;
+      if (Object.keys(b).length !== length) return false;
+
+      while (length--) {
+        key = keys[length];
+        if (!(b.hasOwnProperty(key) && this.isEqual(a[key], b[key], aStack, bStack))) return false;
+      }
+    }
+
+    aStack.pop();
+    bStack.pop();
+    return true;
+  };
+  /**
+   * format string for InnerHTML
+   *
+   * @param {string} inner
+   * @returns {string}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.formatInnerHTML = function (inner) {
+    inner = inner.replace(/(\n\s*)/g, '');
+    inner = inner.replace(/^[^\S\n]+/gm, '');
+    return inner;
+  };
+  /**
+   * judge evn is browser or node
+   *
+   * @returns {boolean}
+   * @memberof Utils
+   */
+
+
+  Utils.prototype.isBrowser = function () {
+    return typeof window !== 'undefined' && typeof window.document !== 'undefined';
+  };
+
+  return Utils;
+}();
+
+exports.Utils = Utils;
+},{"easier-cookie":"../../InDiv/node_modules/easier-cookie/build/index.js"}],"../../InDiv/src/lifecycle/index.ts":[function(require,module,exports) {
+
+},{}],"../../InDiv/src/watcher/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Watcher = void 0;
+
+var _utils = require("../utils");
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var utils = new _utils.Utils();
+/**
+ * Watcher for InDiv
+ *
+ * @class Watcher
+ */
+
+var Watcher =
+/** @class */
+function () {
+  /**
+   * Creates an instance of Watcher.
+   *
+   * data: watched data
+   * watcher: function for data change
+   * render: InDiv render
+   *
+   * @param {*} data
+   * @param {TFnWatcher} [watcher]
+   * @param {TFnRender} [render]
+   * @memberof Watcher
+   */
+  function Watcher(data, watcher, render) {
+    this.data = data;
+    this.watcher = watcher;
+    this.render = render;
+    this.watchData(this.data);
+  }
+
+  Watcher.prototype.watchData = function (data) {
+    if (!data || _typeof(data) !== 'object') return;
+    var vm = this;
+
+    var _loop_1 = function _loop_1(key) {
+      var val = data[key];
+      vm.watchData(val);
+      Object.defineProperty(data, key, {
+        configurable: true,
+        enumerable: true,
+        get: function get() {
+          return val;
+        },
+        set: function set(newVal) {
+          if (utils.isEqual(newVal, val)) return; // for watcher method
+
+          var oldData;
+          if (vm.watcher) oldData = JSON.parse(JSON.stringify(vm.data));
+          val = newVal;
+          vm.watchData(val);
+          if (vm.watcher) vm.watcher(oldData);
+          if (vm.render) vm.render();
+        }
+      });
+    };
+
+    for (var key in data) {
+      _loop_1(key);
+    }
+  };
+
+  return Watcher;
+}();
+
+exports.Watcher = Watcher;
+},{"../utils":"../../InDiv/src/utils/index.ts"}],"../../InDiv/src/platform-browser/virtual-dom/parse.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.parseToVnode = parseToVnode;
+exports.Vnode = void 0;
+
+/**
+ * Vnode
+ *
+ * @class Vnode
+ */
+var Vnode =
+/** @class */
+function () {
+  /**
+   * Creates an instance of Vnode.
+   * @param {Vnode} info
+   * @memberof Vnode
+   */
+  function Vnode(info) {
+    this.tagName = info.tagName;
+    this.node = info.node;
+    this.parentNode = info.parentNode;
+    this.attributes = info.attributes;
+    this.childNodes = info.childNodes;
+    this.nodeValue = info.nodeValue;
+    this.type = info.type;
+    this.value = info.value;
+    this.repeatData = info.repeatData;
+    this.eventTypes = info.eventTypes;
+    this.key = info.key;
+    this.checked = false;
+  }
+
+  return Vnode;
+}();
+
+exports.Vnode = Vnode;
+
+/**
+ * bind nodeType and return type
+ *
+ * @param {Node} node
+ * @returns {string}
+ */
+function bindNodeType(node) {
+  if (node.nodeType === 1) return 'element';
+  if (node.nodeType === 3) return 'text';
+  if (node.nodeType === 11) return 'document-fragment';
+  return '';
+}
+/**
+ * bind node attributes and return TAttributes
+ *
+ * @param {(DocumentFragment | Element)} node
+ * @param {((node: DocumentFragment | Element) => string[])} [shouldDiffAttributes]
+ * @returns {TAttributes[]}
+ */
+
+
+function bindAttributes(node, shouldDiffAttributes) {
+  var nodeAttrs = node.attributes;
+  var attributes = [];
+  var shouldDiffAttr = shouldDiffAttributes ? shouldDiffAttributes(node) : null;
+
+  if (nodeAttrs) {
+    Array.from(nodeAttrs).forEach(function (attr) {
+      if (shouldDiffAttr && shouldDiffAttr.indexOf(attr.name) === -1) return;
+      attributes.push({
+        name: attr.name,
+        value: attr.value
+      });
+    });
+  }
+
+  return attributes;
+}
+/**
+ * parse node to VNode
+ *
+ * @export
+ * @param {(DocumentFragment | Element)} node
+ * @param {((node: DocumentFragment | Element) => string[])} [shouldDiffAttributes]
+ * @returns {Vnode}
+ */
+
+
+function parseToVnode(node, shouldDiffAttributes) {
+  var childNodes = [];
+
+  if (node.childNodes) {
+    Array.from(node.childNodes).forEach(function (child) {
+      childNodes.push(parseToVnode(child, shouldDiffAttributes));
+    });
+  }
+
+  return new Vnode({
+    tagName: node.tagName,
+    node: node,
+    parentNode: node.parentNode,
+    attributes: bindAttributes(node, shouldDiffAttributes),
+    childNodes: childNodes,
+    nodeValue: node.nodeValue,
+    type: bindNodeType(node),
+    value: node.value,
+    repeatData: node.repeatData ? node.repeatData : null,
+    eventTypes: node.eventTypes ? node.eventTypes : null,
+    key: node.indiv_repeat_key ? node.indiv_repeat_key : null
+  });
+}
+},{}],"../../InDiv/src/platform-browser/virtual-dom/diff.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.diffVnode = diffVnode;
+
+/**
+ * diff childNodes for diff VNode
+ *
+ * type: 0 removeChild
+ * type: 1 change Child index
+ *
+ * @param {Vnode} newVnode
+ * @param {Vnode} oldVnode
+ * @param {IPatchList[]} patchList
+ * @param {(oldVnode: Vnode, newVnode: Vnode) => boolean} needDiffChildCallback
+ */
+function diffChildNodes(oldVnode, newVnode, patchList, needDiffChildCallback) {
+  if (oldVnode.childNodes.length > 0) {
+    oldVnode.childNodes.forEach(function (oChild, index) {
+      var sameCodeFromNewCode = newVnode.childNodes.find(function (nChild) {
+        return nChild.node.isEqualNode(oChild.node) && nChild.key === oChild.key && !nChild.checked || nChild.tagName === oChild.tagName && nChild.key === oChild.key && !nChild.checked;
+      });
+
+      if (sameCodeFromNewCode) {
+        var sameCodeIndexFromNewCode = newVnode.childNodes.findIndex(function (nChild) {
+          return nChild === sameCodeFromNewCode;
+        });
+
+        if (sameCodeIndexFromNewCode !== index) {
+          patchList.push({
+            type: 1,
+            newIndex: sameCodeIndexFromNewCode,
+            oldVnode: oChild.node,
+            parentNode: oldVnode.node,
+            originVnode: oldVnode,
+            changedVnode: oChild
+          });
+        }
+
+        diffVnode(oChild, sameCodeFromNewCode, patchList, needDiffChildCallback);
+        sameCodeFromNewCode.checked = true;
+      }
+
+      if (!sameCodeFromNewCode) {
+        patchList.push({
+          type: 0,
+          node: oChild.node,
+          parentNode: oldVnode.node,
+          originVnode: oldVnode,
+          changedVnode: oChild
+        });
+      }
+    });
+  }
+
+  if (newVnode.childNodes.length > 0) {
+    newVnode.childNodes.forEach(function (nChild, index) {
+      if (nChild.checked) return;
+      patchList.push({
+        type: 1,
+        newIndex: index,
+        oldVnode: nChild.node,
+        parentNode: oldVnode.node,
+        originVnode: oldVnode,
+        changedVnode: nChild
+      });
+      nChild.checked = true;
+    });
+  }
+}
+/**
+ * diff attributes for diff VNode
+ *
+ * type: 2 setAttribute
+ * type: 3 removeAttribute
+ *
+ * @param {Vnode} oldVnode
+ * @param {Vnode} newVnode
+ * @param {IPatchList[]} patchList
+ */
+
+
+function diffAttributes(oldVnode, newVnode, patchList) {
+  newVnode.attributes.forEach(function (attr) {
+    var oldVnodeAttr = oldVnode.attributes.find(function (oldAttr) {
+      return oldAttr.name === attr.name;
+    });
+
+    if (!oldVnodeAttr || oldVnodeAttr.value !== attr.value) {
+      patchList.push({
+        type: 2,
+        node: oldVnode.node,
+        newValue: attr,
+        oldValue: oldVnodeAttr,
+        originVnode: oldVnode,
+        changedValue: attr
+      });
+    }
+  });
+  oldVnode.attributes.forEach(function (attr) {
+    var newVnodeAttr = newVnode.attributes.find(function (newAttr) {
+      return newAttr.name === attr.name;
+    });
+
+    if (!newVnodeAttr) {
+      patchList.push({
+        type: 3,
+        node: oldVnode.node,
+        oldValue: attr,
+        originVnode: oldVnode,
+        changedValue: attr
+      });
+    }
+  });
+}
+/**
+ * diff nodeValue for diff VNode
+ *
+ * type: 4 change text for node
+ *
+ * @param {Vnode} oldVnode
+ * @param {Vnode} newVnode
+ * @param {IPatchList[]} patchList
+ * @returns {void}
+ */
+
+
+function diffNodeValue(oldVnode, newVnode, patchList) {
+  if (oldVnode.nodeValue !== newVnode.nodeValue) {
+    patchList.push({
+      type: 4,
+      node: oldVnode.node,
+      newValue: newVnode.nodeValue,
+      oldValue: oldVnode.nodeValue,
+      originVnode: oldVnode,
+      changedValue: newVnode.nodeValue
+    });
+  }
+}
+/**
+ * diff value of input, textarea, select for diff VNode
+ *
+ * type: 5 change value of input
+ *
+ * @param {Vnode} newVnode
+ * @param {Vnode} oldVnode
+ * @param {IPatchList[]} patchList
+ * @returns {void}
+ */
+
+
+function diffInputValue(oldVnode, newVnode, patchList) {
+  if (oldVnode.value !== newVnode.value) {
+    patchList.push({
+      type: 5,
+      node: oldVnode.node,
+      newValue: newVnode.value,
+      oldValue: oldVnode.value,
+      originVnode: oldVnode,
+      changedValue: newVnode.value
+    });
+  }
+}
+/**
+ * diff repeatData of repeat node
+ *
+ * type: 6 change repeatData of node
+ *
+ * @param {Vnode} newVnode
+ * @param {Vnode} oldVnode
+ * @param {IPatchList[]} patchList
+ * @returns {void}
+ */
+
+
+function diffRepeatData(oldVnode, newVnode, patchList) {
+  patchList.push({
+    type: 6,
+    node: oldVnode.node,
+    newValue: newVnode.repeatData,
+    originVnode: oldVnode,
+    changedValue: newVnode.repeatData
+  });
+}
+/**
+ * diff event of node
+ *
+ * type: 7 remove event of node
+ * type: 8 add event of node
+ * type: 9 change eventTypes of node
+ *
+ * @param {Vnode} oldVnode
+ * @param {Vnode} newVnode
+ * @param {IPatchList[]} patchList
+ */
+
+
+function diffEventTypes(oldVnode, newVnode, patchList) {
+  var oEventTypes = JSON.parse(oldVnode.eventTypes);
+  var nEventTypes = JSON.parse(newVnode.eventTypes);
+
+  if (oEventTypes && oEventTypes.length > 0) {
+    oEventTypes.forEach(function (oEventType) {
+      // 如果新事件不存在，则删除事件
+      if (!nEventTypes || nEventTypes.length <= 0) {
+        patchList.push({
+          type: 7,
+          node: oldVnode.node,
+          eventType: oEventType,
+          newValue: oldVnode.node["event" + oEventType]
+        });
+      } // 如果新事件找不到旧事件中的事件，则把旧事件的事件删除
+
+
+      if (nEventTypes && nEventTypes.length > 0 && !nEventTypes.find(function (nEventType) {
+        return nEventType === oEventType;
+      })) {
+        patchList.push({
+          type: 7,
+          node: oldVnode.node,
+          eventType: oEventType,
+          newValue: oldVnode.node["event" + oEventType]
+        });
+      }
+    });
+  }
+
+  if (nEventTypes && nEventTypes.length > 0) {
+    nEventTypes.forEach(function (nEventType) {
+      // 如果旧的不存在直接增加新的类型
+      if (!oEventTypes || oEventTypes.length <= 0) {
+        patchList.push({
+          type: 8,
+          node: oldVnode.node,
+          eventType: nEventType,
+          newValue: newVnode.node["event" + nEventType]
+        });
+      }
+
+      if (oEventTypes && oEventTypes.length > 0) {
+        var sameEventType = oEventTypes.find(function (oEventType) {
+          return oEventType === nEventType;
+        }); // 如果旧的存在但是不存在新的类型，直接增加新的类型
+
+        if (!sameEventType) {
+          patchList.push({
+            type: 8,
+            node: oldVnode.node,
+            eventType: nEventType,
+            newValue: newVnode.node["event" + nEventType]
+          });
+        } // 如果旧的存在并且新的类型相同，对比 nv-on 的属性，如果相同则忽略，如果不同则先移除事件再增加新事件
+
+
+        if (sameEventType && oldVnode.node.getAttribute("nv-on:" + sameEventType) !== newVnode.node.getAttribute("nv-on:" + sameEventType)) {
+          patchList.push({
+            type: 7,
+            node: oldVnode.node,
+            eventType: nEventType,
+            newValue: oldVnode.node["event" + nEventType]
+          });
+          patchList.push({
+            type: 8,
+            node: oldVnode.node,
+            eventType: nEventType,
+            newValue: newVnode.node["event" + nEventType]
+          });
+        }
+      }
+    });
+  } // 最后要更新下 eventTypes，否则下次 oldVnode.eventTypes 将为最开始的eventTypes
+
+
+  if (newVnode.eventTypes !== oldVnode.eventTypes) {
+    patchList.push({
+      type: 9,
+      node: oldVnode.node,
+      newValue: newVnode.eventTypes,
+      originVnode: oldVnode,
+      changedValue: newVnode.eventTypes
+    });
+  }
+}
+/**
+ * diff two Vnode
+ *
+ * if needDiffChildCallback return false, then stop diff childNodes
+ *
+ * @param {Vnode} oldVnode
+ * @param {Vnode} newVnode
+ * @param {IPatchList[]} patchList
+ * @param {(oldVnode: Vnode, newVnode: Vnode) => boolean} needDiffChildCallback
+ * @returns {void}
+ */
+
+
+function diffVnode(oldVnode, newVnode, patchList, needDiffChildCallback) {
+  if (!patchList) throw new Error('patchList can not be null, diffVnode must need an Array');
+
+  if (newVnode.type === 'document-fragment') {
+    newVnode.childNodes.forEach(function (child) {
+      child.parentNode = oldVnode.node;
+    });
+    diffChildNodes(oldVnode, newVnode, patchList, needDiffChildCallback);
+    return;
+  }
+
+  diffAttributes(oldVnode, newVnode, patchList);
+  diffNodeValue(oldVnode, newVnode, patchList);
+  if (oldVnode.tagName === 'INPUT' || oldVnode.tagName === 'TEXTAREA textarea' || oldVnode.tagName === 'INPUT') diffInputValue(oldVnode, newVnode, patchList);
+  diffRepeatData(oldVnode, newVnode, patchList);
+  diffEventTypes(oldVnode, newVnode, patchList);
+  if (needDiffChildCallback && !needDiffChildCallback(oldVnode, newVnode)) return;
+  diffChildNodes(oldVnode, newVnode, patchList, needDiffChildCallback);
+}
+},{}],"../../InDiv/src/platform-browser/virtual-dom/render.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderVnode = renderVnode;
+
+/**
+ * renderVnode 对比完render node
+ *
+ * REMOVETAG: 0, 移除dom: 0
+ * REMOVETAG: 1, 移动位置: 1
+ * ADDATTRIBUTES: 2, 增加属性: 2
+ * REPLACEATTRIBUTES: 3, 移除属性: 3
+ * TEXT: 4, 更改文字: 4
+ * value: 5, 更改 input textarea select value 的值: 5
+ * value: 6, 更改 node 的 repeatData: 6, render过来的的被复制的值
+ * value: 7, 移除 node 事件
+ * value: 8, 添加 node 事件
+ * value: 9, 更改 node 的 eventTypes: 9, 修改node的eventTypes
+ *
+ * keep order from 0 delete to 8
+ *
+ * @export
+ * @param {IPatchList[]} patchList
+ */
+function renderVnode(patchList) {
+  patchList.sort(function (a, b) {
+    if (a.type === b.type && a.newIndex && b.newIndex) return a.newIndex - b.newIndex;
+    return a.type - b.type;
+  });
+  patchList.forEach(function (patch) {
+    switch (patch.type) {
+      case 0:
+        var removeNodeIndex = patch.originVnode.childNodes.indexOf(patch.changedVnode);
+        patch.originVnode.childNodes.splice(removeNodeIndex, 1);
+        patch.parentNode.removeChild(patch.node);
+        break;
+
+      case 1:
+        var changeNodeIndex = patch.originVnode.childNodes.indexOf(patch.changedVnode);
+
+        if (!(Array.from(patch.parentNode.children).indexOf(patch.oldVnode) === patch.newIndex)) {
+          if (patch.parentNode.contains(patch.oldVnode)) {
+            patch.parentNode.removeChild(patch.oldVnode);
+            patch.originVnode.childNodes.splice(changeNodeIndex, 1);
+          }
+
+          if (patch.parentNode.childNodes[patch.newIndex]) {
+            patch.parentNode.insertBefore(patch.oldVnode, patch.parentNode.childNodes[patch.newIndex]);
+            patch.originVnode.childNodes.splice(patch.newIndex, 0, patch.changedVnode);
+          } else {
+            patch.parentNode.appendChild(patch.oldVnode);
+            patch.originVnode.childNodes.push(patch.changedVnode);
+          }
+        }
+
+        break;
+
+      case 2:
+        if (!patch.oldValue) patch.originVnode.attributes.push(patch.changedValue);
+        if (patch.oldValue) patch.oldValue.value = patch.changedValue.value;
+        patch.node.setAttribute(patch.newValue.name, patch.newValue.value);
+        break;
+
+      case 3:
+        var removeAttrIndex = patch.originVnode.attributes.indexOf(patch.changedVnode);
+        patch.originVnode.attributes.splice(removeAttrIndex, 1);
+        patch.node.removeAttribute(patch.oldValue.name);
+        break;
+
+      case 4:
+        patch.originVnode.nodeValue = patch.changedValue;
+        patch.node.nodeValue = patch.newValue;
+        break;
+
+      case 5:
+        patch.originVnode.value = patch.changedValue;
+        patch.node.value = patch.newValue;
+        break;
+
+      case 6:
+        patch.originVnode.repeatData = patch.changedValue;
+        patch.node.repeatData = patch.newValue;
+        break;
+
+      case 7:
+        patch.node.removeEventListener(patch.eventType, patch.newValue);
+        break;
+
+      case 8:
+        patch.node.addEventListener(patch.eventType, patch.newValue);
+        break;
+
+      case 9:
+        patch.originVnode.eventTypes = patch.changedValue;
+        patch.node.eventTypes = patch.newValue;
+        break;
+    }
+  });
+}
+},{}],"../../InDiv/src/platform-browser/virtual-dom/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "parseToVnode", {
+  enumerable: true,
+  get: function () {
+    return _parse.parseToVnode;
+  }
+});
+Object.defineProperty(exports, "Vnode", {
+  enumerable: true,
+  get: function () {
+    return _parse.Vnode;
+  }
+});
+Object.defineProperty(exports, "IPatchList", {
+  enumerable: true,
+  get: function () {
+    return _parse.IPatchList;
+  }
+});
+Object.defineProperty(exports, "TAttributes", {
+  enumerable: true,
+  get: function () {
+    return _parse.TAttributes;
+  }
+});
+Object.defineProperty(exports, "diffVnode", {
+  enumerable: true,
+  get: function () {
+    return _diff.diffVnode;
+  }
+});
+Object.defineProperty(exports, "renderVnode", {
+  enumerable: true,
+  get: function () {
+    return _render.renderVnode;
+  }
+});
+
+var _parse = require("./parse");
+
+var _diff = require("./diff");
+
+var _render = require("./render");
+},{"./parse":"../../InDiv/src/platform-browser/virtual-dom/parse.ts","./diff":"../../InDiv/src/platform-browser/virtual-dom/diff.ts","./render":"../../InDiv/src/platform-browser/virtual-dom/render.ts"}],"../../InDiv/src/platform-browser/compile/utils.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.shouldDiffAttributes = shouldDiffAttributes;
+exports.CompileUtil = exports.CompileUtilForRepeat = void 0;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/**
+ * compile util for nv-repeat DOM
+ *
+ * @export
+ * @class CompileUtilForRepeat
+ */
+var CompileUtilForRepeat =
+/** @class */
+function () {
+  /**
+   * Creates an instance of CompileUtilForRepeat.
+   *
+   * @param {(Element | DocumentFragment)} [fragment]
+   * @memberof CompileUtilForRepeat
+   */
+  function CompileUtilForRepeat(fragment) {
+    this.$fragment = fragment;
+  }
+  /**
+   * get value by key and anthor value
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @param {string} key
+   * @returns {*}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype._getValueByValue = function (vm, exp, key) {
+    var valueList = exp.replace('()', '').split('.');
+    var value = vm;
+    valueList.forEach(function (v, index) {
+      if (v === key && index === 0) return;
+      value = value[v];
+    });
+    return value;
+  };
+  /**
+   * get value of VM
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @returns {*}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype._getVMVal = function (vm, exp) {
+    var valueList = exp.replace('()', '').split('.');
+    var value = vm;
+    valueList.forEach(function (v) {
+      value = value[v];
+    });
+    return value;
+  };
+  /**
+   * get value by repeat value
+   *
+   * @param {*} val
+   * @param {string} exp
+   * @param {string} key
+   * @returns {*}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype._getVMRepeatVal = function (val, exp, key) {
+    var value;
+    var valueList = exp.replace('()', '').split('.');
+    valueList.forEach(function (v, index) {
+      if (v === key && index === 0) {
+        value = val;
+        return;
+      }
+
+      value = value[v];
+    });
+    return value;
+  };
+  /**
+   * get Function for vm
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @returns {Function}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtilForRepeat.prototype._getVMFunction = function (vm, exp) {
+    var fnList = exp.replace(/^(\@)/, '').replace(/\(.*\)/, '').split('.');
+    var fn = vm;
+    fnList.forEach(function (f) {
+      fn = fn[f];
+    });
+    return fn;
+  };
+  /**
+   * get Function arguments for vm
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @param {Element} node
+   * @param {string} key
+   * @param {*} val
+   * @returns {any[]}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype._getVMFunctionArguments = function (vm, exp, node, key, val) {
+    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
+    var argsList = [];
+    var utilVm = this;
+    args.forEach(function (arg) {
+      if (arg === '') return false;
+      if (arg === '$element') return argsList.push(node);
+      if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
+      if (arg === 'null') return argsList.push(null);
+      if (arg === 'undefined') return argsList.push(undefined);
+      if (utilVm.isFromState(vm.state, arg)) return argsList.push(utilVm._getVMVal(vm.state, arg));
+      if (/^\'.*\'$/.test(arg)) return argsList.push(arg.match(/^\'(.*)\'$/)[1]);
+      if (!/^\'.*\'$/.test(arg) && /^[0-9]*$/.test(arg)) return argsList.push(Number(arg));
+      if (arg.indexOf(key) === 0 || arg.indexOf(key + ".") === 0) return argsList.push(utilVm._getVMRepeatVal(val, arg, key));
+
+      if (node.repeatData) {
+        // $index in this
+        Object.keys(node.repeatData).forEach(function (data) {
+          if (arg.indexOf(data) === 0 || arg.indexOf(data + ".") === 0) return argsList.push(utilVm._getValueByValue(node.repeatData[data], arg, data));
+        });
+      }
+    });
+    return argsList;
+  };
+  /**
+   * set value by key and anthor value
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @param {string} key
+   * @param {*} setValue
+   * @returns {*}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype._setValueByValue = function (vm, exp, key, setValue) {
+    var valueList = exp.replace('()', '').split('.');
+    var value = vm;
+    var lastKey;
+    valueList.forEach(function (v, index) {
+      if (v === key && index === 0) return lastKey = v;
+      if (index < valueList.length) lastKey = v;
+      if (index < valueList.length - 1) value = value[v];
+    });
+    if (lastKey) value[lastKey] = setValue;
+  };
+  /**
+   * set value from vm.state
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @param {*} value
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype._setVMVal = function (vm, exp, value) {
+    var stateValue = null;
+    var keyList = exp.split('.');
+    if (keyList.length === 1) vm.state[exp] = value;else {
+      keyList.forEach(function (key, index) {
+        if (index === 0) stateValue = vm.state[key];
+        if (index !== 0 && index !== keyList.length - 1) stateValue = stateValue[key];
+        if (index === keyList.length - 1) stateValue[key] = value;
+      });
+    }
+  };
+  /**
+   * bind handler for nv irective
+   *
+   * @param {Element} node
+   * @param {string} [key]
+   * @param {string} [dir]
+   * @param {string} [exp]
+   * @param {number} [index]
+   * @param {*} [vm]
+   * @param {*} [watchValue]
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.bind = function (node, key, dir, exp, index, vm, watchValue, val) {
+    var repeatValue = node.repeatData[key];
+    var value;
+
+    if (/^(\@)/.test(exp)) {
+      if (dir === 'model') throw new Error("directive: nv-model can't use " + exp + " as value"); // if @Function need function return value
+
+      var fn = this._getVMFunction(vm, exp);
+
+      var argsList = this._getVMFunctionArguments(vm, exp, node, key, val);
+
+      value = fn.apply(vm, argsList); // repeat value
+    } else if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) value = this._getVMRepeatVal(repeatValue, exp, key); // normal value
+    else if (this.isFromState(vm.state, exp)) value = this._getVMVal(vm.state, exp);else if (exp === '$index') value = index;else if (/^\'.*\'$/.test(exp)) value = exp.match(/^\'(.*)\'$/)[1];else if (!/^\'.*\'$/.test(exp) && /^[0-9]*$/g.test(exp)) value = Number(exp);else if (exp === 'true' || exp === 'false') value = exp === 'true';else if (exp === 'null') value = null;else if (exp === 'undefined') value = undefined;else throw new Error("directive: nv-" + dir + " can't use recognize this value " + exp);
+
+    if (!node.hasChildNodes()) this.templateUpdater(node, repeatValue, key, vm);
+    var updaterFn = this[dir + "Updater"];
+
+    switch (dir) {
+      case 'model':
+        var watchData = void 0;
+
+        if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
+          watchData = watchValue;
+        } else {
+          watchData = this._getVMVal(vm.state, exp);
+        }
+
+        if (updaterFn) updaterFn.call(this, node, value, exp, key, index, watchData, vm);
+        break;
+
+      case 'text':
+        if (updaterFn) updaterFn.call(this, node, value);
+        break;
+
+      case 'html':
+        if (updaterFn) updaterFn.call(this, node, value);
+        break;
+
+      case 'if':
+        if (updaterFn) updaterFn.call(this, node, value);
+        break;
+
+      case 'class':
+        if (updaterFn) updaterFn.call(this, node, value);
+        break;
+
+      case 'key':
+        if (updaterFn) updaterFn.call(this, node, value);
+        break;
+
+      default:
+        this.commonUpdater.call(this, node, value, dir);
+    }
+  };
+  /**
+   * update text for {{}}
+   *
+   * @param {Element} node
+   * @param {*} [val]
+   * @param {string} [key]
+   * @param {*} [vm]
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.templateUpdater = function (node, val, key, vm) {
+    var text = node.textContent;
+    var reg = /\{\{(.*)\}\}/g;
+
+    if (reg.test(text)) {
+      var textList = text.match(/(\{\{[^\{\}]+?\}\})/g);
+
+      if (textList && textList.length > 0) {
+        for (var i = 0; i < textList.length; i++) {
+          var exp = textList[i].replace('{{', '').replace('}}', '');
+          var value = null;
+
+          if (/^(\@)/.test(exp)) {
+            var fn = this._getVMFunction(vm, exp);
+
+            var argsList = this._getVMFunctionArguments(vm, exp, node, key, val);
+
+            value = fn.apply(vm, argsList);
+          } else if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
+            value = this._getVMRepeatVal(val, exp, key);
+          } else if (this.isFromState(vm.state, exp)) {
+            value = this._getVMVal(vm.state, exp);
+          } else {
+            throw new Error("directive: {{" + exp + "}} can't use recognize " + exp);
+          }
+
+          node.textContent = node.textContent.replace(textList[i], value);
+        }
+      }
+    }
+  };
+  /**
+   * update value of input for nv-model
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @param {string} exp
+   * @param {string} key
+   * @param {number} index
+   * @param {*} watchData
+   * @param {*} vm
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.modelUpdater = function (node, value, exp, key, index, watchData, vm) {
+    node.value = typeof value === 'undefined' ? '' : value;
+    var utilVm = this;
+
+    var func = function func(event) {
+      event.preventDefault();
+
+      if (utilVm.isFromState(vm.state, exp)) {
+        if (event.target.value === watchData) return;
+
+        utilVm._setVMVal(vm, exp, event.target.value);
+      } else if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
+        if (_typeof(watchData[index]) !== 'object') watchData[index] = event.target.value;
+
+        if (_typeof(watchData[index]) === 'object') {
+          var vals = utilVm._getValueByValue(watchData[index], exp, key);
+
+          vals = event.target.value;
+
+          utilVm._setValueByValue(watchData[index], exp, key, vals);
+        }
+      } else {
+        throw new Error('directive: nv-model can\'t use recognize this value');
+      }
+    };
+
+    node.addEventListener('input', func);
+    node.eventinput = func;
+
+    if (node.eventTypes) {
+      var eventlist = JSON.parse(node.eventTypes);
+      eventlist.push('input');
+      node.eventTypes = JSON.stringify(eventlist);
+    }
+
+    if (!node.eventTypes) node.eventTypes = JSON.stringify(['input']);
+  };
+  /**
+   * update text for nv-text
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @returns {void}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.textUpdater = function (node, value) {
+    if (node.tagName.toLocaleLowerCase() === 'input') return node.value = value;
+    node.textContent = typeof value === 'undefined' ? '' : value;
+  };
+  /**
+   * update html for nv-html
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.htmlUpdater = function (node, value) {
+    node.innerHTML = typeof value === 'undefined' ? '' : value;
+  };
+  /**
+   * remove or show DOM for nv-if
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.ifUpdater = function (node, value) {
+    if (!value && this.$fragment.contains(node)) this.$fragment.removeChild(node);
+  };
+  /**
+   * find exp is member of vm.state
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtilForRepeat.prototype.isFromState = function (state, exp) {
+    var value = exp.replace('()', '').split('.')[0];
+    return state.hasOwnProperty(value);
+  };
+  /**
+   * update class for nv-class
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @returns {void}
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.classUpdater = function (node, value) {
+    if (!value) return;
+    var className = node.className;
+    className = className.replace(/\s$/, '');
+    var space = className && String(value) ? ' ' : '';
+    node.className = className + space + value;
+  };
+  /**
+   * update value of repeat node for nv-key
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.keyUpdater = function (node, value) {
+    node.indiv_repeat_key = value;
+  };
+  /**
+   * commonUpdater for nv directive except repeat model text html if class
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @param {string} dir
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtilForRepeat.prototype.commonUpdater = function (node, value, dir) {
+    if (value) node[dir] = value;
+    if (!value && node[dir]) node[dir] = null;
+  };
+  /**
+   * compile event and build eventType in DOM
+   *
+   * @param {Element} node
+   * @param {*} vm
+   * @param {string} exp
+   * @param {string} eventName
+   * @param {string} key
+   * @param {*} val
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtilForRepeat.prototype.eventHandler = function (node, vm, exp, eventName, key, val) {
+    var eventType = eventName.split(':')[1];
+
+    var fn = this._getVMFunction(vm, exp);
+
+    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
+    var utilVm = this;
+
+    var func = function func(event) {
+      var _this = this;
+
+      var argsList = [];
+      args.forEach(function (arg) {
+        if (arg === '') return false;
+        if (arg === '$event') return argsList.push(event);
+        if (arg === '$element') return argsList.push(node);
+        if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
+        if (arg === 'null') return argsList.push(null);
+        if (arg === 'undefined') return argsList.push(undefined);
+        if (utilVm.isFromState(vm.state, arg)) return argsList.push(utilVm._getVMVal(vm.state, arg));
+        if (/^\'.*\'$/.test(arg)) return argsList.push(arg.match(/^\'(.*)\'$/)[1]);
+        if (!/^\'.*\'$/.test(arg) && /^[0-9]*$/.test(arg)) return argsList.push(Number(arg));
+        if (arg.indexOf(key) === 0 || arg.indexOf(key + ".") === 0) return argsList.push(utilVm._getVMRepeatVal(val, arg, key));
+
+        if (_this.repeatData) {
+          // $index in this
+          Object.keys(_this.repeatData).forEach(function (data) {
+            if (arg.indexOf(data) === 0 || arg.indexOf(data + ".") === 0) return argsList.push(utilVm._getValueByValue(_this.repeatData[data], arg, data));
+          });
+        }
+      });
+      fn.apply(vm, argsList);
+    };
+
+    if (eventType && fn) {
+      node.addEventListener(eventType, func);
+      node["event" + eventType] = func;
+
+      if (node.eventTypes) {
+        var eventlist = JSON.parse(node.eventTypes);
+        eventlist.push(eventType);
+        node.eventTypes = JSON.stringify(eventlist);
+      }
+
+      if (!node.eventTypes) node.eventTypes = JSON.stringify([eventType]);
+    }
+  };
+
+  return CompileUtilForRepeat;
+}();
+
+exports.CompileUtilForRepeat = CompileUtilForRepeat;
+
+/**
+ * compile util for Compiler
+ *
+ * @export
+ * @class CompileUtil
+ */
+var CompileUtil =
+/** @class */
+function () {
+  /**
+   * Creates an instance of CompileUtil.
+   *
+   * @param {(Element | DocumentFragment)} [fragment]
+   *  @memberof CompileUtil
+   */
+  function CompileUtil(fragment) {
+    this.$fragment = fragment;
+  }
+  /**
+   * get value by key and anthor value
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @param {string} key
+   * @returns {*}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype._getValueByValue = function (vm, exp, key) {
+    var valueList = exp.replace('()', '').split('.');
+    var value = vm;
+    valueList.forEach(function (v, index) {
+      if (v === key && index === 0) return;
+      value = value[v];
+    });
+    return value;
+  };
+  /**
+   * get value of VM
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @returns {*}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype._getVMVal = function (vm, exp) {
+    var valueList = exp.replace('()', '').split('.');
+    var value = vm;
+    valueList.forEach(function (v) {
+      value = value[v];
+    });
+    return value;
+  };
+  /**
+   * get value by repeat value
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @returns {void}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype._getVMRepeatVal = function (vm, exp) {
+    var vlList = exp.split(' ');
+
+    var value = this._getVMVal(vm.state, vlList[3]);
+
+    return value;
+  };
+  /**
+   * get Function for vm
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @returns {Function}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype._getVMFunction = function (vm, exp) {
+    var fnList = exp.replace(/^(\@)/, '').replace(/\(.*\)/, '').split('.');
+    var fn = vm;
+    fnList.forEach(function (f) {
+      fn = fn[f];
+    });
+    return fn;
+  };
+  /**
+   * get Function arguments for vm
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @param {Element} node
+   * @returns {any[]}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype._getVMFunctionArguments = function (vm, exp, node) {
+    var _this = this;
+
+    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
+    var argsList = [];
+    args.forEach(function (arg) {
+      if (arg === '') return false;
+      if (arg === '$element') return argsList.push(node);
+      if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
+      if (arg === 'null') return argsList.push(null);
+      if (arg === 'undefined') return argsList.push(undefined);
+      if (_this.isFromState(vm.state, arg)) return argsList.push(_this._getVMVal(vm.state, arg));
+      if (/^\'.*\'$/.test(arg)) return argsList.push(arg.match(/^\'(.*)\'$/)[1]);
+      if (!/^\'.*\'$/.test(arg) && /^[0-9]*$/.test(arg)) return argsList.push(Number(arg));
+    });
+    return argsList;
+  };
+  /**
+   * set value from vm.state
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @param {*} value
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype._setVMVal = function (vm, exp, value) {
+    var stateValue = null;
+    var keyList = exp.split('.');
+    if (keyList.length === 1) vm.state[exp] = value;else {
+      keyList.forEach(function (key, index) {
+        if (index === 0) stateValue = vm.state[key];
+        if (index !== 0 && index !== keyList.length - 1) stateValue = stateValue[key];
+        if (index === keyList.length - 1) stateValue[key] = value;
+      });
+    }
+  };
+  /**
+   * bind handler for nv irective
+   *
+   * if node is repeat node and it will break compile and into CompileUtilForRepeat
+   *
+   * @param {Element} node
+   * @param {*} vm
+   * @param {string} exp
+   * @param {string} dir
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.bind = function (node, vm, exp, dir) {
+    var updaterFn = this[dir + "Updater"];
+    var isRepeatNode = this.isRepeatNode(node);
+
+    if (isRepeatNode) {
+      // compile repeatNode's attributes
+      switch (dir) {
+        case 'repeat':
+          if (updaterFn) updaterFn.call(this, node, this._getVMRepeatVal(vm, exp), exp, vm);
+          break;
+      }
+    } else {
+      var value = null; // for @Function(arg)
+
+      if (/^(\@)/.test(exp)) {
+        if (dir === 'model') throw new Error("directive: nv-model can't use " + exp + " as value"); // if @Function need function return value
+
+        var fn = this._getVMFunction(vm, exp);
+
+        var argsList = this._getVMFunctionArguments(vm, exp, node);
+
+        value = fn.apply(vm, argsList); // normal value
+      } else if (this.isFromState(vm.state, exp)) value = this._getVMVal(vm.state, exp);else if (/^\'.*\'$/.test(exp)) value = exp.match(/^\'(.*)\'$/)[1];else if (!/^\'.*\'$/.test(exp) && /^[0-9]*$/g.test(exp)) value = Number(exp);else if (exp === 'true' || exp === 'false') value = exp === 'true';else if (exp === 'null') value = null;else if (exp === 'undefined') value = undefined;else throw new Error("directive: nv-" + dir + " can't use recognize this value " + exp); // compile unrepeatNode's attributes
+
+
+      switch (dir) {
+        case 'model':
+          if (updaterFn) updaterFn.call(this, node, value, exp, vm);
+          break;
+
+        case 'text':
+          if (updaterFn) updaterFn.call(this, node, value);
+          break;
+
+        case 'html':
+          if (updaterFn) updaterFn.call(this, node, value);
+          break;
+
+        case 'if':
+          if (updaterFn) updaterFn.call(this, node, value);
+          break;
+
+        case 'class':
+          if (updaterFn) updaterFn.call(this, node, value);
+          break;
+
+        case 'key':
+          if (updaterFn) updaterFn.call(this, node, value);
+          break;
+
+        default:
+          this.commonUpdater.call(this, node, value, dir);
+      }
+    }
+  };
+  /**
+   * update text for {{}}
+   *
+   * @param {*} node
+   * @param {*} vm
+   * @param {string} exp
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.templateUpdater = function (node, vm, exp) {
+    var _exp = exp.replace('{{', '').replace('}}', '');
+
+    var value = null;
+
+    if (/^(\@)/.test(_exp)) {
+      var fn = this._getVMFunction(vm, _exp);
+
+      var argsList = this._getVMFunctionArguments(vm, _exp, node);
+
+      value = fn.apply(vm, argsList);
+    } else if (this.isFromState(vm.state, _exp)) {
+      value = this._getVMVal(vm.state, _exp);
+    } else {
+      throw new Error("directive: " + exp + " can't use recognize this value");
+    }
+
+    node.textContent = node.textContent.replace(exp, value);
+  };
+  /**
+   * update value of input for nv-model
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @param {string} exp
+   * @param {*} vm
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.modelUpdater = function (node, value, exp, vm) {
+    var _this = this;
+
+    node.value = typeof value === 'undefined' ? '' : value;
+
+    var func = function func(event) {
+      event.preventDefault();
+      if (_this.isFromState(vm.state, exp)) _this._setVMVal(vm, exp, event.target.value);
+    };
+
+    node.addEventListener('input', func);
+    node.eventinput = func;
+
+    if (node.eventTypes) {
+      var eventlist = JSON.parse(node.eventTypes);
+      eventlist.push('input');
+      node.eventTypes = JSON.stringify(eventlist);
+    }
+
+    if (!node.eventTypes) node.eventTypes = JSON.stringify(['input']);
+  };
+  /**
+   * update text for nv-text
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @returns {void}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.textUpdater = function (node, value) {
+    if (node.tagName.toLocaleLowerCase() === 'input') return node.value = value;
+    node.textContent = typeof value === 'undefined' ? '' : value;
+  };
+  /**
+   * update html for nv-html
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.htmlUpdater = function (node, value) {
+    node.innerHTML = typeof value === 'undefined' ? '' : value;
+  };
+  /**
+   * remove or show DOM for nv-if
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.ifUpdater = function (node, value) {
+    if (!value && this.$fragment.contains(node)) this.$fragment.removeChild(node);
+  };
+  /**
+   * update class for nv-class
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @returns {void}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.classUpdater = function (node, value) {
+    if (!value) return;
+    var className = node.className;
+    className = className.replace(/\s$/, '');
+    var space = className && String(value) ? ' ' : '';
+    node.className = className + space + value;
+  };
+  /**
+   * update value of repeat node for nv-key
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @memberof CompileUtilForRepeat
+   */
+
+
+  CompileUtil.prototype.keyUpdater = function (node, value) {
+    node.indiv_repeat_key = value;
+  };
+  /**
+   * commonUpdater for nv directive except repeat model text html if class
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @param {string} dir
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.commonUpdater = function (node, value, dir) {
+    if (value) node[dir] = value;
+    if (!value && node[dir]) node[dir] = null;
+  };
+  /**
+   * update repeat DOM for nv-repeat
+   *
+   * if it has child and it will into repeatChildrenUpdater
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @param {string} expFather
+   * @param {*} vm
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.repeatUpdater = function (node, value, expFather, vm) {
+    var _this = this;
+
+    if (!value) return;
+    if (value && !(value instanceof Array)) throw new Error('compile error: nv-repeat need an Array!');
+    var key = expFather.split(' ')[1];
+    value.forEach(function (val, index) {
+      var repeatData = {};
+      repeatData[key] = val;
+      repeatData.$index = index;
+
+      var newElement = _this.cloneNode(node, repeatData);
+
+      var nodeAttrs = newElement.attributes;
+      var text = newElement.textContent;
+      var reg = /\{\{(.*)\}\}/g;
+
+      _this.$fragment.insertBefore(newElement, node);
+
+      if (_this.isTextNode(newElement) && reg.test(text)) new CompileUtilForRepeat(_this.$fragment).templateUpdater(newElement, val, key, vm);
+
+      if (nodeAttrs) {
+        Array.from(nodeAttrs).forEach(function (attr) {
+          var attrName = attr.name;
+
+          if (_this.isDirective(attrName) && attrName !== 'nv-repeat') {
+            var dir = attrName.substring(3);
+            var exp = attr.value;
+            if (_this.isEventDirective(dir)) new CompileUtilForRepeat(_this.$fragment).eventHandler(newElement, vm, exp, dir, key, val);else new CompileUtilForRepeat(_this.$fragment).bind(newElement, key, dir, exp, index, vm, value, val);
+          }
+        });
+      } // first insert node before repeatnode, and remove repeatnode in Compile
+
+
+      if (newElement.hasChildNodes() && _this.$fragment.contains(newElement)) _this.repeatChildrenUpdater(newElement, val, expFather, index, vm, value);
+    });
+  };
+  /**
+   * update child of nv-repeat DOM
+   *
+   * if child is an nv-repeat DOM, it will into CompileUtil repeatUpdater
+   *
+   * @param {Element} node
+   * @param {*} value
+   * @param {string} expFather
+   * @param {number} index
+   * @param {*} vm
+   * @param {*} watchValue
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.repeatChildrenUpdater = function (node, value, expFather, index, vm, watchValue) {
+    var _this = this;
+
+    var key = expFather.split(' ')[1];
+    Array.from(node.childNodes).forEach(function (child) {
+      // mark for container of @Component
+      if (_this.isElementNode(child)) {
+        var findDeclaration = vm.$declarationMap.get(child.tagName.toLocaleLowerCase());
+        if (findDeclaration && findDeclaration.nvType === 'nvComponent') child.isComponent = true;
+      }
+
+      child.repeatData = node.repeatData || {};
+      child.repeatData[key] = value;
+      child.repeatData.$index = index;
+      if (_this.isRepeatProp(child)) child.setAttribute("_prop-" + key, JSON.stringify(value));
+      var nodeAttrs = child.attributes;
+      var text = child.textContent;
+      var reg = /\{\{(.*)\}\}/g;
+      if (_this.isTextNode(child) && reg.test(text)) new CompileUtilForRepeat(node).templateUpdater(child, value, key, vm);
+
+      if (nodeAttrs) {
+        Array.from(nodeAttrs).forEach(function (attr) {
+          var attrName = attr.name;
+          var exp = attr.value;
+          var dir = attrName.substring(3);
+
+          if (_this.isDirective(attrName) && attrName !== 'nv-repeat' && (new RegExp("(^" + key + ")|(^@)").test(exp) || _this.isFromState(vm.state, exp))) {
+            if (_this.isEventDirective(dir)) new CompileUtilForRepeat(node).eventHandler(child, vm, exp, dir, key, value);else new CompileUtilForRepeat(node).bind(child, key, dir, exp, index, vm, watchValue, value);
+          }
+        });
+      }
+
+      if (child.hasChildNodes() && !_this.isRepeatNode(child) && node.contains(child)) _this.repeatChildrenUpdater(child, value, expFather, index, vm, watchValue);
+      var newAttrs = child.attributes;
+
+      if (newAttrs && node.contains(child)) {
+        var restRepeat = Array.from(newAttrs).find(function (attr) {
+          return _this.isDirective(attr.name) && attr.name === 'nv-repeat';
+        });
+
+        if (restRepeat) {
+          var newWatchData = restRepeat.value.split(' ')[3]; // first compile and then remove repeatNode
+
+          if (_this.isFromState(vm.state, newWatchData)) {
+            new CompileUtil(node).bind(child, vm, restRepeat.value, restRepeat.name.substring(3));
+            if (node.contains(child)) node.removeChild(child);
+          }
+
+          if (new RegExp("(^" + key + ")").test(newWatchData)) {
+            new CompileUtil(node).repeatUpdater(child, _this._getValueByValue(value, newWatchData, key), restRepeat.value, vm);
+            if (node.contains(child)) node.removeChild(child);
+          }
+        }
+      }
+    });
+  };
+  /**
+   * compile event and build eventType in DOM
+   *
+   * @param {Element} node
+   * @param {*} vm
+   * @param {string} exp
+   * @param {string} eventName
+   * @memberof Compile
+   */
+
+
+  CompileUtil.prototype.eventHandler = function (node, vm, exp, eventName) {
+    var eventType = eventName.split(':')[1];
+
+    var fn = this._getVMFunction(vm, exp);
+
+    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
+    var vmUtils = this;
+
+    var func = function func(event) {
+      var argsList = [];
+      args.forEach(function (arg) {
+        if (arg === '') return false;
+        if (arg === '$event') return argsList.push(event);
+        if (arg === '$element') return argsList.push(node);
+        if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
+        if (arg === 'null') return argsList.push(null);
+        if (arg === 'undefined') return argsList.push(undefined);
+        if (vmUtils.isFromState(vm.state, arg)) return argsList.push(vmUtils._getVMVal(vm.state, arg));
+        if (/^\'.*\'$/.test(arg)) return argsList.push(arg.match(/^\'(.*)\'$/)[1]);
+        if (!/^\'.*\'$/.test(arg) && /^[0-9]*$/.test(arg)) return argsList.push(Number(arg));
+      });
+      fn.apply(vm, argsList);
+    };
+
+    if (eventType && fn) {
+      node.addEventListener(eventType, func);
+      node["event" + eventType] = func;
+
+      if (node.eventTypes) {
+        var eventlist = JSON.parse(node.eventTypes);
+        eventlist.push(eventType);
+        node.eventTypes = JSON.stringify(eventlist);
+      }
+
+      if (!node.eventTypes) node.eventTypes = JSON.stringify([eventType]);
+    }
+  };
+  /**
+   * judge attribute is nv directive or not
+   *
+   * @param {string} attr
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isDirective = function (attr) {
+    return attr.indexOf('nv-') === 0;
+  };
+  /**
+   * judge attribute is nv event directive or not
+   *
+   * @param {string} event
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isEventDirective = function (event) {
+    return event.indexOf('on') === 0;
+  };
+  /**
+   * judge DOM is a element node or not
+   *
+   * @param {Element} node
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isElementNode = function (node) {
+    return node.nodeType === 1;
+  };
+  /**
+   * judge DOM is nv-repeat DOM or not
+   *
+   * @param {Element} node
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isRepeatNode = function (node) {
+    var nodeAttrs = node.attributes;
+    var result = false;
+
+    if (nodeAttrs) {
+      Array.from(nodeAttrs).forEach(function (attr) {
+        var attrName = attr.name;
+        if (attrName === 'nv-repeat') result = true;
+      });
+    }
+
+    return result;
+  };
+  /**
+   * judge DOM is a Component DOM in a repeat DOM or not
+   *
+   * @param {Element} node
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isRepeatProp = function (node) {
+    var nodeAttrs = node.attributes;
+    var result = false;
+    if (nodeAttrs) return !!Array.from(nodeAttrs).find(function (attr) {
+      return /^\{(.+)\}$/.test(attr.value);
+    });
+    return result;
+  };
+  /**
+   * judge DOM is text node or not
+   *
+   * @param {Element} node
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isTextNode = function (node) {
+    return node.nodeType === 3;
+  };
+  /**
+   * find exp is member of vm.state
+   *
+   * @param {*} vm
+   * @param {string} exp
+   * @returns {boolean}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.isFromState = function (state, exp) {
+    var value = exp.replace('()', '').split('.')[0];
+    return state.hasOwnProperty(value);
+  };
+  /**
+   * clone Node and clone it event
+   *
+   * event by attribute in DOM: eventTypes
+   * repeat data by attribute in DOM: repeatData
+   * isComponent: clone Component need add isComponent=true
+   *
+   * @param {Element} node
+   * @param {*} [repeatData]
+   * @returns {Node}
+   * @memberof CompileUtil
+   */
+
+
+  CompileUtil.prototype.cloneNode = function (node, repeatData) {
+    var newElement = node.cloneNode(true);
+
+    if (node.eventTypes) {
+      JSON.parse(node.eventTypes).forEach(function (eventType) {
+        newElement.addEventListener(eventType, node["event" + eventType]);
+        newElement["event" + eventType] = node["event" + eventType];
+      });
+      newElement.eventTypes = node.eventTypes;
+    }
+
+    if (repeatData) newElement.repeatData = repeatData;
+    if (node.isComponent) newElement.isComponent = true;
+    return newElement;
+  };
+
+  return CompileUtil;
+}();
+
+exports.CompileUtil = CompileUtil;
+
+/**
+ * for virtual-DOM to diff attributes of nv-directive
+ *
+ * @export
+ * @param {(DocumentFragment | Element)} node
+ * @returns {string[]}
+ */
+function shouldDiffAttributes(node) {
+  var shouldDiffAttr = [];
+  var nvDirective = ['nv-model', 'nv-text', 'nv-html', 'nv-if', 'nv-key'];
+
+  if (node.attributes) {
+    Array.from(node.attributes).forEach(function (attr) {
+      if (/^nv\-.*/.test(attr.name) && nvDirective.indexOf(attr.name) === -1) {
+        shouldDiffAttr.push(attr.name.replace('nv-', ''));
+      }
+    });
+  }
+
+  return shouldDiffAttr;
+}
+},{}],"../../InDiv/src/platform-browser/compile/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "CompileUtil", {
+  enumerable: true,
+  get: function () {
+    return _utils2.CompileUtil;
+  }
+});
+Object.defineProperty(exports, "CompileUtilForRepeat", {
+  enumerable: true,
+  get: function () {
+    return _utils2.CompileUtilForRepeat;
+  }
+});
+exports.Compile = void 0;
+
+var _virtualDom = require("../virtual-dom");
+
+var _utils = require("../../utils");
+
+var _utils2 = require("./utils");
+
+var utils = new _utils.Utils();
+/**
+ * main compiler
+ *
+ * @class Compile
+ */
+
+var Compile =
+/** @class */
+function () {
+  /**
+   * Creates an instance of Compile.
+   * @param {(string | Element)} el
+   * @param {*} vm
+   * @memberof Compile
+   */
+  function Compile(el, vm) {
+    var _this = this;
+    /**
+     * needDiffChildCallback for Virtual DOM diff
+     *
+     * if newVnode.node.isComponent no need diff children
+     * if newVnode.tagName and oldVnode.tagName no need diff children
+     *
+     * @param {Vnode} oldVnode
+     * @param {Vnode} newVnode
+     * @returns {boolean}
+     * @memberof Compile
+     */
+
+
+    this.needDiffChildCallback = function (oldVnode, newVnode) {
+      // 如果为组件，则停止对比内部元素，交由对应组件diff
+      if (newVnode.node.isComponent && oldVnode.node) {
+        oldVnode.node.isComponent = true;
+        return false;
+      } // 如果为路由渲染层，则停止对比内部元素，交由router diff
+
+
+      if (oldVnode.tagName === newVnode.tagName && newVnode.tagName === _this.$vm.$vm.getRouteDOMKey().toLocaleUpperCase()) return false;
+      return true;
+    };
+
+    this.$vm = vm;
+    this.$el = this.isElementNode(el) ? el : document.querySelector(el);
+  }
+
+  Compile.prototype.startCompile = function () {
+    if (this.$el) {
+      this.$fragment = this.node2Fragment();
+      this.init();
+      if (!this.saveVnode) this.saveVnode = (0, _virtualDom.parseToVnode)(this.$el, _utils2.shouldDiffAttributes);
+      var newVnode = (0, _virtualDom.parseToVnode)(this.$fragment, _utils2.shouldDiffAttributes);
+      var patchList = [];
+      (0, _virtualDom.diffVnode)(this.saveVnode, newVnode, patchList, this.needDiffChildCallback);
+      (0, _virtualDom.renderVnode)(patchList);
+      this.$fragment = null;
+    } else throw new Error('class Compile need el in constructor');
+  };
+  /**
+   * init compile
+   *
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.init = function () {
+    this.compileElement(this.$fragment);
+  };
+  /**
+   * compile element
+   *
+   * @param {DocumentFragment} fragment
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.compileElement = function (fragment) {
+    var elementCreated = document.createElement('div');
+    elementCreated.innerHTML = utils.formatInnerHTML(this.$vm.$template);
+    var childNodes = elementCreated.childNodes;
+    this.recursiveDOM(childNodes, fragment);
+  };
+  /**
+   * recursive DOM for New State
+   *
+   * @param {(NodeListOf<Node & ChildNode>)} childNodes
+   * @param {(DocumentFragment | Element)} fragment
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.recursiveDOM = function (childNodes, fragment) {
+    var _this = this;
+
+    Array.from(childNodes).forEach(function (node) {
+      // mark for container of @Component
+      if (_this.isElementNode(node)) {
+        var findDeclaration = _this.$vm.$declarationMap.get(node.tagName.toLocaleLowerCase());
+
+        if (findDeclaration && findDeclaration.nvType === 'nvComponent') node.isComponent = true;
+      }
+
+      if (node.hasChildNodes() && !_this.isRepeatNode(node)) _this.recursiveDOM(node.childNodes, node);
+      fragment.appendChild(node);
+      var text = node.textContent;
+      var reg = /\{\{(.*)\}\}/g;
+      if (_this.isElementNode(node)) _this.compile(node, fragment);
+
+      if (_this.isTextNode(node) && reg.test(text)) {
+        var textList = text.match(/(\{\{[^\{\}]+?\}\})/g);
+        var length = textList.length;
+
+        if (textList && length > 0) {
+          for (var i = 0; i < length; i++) {
+            _this.compileText(node, textList[i]);
+          }
+        }
+      } // after compile repeatNode, remove repeatNode
+
+
+      if (_this.isRepeatNode(node) && fragment.contains(node)) fragment.removeChild(node);
+    });
+  };
+  /**
+   * compile string to DOM
+   *
+   * @param {Element} node
+   * @param {(DocumentFragment | Element)} fragment
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.compile = function (node, fragment) {
+    var _this = this;
+
+    var nodeAttrs = node.attributes;
+
+    if (nodeAttrs) {
+      Array.from(nodeAttrs).forEach(function (attr) {
+        var attrName = attr.name;
+
+        if (_this.isDirective(attrName)) {
+          var dir = attrName.substring(3);
+          var exp = attr.value;
+          var compileUtil = new _utils2.CompileUtil(fragment);
+          if (_this.isEventDirective(dir)) compileUtil.eventHandler(node, _this.$vm, exp, dir);else compileUtil.bind(node, _this.$vm, exp, dir);
+        }
+      });
+    }
+  };
+  /**
+   * create document fragment
+   *
+   * @returns {DocumentFragment}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.node2Fragment = function () {
+    return document.createDocumentFragment();
+  };
+  /**
+   * compile text and use CompileUtil templateUpdater
+   *
+   * @param {Element} node
+   * @param {string} exp
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.compileText = function (node, exp) {
+    new _utils2.CompileUtil(this.$fragment).templateUpdater(node, this.$vm, exp);
+  };
+  /**
+   * judge attribute is nv directive or not
+   *
+   * @param {string} attr
+   * @returns {boolean}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.isDirective = function (attr) {
+    return attr.indexOf('nv-') === 0;
+  };
+  /**
+   * judge attribute is nv event directive or not
+   *
+   * @param {string} eventName
+   * @returns {boolean}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.isEventDirective = function (eventName) {
+    return eventName.indexOf('on') === 0;
+  };
+  /**
+   * judge DOM is a element node or not
+   *
+   * @param {(Element | string)} node
+   * @returns {boolean}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.isElementNode = function (node) {
+    if (typeof node === 'string') return false;
+    return node.nodeType === 1;
+  };
+  /**
+   * judge DOM is nv-repeat dom or not
+   *
+   * @param {Element} node
+   * @returns {boolean}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.isRepeatNode = function (node) {
+    var nodeAttrs = node.attributes;
+    var result = false;
+
+    if (nodeAttrs) {
+      Array.from(nodeAttrs).forEach(function (attr) {
+        var attrName = attr.name;
+        if (attrName === 'nv-repeat') result = true;
+      });
+    }
+
+    return result;
+  };
+  /**
+   * judge DOM is text node or not
+   *
+   * @param {Element} node
+   * @returns {boolean}
+   * @memberof Compile
+   */
+
+
+  Compile.prototype.isTextNode = function (node) {
+    return node.nodeType === 3;
+  };
+
+  return Compile;
+}();
+
+exports.Compile = Compile;
+},{"../virtual-dom":"../../InDiv/src/platform-browser/virtual-dom/index.ts","../../utils":"../../InDiv/src/utils/index.ts","./utils":"../../InDiv/src/platform-browser/compile/utils.ts"}],"../../InDiv/src/types/component.ts":[function(require,module,exports) {
+
+},{}],"../../InDiv/src/types/directive.ts":[function(require,module,exports) {
+
+},{}],"../../InDiv/src/types/indiv.ts":[function(require,module,exports) {
+
+},{}],"../../InDiv/src/types/nv-module.ts":[function(require,module,exports) {
+
+},{}],"../../InDiv/src/types/router.ts":[function(require,module,exports) {
+
+},{}],"../../InDiv/src/types/watcher.ts":[function(require,module,exports) {
+
+},{}],"../../InDiv/src/types/http-client.ts":[function(require,module,exports) {
+
+},{}],"../../InDiv/src/types/internal-type.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ElementRef = void 0;
+
+var __extends = void 0 && (void 0).__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+var ElementRef =
+/** @class */
+function (_super) {
+  __extends(ElementRef, _super);
+
+  function ElementRef() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  return ElementRef;
+}(HTMLElement);
+
+exports.ElementRef = ElementRef;
+},{}],"../../InDiv/src/types/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "ComponentList", {
+  enumerable: true,
+  get: function () {
+    return _component.ComponentList;
+  }
+});
+Object.defineProperty(exports, "IComponent", {
+  enumerable: true,
+  get: function () {
+    return _component.IComponent;
+  }
+});
+Object.defineProperty(exports, "SetState", {
+  enumerable: true,
+  get: function () {
+    return _component.SetState;
+  }
+});
+Object.defineProperty(exports, "DirectiveList", {
+  enumerable: true,
+  get: function () {
+    return _directive.DirectiveList;
+  }
+});
+Object.defineProperty(exports, "IDirective", {
+  enumerable: true,
+  get: function () {
+    return _directive.IDirective;
+  }
+});
+Object.defineProperty(exports, "IMiddleware", {
+  enumerable: true,
+  get: function () {
+    return _indiv.IMiddleware;
+  }
+});
+Object.defineProperty(exports, "INvModule", {
+  enumerable: true,
+  get: function () {
+    return _nvModule.INvModule;
+  }
+});
+Object.defineProperty(exports, "TInjectTokenProvider", {
+  enumerable: true,
+  get: function () {
+    return _nvModule.TInjectTokenProvider;
+  }
+});
+Object.defineProperty(exports, "TUseClassProvider", {
+  enumerable: true,
+  get: function () {
+    return _nvModule.TUseClassProvider;
+  }
+});
+Object.defineProperty(exports, "TUseValueProvider", {
+  enumerable: true,
+  get: function () {
+    return _nvModule.TUseValueProvider;
+  }
+});
+Object.defineProperty(exports, "TRouter", {
+  enumerable: true,
+  get: function () {
+    return _router.TRouter;
+  }
+});
+Object.defineProperty(exports, "TChildModule", {
+  enumerable: true,
+  get: function () {
+    return _router.TChildModule;
+  }
+});
+Object.defineProperty(exports, "TLoadChild", {
+  enumerable: true,
+  get: function () {
+    return _router.TLoadChild;
+  }
+});
+Object.defineProperty(exports, "NvRouteObject", {
+  enumerable: true,
+  get: function () {
+    return _router.NvRouteObject;
+  }
+});
+Object.defineProperty(exports, "TFnWatcher", {
+  enumerable: true,
+  get: function () {
+    return _watcher.TFnWatcher;
+  }
+});
+Object.defineProperty(exports, "TFnRender", {
+  enumerable: true,
+  get: function () {
+    return _watcher.TFnRender;
+  }
+});
+Object.defineProperty(exports, "HttpClientRequestConfig", {
+  enumerable: true,
+  get: function () {
+    return _httpClient.HttpClientRequestConfig;
+  }
+});
+Object.defineProperty(exports, "HttpClientResponse", {
+  enumerable: true,
+  get: function () {
+    return _httpClient.HttpClientResponse;
+  }
+});
+Object.defineProperty(exports, "HttpClientRequestInstance", {
+  enumerable: true,
+  get: function () {
+    return _httpClient.HttpClientRequestInstance;
+  }
+});
+Object.defineProperty(exports, "ElementRef", {
+  enumerable: true,
+  get: function () {
+    return _internalType.ElementRef;
+  }
+});
+
+var _component = require("./component");
+
+var _directive = require("./directive");
+
+var _indiv = require("./indiv");
+
+var _nvModule = require("./nv-module");
+
+var _router = require("./router");
+
+var _watcher = require("./watcher");
+
+var _httpClient = require("./http-client");
+
+var _internalType = require("./internal-type");
+},{"./component":"../../InDiv/src/types/component.ts","./directive":"../../InDiv/src/types/directive.ts","./indiv":"../../InDiv/src/types/indiv.ts","./nv-module":"../../InDiv/src/types/nv-module.ts","./router":"../../InDiv/src/types/router.ts","./watcher":"../../InDiv/src/types/watcher.ts","./http-client":"../../InDiv/src/types/http-client.ts","./internal-type":"../../InDiv/src/types/internal-type.ts"}],"../node_modules/_process@0.11.10@process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -1769,2298 +4362,24 @@ var Reflect;
     }
   });
 })(Reflect || (Reflect = {}));
-},{"process":"../node_modules/_process@0.11.10@process/browser.js"}],"../../InDiv/node_modules/easier-cookie/build/index.js":[function(require,module,exports) {
-var define;
-parcelRequire=function(e,r,n,t){function i(n,t){function o(e){return i(o.resolve(e))}function c(r){return e[n][1][r]||r}if(!r[n]){if(!e[n]){var l="function"==typeof parcelRequire&&parcelRequire;if(!t&&l)return l(n,!0);if(u)return u(n,!0);if(f&&"string"==typeof n)return f(n);var p=new Error("Cannot find module '"+n+"'");throw p.code="MODULE_NOT_FOUND",p}o.resolve=c;var a=r[n]=new i.Module(n);e[n][0].call(a.exports,o,a,a.exports,this)}return r[n].exports}function o(e){this.id=e,this.bundle=i,this.exports={}}var u="function"==typeof parcelRequire&&parcelRequire,f="function"==typeof require&&require;i.isParcelRequire=!0,i.Module=o,i.modules=e,i.cache=r,i.parent=u;for(var c=0;c<n.length;c++)i(n[c]);if(n.length){var l=i(n[n.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=l:"function"==typeof define&&define.amd?define(function(){return l}):t&&(this[t]=l)}return i}({1:[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e={set:function(e,t){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},o="",n="",i="",c="";if(r.expires){var a=new Date;a.setDate(a.getDate()+r.expires),o=";expires="+a.toGMTString()}r.path&&(n=";path="+r.path),r.domain&&(i=";domain="+r.domain),c=t instanceof Object?encodeURI(JSON.stringify(t)):encodeURI(t),document.cookie=encodeURI(e)+"="+c+o+n+i},get:function(e){if(!e)return null;for(var t=document.cookie.split("; "),r=0;r<t.length;r++){var o=t[r].split("=");if(o[0]===decodeURI(e)){var n=void 0;try{n=JSON.parse(decodeURI(o[1]))}catch(e){n=decodeURI(o[1])}return""===n?null:n}}return null},remove:function(e){try{return this.set(e,"",-1),!0}catch(t){return console.error("remove cookie "+e+" failed:",t),!1}}};exports.default=e;
-},{}]},{},[1], null)
-},{}],"../../InDiv/src/utils/index.ts":[function(require,module,exports) {
+},{"process":"../node_modules/_process@0.11.10@process/browser.js"}],"../../InDiv/src/di/injected.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Utils = void 0;
+exports.injected = injected;
 
-var _easierCookie = _interopRequireDefault(require("easier-cookie"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+require("reflect-metadata");
 
 /**
- * utils for InDiv
- *
- * @class Utils
- */
-var Utils =
-/** @class */
-function () {
-  /**
-   * Creates an instance of Utils.
-   * @memberof Utils
-   */
-  function Utils() {
-    this.toString = Object.prototype.toString;
-  }
-  /**
-   * set Cookie with easier-cookie
-   *
-   * @param {string} name
-   * @param {*} value
-   * @param {*} [options]
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.setCookie = function (name, value, options) {
-    _easierCookie.default.set(name, value, options);
-  };
-  /**
-   * get Cookie with easier-cookie
-   *
-   * @param {string} name
-   * @returns {*}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.getCookie = function (name) {
-    return _easierCookie.default.get(name);
-  };
-  /**
-   * remove Cookie with easier-cookie
-   *
-   * @param {string} name
-   * @returns {boolean}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.removeCookie = function (name) {
-    return _easierCookie.default.remove(name);
-  };
-  /**
-   * build url query
-   *
-   * @param {*} object
-   * @returns {string}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.buildQuery = function (object) {
-    if (!object || !(object instanceof Object)) return '';
-    var query = '?';
-
-    for (var key in object) {
-      if (!(object[key] instanceof Object)) {
-        query += key + "=" + object[key].toString() + "&";
-      } else {
-        query += key + "=" + JSON.stringify(object[key]) + "&";
-      }
-    }
-
-    return query.slice(0, query.length - 1);
-  };
-  /**
-   * get one url query
-   *
-   * @param {string} name
-   * @returns {string}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.getQuery = function (name) {
-    var parts = window.location.search.replace('?', '').split('&');
-    var params = {};
-
-    for (var i = 0; i < parts.length; i++) {
-      var pairs = parts[i].split('=');
-      params[pairs[0]] = pairs[1];
-    }
-
-    if (params[name]) {
-      return params[name];
-    } else {
-      return '';
-    }
-  };
-  /**
-   * judge something is Function or not
-   *
-   * @param {*} func
-   * @returns {boolean}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.isFunction = function (func) {
-    return this.toString.call(func) === '[object Function]';
-  };
-  /**
-   * judge two things are equal or not
-   *
-   * @param {*} a
-   * @param {*} b
-   * @param {any[]} [aStack]
-   * @param {any[]} [bStack]
-   * @returns {boolean}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.isEqual = function (a, b, aStack, bStack) {
-    // === 结果为 true 的区别出 +0 和 -0
-    if (a === b) return a !== 0 || 1 / a === 1 / b; // typeof null 的结果为 object ，这里做判断，是为了让有 null 的情况尽早退出函数
-
-    if (a == null || b == null) return false; // 判断 NaN
-
-    if (a !== a) return b !== b; // 判断参数 a 类型，如果是基本类型，在这里可以直接返回 false
-
-    var type = _typeof(a);
-
-    if (type !== 'function' && type !== 'object' && _typeof(b) !== 'object') return false; // 更复杂的对象使用 deepEq 函数进行深度比较
-
-    return this.deepIsEqual(a, b, aStack, bStack);
-  };
-  /**
-   * deep judge two things are equal or not
-   *
-   * @param {*} a
-   * @param {*} b
-   * @param {any[]} [aStack]
-   * @param {any[]} [bStack]
-   * @returns {boolean}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.deepIsEqual = function (a, b, aStack, bStack) {
-    // a 和 b 的内部属性 [[class]] 相同时 返回 true
-    var className = this.toString.call(a);
-    if (className !== this.toString.call(b)) return false;
-
-    switch (className) {
-      case '[object RegExp]':
-      case '[object String]':
-        return "" + a === "" + b;
-
-      case '[object Number]':
-        if (+a !== +a) return +b !== +b;
-        return +a === 0 ? 1 / +a === 1 / b : +a === +b;
-
-      case '[object Date]':
-      case '[object Boolean]':
-        return +a === +b;
-    }
-
-    var areArrays = className === '[object Array]'; // 不是数组
-
-    if (!areArrays) {
-      // 过滤掉两个函数的情况
-      if (_typeof(a) !== 'object' || _typeof(b) !== 'object') return false;
-      var aCtor = a.constructor;
-      var bCtor = b.constructor; // aCtor 和 bCtor 必须都存在并且都不是 Object 构造函数的情况下，aCtor 不等于 bCtor， 那这两个对象就真的不相等啦
-
-      if (aCtor !== bCtor && !(this.isFunction(aCtor) && aCtor instanceof aCtor && this.isFunction(bCtor) && bCtor instanceof bCtor) && 'constructor' in a && 'constructor' in b) {
-        return false;
-      }
-    }
-
-    aStack = aStack || [];
-    bStack = bStack || [];
-    var length = aStack.length; // 检查是否有循环引用的部分
-
-    while (length--) {
-      if (aStack[length] === a) {
-        return bStack[length] === b;
-      }
-    }
-
-    aStack.push(a);
-    bStack.push(b); // 数组判断
-
-    if (areArrays) {
-      length = a.length;
-      if (length !== b.length) return false;
-
-      while (length--) {
-        if (!this.isEqual(a[length], b[length], aStack, bStack)) return false;
-      }
-    } else {
-      var keys = Object.keys(a);
-      var key = void 0;
-      length = keys.length;
-      if (Object.keys(b).length !== length) return false;
-
-      while (length--) {
-        key = keys[length];
-        if (!(b.hasOwnProperty(key) && this.isEqual(a[key], b[key], aStack, bStack))) return false;
-      }
-    }
-
-    aStack.pop();
-    bStack.pop();
-    return true;
-  };
-  /**
-   * format string for InnerHTML
-   *
-   * @param {string} inner
-   * @returns {string}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.formatInnerHTML = function (inner) {
-    inner = inner.replace(/(\n\s*)/g, '');
-    inner = inner.replace(/^[^\S\n]+/gm, '');
-    return inner;
-  };
-  /**
-   * judge evn is browser or node
-   *
-   * @returns {boolean}
-   * @memberof Utils
-   */
-
-
-  Utils.prototype.isBrowser = function () {
-    return typeof window !== 'undefined' && typeof window.document !== 'undefined';
-  };
-
-  return Utils;
-}();
-
-exports.Utils = Utils;
-},{"easier-cookie":"../../InDiv/node_modules/easier-cookie/build/index.js"}],"../../InDiv/src/lifecycle/index.ts":[function(require,module,exports) {
-
-},{}],"../../InDiv/src/watcher/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Watcher = void 0;
-
-var _utils = require("../utils");
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-var utils = new _utils.Utils();
-/**
- * Watcher for InDiv
- *
- * @class Watcher
- */
-
-var Watcher =
-/** @class */
-function () {
-  /**
-   * Creates an instance of Watcher.
-   *
-   * data: watched data
-   * watcher: function for data change
-   * render: InDiv render
-   *
-   * @param {*} data
-   * @param {TFnWatcher} [watcher]
-   * @param {TFnRender} [render]
-   * @memberof Watcher
-   */
-  function Watcher(data, watcher, render) {
-    this.data = data;
-    this.watcher = watcher;
-    this.render = render;
-    this.watchData(this.data);
-  }
-
-  Watcher.prototype.watchData = function (data) {
-    if (!data || _typeof(data) !== 'object') return;
-    var vm = this;
-
-    var _loop_1 = function _loop_1(key) {
-      var val = data[key];
-      vm.watchData(val);
-      Object.defineProperty(data, key, {
-        configurable: true,
-        enumerable: true,
-        get: function get() {
-          return val;
-        },
-        set: function set(newVal) {
-          if (utils.isEqual(newVal, val)) return; // for watcher method
-
-          var oldData;
-          if (vm.watcher) oldData = JSON.parse(JSON.stringify(vm.data));
-          val = newVal;
-          vm.watchData(val);
-          if (vm.watcher) vm.watcher(oldData);
-          if (vm.render) vm.render();
-        }
-      });
-    };
-
-    for (var key in data) {
-      _loop_1(key);
-    }
-  };
-
-  return Watcher;
-}();
-
-exports.Watcher = Watcher;
-},{"../utils":"../../InDiv/src/utils/index.ts"}],"../../InDiv/src/key-watcher/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.KeyWatcher = void 0;
-
-var _utils = require("../utils");
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-var utils = new _utils.Utils();
-/**
- * watch a key of an Object
- *
- * @class KeyWatcher
- */
-
-var KeyWatcher =
-/** @class */
-function () {
-  function KeyWatcher(data, key, watcher) {
-    this.data = data;
-    this.key = key;
-    this.watcher = watcher;
-    this.watchData(this.data, this.key);
-  }
-
-  KeyWatcher.prototype.watchData = function (data, key) {
-    if (!data || _typeof(data) !== 'object' || !data[key]) return;
-    var vm = this;
-    var val = data[key];
-    Object.defineProperty(data, key, {
-      configurable: true,
-      enumerable: true,
-      get: function get() {
-        return val;
-      },
-      set: function set(newVal) {
-        if (utils.isEqual(newVal, val)) return;
-        var oldData;
-
-        if (vm.watcher) {
-          if (_typeof(val) === 'object') oldData = JSON.parse(JSON.stringify(val));
-          if (_typeof(val) !== 'object' && typeof val !== 'function') oldData = val;
-        }
-
-        val = newVal;
-        if (vm.watcher) vm.watcher(oldData);
-      }
-    });
-  };
-
-  return KeyWatcher;
-}();
-
-exports.KeyWatcher = KeyWatcher;
-},{"../utils":"../../InDiv/src/utils/index.ts"}],"../../InDiv/src/platform-browser/virtual-dom/parse.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.parseToVnode = parseToVnode;
-
-/**
- * Vnode
- *
- * @class Vnode
- */
-var Vnode =
-/** @class */
-function () {
-  /**
-   * Creates an instance of Vnode.
-   * @param {IVnode} info
-   * @memberof Vnode
-   */
-  function Vnode(info) {
-    this.tagName = info.tagName;
-    this.node = info.node;
-    this.parentNode = info.parentNode;
-    this.attributes = info.attributes;
-    this.childNodes = info.childNodes;
-    this.nodeValue = info.nodeValue;
-    this.type = info.type;
-    this.value = info.value;
-    this.repeatData = info.repeatData;
-    this.eventTypes = info.eventTypes;
-    this.key = info.key;
-    this.checked = false;
-  }
-
-  return Vnode;
-}();
-/**
- * bind nodeType and return type
- *
- * @param {Node} node
- * @returns {string}
- */
-
-
-function bindNodeType(node) {
-  if (node.nodeType === 1) return 'element';
-  if (node.nodeType === 3) return 'text';
-  if (node.nodeType === 11) return 'document-fragment';
-  return '';
-}
-/**
- * bind node attributes and return TAttributes
- *
- * @param {(DocumentFragment | Element)} node
- * @returns {TAttributes[]}
- */
-
-
-function bindAttributes(node) {
-  var nodeAttrs = node.attributes;
-  var attributes = [];
-
-  if (nodeAttrs) {
-    Array.from(nodeAttrs).forEach(function (attr) {
-      attributes.push({
-        name: attr.name,
-        value: attr.value
-      });
-    });
-  }
-
-  return attributes;
-}
-/**
- * parse node to VNode
- *
- * @param {(DocumentFragment | Element)} node
- * @returns {IVnode}
- */
-
-
-function parseToVnode(node) {
-  var childNodes = [];
-
-  if (node.childNodes) {
-    Array.from(node.childNodes).forEach(function (child) {
-      childNodes.push(parseToVnode(child));
-    });
-  }
-
-  return new Vnode({
-    tagName: node.tagName,
-    node: node,
-    parentNode: node.parentNode,
-    attributes: bindAttributes(node),
-    childNodes: childNodes,
-    nodeValue: node.nodeValue,
-    type: bindNodeType(node),
-    value: node.value,
-    repeatData: node.repeatData ? node.repeatData : null,
-    eventTypes: node.eventTypes ? node.eventTypes : null,
-    key: node.indiv_repeat_key ? node.indiv_repeat_key : null
-  });
-}
-},{}],"../../InDiv/src/platform-browser/virtual-dom/diff.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.diffVnode = diffVnode;
-
-/**
- * diff childNodes for diff VNode
- *
- * type: 0 removeChild
- * type: 1 change Child index
- *
- * @param {IVnode} newVnode
- * @param {IVnode} oldVnode
- * @param {IPatchList[]} patchList
- * @param {(oldVnode: IVnode, newVnode: IVnode) => boolean} needDiffChildCallback
- */
-function diffChildNodes(oldVnode, newVnode, patchList, needDiffChildCallback) {
-  if (oldVnode.childNodes.length > 0) {
-    oldVnode.childNodes.forEach(function (oChild, index) {
-      if (oChild.checked) return;
-      var sameCode = newVnode.childNodes.find(function (nChild) {
-        return nChild.node.isEqualNode(oChild.node) && nChild.key === oChild.key && !nChild.checked || nChild.tagName === oChild.tagName && nChild.key === oChild.key && !nChild.checked;
-      });
-
-      if (sameCode) {
-        var sameCodeIndex = newVnode.childNodes.findIndex(function (nChild) {
-          return nChild === sameCode;
-        });
-
-        if (sameCodeIndex !== index) {
-          patchList.push({
-            type: 1,
-            newIndex: sameCodeIndex,
-            oldVnode: oChild.node,
-            parentNode: oldVnode.node
-          });
-        }
-
-        diffVnode(oChild, sameCode, patchList, needDiffChildCallback);
-        sameCode.checked = true;
-      } else {
-        patchList.push({
-          type: 0,
-          node: oChild.node,
-          parentNode: oldVnode.node
-        });
-      }
-
-      oChild.checked = true;
-    });
-  }
-
-  if (newVnode.childNodes.length > 0) {
-    newVnode.childNodes.forEach(function (nChild, index) {
-      if (nChild.checked) return;
-      patchList.push({
-        type: 1,
-        newIndex: index,
-        oldVnode: nChild.node,
-        parentNode: oldVnode.node
-      });
-      nChild.checked = true;
-    });
-  }
-}
-/**
- * diff attributes for diff VNode
- *
- * type: 2 setAttribute
- * type: 3 removeAttribute
- *
- * @param {IVnode} oldVnode
- * @param {IVnode} newVnode
- * @param {IPatchList[]} patchList
- */
-
-
-function diffAttributes(oldVnode, newVnode, patchList) {
-  newVnode.attributes.forEach(function (attr) {
-    var oldVnodeAttr = oldVnode.attributes.find(function (at) {
-      return at.name === attr.name;
-    });
-
-    if (!oldVnodeAttr || oldVnodeAttr.value !== attr.value) {
-      patchList.push({
-        type: 2,
-        node: oldVnode.node,
-        newValue: attr,
-        oldValue: oldVnodeAttr
-      });
-    }
-  });
-  oldVnode.attributes.forEach(function (attr) {
-    var newVnodeAttr = newVnode.attributes.find(function (at) {
-      return at.name === attr.name;
-    });
-
-    if (!newVnodeAttr) {
-      patchList.push({
-        type: 3,
-        node: oldVnode.node,
-        oldValue: attr
-      });
-    }
-  });
-}
-/**
- * diff nodeValue for diff VNode
- *
- * type: 4 change text for node
- *
- * @param {IVnode} oldVnode
- * @param {IVnode} newVnode
- * @param {IPatchList[]} patchList
- * @returns {void}
- */
-
-
-function diffNodeValue(oldVnode, newVnode, patchList) {
-  if (oldVnode.nodeValue !== newVnode.nodeValue) {
-    patchList.push({
-      type: 4,
-      node: oldVnode.node,
-      newValue: newVnode.nodeValue,
-      oldValue: oldVnode.nodeValue
-    });
-  }
-}
-/**
- * diff value of input, textarea, select for diff VNode
- *
- * type: 5 change value of input
- *
- * @param {IVnode} newVnode
- * @param {IVnode} oldVnode
- * @param {IPatchList[]} patchList
- * @returns {void}
- */
-
-
-function diffInputValue(oldVnode, newVnode, patchList) {
-  if (oldVnode.value !== newVnode.value) {
-    patchList.push({
-      type: 5,
-      node: oldVnode.node,
-      newValue: newVnode.value,
-      oldValue: oldVnode.value
-    });
-  }
-}
-/**
- * diff repeatData of repeat node
- *
- * type: 6 change repeatData of node
- *
- * @param {IVnode} newVnode
- * @param {IVnode} oldVnode
- * @param {IPatchList[]} patchList
- * @returns {void}
- */
-
-
-function diffRepeatData(oldVnode, newVnode, patchList) {
-  patchList.push({
-    type: 6,
-    node: oldVnode.node,
-    newValue: newVnode.repeatData
-  });
-}
-/**
- * diff event of node
- *
- * type: 7 change event of node
- * type: 8 change eventTypes of node
- *
- * @param {IVnode} oldVnode
- * @param {IVnode} newVnode
- * @param {IPatchList[]} patchList
- */
-
-
-function diffEventTypes(oldVnode, newVnode, patchList) {
-  var oEventTypes = JSON.parse(oldVnode.eventTypes);
-  var nEventTypes = JSON.parse(newVnode.eventTypes); // 全部更新为新的事件
-
-  if (nEventTypes && nEventTypes.length > 0) {
-    nEventTypes.forEach(function (neventType) {
-      patchList.push({
-        type: 7,
-        node: oldVnode.node,
-        eventType: neventType,
-        newValue: newVnode.node["event" + neventType]
-      });
-    });
-  }
-
-  if (oEventTypes && oEventTypes.length > 0) {
-    // 如果新事件不存在，则删除事件
-    // 如果新事件找不到旧事件中的事件，则把旧事件的事件删除
-    oEventTypes.forEach(function (oeventType) {
-      if (!nEventTypes || nEventTypes.length <= 0) {
-        patchList.push({
-          type: 7,
-          node: oldVnode.node,
-          eventType: oeventType,
-          newValue: null
-        });
-      }
-
-      if (nEventTypes && nEventTypes.length > 0 && !nEventTypes.find(function (neventType) {
-        return neventType === oeventType;
-      })) {
-        patchList.push({
-          type: 7,
-          node: oldVnode.node,
-          eventType: oeventType,
-          newValue: null
-        });
-      }
-    });
-  } // 最后要更新下 eventTypes，否则下次 oldVnode.eventTypes 将为最开始的eventTypes
-
-
-  patchList.push({
-    type: 8,
-    node: oldVnode.node,
-    newValue: newVnode.eventTypes
-  });
-}
-/**
- * diff two Vnode
- *
- * if needDiffChildCallback return false, then stop diff childNodes
- *
- * @param {IVnode} oldVnode
- * @param {IVnode} newVnode
- * @param {IPatchList[]} patchList
- * @param {(oldVnode: IVnode, newVnode: IVnode) => boolean} needDiffChildCallback
- * @returns {void}
- */
-
-
-function diffVnode(oldVnode, newVnode, patchList, needDiffChildCallback) {
-  if (!patchList) throw new Error('patchList can not be null, diffVnode must need an Array');
-
-  if (newVnode.type === 'document-fragment') {
-    diffChildNodes(oldVnode, newVnode, patchList, needDiffChildCallback);
-    return;
-  }
-
-  diffAttributes(oldVnode, newVnode, patchList);
-  diffNodeValue(oldVnode, newVnode, patchList);
-  if (oldVnode.tagName === 'INPUT' || oldVnode.tagName === 'TEXTAREA textarea' || oldVnode.tagName === 'INPUT') diffInputValue(oldVnode, newVnode, patchList);
-  diffRepeatData(oldVnode, newVnode, patchList);
-  diffEventTypes(oldVnode, newVnode, patchList);
-  if (needDiffChildCallback && !needDiffChildCallback(oldVnode, newVnode)) return;
-  diffChildNodes(oldVnode, newVnode, patchList, needDiffChildCallback);
-}
-},{}],"../../InDiv/src/platform-browser/virtual-dom/render.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.renderVnode = renderVnode;
-
-/**
- * renderVnode 对比完render node
- *
- * REMOVETAG: 0, 移除dom: 0
- * REMOVETAG: 1, 移动位置: 1
- * ADDATTRIBUTES: 2, 增加属性: 2
- * REPLACEATTRIBUTES: 3, 移除属性: 3
- * TEXT: 4, 更改文字: 4
- * value: 5, 更改 input textarea select value 的值: 5
- * value: 6, 更改 node 的 repeatData: 6, render过来的的被复制的值
- * value: 7, 更改 node 的 event: 7, 修改事件
- * value: 8, 更改 node 的 eventTypes: 8, 修改node的eventTypes
- *
- * @param [] patchList
- */
-function renderVnode(patchList) {
-  patchList.sort(function (a, b) {
-    if (a.type === b.type && a.newIndex && b.newIndex) return a.newIndex - b.newIndex;
-    return a.type - b.type;
-  });
-  patchList.forEach(function (patch) {
-    switch (patch.type) {
-      case 0:
-        patch.parentNode.removeChild(patch.node);
-        break;
-
-      case 1:
-        if (!(Array.from(patch.parentNode.children).indexOf(patch.oldVnode) === patch.newIndex)) {
-          if (patch.parentNode.contains(patch.oldVnode)) patch.parentNode.removeChild(patch.oldVnode);
-
-          if (patch.parentNode.childNodes[patch.newIndex]) {
-            patch.parentNode.insertBefore(patch.oldVnode, patch.parentNode.childNodes[patch.newIndex]);
-          } else {
-            patch.parentNode.appendChild(patch.oldVnode);
-          }
-        }
-
-        break;
-
-      case 2:
-        patch.node.setAttribute(patch.newValue.name, patch.newValue.value);
-        break;
-
-      case 3:
-        patch.node.removeAttribute(patch.oldValue.name);
-        break;
-
-      case 4:
-        patch.node.nodeValue = patch.newValue;
-        break;
-
-      case 5:
-        patch.node.value = patch.newValue;
-        break;
-
-      case 6:
-        patch.node.repeatData = patch.newValue;
-        break;
-
-      case 7:
-        patch.node["on" + patch.eventType] = patch.newValue;
-        break;
-
-      case 8:
-        patch.node.eventTypes = patch.newValue;
-        break;
-    }
-  });
-}
-},{}],"../../InDiv/src/platform-browser/virtual-dom/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "parseToVnode", {
-  enumerable: true,
-  get: function () {
-    return _parse.parseToVnode;
-  }
-});
-Object.defineProperty(exports, "diffVnode", {
-  enumerable: true,
-  get: function () {
-    return _diff.diffVnode;
-  }
-});
-Object.defineProperty(exports, "renderVnode", {
-  enumerable: true,
-  get: function () {
-    return _render.renderVnode;
-  }
-});
-
-var _parse = require("./parse");
-
-var _diff = require("./diff");
-
-var _render = require("./render");
-},{"./parse":"../../InDiv/src/platform-browser/virtual-dom/parse.ts","./diff":"../../InDiv/src/platform-browser/virtual-dom/diff.ts","./render":"../../InDiv/src/platform-browser/virtual-dom/render.ts"}],"../../InDiv/src/platform-browser/compile-utils/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.CompileUtil = exports.CompileUtilForRepeat = void 0;
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-/**
- * compile util for nv-repeat DOM
- *
- * @export
- * @class CompileUtilForRepeat
- */
-var CompileUtilForRepeat =
-/** @class */
-function () {
-  /**
-   * Creates an instance of CompileUtilForRepeat.
-   *
-   * @param {(Element | DocumentFragment)} [fragment]
-   * @memberof CompileUtilForRepeat
-   */
-  function CompileUtilForRepeat(fragment) {
-    this.$fragment = fragment;
-  }
-  /**
-   * get value by key and anthor value
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @param {string} key
-   * @returns {*}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype._getValueByValue = function (vm, exp, key) {
-    var valueList = exp.replace('()', '').replace('$.', '').split('.');
-    var value = vm;
-    valueList.forEach(function (v, index) {
-      if (v === key && index === 0) return;
-      value = value[v];
-    });
-    return value;
-  };
-  /**
-   * set value by key and anthor value
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @param {string} key
-   * @param {*} setValue
-   * @returns {*}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype._setValueByValue = function (vm, exp, key, setValue) {
-    var valueList = exp.replace('()', '').replace('$.', '').split('.');
-    var value = vm;
-    var lastKey;
-    valueList.forEach(function (v, index) {
-      if (v === key && index === 0) return lastKey = v;
-      if (index < valueList.length) lastKey = v;
-      if (index < valueList.length - 1) value = value[v];
-    });
-    if (lastKey) value[lastKey] = setValue;
-  };
-  /**
-   * get value of VM
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @returns {*}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype._getVMVal = function (vm, exp) {
-    var valueList = exp.replace('()', '').replace('$.', '').split('.');
-    var value = vm;
-    valueList.forEach(function (v) {
-      value = value[v];
-    });
-    return value;
-  };
-  /**
-   * get value by repeat value
-   *
-   * @param {*} val
-   * @param {string} exp
-   * @param {string} key
-   * @returns {*}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype._getVMRepeatVal = function (val, exp, key) {
-    var value;
-    var valueList = exp.replace('()', '').replace('$.', '').split('.');
-    valueList.forEach(function (v, index) {
-      if (v === key && index === 0) {
-        value = val;
-        return;
-      }
-
-      value = value[v];
-    });
-    return value;
-  };
-  /**
-   * get Function for vm
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @returns {Function}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtilForRepeat.prototype._getVMFunction = function (vm, exp) {
-    var fnList = exp.replace(/^(\@)/, '').replace(/\(.*\)/, '').split('.');
-    var fn = vm;
-    fnList.forEach(function (f) {
-      fn = fn[f];
-    });
-    return fn;
-  };
-  /**
-   * get Function arguments for vm
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @param {Element} node
-   * @param {string} key
-   * @param {*} val
-   * @returns {any[]}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype._getVMFunctionArguments = function (vm, exp, node, key, val) {
-    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
-    var argsList = [];
-    var utilVm = this;
-    args.forEach(function (arg) {
-      if (arg === '') return false;
-      if (arg === '$element') return argsList.push(node);
-      if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
-      if (/(\$\.).*/g.test(arg)) return argsList.push(utilVm._getVMVal(vm.state, arg));
-      if (/\'.*\'/g.test(arg)) return argsList.push(arg.match(/\'(.*)\'/)[1]);
-      if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList.push(Number(arg));
-      if (arg.indexOf(key) === 0 || arg.indexOf(key + ".") === 0) return argsList.push(utilVm._getVMRepeatVal(val, arg, key));
-
-      if (node.repeatData) {
-        // $index in this
-        Object.keys(node.repeatData).forEach(function (data) {
-          if (arg.indexOf(data) === 0 || arg.indexOf(data + ".") === 0) return argsList.push(utilVm._getValueByValue(node.repeatData[data], arg, data));
-        });
-      }
-    });
-    return argsList;
-  };
-  /**
-   * bind handler for nv irective
-   *
-   * @param {Element} node
-   * @param {string} [key]
-   * @param {string} [dir]
-   * @param {string} [exp]
-   * @param {number} [index]
-   * @param {*} [vm]
-   * @param {*} [watchValue]
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.bind = function (node, key, dir, exp, index, vm, watchValue, val) {
-    var repeatValue = node.repeatData[key];
-    var value;
-
-    if (/^(\@)/.test(exp)) {
-      if (dir === 'model') throw new Error("directive: nv-model can't use " + exp + " as value"); // if @Function need function return value
-
-      var fn = this._getVMFunction(vm, exp);
-
-      var argsList = this._getVMFunctionArguments(vm, exp, node, key, val);
-
-      value = fn.apply(vm, argsList);
-    } else if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
-      // repeat value
-      value = this._getVMRepeatVal(repeatValue, exp, key);
-    } else if (/(\$\.).*/.test(exp)) {
-      // normal value
-      value = this._getVMVal(vm.state, exp);
-    } else if (exp === '$index') {
-      value = index;
-    } else {
-      throw new Error("directive: nv-" + dir + " can't use recognize this value " + exp);
-    }
-
-    if (!node.hasChildNodes()) this.templateUpdater(node, repeatValue, key, vm);
-    var updaterFn = this[dir + "Updater"];
-
-    switch (dir) {
-      case 'model':
-        var watchData = void 0;
-
-        if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
-          watchData = watchValue;
-        } else {
-          watchData = this._getVMVal(vm.state, exp);
-        }
-
-        if (updaterFn) updaterFn.call(this, node, value, exp, key, index, watchData, vm);
-        break;
-
-      case 'text':
-        if (updaterFn) updaterFn.call(this, node, value);
-        break;
-
-      case 'html':
-        if (updaterFn) updaterFn.call(this, node, value);
-        break;
-
-      case 'if':
-        if (updaterFn) updaterFn.call(this, node, value);
-        break;
-
-      case 'class':
-        if (updaterFn) updaterFn.call(this, node, value);
-        break;
-
-      case 'key':
-        if (updaterFn) updaterFn.call(this, node, value);
-        break;
-
-      default:
-        this.commonUpdater.call(this, node, value, dir);
-    }
-  };
-  /**
-   * update text for {{}}
-   *
-   * @param {Element} node
-   * @param {*} [val]
-   * @param {string} [key]
-   * @param {*} [vm]
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.templateUpdater = function (node, val, key, vm) {
-    var text = node.textContent;
-    var reg = /\{\{(.*)\}\}/g;
-
-    if (reg.test(text)) {
-      var textList = text.match(/(\{\{[^\{\}]+?\}\})/g);
-
-      if (textList && textList.length > 0) {
-        for (var i = 0; i < textList.length; i++) {
-          var exp = textList[i].replace('{{', '').replace('}}', '');
-          var value = null;
-
-          if (/^(\@)/.test(exp)) {
-            var fn = this._getVMFunction(vm, exp);
-
-            var argsList = this._getVMFunctionArguments(vm, exp, node, key, val);
-
-            value = fn.apply(vm, argsList);
-          } else if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
-            value = this._getVMRepeatVal(val, exp, key);
-          } else if (/(\$\.).*/.test(exp)) {
-            value = this._getVMVal(vm.state, exp);
-          } else {
-            throw new Error("directive: {{" + exp + "}} can't use recognize " + exp);
-          }
-
-          node.textContent = node.textContent.replace(textList[i], value);
-        }
-      }
-    }
-  };
-  /**
-   * update value of input for nv-model
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @param {string} exp
-   * @param {string} key
-   * @param {number} index
-   * @param {*} watchData
-   * @param {*} vm
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.modelUpdater = function (node, value, exp, key, index, watchData, vm) {
-    node.value = typeof value === 'undefined' ? '' : value;
-    var utilVm = this;
-
-    var func = function func(event) {
-      event.preventDefault();
-
-      if (/(\$\.).*/.test(exp)) {
-        var val = exp.replace('$.', '');
-        if (event.target.value === watchData) return;
-        vm.state[val] = event.target.value;
-      } else if (exp.indexOf(key) === 0 || exp.indexOf(key + ".") === 0) {
-        if (_typeof(watchData[index]) !== 'object') watchData[index] = event.target.value;
-
-        if (_typeof(watchData[index]) === 'object') {
-          var vals = utilVm._getValueByValue(watchData[index], exp, key);
-
-          vals = event.target.value;
-
-          utilVm._setValueByValue(watchData[index], exp, key, vals);
-        }
-      } else {
-        throw new Error('directive: nv-model can\'t use recognize this value');
-      }
-    };
-
-    node.oninput = func;
-    node.eventinput = func;
-
-    if (node.eventTypes) {
-      var eventlist = JSON.parse(node.eventTypes);
-      eventlist.push('input');
-      node.eventTypes = JSON.stringify(eventlist);
-    }
-
-    if (!node.eventTypes) node.eventTypes = JSON.stringify(['input']);
-  };
-  /**
-   * update text for nv-text
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @returns {void}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.textUpdater = function (node, value) {
-    if (node.tagName.toLocaleLowerCase() === 'input') return node.value = value;
-    node.textContent = typeof value === 'undefined' ? '' : value;
-  };
-  /**
-   * update html for nv-html
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.htmlUpdater = function (node, value) {
-    node.innerHTML = typeof value === 'undefined' ? '' : value;
-  };
-  /**
-   * remove or show DOM for nv-if
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.ifUpdater = function (node, value) {
-    if (!value && this.$fragment.contains(node)) this.$fragment.removeChild(node);
-  };
-  /**
-   * update class for nv-class
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @returns {void}
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.classUpdater = function (node, value) {
-    if (!value) return;
-    var className = node.className;
-    className = className.replace(/\s$/, '');
-    var space = className && String(value) ? ' ' : '';
-    node.className = className + space + value;
-  };
-  /**
-   * update value of repeat node for nv-key
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.keyUpdater = function (node, value) {
-    node.indiv_repeat_key = value;
-  };
-  /**
-   * commonUpdater for nv directive except repeat model text html if class
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @param {string} dir
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtilForRepeat.prototype.commonUpdater = function (node, value, dir) {
-    if (value) node[dir] = value;
-    if (!value && node[dir]) node[dir] = null;
-  };
-  /**
-   * compile event and build eventType in DOM
-   *
-   * @param {Element} node
-   * @param {*} vm
-   * @param {string} exp
-   * @param {string} eventName
-   * @param {string} key
-   * @param {*} val
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtilForRepeat.prototype.eventHandler = function (node, vm, exp, eventName, key, val) {
-    var eventType = eventName.split(':')[1];
-
-    var fn = this._getVMFunction(vm, exp);
-
-    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/ /g, '').split(',');
-    var utilVm = this;
-
-    var func = function func(event) {
-      var _this = this;
-
-      var argsList = [];
-      args.forEach(function (arg) {
-        if (arg === '') return false;
-        if (arg === '$event') return argsList.push(event);
-        if (arg === '$element') return argsList.push(node);
-        if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
-        if (/(\$\.).*/g.test(arg)) return argsList.push(utilVm._getVMVal(vm.state, arg));
-        if (/\'.*\'/g.test(arg)) return argsList.push(arg.match(/\'(.*)\'/)[1]);
-        if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList.push(Number(arg));
-        if (arg.indexOf(key) === 0 || arg.indexOf(key + ".") === 0) return argsList.push(utilVm._getVMRepeatVal(val, arg, key));
-
-        if (_this.repeatData) {
-          // $index in this
-          Object.keys(_this.repeatData).forEach(function (data) {
-            if (arg.indexOf(data) === 0 || arg.indexOf(data + ".") === 0) return argsList.push(utilVm._getValueByValue(_this.repeatData[data], arg, data));
-          });
-        }
-      });
-      fn.apply(vm, argsList);
-    };
-
-    if (eventType && fn) {
-      node["on" + eventType] = func;
-      node["event" + eventType] = func;
-
-      if (node.eventTypes) {
-        var eventlist = JSON.parse(node.eventTypes);
-        eventlist.push(eventType);
-        node.eventTypes = JSON.stringify(eventlist);
-      }
-
-      if (!node.eventTypes) node.eventTypes = JSON.stringify([eventType]);
-    }
-  };
-
-  return CompileUtilForRepeat;
-}();
-
-exports.CompileUtilForRepeat = CompileUtilForRepeat;
-
-/**
- * compile util for Compiler
- *
- * @export
- * @class CompileUtil
- */
-var CompileUtil =
-/** @class */
-function () {
-  /**
-   * Creates an instance of CompileUtil.
-   *
-   * @param {(Element | DocumentFragment)} [fragment]
-   *  @memberof CompileUtil
-   */
-  function CompileUtil(fragment) {
-    this.$fragment = fragment;
-  }
-  /**
-   * get value by key and anthor value
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @param {string} key
-   * @returns {*}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype._getValueByValue = function (vm, exp, key) {
-    var valueList = exp.replace('()', '').replace('$.', '').split('.');
-    var value = vm;
-    valueList.forEach(function (v, index) {
-      if (v === key && index === 0) return;
-      value = value[v];
-    });
-    return value;
-  };
-  /**
-   * get value of VM
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @returns {*}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype._getVMVal = function (vm, exp) {
-    var valueList = exp.replace('()', '').replace('$.', '').split('.');
-    var value = vm;
-    valueList.forEach(function (v) {
-      value = value[v];
-    });
-    return value;
-  };
-  /**
-   * get value by repeat value
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @returns {void}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype._getVMRepeatVal = function (vm, exp) {
-    var vlList = exp.split(' ');
-
-    var value = this._getVMVal(vm.state, vlList[3]);
-
-    return value;
-  };
-  /**
-   * get Function for vm
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @returns {Function}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype._getVMFunction = function (vm, exp) {
-    var fnList = exp.replace(/^(\@)/, '').replace(/\(.*\)/, '').split('.');
-    var fn = vm;
-    fnList.forEach(function (f) {
-      fn = fn[f];
-    });
-    return fn;
-  };
-  /**
-   * get Function arguments for vm
-   *
-   * @param {*} vm
-   * @param {string} exp
-   * @param {Element} node
-   * @returns {any[]}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype._getVMFunctionArguments = function (vm, exp, node) {
-    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
-    var argsList = [];
-    args.forEach(function (arg) {
-      if (arg === '') return false;
-      if (arg === '$element') return argsList.push(node);
-      if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
-      if (/(\$\.).*/g.test(arg)) return argsList.push(new CompileUtil()._getVMVal(vm.state, arg));
-      if (/\'.*\'/g.test(arg)) return argsList.push(arg.match(/\'(.*)\'/)[1]);
-      if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList.push(Number(arg));
-    });
-    return argsList;
-  };
-  /**
-   * bind handler for nv irective
-   *
-   * if node is repeat node and it will break compile and into CompileUtilForRepeat
-   *
-   * @param {Element} node
-   * @param {*} vm
-   * @param {string} exp
-   * @param {string} dir
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.bind = function (node, vm, exp, dir) {
-    var updaterFn = this[dir + "Updater"];
-    var isRepeatNode = this.isRepeatNode(node);
-
-    if (isRepeatNode) {
-      // compile repeatNode's attributes
-      switch (dir) {
-        case 'repeat':
-          if (updaterFn) updaterFn.call(this, node, this._getVMRepeatVal(vm, exp), exp, vm);
-          break;
-      }
-    } else {
-      var value = null; // for @Function(arg)
-
-      if (/^(\@)/.test(exp)) {
-        if (dir === 'model') throw new Error("directive: nv-model can't use " + exp + " as value"); // if @Function need function return value
-
-        var fn = this._getVMFunction(vm, exp);
-
-        var argsList = this._getVMFunctionArguments(vm, exp, node);
-
-        value = fn.apply(vm, argsList);
-      } else if (/(\$\.).*/.test(exp)) {
-        // normal value
-        value = this._getVMVal(vm.state, exp);
-      } else {
-        throw new Error("directive: nv-" + dir + " can't use recognize this value " + exp);
-      } // compile unrepeatNode's attributes
-
-
-      switch (dir) {
-        case 'model':
-          if (updaterFn) updaterFn.call(this, node, value, exp, vm);
-          break;
-
-        case 'text':
-          if (updaterFn) updaterFn.call(this, node, value);
-          break;
-
-        case 'html':
-          if (updaterFn) updaterFn.call(this, node, value);
-          break;
-
-        case 'if':
-          if (updaterFn) updaterFn.call(this, node, value);
-          break;
-
-        case 'class':
-          if (updaterFn) updaterFn.call(this, node, value);
-          break;
-
-        case 'key':
-          if (updaterFn) updaterFn.call(this, node, value);
-          break;
-
-        default:
-          this.commonUpdater.call(this, node, value, dir);
-      }
-
-      node.removeAttribute("nv-" + dir);
-    }
-  };
-  /**
-   * update text for {{}}
-   *
-   * @param {*} node
-   * @param {*} vm
-   * @param {string} exp
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.templateUpdater = function (node, vm, exp) {
-    var _exp = exp.replace('{{', '').replace('}}', '');
-
-    var value = null;
-
-    if (/^(\@)/.test(_exp)) {
-      var fn = this._getVMFunction(vm, _exp);
-
-      var argsList = this._getVMFunctionArguments(vm, _exp, node);
-
-      value = fn.apply(vm, argsList);
-    } else if (/(\$\.).*/.test(_exp)) {
-      value = this._getVMVal(vm.state, _exp);
-    } else {
-      throw new Error("directive: " + exp + " can't use recognize this value");
-    }
-
-    node.textContent = node.textContent.replace(exp, value);
-  };
-  /**
-   * update value of input for nv-model
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @param {string} exp
-   * @param {*} vm
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.modelUpdater = function (node, value, exp, vm) {
-    node.value = typeof value === 'undefined' ? '' : value;
-    var val = exp.replace('$.', '');
-
-    var func = function func(event) {
-      event.preventDefault();
-      if (/(\$\.).*/.test(exp)) vm.state[val] = event.target.value;
-    };
-
-    node.oninput = func;
-    node.eventinput = func;
-
-    if (node.eventTypes) {
-      var eventlist = JSON.parse(node.eventTypes);
-      eventlist.push('input');
-      node.eventTypes = JSON.stringify(eventlist);
-    }
-
-    if (!node.eventTypes) node.eventTypes = JSON.stringify(['input']);
-  };
-  /**
-   * update text for nv-text
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @returns {void}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.textUpdater = function (node, value) {
-    if (node.tagName.toLocaleLowerCase() === 'input') return node.value = value;
-    node.textContent = typeof value === 'undefined' ? '' : value;
-  };
-  /**
-   * update html for nv-html
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.htmlUpdater = function (node, value) {
-    node.innerHTML = typeof value === 'undefined' ? '' : value;
-  };
-  /**
-   * remove or show DOM for nv-if
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.ifUpdater = function (node, value) {
-    if (!value && this.$fragment.contains(node)) this.$fragment.removeChild(node);
-  };
-  /**
-   * update class for nv-class
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @returns {void}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.classUpdater = function (node, value) {
-    if (!value) return;
-    var className = node.className;
-    className = className.replace(/\s$/, '');
-    var space = className && String(value) ? ' ' : '';
-    node.className = className + space + value;
-  };
-  /**
-   * update value of repeat node for nv-key
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @memberof CompileUtilForRepeat
-   */
-
-
-  CompileUtil.prototype.keyUpdater = function (node, value) {
-    node.indiv_repeat_key = value;
-  };
-  /**
-   * commonUpdater for nv directive except repeat model text html if class
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @param {string} dir
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.commonUpdater = function (node, value, dir) {
-    if (value) node[dir] = value;
-    if (!value && node[dir]) node[dir] = null;
-  };
-  /**
-   * update repeat DOM for nv-repeat
-   *
-   * if it has child and it will into repeatChildrenUpdater
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @param {string} expFather
-   * @param {*} vm
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.repeatUpdater = function (node, value, expFather, vm) {
-    var _this = this;
-
-    if (!value) return;
-    if (value && !(value instanceof Array)) throw new Error('compile error: nv-repeat need an Array!');
-    var key = expFather.split(' ')[1];
-    value.forEach(function (val, index) {
-      var repeatData = {};
-      repeatData[key] = val;
-      repeatData.$index = index;
-
-      var newElement = _this.cloneNode(node, repeatData);
-
-      var nodeAttrs = newElement.attributes;
-      var text = newElement.textContent;
-      var reg = /\{\{(.*)\}\}/g;
-
-      _this.$fragment.insertBefore(newElement, node);
-
-      newElement.removeAttribute('nv-repeat');
-      if (_this.isTextNode(newElement) && reg.test(text)) new CompileUtilForRepeat(_this.$fragment).templateUpdater(newElement, val, key, vm);
-
-      if (nodeAttrs) {
-        Array.from(nodeAttrs).forEach(function (attr) {
-          var attrName = attr.name;
-
-          if (_this.isDirective(attrName) && attrName !== 'nv-repeat') {
-            var dir = attrName.substring(3);
-            var exp = attr.value;
-
-            if (_this.isEventDirective(dir)) {
-              new CompileUtilForRepeat(_this.$fragment).eventHandler(newElement, vm, exp, dir, key, val);
-            } else {
-              new CompileUtilForRepeat(_this.$fragment).bind(newElement, key, dir, exp, index, vm, value, val);
-            }
-
-            newElement.removeAttribute(attrName);
-          }
-        });
-      } // first insert node before repeatnode, and remove repeatnode in Compile
-
-
-      if (newElement.hasChildNodes() && _this.$fragment.contains(newElement)) _this.repeatChildrenUpdater(newElement, val, expFather, index, vm, value);
-    });
-  };
-  /**
-   * update child of nv-repeat DOM
-   *
-   * if child is an nv-repeat DOM, it will into CompileUtil repeatUpdater
-   *
-   * @param {Element} node
-   * @param {*} value
-   * @param {string} expFather
-   * @param {number} index
-   * @param {*} vm
-   * @param {*} watchValue
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.repeatChildrenUpdater = function (node, value, expFather, index, vm, watchValue) {
-    var _this = this;
-
-    var key = expFather.split(' ')[1];
-    Array.from(node.childNodes).forEach(function (child) {
-      if (_this.isElementNode(child) && vm.$components.find(function (component) {
-        return component.$selector === child.tagName.toLocaleLowerCase();
-      })) child.isComponent = true;
-      child.repeatData = node.repeatData || {};
-      child.repeatData[key] = value;
-      child.repeatData.$index = index;
-      if (_this.isRepeatProp(child)) child.setAttribute("_prop-" + key, JSON.stringify(value));
-      var nodeAttrs = child.attributes;
-      var text = child.textContent;
-      var reg = /\{\{(.*)\}\}/g;
-      if (_this.isTextNode(child) && reg.test(text)) new CompileUtilForRepeat(node).templateUpdater(child, value, key, vm);
-
-      if (nodeAttrs) {
-        Array.from(nodeAttrs).forEach(function (attr) {
-          var attrName = attr.name;
-          var exp = attr.value;
-          var dir = attrName.substring(3);
-
-          if (_this.isDirective(attrName) && attrName !== 'nv-repeat' && new RegExp("(^" + key + ")|(^$.)|(^@)").test(exp)) {
-            if (_this.isEventDirective(dir)) {
-              new CompileUtilForRepeat(node).eventHandler(child, vm, exp, dir, key, value);
-            } else {
-              new CompileUtilForRepeat(node).bind(child, key, dir, exp, index, vm, watchValue, value);
-            }
-
-            child.removeAttribute(attrName);
-          }
-        });
-      }
-
-      if (child.hasChildNodes() && !_this.isRepeatNode(child) && node.contains(child)) _this.repeatChildrenUpdater(child, value, expFather, index, vm, watchValue);
-      var newAttrs = child.attributes;
-
-      if (newAttrs && node.contains(child)) {
-        var restRepeat = Array.from(newAttrs).find(function (attr) {
-          return _this.isDirective(attr.name) && attr.name === 'nv-repeat';
-        });
-
-        if (restRepeat) {
-          var newWatchData = restRepeat.value.split(' ')[3]; // first compile and then remove repeatNode
-
-          if (/^(\$\.)/.test(newWatchData)) {
-            new CompileUtil(node).bind(child, vm, restRepeat.value, restRepeat.name.substring(3));
-            if (node.contains(child)) node.removeChild(child);
-          }
-
-          if (new RegExp("(^" + key + ")").test(newWatchData)) {
-            new CompileUtil(node).repeatUpdater(child, _this._getValueByValue(value, newWatchData, key), restRepeat.value, vm);
-            if (node.contains(child)) node.removeChild(child);
-          }
-
-          node.removeAttribute('nv-repeat');
-        }
-      }
-    });
-  };
-  /**
-   * compile event and build eventType in DOM
-   *
-   * @param {Element} node
-   * @param {*} vm
-   * @param {string} exp
-   * @param {string} eventName
-   * @memberof Compile
-   */
-
-
-  CompileUtil.prototype.eventHandler = function (node, vm, exp, eventName) {
-    var eventType = eventName.split(':')[1];
-
-    var fn = this._getVMFunction(vm, exp);
-
-    var args = exp.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
-
-    var func = function func(event) {
-      var argsList = [];
-      args.forEach(function (arg) {
-        if (arg === '') return false;
-        if (arg === '$event') return argsList.push(event);
-        if (arg === '$element') return argsList.push(node);
-        if (arg === 'true' || arg === 'false') return argsList.push(arg === 'true');
-        if (/(\$\.).*/g.test(arg)) return argsList.push(new CompileUtil()._getVMVal(vm.state, arg));
-        if (/\'.*\'/g.test(arg)) return argsList.push(arg.match(/\'(.*)\'/)[1]);
-        if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList.push(Number(arg));
-      });
-      fn.apply(vm, argsList);
-    };
-
-    if (eventType && fn) {
-      node["on" + eventType] = func;
-      node["event" + eventType] = func;
-
-      if (node.eventTypes) {
-        var eventlist = JSON.parse(node.eventTypes);
-        eventlist.push(eventType);
-        node.eventTypes = JSON.stringify(eventlist);
-      }
-
-      if (!node.eventTypes) node.eventTypes = JSON.stringify([eventType]);
-    }
-  };
-  /**
-   * judge attribute is nv directive or not
-   *
-   * @param {string} attr
-   * @returns {boolean}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.isDirective = function (attr) {
-    return attr.indexOf('nv-') === 0;
-  };
-  /**
-   * judge attribute is nv event directive or not
-   *
-   * @param {string} event
-   * @returns {boolean}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.isEventDirective = function (event) {
-    return event.indexOf('on') === 0;
-  };
-  /**
-   * judge DOM is a element node or not
-   *
-   * @param {Element} node
-   * @returns {boolean}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.isElementNode = function (node) {
-    return node.nodeType === 1;
-  };
-  /**
-   * judge DOM is nv-repeat DOM or not
-   *
-   * @param {Element} node
-   * @returns {boolean}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.isRepeatNode = function (node) {
-    var nodeAttrs = node.attributes;
-    var result = false;
-
-    if (nodeAttrs) {
-      Array.from(nodeAttrs).forEach(function (attr) {
-        var attrName = attr.name;
-        if (attrName === 'nv-repeat') result = true;
-      });
-    }
-
-    return result;
-  };
-  /**
-   * judge DOM is a Component DOM in a repeat DOM or not
-   *
-   * @param {Element} node
-   * @returns {boolean}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.isRepeatProp = function (node) {
-    var nodeAttrs = node.attributes;
-    var result = false;
-    if (nodeAttrs) return !!Array.from(nodeAttrs).find(function (attr) {
-      return /^\{(.+)\}$/.test(attr.value);
-    });
-    return result;
-  };
-  /**
-   * judge DOM is text node or not
-   *
-   * @param {Element} node
-   * @returns {boolean}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.isTextNode = function (node) {
-    return node.nodeType === 3;
-  };
-  /**
-   * clone Node and clone it event
-   *
-   * event by attribute in DOM: eventTypes
-   * repeat data by attribute in DOM: repeatData
-   * isComponent: clone Component need add isComponent=true
-   *
-   * @param {Element} node
-   * @param {*} [repeatData]
-   * @returns {Node}
-   * @memberof CompileUtil
-   */
-
-
-  CompileUtil.prototype.cloneNode = function (node, repeatData) {
-    var newElement = node.cloneNode(true);
-
-    if (node.eventTypes) {
-      JSON.parse(node.eventTypes).forEach(function (eventType) {
-        newElement["on" + eventType] = node["event" + eventType];
-        newElement["event" + eventType] = node["event" + eventType];
-      });
-      newElement.eventTypes = node.eventTypes;
-    }
-
-    if (repeatData) newElement.repeatData = repeatData;
-    if (node.isComponent) newElement.isComponent = true;
-    return newElement;
-  };
-
-  return CompileUtil;
-}();
-
-exports.CompileUtil = CompileUtil;
-},{}],"../../InDiv/src/platform-browser/compile/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Compile = void 0;
-
-var _virtualDom = require("../virtual-dom");
-
-var _utils = require("../../utils");
-
-var _compileUtils = require("../compile-utils");
-
-var utils = new _utils.Utils();
-/**
- * main compiler
- *
- * @class Compile
- */
-
-var Compile =
-/** @class */
-function () {
-  /**
-   * Creates an instance of Compile.
-   * @param {(string | Element)} el
-   * @param {*} vm
-   * @memberof Compile
-   */
-  function Compile(el, vm) {
-    this.$vm = vm;
-    this.$el = this.isElementNode(el) ? el : document.querySelector(el);
-
-    if (this.$el) {
-      this.$fragment = this.node2Fragment();
-      this.init();
-      var oldVnode = (0, _virtualDom.parseToVnode)(this.$el);
-      var newVnode = (0, _virtualDom.parseToVnode)(this.$fragment);
-      var patchList = [];
-      (0, _virtualDom.diffVnode)(oldVnode, newVnode, patchList, this.needDiffChildCallback.bind(this));
-      (0, _virtualDom.renderVnode)(patchList);
-      this.$fragment = null;
-      oldVnode = null;
-      newVnode = null;
-      patchList = null;
-    }
-  }
-  /**
-   * needDiffChildCallback for Virtual DOM diff
-   *
-   * if newVnode.node.isComponent no need diff children
-   * if newVnode.tagName and oldVnode.tagName no need diff children
-   *
-   * @param {IVnode} oldVnode
-   * @param {IVnode} newVnode
-   * @returns {boolean}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.needDiffChildCallback = function (oldVnode, newVnode) {
-    // 如果为组件，则停止对比内部元素，交由对应组件diff
-    if (newVnode.node.isComponent && oldVnode.node) {
-      oldVnode.node.isComponent = true;
-      return false;
-    } // 如果为路由渲染层，则停止对比内部元素，交由router diff
-
-
-    if (oldVnode.tagName === newVnode.tagName && newVnode.tagName === this.$vm.$vm.$routeDOMKey.toLocaleUpperCase()) return false;
-    return true;
-  };
-  /**
-   * init compile
-   *
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.init = function () {
-    this.compileElement(this.$fragment);
-  };
-  /**
-   * compile element
-   *
-   * @param {DocumentFragment} fragment
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.compileElement = function (fragment) {
-    var elementCreated = document.createElement('div');
-    elementCreated.innerHTML = utils.formatInnerHTML(this.$vm.$template);
-    var childNodes = elementCreated.childNodes;
-    this.recursiveDOM(childNodes, fragment);
-  };
-  /**
-   * recursive DOM for New State
-   *
-   * @param {(NodeListOf<Node & ChildNode>)} childNodes
-   * @param {(DocumentFragment | Element)} fragment
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.recursiveDOM = function (childNodes, fragment) {
-    var _this = this;
-
-    Array.from(childNodes).forEach(function (node) {
-      if (_this.isElementNode(node) && _this.$vm.$components.find(function (component) {
-        return component.$selector === node.tagName.toLocaleLowerCase();
-      })) node.isComponent = true;
-      if (node.hasChildNodes() && !_this.isRepeatNode(node)) _this.recursiveDOM(node.childNodes, node);
-      fragment.appendChild(node);
-      var text = node.textContent;
-      var reg = /\{\{(.*)\}\}/g;
-      if (_this.isElementNode(node)) _this.compile(node, fragment);
-
-      if (_this.isTextNode(node) && reg.test(text)) {
-        var textList = text.match(/(\{\{[^\{\}]+?\}\})/g);
-        var length = textList.length;
-
-        if (textList && length > 0) {
-          for (var i = 0; i < length; i++) {
-            _this.compileText(node, textList[i]);
-          }
-        }
-      } // after compile repeatNode, remove repeatNode
-
-
-      if (_this.isRepeatNode(node) && fragment.contains(node)) fragment.removeChild(node);
-    });
-  };
-  /**
-   * compile string to DOM
-   *
-   * @param {Element} node
-   * @param {(DocumentFragment | Element)} fragment
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.compile = function (node, fragment) {
-    var _this = this;
-
-    var nodeAttrs = node.attributes;
-
-    if (nodeAttrs) {
-      Array.from(nodeAttrs).forEach(function (attr) {
-        var attrName = attr.name;
-
-        if (_this.isDirective(attrName)) {
-          var dir = attrName.substring(3);
-          var exp = attr.value;
-          var compileUtil = new _compileUtils.CompileUtil(fragment);
-
-          if (_this.isEventDirective(dir)) {
-            compileUtil.eventHandler(node, _this.$vm, exp, dir);
-            node.removeAttribute(attrName);
-          } else {
-            compileUtil.bind(node, _this.$vm, exp, dir);
-          }
-        }
-      });
-    }
-  };
-  /**
-   * create document fragment
-   *
-   * @returns {DocumentFragment}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.node2Fragment = function () {
-    return document.createDocumentFragment();
-  };
-  /**
-   * compile text and use CompileUtil templateUpdater
-   *
-   * @param {Element} node
-   * @param {string} exp
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.compileText = function (node, exp) {
-    new _compileUtils.CompileUtil(this.$fragment).templateUpdater(node, this.$vm, exp);
-  };
-  /**
-   * judge attribute is nv directive or not
-   *
-   * @param {string} attr
-   * @returns {boolean}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.isDirective = function (attr) {
-    return attr.indexOf('nv-') === 0;
-  };
-  /**
-   * judge attribute is nv event directive or not
-   *
-   * @param {string} eventName
-   * @returns {boolean}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.isEventDirective = function (eventName) {
-    return eventName.indexOf('on') === 0;
-  };
-  /**
-   * judge DOM is a element node or not
-   *
-   * @param {(Element | string)} node
-   * @returns {boolean}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.isElementNode = function (node) {
-    if (typeof node === 'string') return false;
-    return node.nodeType === 1;
-  };
-  /**
-   * judge DOM is nv-repeat dom or not
-   *
-   * @param {Element} node
-   * @returns {boolean}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.isRepeatNode = function (node) {
-    var nodeAttrs = node.attributes;
-    var result = false;
-
-    if (nodeAttrs) {
-      Array.from(nodeAttrs).forEach(function (attr) {
-        var attrName = attr.name;
-        if (attrName === 'nv-repeat') result = true;
-      });
-    }
-
-    return result;
-  };
-  /**
-   * judge DOM is text node or not
-   *
-   * @param {Element} node
-   * @returns {boolean}
-   * @memberof Compile
-   */
-
-
-  Compile.prototype.isTextNode = function (node) {
-    return node.nodeType === 3;
-  };
-
-  return Compile;
-}();
-
-exports.Compile = Compile;
-},{"../virtual-dom":"../../InDiv/src/platform-browser/virtual-dom/index.ts","../../utils":"../../InDiv/src/utils/index.ts","../compile-utils":"../../InDiv/src/platform-browser/compile-utils/index.ts"}],"../../InDiv/src/di/injectable.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Injectable = Injectable;
-
-/**
- * Decorator @Injectable
- *
- * to decorate an InDiv Service
- *
- * @param {TInjectableOptions} [options]
- * @returns {(_constructor: Function) => void}
- */
-function Injectable(options) {
-  return function (_constructor) {
-    _constructor.isSingletonMode = true;
-    if (options) _constructor.isSingletonMode = options.isSingletonMode;
-  };
-}
-},{}],"../../InDiv/src/di/injected.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Injected = Injected;
-
-/**
- * Decorator @Injected
+ * Decorator @injected or Function injected
  * declare Class which need be injected
  *
  * @export
  * @param {Function} _constructor
  */
-function Injected(_constructor) {
+function injected(_constructor) {
   // through Reflect to get params types
   var paramsTypes = Reflect.getMetadata('design:paramtypes', _constructor);
 
@@ -4078,23 +4397,97 @@ function Injected(_constructor) {
     });
   }
 }
+},{"reflect-metadata":"../../InDiv/node_modules/reflect-metadata/Reflect.js"}],"../../InDiv/src/di/injectable.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Injectable = Injectable;
+
+var _injected = require("./injected");
+
+/**
+ * Decorator @Injectable
+ *
+ * to decorate an InDiv Service
+ *
+ * @param {TInjectableOptions} [options]
+ * @returns {(_constructor: Function) => void}
+ */
+function Injectable(options) {
+  return function (_constructor) {
+    (0, _injected.injected)(_constructor);
+    _constructor.isSingletonMode = true;
+    if (options) _constructor.isSingletonMode = options.isSingletonMode;
+  };
+}
+},{"./injected":"../../InDiv/src/di/injected.ts"}],"../../InDiv/src/di/injector.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.rootInjector = exports.Injector = void 0;
+
+/**
+ * IOC container for InDiv
+ *
+ * methods: push, find, get
+ *
+ * @export
+ * @class IOCContainer
+ */
+var Injector =
+/** @class */
+function () {
+  function Injector() {
+    this.providerMap = new Map();
+    this.instanceMap = new Map();
+  }
+
+  Injector.prototype.setProvider = function (key, value) {
+    if (!this.providerMap.has(key)) this.providerMap.set(key, value);
+  };
+
+  Injector.prototype.getProvider = function (key) {
+    return this.providerMap.get(key);
+  };
+
+  Injector.prototype.getInstance = function (key) {
+    if (this.instanceMap.has(key)) return this.instanceMap.get(key);
+    return null;
+  };
+
+  Injector.prototype.setInstance = function (key, value) {
+    if (!this.instanceMap.has(key)) this.instanceMap.set(key, value);
+  };
+
+  return Injector;
+}();
+
+exports.Injector = Injector;
+var rootInjector = new Injector();
+exports.rootInjector = rootInjector;
 },{}],"../../InDiv/src/di/factory-creator.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.injector = injector;
+exports.inject = inject;
 exports.factoryCreator = factoryCreator;
+
+var _injector = require("./injector");
 
 /**
  * injector: build arguments for factoryCreator
  *
- * 1. provider Component's providers
- * 2. provider loadModule's providers
- * 3. provider rootModule's providers
+ * 1. provider constructor's providers
+ * 2. provider rootInjector
+ * 3. provider otherInjector
  *
- * first: check _constructor has Component providers or not
+ * first: check _constructor has constructor providers or not
  * secend: find service in loadModule or rootModule
  * third: find service is a singleton service or not
  * forth: if service is a singleton service, find in rootModule's $providerInstances. If not use factoryCreator instance and return
@@ -4102,102 +4495,60 @@ exports.factoryCreator = factoryCreator;
  *
  * @export
  * @param {Function} _constructor
- * @param {*} rootModule
- * @param {*} [loadModule]
+ * @param {Injector} [otherInjector]
+ * @param {Map<any, any>} [provideAndInstanceMap]
  * @returns {any[]}
  */
-function injector(_constructor, rootModule, loadModule) {
-  var args = []; // for ts Dependency Injection
+function inject(_constructor, otherInjector, provideAndInstanceMap) {
+  var args = [];
+  var _needInjectedClass = [];
+  if (_constructor._needInjectedClass) _needInjectedClass = _constructor._needInjectedClass;
+  if (_constructor.injectTokens) _needInjectedClass = _constructor.injectTokens;
+  if (_needInjectedClass.length === 0) return args;
 
-  if (_constructor._needInjectedClass) {
-    _constructor._needInjectedClass.forEach(function (key) {
-      // component injector: find service Class in providerList in Component
-      if (_constructor.prototype.$providerList) {
-        var _componentService = _constructor.prototype.$providerList.get(key);
+  _needInjectedClass.forEach(function (key) {
+    // inject InDiv instance fro NvModule
+    if (provideAndInstanceMap && provideAndInstanceMap.has(key)) return args.push(provideAndInstanceMap.get(key)); // constructor injector: find service Class in providerList in _constructor
 
-        if (_componentService && !_componentService.useClass && !_componentService.useValue) return args.push(factoryCreator(_componentService, rootModule, loadModule));
-        if (_componentService && _componentService.useClass) return args.push(factoryCreator(_componentService.useClass, rootModule, loadModule));
-        if (_componentService && _componentService.useValue) return args.push(_componentService.useValue);
-      } // root injector: find service Class in _injectedProviders in loadModule or rootModule
+    if (_constructor.prototype.$providerList) {
+      var _constructorService = _constructor.prototype.$providerList.get(key);
+
+      if (_constructorService && !_constructorService.useClass && !_constructorService.useValue) return args.push(factoryCreator(_constructorService, otherInjector, provideAndInstanceMap));
+      if (_constructorService && _constructorService.useClass) return args.push(factoryCreator(_constructorService.useClass, otherInjector, provideAndInstanceMap));
+      if (_constructorService && _constructorService.useValue) return args.push(_constructorService.useValue);
+    } // root injector: find service Class in otherInjector or rootInjector
 
 
-      var _service = null;
-      var fromModule = null; // loadModule first
+    var _service = null;
+    var fromInjector = null; // otherInjector first
 
-      if (loadModule && loadModule.$providerList.has(key)) {
-        _service = loadModule.$providerList.get(key);
-        fromModule = loadModule;
-      } else if (rootModule && rootModule.$providerList.has(key)) {
-        _service = rootModule.$providerList.get(key);
-        fromModule = rootModule;
-      } else throw new Error("injector injects service error: can't find provide: " + key.name + " in Component " + _constructor);
+    if (otherInjector && otherInjector.getProvider(key)) {
+      _service = otherInjector.getProvider(key);
+      fromInjector = otherInjector;
+    } else if (_injector.rootInjector && _injector.rootInjector.getProvider(key)) {
+      _service = _injector.rootInjector.getProvider(key);
+      fromInjector = _injector.rootInjector;
+    } else throw new Error("injector injects service error: can't find provide: " + key.name + " in constructor " + _constructor);
 
-      var findService = null;
-      if (_service && !_service.useClass && !_service.useValue) findService = _service;
-      if (_service && _service.useClass) findService = _service.useClass;
-      if (_service && _service.useValue) return args.push(_service.useValue);
-      if (!findService) throw new Error("injector injects service error: can't find provide: " + key.name + " in Component " + _constructor); // if service isn't a singleton service
+    var findService = null;
+    if (_service && !_service.useClass && !_service.useValue) findService = _service;
+    if (_service && _service.useClass) findService = _service.useClass;
+    if (_service && _service.useValue) return args.push(_service.useValue);
+    if (!findService) throw new Error("injector injects service error: can't find provide: " + key.name + " in constructor " + _constructor); // if service isn't a singleton service
 
-      if (findService && !findService.isSingletonMode) args.push(factoryCreator(findService, rootModule, fromModule)); // if service is a singleton service
+    if (findService && !findService.isSingletonMode) args.push(factoryCreator(findService, otherInjector, provideAndInstanceMap)); // if service is a singleton service
 
-      if (findService && findService.isSingletonMode) {
-        // if root injector: $providerInstances has this key
-        var findServiceInStance = fromModule.$providerInstances.has(key) ? fromModule.$providerInstances.get(key) : null;
-        if (findServiceInStance) args.push(findServiceInStance);
+    if (findService && findService.isSingletonMode) {
+      var findServiceInStance = fromInjector.getInstance(key) ? fromInjector.getInstance(key) : null;
+      if (findServiceInStance) args.push(findServiceInStance);
 
-        if (!findServiceInStance) {
-          var serviceInStance = factoryCreator(findService, rootModule, fromModule);
-          fromModule.$providerInstances.set(key, serviceInStance);
-          args.push(serviceInStance);
-        }
+      if (!findServiceInStance) {
+        var serviceInStance = factoryCreator(findService, otherInjector, provideAndInstanceMap);
+        fromInjector.setInstance(key, serviceInStance);
+        args.push(serviceInStance);
       }
-    });
-  } // for js Dependency Injection
-
-
-  if (_constructor.injectTokens) {
-    _constructor.injectTokens.forEach(function (key) {
-      // component injector: find service Class in providerList in Component
-      if (_constructor.prototype.$providerList) {
-        var _componentService = _constructor.prototype.$providerList.get(key);
-
-        if (_componentService && !_componentService.useClass && !_componentService.useValue) throw new Error("injector injects service error: can't find provide: " + key + " in Component " + _constructor);
-        if (_componentService && _componentService.useClass) return args.push(factoryCreator(_componentService.useClass, rootModule, loadModule));
-        if (_componentService && _componentService.useValue) return args.push(_componentService.useValue);
-      } // root injector: find service Class in _injectedProviders in in loadModule or rootModule
-
-
-      var _service = null;
-      var fromModule = null; // loadModule first
-
-      if (loadModule && loadModule.$providerList.has(key)) {
-        _service = loadModule.$providerList.get(key);
-        fromModule = loadModule;
-      } else if (rootModule && rootModule.$providerList.has(key)) {
-        _service = rootModule.$providerList.get(key);
-        fromModule = rootModule;
-      } else throw new Error("injector injects service error: can't find provide: " + key + " in Component " + _constructor);
-
-      var findService = null;
-      if (_service && !_service.useClass && !_service.useValue) throw new Error("injector injects service error: can't find provide: " + key + " in Component " + _constructor);
-      if (_service && _service.useClass) findService = _service.useClass;
-      if (_service && _service.useValue) return args.push(_service.useValue);
-      if (!findService) throw new Error("injector injects service error: can't find provide: " + key + " in Component " + _constructor); // if service isn't a singleton service
-
-      if (findService && !findService.isSingletonMode) args.push(factoryCreator(findService, rootModule, fromModule)); // if service is a singleton service
-
-      if (findService && findService.isSingletonMode) {
-        var findServiceInStance = rootModule.$providerInstances.has(key) ? rootModule.$providerInstances.get(key) : null;
-        if (findServiceInStance) args.push(findServiceInStance);
-
-        if (!findServiceInStance) {
-          var serviceInStance = factoryCreator(findService, rootModule, fromModule);
-          fromModule.$providerInstances.set(key, serviceInStance);
-          args.push(serviceInStance);
-        }
-      }
-    });
-  }
+    }
+  });
 
   return args;
 }
@@ -4205,19 +4556,21 @@ function injector(_constructor, rootModule, loadModule) {
  * create an instance with factory method
  *
  * @export
+ * @template K
+ * @template V
  * @param {Function} _constructor
- * @param {*} rootModule
- * @param {*} [loadModule]
+ * @param {Injector} [otherInjector]
+ * @param {Map<K, V>} [provideAndInstanceMap]
  * @returns {*}
  */
 
 
-function factoryCreator(_constructor, rootModule, loadModule) {
-  var args = injector(_constructor, rootModule, loadModule);
+function factoryCreator(_constructor, otherInjector, provideAndInstanceMap) {
+  var args = inject(_constructor, otherInjector, provideAndInstanceMap);
   var factoryInstance = Reflect.construct(_constructor, args);
   return factoryInstance;
 }
-},{}],"../../InDiv/src/di/index.ts":[function(require,module,exports) {
+},{"./injector":"../../InDiv/src/di/injector.ts"}],"../../InDiv/src/di/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4229,16 +4582,10 @@ Object.defineProperty(exports, "Injectable", {
     return _injectable.Injectable;
   }
 });
-Object.defineProperty(exports, "Injected", {
+Object.defineProperty(exports, "inject", {
   enumerable: true,
   get: function () {
-    return _injected.Injected;
-  }
-});
-Object.defineProperty(exports, "injector", {
-  enumerable: true,
-  get: function () {
-    return _factoryCreator.injector;
+    return _factoryCreator.inject;
   }
 });
 Object.defineProperty(exports, "factoryCreator", {
@@ -4247,13 +4594,321 @@ Object.defineProperty(exports, "factoryCreator", {
     return _factoryCreator.factoryCreator;
   }
 });
+Object.defineProperty(exports, "Injector", {
+  enumerable: true,
+  get: function () {
+    return _injector.Injector;
+  }
+});
+Object.defineProperty(exports, "rootInjector", {
+  enumerable: true,
+  get: function () {
+    return _injector.rootInjector;
+  }
+});
 
 var _injectable = require("./injectable");
 
-var _injected = require("./injected");
-
 var _factoryCreator = require("./factory-creator");
-},{"./injectable":"../../InDiv/src/di/injectable.ts","./injected":"../../InDiv/src/di/injected.ts","./factory-creator":"../../InDiv/src/di/factory-creator.ts"}],"../../InDiv/src/nv-module/utils.ts":[function(require,module,exports) {
+
+var _injector = require("./injector");
+},{"./injectable":"../../InDiv/src/di/injectable.ts","./factory-creator":"../../InDiv/src/di/factory-creator.ts","./injector":"../../InDiv/src/di/injector.ts"}],"../../InDiv/src/indiv/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "ElementRef", {
+  enumerable: true,
+  get: function () {
+    return _types.ElementRef;
+  }
+});
+exports.InDiv = void 0;
+
+var _types = require("../types");
+
+var _utils = require("../utils");
+
+var _di = require("../di");
+
+var _nvModule = require("../nv-module");
+
+var _platformBrowser = require("../platform-browser");
+
+var utils = new _utils.Utils();
+/**
+ * main: for new InDiv
+ *
+ * @class InDiv
+ */
+
+var InDiv =
+/** @class */
+function () {
+  function InDiv() {
+    this.modalList = [];
+    if (!utils.isBrowser()) return;
+    this.rootDom = document.querySelector('#root');
+    this.$rootPath = '/';
+    this.$canRenderModule = true;
+    this.$routeDOMKey = 'router-render';
+    this.$rootModule = null; // render,reRender for Component
+    // developer can use function use(modal: IMiddleware<InDiv>): number to change render and reRender
+
+    this.render = _platformBrowser.render;
+    this.reRender = _platformBrowser.render;
+  }
+  /**
+   * for using middleware and use bootstrap method of middleware
+   *
+   * @param {IMiddleware<InDiv>} modal
+   * @returns {number}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.use = function (modal) {
+    modal.bootstrap(this);
+    this.modalList.push(modal);
+    return this.modalList.length - 1;
+  };
+  /**
+   * for Middleware set RootPath
+   *
+   * if not use, rootPath will be <router-render />
+   *
+   * @param {string} rootPath
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.setRootPath = function (rootPath) {
+    if (rootPath && typeof rootPath === 'string') {
+      this.$rootPath = rootPath;
+    } else {
+      throw new Error('rootPath is not defined or rootPath must be a String');
+    }
+  };
+  /**
+   * get RootPath for InDiv
+   *
+   * @returns {string}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.getRootPath = function () {
+    return this.$rootPath;
+  };
+  /**
+   * set component Render function
+   *
+   * @template R
+   * @template Re
+   * @param {R} [render]
+   * @param {Re} [reRender]
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.setComponentRender = function (render, reRender) {
+    this.render = render;
+    this.reRender = reRender ? reRender : render;
+  };
+  /**
+   * get component Render function
+   *
+   * @returns {{ render: () => Promise<IComponent>, reRender: () => Promise<IComponent> }}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.getComponentRender = function () {
+    return {
+      render: this.render,
+      reRender: this.reRender
+    };
+  };
+  /**
+   * set InDiv can render module's bootstrap
+   *
+   * @param {boolean} canRenderModule
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.setCanRenderModule = function (canRenderModule) {
+    this.$canRenderModule = canRenderModule;
+  };
+  /**
+   * get InDiv can render module's bootstrap
+   *
+   * @returns {boolean}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.getCanRenderModule = function () {
+    return this.$canRenderModule;
+  };
+  /**
+   * set route's DOM tag name
+   *
+   * @param {string} routeDOMKey
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.setRouteDOMKey = function (routeDOMKey) {
+    this.$routeDOMKey = routeDOMKey;
+  };
+  /**
+   * get route's DOM tag name
+   *
+   * @returns {string}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.getRouteDOMKey = function () {
+    return this.$routeDOMKey;
+  };
+  /**
+   * get root module in InDiv
+   *
+   * @returns {INvModule}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.getRootModule = function () {
+    return this.$rootModule;
+  };
+  /**
+   * get root module in root module
+   *
+   * @returns {Function[]}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.getDirectives = function () {
+    return this.$declarations;
+  };
+  /**
+   * bootstrap NvModule
+   *
+   * if not use Route it will be used
+   *
+   * @param {Function} Esmodule
+   * @returns {void}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.bootstrapModule = function (Esmodule) {
+    if (!Esmodule) throw new Error('must send a root module');
+    this.$rootModule = (0, _nvModule.factoryModule)(Esmodule, null, this);
+    this.$declarations = this.$rootModule.$declarations.slice();
+  };
+  /**
+   * init InDiv and renderModuleBootstrap()
+   *
+   * @returns {void}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.init = function () {
+    if (!utils.isBrowser()) return;
+    if (!this.$rootModule) throw new Error('must use bootstrapModule to declare a root NvModule before init');
+    if (this.$canRenderModule) this.renderModuleBootstrap();
+  };
+  /**
+   * render NvModule Bootstrap
+   *
+   * @returns {void}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.renderModuleBootstrap = function () {
+    if (!this.$rootModule.$bootstrap) throw new Error('need bootstrap for render Module Bootstrap');
+    var BootstrapComponent = this.$rootModule.$bootstrap;
+    this.renderComponent(BootstrapComponent, this.rootDom);
+  };
+  /**
+   * expose function for render Component
+   *
+   * if otherModule don't has use rootModule
+   *
+   * if has otherInjector, build component will use otherInjector instead of rootInjector
+   *
+   * @param {Function} BootstrapComponent
+   * @param {Element} renderDOM
+   * @param {INvModule} [otherModule]
+   * @param {Injector} [otherInjector]
+   * @returns {Promise<IComponent>}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.renderComponent = function (BootstrapComponent, renderDOM, otherModule, otherInjector) {
+    var provideAndInstanceMap = new Map();
+    provideAndInstanceMap.set(InDiv, this);
+    provideAndInstanceMap.set(_types.ElementRef, renderDOM);
+    var component = (0, _di.factoryCreator)(BootstrapComponent, otherInjector, provideAndInstanceMap);
+    component.$vm = this;
+
+    if (otherModule) {
+      otherModule.$declarations.forEach(function (findDeclaration) {
+        if (!component.$declarationMap.has(findDeclaration.$selector)) component.$declarationMap.set(findDeclaration.$selector, findDeclaration);
+      });
+    } else {
+      this.$rootModule.$declarations.forEach(function (findDeclaration) {
+        if (!component.$declarationMap.has(findDeclaration.$selector)) component.$declarationMap.set(findDeclaration.$selector, findDeclaration);
+      });
+    }
+
+    component.render = this.render.bind(component);
+    component.reRender = this.reRender.bind(component);
+    component.otherInjector = otherInjector;
+    if (component.nvOnInit) component.nvOnInit();
+    if (component.watchData) component.watchData();
+    if (!component.$template) throw new Error('must decaler this.$template in bootstrap()');
+    var template = component.$template;
+
+    if (template && typeof template === 'string' && renderDOM) {
+      if (component.nvBeforeMount) component.nvBeforeMount();
+      return this.replaceDom(component, renderDOM).then(function (_component) {
+        if (_component.nvAfterMount) _component.nvAfterMount();
+        return _component;
+      });
+    } else {
+      throw new Error('renderBootstrap failed: template or rootDom is not exit');
+    }
+  };
+  /**
+   * render adn replace DOM
+   *
+   * @param {IComponent} component
+   * @param {Element} renderDOM
+   * @returns {Promise<IComponent>}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.replaceDom = function (component, renderDOM) {
+    component.renderDom = renderDOM;
+    return component.render();
+  };
+
+  return InDiv;
+}();
+
+exports.InDiv = InDiv;
+},{"../types":"../../InDiv/src/types/index.ts","../utils":"../../InDiv/src/utils/index.ts","../di":"../../InDiv/src/di/index.ts","../nv-module":"../../InDiv/src/nv-module/index.ts","../platform-browser":"../../InDiv/src/platform-browser/index.ts"}],"../../InDiv/src/nv-module/utils.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4263,16 +4918,23 @@ exports.factoryModule = factoryModule;
 
 var _di = require("../di");
 
+var _indiv = require("../indiv");
+
 /**
  * build provider list in module
  *
  * set Map $providerList in module
  *
+ * otherInjector first
+ * rootInjector second
+ *
  * @param {INvModule} moduleInstance
+ * @param {Injector} otherInjector
  * @returns {void}
  */
-function buildProviderList(moduleInstance) {
+function buildProviderList(moduleInstance, otherInjector) {
   if (!moduleInstance.$providers) return;
+  var injector = otherInjector ? otherInjector : _di.rootInjector;
   var length = moduleInstance.$providers.length;
 
   for (var i = 0; i < length; i++) {
@@ -4280,110 +4942,124 @@ function buildProviderList(moduleInstance) {
 
     if (service.provide) {
       if (service.useClass || service.useValue) moduleInstance.$providerList.set(service.provide, service);
+      if (service.useClass || service.useValue) injector.setProvider(service.provide, service);
     } else {
       moduleInstance.$providerList.set(service, service);
+      injector.setProvider(service, service);
     }
-  }
-}
-/**
- * build provider list for component in module
- *
- * set Map _injectedComponents in component
- *
- * @param {INvModule} moduleInstance
- * @returns {void}
- */
-
-
-function buildComponents4Components(moduleInstance) {
-  if (!moduleInstance.$components) return;
-  var length = moduleInstance.$components.length;
-
-  var _loop_1 = function _loop_1(i) {
-    var FindComponent = moduleInstance.$components[i];
-    if (!FindComponent._injectedComponents) FindComponent._injectedComponents = new Map();
-    moduleInstance.$components.forEach(function (needInjectComponent) {
-      if (!FindComponent._injectedComponents.has(needInjectComponent.$selector)) FindComponent._injectedComponents.set(needInjectComponent.$selector, needInjectComponent);
-    });
-  };
-
-  for (var i = 0; i < length; i++) {
-    _loop_1(i);
   }
 }
 /**
  * build $imports for module
  *
+ * otherInjector first
+ * rootInjector second
+ *
  * @param {INvModule} moduleInstance
+ * @param {InDiv} [indivInstance]
+ * @param {Injector} [otherInjector]
  * @returns {void}
  */
 
 
-function buildImports(moduleInstance) {
+function buildImports(moduleInstance, indivInstance, otherInjector) {
   if (!moduleInstance.$imports) return;
+  var injector = otherInjector ? otherInjector : _di.rootInjector;
   var length = moduleInstance.$imports.length;
 
   for (var i = 0; i < length; i++) {
-    var ModuleImport = moduleInstance.$imports[i];
-    var moduleImport = factoryModule(ModuleImport); // build exports
+    var ModuleImport = moduleInstance.$imports[i]; // push InDiv instance
 
-    var exportsLength = moduleImport.$exportsList.length;
+    var moduleImport = factoryModule(ModuleImport, otherInjector, indivInstance); // build exports
 
-    var _loop_2 = function _loop_2(i_1) {
-      var exportFromModule = moduleImport.$exportsList[i_1];
-      if (!moduleInstance.$components.find(function (component) {
-        return component.$selector === exportFromModule.$selector;
-      })) moduleInstance.$components.push(exportFromModule);
-    };
+    if (moduleImport.$exportsList) {
+      var exportsLength = moduleImport.$exportsList.length;
 
-    for (var i_1 = 0; i_1 < exportsLength; i_1++) {
-      _loop_2(i_1);
+      var _loop_1 = function _loop_1(i_1) {
+        var exportFromModule = moduleImport.$exportsList[i_1];
+        if (moduleInstance.$declarations && !moduleInstance.$declarations.find(function (declaration) {
+          return declaration.$selector === exportFromModule.$selector;
+        })) moduleInstance.$declarations.push(exportFromModule);
+      };
+
+      for (var i_1 = 0; i_1 < exportsLength; i_1++) {
+        _loop_1(i_1);
+      }
     } // export providerList
 
 
     if (moduleImport.$providerList) {
       moduleImport.$providerList.forEach(function (value, key) {
         if (!moduleInstance.$providerList.has(key)) moduleInstance.$providerList.set(key, value);
+        injector.setProvider(key, value);
       });
     }
   }
 }
 /**
- * build $exportsList for module
+ * build provider list for declaration in module
+ *
+ * set static $declarations: [] in declaration
+ *
+ * otherInjector first
+ * rootInjector second
  *
  * @param {INvModule} moduleInstance
  * @returns {void}
  */
 
 
-function buildExports(moduleInstance) {
+function buildDeclarations4Declarations(moduleInstance) {
+  if (!moduleInstance.$declarations) return;
+  var length = moduleInstance.$declarations.length;
+
+  var _loop_2 = function _loop_2(i) {
+    var FindDeclaration = moduleInstance.$declarations[i];
+    moduleInstance.$declarations.forEach(function (needInjectDeclaration) {
+      if (!FindDeclaration.prototype.$declarationMap.has(needInjectDeclaration.$selector)) FindDeclaration.prototype.$declarationMap.set(needInjectDeclaration.$selector, needInjectDeclaration);
+    });
+  };
+
+  for (var i = 0; i < length; i++) {
+    _loop_2(i);
+  }
+}
+/**
+ * build $exportsList for module
+ *
+ * @param {INvModule} moduleInstance
+ * @param {InDiv} [indivInstance]
+ * @param {Injector} [otherInjector]
+ * @returns {void}
+ */
+
+
+function buildExports(moduleInstance, indivInstance, otherInjector) {
   if (!moduleInstance.$exports) return;
   var length = moduleInstance.$exports.length;
 
   var _loop_3 = function _loop_3(i) {
-    var ModuleExport = moduleInstance.$exports[i]; // 如果导出的是模块
+    var ModuleExport = moduleInstance.$exports[i]; // if export is NvModule, exports from NvModule will be exported again from this module
 
     if (ModuleExport.nvType === 'nvModule') {
-      var moduleInstanceOfExport = factoryModule(ModuleExport); // 被导出的模块中的导出
-
+      var moduleInstanceOfExport = factoryModule(ModuleExport, otherInjector, indivInstance);
       var moduleInstanceOfExportLength = moduleInstanceOfExport.$exportsList.length;
 
       var _loop_4 = function _loop_4(j) {
         var moduleExportFromModuleOfExport = moduleInstanceOfExport.$exportsList[j];
-        if (!moduleInstance.$exportsList.find(function (component) {
-          return component.$selector === moduleExportFromModuleOfExport.$selector;
+        if (!moduleInstance.$exportsList.find(function (declaration) {
+          return declaration.$selector === moduleExportFromModuleOfExport.$selector;
         })) moduleInstance.$exportsList.push(moduleExportFromModuleOfExport);
       };
 
       for (var j = 0; j < moduleInstanceOfExportLength; j++) {
         _loop_4(j);
       }
-    } // 如果导出的是组件
-
+    }
 
     if (ModuleExport.nvType !== 'nvModule') {
-      if (!moduleInstance.$exportsList.find(function (component) {
-        return component.$selector === ModuleExport.$selector;
+      if (!moduleInstance.$exportsList.find(function (declaration) {
+        return declaration.$selector === ModuleExport.$selector;
       })) moduleInstance.$exportsList.push(ModuleExport);
     }
   };
@@ -4400,18 +5076,22 @@ function buildExports(moduleInstance) {
  *
  * @export
  * @param {Function} NM
+ * @param {Injector} [otherInjector]
+ * @param {InDiv} [indivInstance]
  * @returns {INvModule}
  */
 
 
-function factoryModule(NM) {
-  buildProviderList(NM.prototype);
-  buildComponents4Components(NM.prototype);
-  buildImports(NM.prototype);
-  buildExports(NM.prototype);
-  return (0, _di.factoryCreator)(NM, NM.prototype);
+function factoryModule(NM, otherInjector, indivInstance) {
+  var provideAndInstanceMap = new Map();
+  if (indivInstance) provideAndInstanceMap.set(_indiv.InDiv, indivInstance);
+  buildProviderList(NM.prototype, otherInjector);
+  buildImports(NM.prototype, indivInstance, otherInjector);
+  buildDeclarations4Declarations(NM.prototype);
+  buildExports(NM.prototype, indivInstance, otherInjector);
+  return (0, _di.factoryCreator)(NM, otherInjector, provideAndInstanceMap);
 }
-},{"../di":"../../InDiv/src/di/index.ts"}],"../../InDiv/src/nv-module/index.ts":[function(require,module,exports) {
+},{"../di":"../../InDiv/src/di/index.ts","../indiv":"../../InDiv/src/indiv/index.ts"}],"../../InDiv/src/nv-module/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4424,6 +5104,8 @@ Object.defineProperty(exports, "factoryModule", {
     return _utils.factoryModule;
   }
 });
+
+var _injected = require("../di/injected");
 
 var _utils = require("./utils");
 
@@ -4438,12 +5120,13 @@ var _utils = require("./utils");
  */
 function NvModule(options) {
   return function (_constructor) {
+    (0, _injected.injected)(_constructor);
     _constructor.nvType = 'nvModule';
     var vm = _constructor.prototype;
     vm.$providerList = new Map();
     vm.$providerInstances = new Map();
     if (options.imports) vm.$imports = options.imports;
-    if (options.components) vm.$components = options.components;
+    if (options.declarations) vm.$declarations = options.declarations;
     if (options.providers) vm.$providers = options.providers;
 
     if (options.exports) {
@@ -4454,1213 +5137,303 @@ function NvModule(options) {
     if (options.bootstrap) vm.$bootstrap = options.bootstrap;
   };
 }
-},{"./utils":"../../InDiv/src/nv-module/utils.ts"}],"../../InDiv/src/types/platform-browser/compile-utils.ts":[function(require,module,exports) {
-
-},{}],"../../InDiv/src/types/platform-browser/render-task.ts":[function(require,module,exports) {
-
-},{}],"../../InDiv/src/types/component.ts":[function(require,module,exports) {
-
-},{}],"../../InDiv/src/types/indiv.ts":[function(require,module,exports) {
-
-},{}],"../../InDiv/src/types/nv-module.ts":[function(require,module,exports) {
-
-},{}],"../../InDiv/src/types/key-watcher.ts":[function(require,module,exports) {
-
-},{}],"../../InDiv/src/types/platform-browser/router.ts":[function(require,module,exports) {
-
-},{}],"../../InDiv/src/types/platform-browser/virtual-dom.ts":[function(require,module,exports) {
-
-},{}],"../../InDiv/src/types/watcher.ts":[function(require,module,exports) {
-
-},{}],"../../InDiv/src/types/http-client.ts":[function(require,module,exports) {
-
-},{}],"../../InDiv/src/types/index.ts":[function(require,module,exports) {
+},{"../di/injected":"../../InDiv/src/di/injected.ts","./utils":"../../InDiv/src/nv-module/utils.ts"}],"../../InDiv/src/InDiv/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "ICompileUtil", {
+Object.defineProperty(exports, "ElementRef", {
   enumerable: true,
   get: function () {
-    return _compileUtils.ICompileUtil;
+    return _types.ElementRef;
   }
 });
-Object.defineProperty(exports, "IRenderTaskQueue", {
-  enumerable: true,
-  get: function () {
-    return _renderTask.IRenderTaskQueue;
-  }
-});
-Object.defineProperty(exports, "ComponentList", {
-  enumerable: true,
-  get: function () {
-    return _component.ComponentList;
-  }
-});
-Object.defineProperty(exports, "IComponent", {
-  enumerable: true,
-  get: function () {
-    return _component.IComponent;
-  }
-});
-Object.defineProperty(exports, "SetState", {
-  enumerable: true,
-  get: function () {
-    return _component.SetState;
-  }
-});
-Object.defineProperty(exports, "IMiddleware", {
-  enumerable: true,
-  get: function () {
-    return _indiv.IMiddleware;
-  }
-});
-Object.defineProperty(exports, "EsRouteObject", {
-  enumerable: true,
-  get: function () {
-    return _indiv.EsRouteObject;
-  }
-});
-Object.defineProperty(exports, "IInDiv", {
-  enumerable: true,
-  get: function () {
-    return _indiv.IInDiv;
-  }
-});
-Object.defineProperty(exports, "INvModule", {
-  enumerable: true,
-  get: function () {
-    return _nvModule.INvModule;
-  }
-});
-Object.defineProperty(exports, "TInjectTokenProvider", {
-  enumerable: true,
-  get: function () {
-    return _nvModule.TInjectTokenProvider;
-  }
-});
-Object.defineProperty(exports, "TUseClassProvider", {
-  enumerable: true,
-  get: function () {
-    return _nvModule.TUseClassProvider;
-  }
-});
-Object.defineProperty(exports, "TuseValueProvider", {
-  enumerable: true,
-  get: function () {
-    return _nvModule.TuseValueProvider;
-  }
-});
-Object.defineProperty(exports, "IKeyWatcher", {
-  enumerable: true,
-  get: function () {
-    return _keyWatcher.IKeyWatcher;
-  }
-});
-Object.defineProperty(exports, "TRouter", {
-  enumerable: true,
-  get: function () {
-    return _router.TRouter;
-  }
-});
-Object.defineProperty(exports, "TChildModule", {
-  enumerable: true,
-  get: function () {
-    return _router.TChildModule;
-  }
-});
-Object.defineProperty(exports, "TLoadChild", {
-  enumerable: true,
-  get: function () {
-    return _router.TLoadChild;
-  }
-});
-Object.defineProperty(exports, "IVnode", {
-  enumerable: true,
-  get: function () {
-    return _virtualDom.IVnode;
-  }
-});
-Object.defineProperty(exports, "TAttributes", {
-  enumerable: true,
-  get: function () {
-    return _virtualDom.TAttributes;
-  }
-});
-Object.defineProperty(exports, "IPatchList", {
-  enumerable: true,
-  get: function () {
-    return _virtualDom.IPatchList;
-  }
-});
-Object.defineProperty(exports, "TFnWatcher", {
-  enumerable: true,
-  get: function () {
-    return _watcher.TFnWatcher;
-  }
-});
-Object.defineProperty(exports, "TFnRender", {
-  enumerable: true,
-  get: function () {
-    return _watcher.TFnRender;
-  }
-});
-Object.defineProperty(exports, "IWatcher", {
-  enumerable: true,
-  get: function () {
-    return _watcher.IWatcher;
-  }
-});
-Object.defineProperty(exports, "HttpClientRequestConfig", {
-  enumerable: true,
-  get: function () {
-    return _httpClient.HttpClientRequestConfig;
-  }
-});
-Object.defineProperty(exports, "HttpClientResponse", {
-  enumerable: true,
-  get: function () {
-    return _httpClient.HttpClientResponse;
-  }
-});
-Object.defineProperty(exports, "HttpClientRequestInstance", {
-  enumerable: true,
-  get: function () {
-    return _httpClient.HttpClientRequestInstance;
-  }
-});
+exports.InDiv = void 0;
 
-var _compileUtils = require("./platform-browser/compile-utils");
+var _types = require("../types");
 
-var _renderTask = require("./platform-browser/render-task");
+var _utils = require("../utils");
 
-var _component = require("./component");
+var _di = require("../di");
 
-var _indiv = require("./indiv");
+var _nvModule = require("../nv-module");
 
-var _nvModule = require("./nv-module");
-
-var _keyWatcher = require("./key-watcher");
-
-var _router = require("./platform-browser/router");
-
-var _virtualDom = require("./platform-browser/virtual-dom");
-
-var _watcher = require("./watcher");
-
-var _httpClient = require("./http-client");
-},{"./platform-browser/compile-utils":"../../InDiv/src/types/platform-browser/compile-utils.ts","./platform-browser/render-task":"../../InDiv/src/types/platform-browser/render-task.ts","./component":"../../InDiv/src/types/component.ts","./indiv":"../../InDiv/src/types/indiv.ts","./nv-module":"../../InDiv/src/types/nv-module.ts","./key-watcher":"../../InDiv/src/types/key-watcher.ts","./platform-browser/router":"../../InDiv/src/types/platform-browser/router.ts","./platform-browser/virtual-dom":"../../InDiv/src/types/platform-browser/virtual-dom.ts","./watcher":"../../InDiv/src/types/watcher.ts","./http-client":"../../InDiv/src/types/http-client.ts"}],"../../InDiv/src/platform-browser/router/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getLocation = getLocation;
-exports.setLocation = setLocation;
-Object.defineProperty(exports, "TRouter", {
-  enumerable: true,
-  get: function () {
-    return _types.TRouter;
-  }
-});
-exports.Router = void 0;
-
-var _utils = require("../../utils");
-
-var _keyWatcher = require("../../key-watcher");
-
-var _nvModule = require("../../nv-module");
-
-var _types = require("../../types");
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-var __awaiter = void 0 && (void 0).__awaiter || function (thisArg, _arguments, P, generator) {
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function rejected(value) {
-      try {
-        step(generator["throw"](value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-
-    function step(result) {
-      result.done ? resolve(result.value) : new P(function (resolve) {
-        resolve(result.value);
-      }).then(fulfilled, rejected);
-    }
-
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
-};
-
-var __generator = void 0 && (void 0).__generator || function (thisArg, body) {
-  var _ = {
-    label: 0,
-    sent: function sent() {
-      if (t[0] & 1) throw t[1];
-      return t[1];
-    },
-    trys: [],
-    ops: []
-  },
-      f,
-      y,
-      t,
-      g;
-  return g = {
-    next: verb(0),
-    "throw": verb(1),
-    "return": verb(2)
-  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
-    return this;
-  }), g;
-
-  function verb(n) {
-    return function (v) {
-      return step([n, v]);
-    };
-  }
-
-  function step(op) {
-    if (f) throw new TypeError("Generator is already executing.");
-
-    while (_) {
-      try {
-        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-        if (y = 0, t) op = [op[0] & 2, t.value];
-
-        switch (op[0]) {
-          case 0:
-          case 1:
-            t = op;
-            break;
-
-          case 4:
-            _.label++;
-            return {
-              value: op[1],
-              done: false
-            };
-
-          case 5:
-            _.label++;
-            y = op[1];
-            op = [0];
-            continue;
-
-          case 7:
-            op = _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-
-          default:
-            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-              _ = 0;
-              continue;
-            }
-
-            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-              _.label = op[1];
-              break;
-            }
-
-            if (op[0] === 6 && _.label < t[1]) {
-              _.label = t[1];
-              t = op;
-              break;
-            }
-
-            if (t && _.label < t[2]) {
-              _.label = t[2];
-
-              _.ops.push(op);
-
-              break;
-            }
-
-            if (t[2]) _.ops.pop();
-
-            _.trys.pop();
-
-            continue;
-        }
-
-        op = body.call(thisArg, _);
-      } catch (e) {
-        op = [6, e];
-        y = 0;
-      } finally {
-        f = t = 0;
-      }
-    }
-
-    if (op[0] & 5) throw op[1];
-    return {
-      value: op[0] ? op[1] : void 0,
-      done: true
-    };
-  }
-};
+var _platformBrowser = require("../platform-browser");
 
 var utils = new _utils.Utils();
-var esRouteStatus = {
-  esRouteObject: {
-    path: null,
-    query: {},
-    data: null
-  },
-  esRouteParmasObject: {}
-};
 /**
- * route for InDiv
+ * main: for new InDiv
  *
- * @export
- * @class Router
+ * @class InDiv
  */
 
-var Router =
+var InDiv =
 /** @class */
 function () {
-  function Router() {
-    this.routes = [];
-    this.routesList = [];
-    this.currentUrl = '';
-    this.lastRoute = null;
+  function InDiv() {
+    this.modalList = [];
+    if (!utils.isBrowser()) return;
+    this.rootDom = document.querySelector('#root');
     this.$rootPath = '/';
-    this.hasRenderComponentList = [];
-    this.needRedirectPath = null;
-    this.$vm = null;
-    this.watcher = null;
-    this.renderRouteList = [];
-    this.loadModuleMap = new Map();
+    this.$canRenderModule = true;
+    this.$routeDOMKey = 'router-render';
+    this.$rootModule = null; // render,reRender for Component
+    // developer can use function use(modal: IMiddleware<InDiv>): number to change render and reRender
+
+    this.render = _platformBrowser.render;
+    this.reRender = _platformBrowser.render;
   }
   /**
-   * bootstrap and init watch $esRouteParmasObject in InDiv
+   * for using middleware and use bootstrap method of middleware
    *
-   * @param {IInDiv} vm
-   * @returns {void}
-   * @memberof Router
+   * @param {IMiddleware<InDiv>} modal
+   * @returns {number}
+   * @memberof InDiv
    */
 
 
-  Router.prototype.bootstrap = function (vm) {
-    var _this = this;
-
-    this.$vm = vm;
-    this.$vm.setRootPath(this.$rootPath);
-    this.$vm.$canRenderModule = false;
-    this.$vm.$routeDOMKey = 'router-render';
-    if (!utils.isBrowser()) return;
-    window.addEventListener('load', this.refresh.bind(this), false);
-    window.addEventListener('popstate', function () {
-      var path;
-
-      if (_this.$rootPath === '/') {
-        path = location.pathname || '/';
-      } else {
-        path = location.pathname.replace(_this.$rootPath, '') === '' ? '/' : location.pathname.replace(_this.$rootPath, '');
-      }
-
-      esRouteStatus.esRouteObject = {
-        path: path,
-        query: {},
-        data: null
-      };
-      esRouteStatus.esRouteParmasObject = {};
-    }, false);
+  InDiv.prototype.use = function (modal) {
+    modal.bootstrap(this);
+    this.modalList.push(modal);
+    return this.modalList.length - 1;
   };
   /**
-   * set rootDom
+   * for Middleware set RootPath
    *
-   * @param {TRouter[]} arr
-   * @returns {void}
-   * @memberof Router
-   */
-
-
-  Router.prototype.init = function (arr) {
-    if (!utils.isBrowser()) return;
-
-    if (arr && arr instanceof Array) {
-      this.routes = arr;
-      this.routesList = [];
-    } else {
-      throw new Error("route error: no routes exit");
-    }
-  };
-  /**
-   * set rootPath
+   * if not use, rootPath will be <router-render />
    *
    * @param {string} rootPath
-   * @memberof Router
+   * @memberof InDiv
    */
 
 
-  Router.prototype.setRootPath = function (rootPath) {
+  InDiv.prototype.setRootPath = function (rootPath) {
     if (rootPath && typeof rootPath === 'string') {
       this.$rootPath = rootPath;
     } else {
-      throw new Error('route error: rootPath is not defined or rootPath must be a String');
+      throw new Error('rootPath is not defined or rootPath must be a String');
     }
   };
   /**
-   * redirectTo a path
+   * get RootPath for InDiv
    *
-   * @private
-   * @param {string} redirectTo
-   * @memberof Router
+   * @returns {string}
+   * @memberof InDiv
    */
 
 
-  Router.prototype.redirectTo = function (redirectTo) {
-    var rootPath = this.$rootPath === '/' ? '' : this.$rootPath;
-    history.replaceState(null, null, "" + rootPath + redirectTo);
-    esRouteStatus.esRouteObject = {
-      path: redirectTo || '/',
-      query: {},
-      data: null
-    };
-    esRouteStatus.esRouteParmasObject = {};
+  InDiv.prototype.getRootPath = function () {
+    return this.$rootPath;
   };
   /**
-   * refresh if not watch $esRouteObject
+   * set component Render function
    *
-   * @private
-   * @memberof Router
+   * @template R
+   * @template Re
+   * @param {R} [render]
+   * @param {Re} [reRender]
+   * @memberof InDiv
    */
 
 
-  Router.prototype.refresh = function () {
-    if (!esRouteStatus.esRouteObject || !this.watcher) {
-      var path = void 0;
-
-      if (this.$rootPath === '/') {
-        path = location.pathname || '/';
-      } else {
-        path = location.pathname.replace(this.$rootPath, '') === '' ? '/' : location.pathname.replace(this.$rootPath, '');
-      }
-
-      esRouteStatus.esRouteObject = {
-        path: path,
-        query: {},
-        data: null
-      };
-      esRouteStatus.esRouteParmasObject = {};
-      this.watcher = new _keyWatcher.KeyWatcher(esRouteStatus, 'esRouteObject', this.refresh.bind(this));
-    }
-
-    this.currentUrl = esRouteStatus.esRouteObject.path || '/';
-    this.routesList = [];
-    this.renderRouteList = this.currentUrl === '/' ? ['/'] : this.currentUrl.split('/');
-    this.renderRouteList[0] = '/';
-    this.distributeRoutes();
+  InDiv.prototype.setComponentRender = function (render, reRender) {
+    this.render = render;
+    this.reRender = reRender ? reRender : render;
   };
   /**
-   * distribute routes and decide insert or general Routes
+   * get component Render function
    *
-   * @private
-   * @returns {Promise<any>}
-   * @memberof Router
+   * @returns {{ render: () => Promise<IComponent>, reRender: () => Promise<IComponent> }}
+   * @memberof InDiv
    */
 
 
-  Router.prototype.distributeRoutes = function () {
-    return __awaiter(this, void 0, Promise, function () {
-      return __generator(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            if (!(this.lastRoute && this.lastRoute !== this.currentUrl)) return [3
-            /*break*/
-            , 2]; // has rendered
-
-            esRouteStatus.esRouteParmasObject = {};
-            return [4
-            /*yield*/
-            , this.insertRenderRoutes()];
-
-          case 1:
-            _a.sent();
-
-            return [3
-            /*break*/
-            , 4];
-
-          case 2:
-            // first render
-            return [4
-            /*yield*/
-            , this.generalDistributeRoutes()];
-
-          case 3:
-            // first render
-            _a.sent();
-
-            _a.label = 4;
-
-          case 4:
-            if (this.routeChange) this.routeChange(this.lastRoute, this.currentUrl);
-            this.lastRoute = this.currentUrl;
-
-            if (this.needRedirectPath) {
-              this.redirectTo(this.needRedirectPath);
-              this.needRedirectPath = null;
-            }
-
-            return [2
-            /*return*/
-            ];
-        }
-      });
-    });
-  };
-  /**
-   * insert Routes and render
-   *
-   * if has rendered Routes, it will find which is different and render it
-   *
-   * @private
-   * @returns {Promise<IComponent>}
-   * @memberof Router
-   */
-
-
-  Router.prototype.insertRenderRoutes = function () {
-    return __awaiter(this, void 0, Promise, function () {
-      var lastRouteList, _loop_1, this_1, index, state_1;
-
-      return __generator(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            lastRouteList = this.lastRoute === '/' ? ['/'] : this.lastRoute.split('/');
-            lastRouteList[0] = '/';
-
-            _loop_1 = function _loop_1(index) {
-              var path, rootRoute, lastRoute, route, needRenderRoute, renderDom, key, FindComponent, component, currentUrlPath_1, findComponentFromModuleResult, loadModule, needRenderRoute, key, renderDom, needRenderRoute;
-              return __generator(this, function (_a) {
-                switch (_a.label) {
-                  case 0:
-                    path = this_1.renderRouteList[index];
-
-                    if (index === 0) {
-                      rootRoute = this_1.routes.find(function (route) {
-                        return route.path === "" + path || /^\/\:.+/.test(route.path);
-                      });
-                      if (!rootRoute) throw new Error("route error: wrong route instantiation in insertRenderRoutes: " + this_1.currentUrl);
-                      this_1.routesList.push(rootRoute);
-                    } else {
-                      lastRoute = this_1.routesList[index - 1].children;
-                      if (!lastRoute || !(lastRoute instanceof Array)) throw new Error('route error: routes not exit or routes must be an array!');
-                      route = lastRoute.find(function (r) {
-                        return r.path === "/" + path || /^\/\:.+/.test(r.path);
-                      });
-                      if (!route) throw new Error("route error: wrong route instantiation: " + this_1.currentUrl);
-                      this_1.routesList.push(route);
-                    }
-
-                    if (!(path !== lastRouteList[index])) return [3
-                    /*break*/
-                    , 6];
-                    needRenderRoute = this_1.routesList[index];
-                    if (!needRenderRoute) throw new Error("route error: wrong route instantiation in insertRenderRoutes: " + this_1.currentUrl);
-                    renderDom = document.querySelectorAll('router-render')[index - 1];
-                    if (!needRenderRoute.component && !needRenderRoute.redirectTo && !needRenderRoute.loadChild) throw new Error("route error: path " + needRenderRoute.path + " need a component which has children path or need a redirectTo which has't children path");
-
-                    if (/^\/\:.+/.test(needRenderRoute.path) && !needRenderRoute.redirectTo) {
-                      key = needRenderRoute.path.split('/:')[1];
-                      esRouteStatus.esRouteParmasObject[key] = path;
-                    }
-
-                    FindComponent = null;
-                    component = null;
-                    currentUrlPath_1 = ''; // build current url with route.path
-                    // bucause route has been pushed to this.routesList, don't use to += path
-
-                    this_1.routesList.forEach(function (r, index) {
-                      if (index !== 0) currentUrlPath_1 += r.path;
-                    });
-                    if (!needRenderRoute.component) return [3
-                    /*break*/
-                    , 2];
-                    findComponentFromModuleResult = this_1.findComponentFromModule(needRenderRoute.component, currentUrlPath_1);
-                    FindComponent = findComponentFromModuleResult.component;
-                    return [4
-                    /*yield*/
-                    , this_1.instantiateComponent(FindComponent, renderDom, findComponentFromModuleResult.loadModule)];
-
-                  case 1:
-                    component = _a.sent();
-                    _a.label = 2;
-
-                  case 2:
-                    if (!needRenderRoute.loadChild) return [3
-                    /*break*/
-                    , 5];
-                    return [4
-                    /*yield*/
-                    , this_1.NvModuleFactoryLoader(needRenderRoute.loadChild)];
-
-                  case 3:
-                    loadModule = _a.sent();
-                    this_1.loadModuleMap.set(currentUrlPath_1, loadModule);
-                    FindComponent = loadModule.$bootstrap;
-                    return [4
-                    /*yield*/
-                    , this_1.instantiateComponent(FindComponent, renderDom, loadModule)];
-
-                  case 4:
-                    component = _a.sent();
-                    _a.label = 5;
-
-                  case 5:
-                    if (FindComponent) {
-                      // insert needRenderComponent on index in this.hasRenderComponentList
-                      // and remove other component which index >= index of FindComponent
-                      if (component) {
-                        if (this_1.hasRenderComponentList[index]) this_1.hasRenderComponentList.splice(index, 0, component);
-                        if (!this_1.hasRenderComponentList[index]) this_1.hasRenderComponentList[index] = component;
-                      } else {
-                        throw new Error("route error: path " + needRenderRoute.path + " need a component");
-                      }
-
-                      this_1.routerChangeEvent(index);
-                    }
-
-                    if (needRenderRoute.redirectTo && /^\/.*/.test(needRenderRoute.redirectTo) && index + 1 === this_1.renderRouteList.length) {
-                      this_1.needRedirectPath = needRenderRoute.redirectTo;
-                      return [2
-                      /*return*/
-                      , {
-                        value: void 0
-                      }];
-                    }
-
-                    _a.label = 6;
-
-                  case 6:
-                    // add parmas in $esRouteParmasObject
-                    if (path === lastRouteList[index]) {
-                      needRenderRoute = this_1.routesList[index];
-
-                      if (/^\/\:.+/.test(needRenderRoute.path) && !needRenderRoute.redirectTo) {
-                        key = needRenderRoute.path.split('/:')[1];
-                        esRouteStatus.esRouteParmasObject[key] = path;
-                      }
-                    }
-
-                    if (index === this_1.renderRouteList.length - 1 && index < lastRouteList.length - 1) {
-                      renderDom = document.querySelectorAll('router-render')[index];
-                      this_1.routerChangeEvent(index);
-                      if (renderDom && renderDom.hasChildNodes()) renderDom.removeChild(renderDom.childNodes[0]);
-                      needRenderRoute = this_1.routesList[index];
-
-                      if (needRenderRoute.redirectTo && /^\/.*/.test(needRenderRoute.redirectTo) && index + 1 === this_1.renderRouteList.length) {
-                        this_1.needRedirectPath = needRenderRoute.redirectTo;
-                        return [2
-                        /*return*/
-                        , {
-                          value: void 0
-                        }];
-                      }
-                    }
-
-                    return [2
-                    /*return*/
-                    ];
-                }
-              });
-            };
-
-            this_1 = this;
-            index = 0;
-            _a.label = 1;
-
-          case 1:
-            if (!(index < this.renderRouteList.length)) return [3
-            /*break*/
-            , 4];
-            return [5
-            /*yield**/
-            , _loop_1(index)];
-
-          case 2:
-            state_1 = _a.sent();
-            if (_typeof(state_1) === "object") return [2
-            /*return*/
-            , state_1.value];
-            _a.label = 3;
-
-          case 3:
-            index++;
-            return [3
-            /*break*/
-            , 1];
-
-          case 4:
-            return [2
-            /*return*/
-            ];
-        }
-      });
-    });
-  };
-  /**
-   * render Routes
-   *
-   * first render
-   *
-   * @private
-   * @returns {Promise<IComponent>}
-   * @memberof Router
-   */
-
-
-  Router.prototype.generalDistributeRoutes = function () {
-    return __awaiter(this, void 0, Promise, function () {
-      var _loop_2, this_2, index, state_2;
-
-      return __generator(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            _loop_2 = function _loop_2(index) {
-              var path, rootRoute, rootDom, FindComponent, component, currentUrlPath_2, findComponentFromModuleResult, loadModule, key, lastRoute, route, renderDom, FindComponent, component, currentUrlPath_3, findComponentFromModuleResult, loadModule, key;
-              return __generator(this, function (_a) {
-                switch (_a.label) {
-                  case 0:
-                    path = this_2.renderRouteList[index];
-                    if (!(index === 0)) return [3
-                    /*break*/
-                    , 6];
-                    rootRoute = this_2.routes.find(function (route) {
-                      return route.path === "" + path || /^\/\:.+/.test(route.path);
-                    });
-                    if (!rootRoute) throw new Error("route error: wrong route instantiation in generalDistributeRoutes: " + this_2.currentUrl);
-                    rootDom = document.querySelector('#root');
-                    FindComponent = null;
-                    component = null;
-                    currentUrlPath_2 = ''; // build current url with route.path
-                    // because rootRoute hasn't been pushed to this.routesList, we need to += route.path
-
-                    this_2.routesList.forEach(function (r, index) {
-                      if (index !== 0) currentUrlPath_2 += r.path;
-                    });
-                    currentUrlPath_2 += rootRoute.path;
-                    if (!rootRoute.component) return [3
-                    /*break*/
-                    , 2];
-                    findComponentFromModuleResult = this_2.findComponentFromModule(rootRoute.component, currentUrlPath_2);
-                    FindComponent = findComponentFromModuleResult.component;
-                    return [4
-                    /*yield*/
-                    , this_2.instantiateComponent(FindComponent, rootDom, findComponentFromModuleResult.loadModule)];
-
-                  case 1:
-                    component = _a.sent();
-                    _a.label = 2;
-
-                  case 2:
-                    if (!rootRoute.loadChild) return [3
-                    /*break*/
-                    , 5];
-                    return [4
-                    /*yield*/
-                    , this_2.NvModuleFactoryLoader(rootRoute.loadChild)];
-
-                  case 3:
-                    loadModule = _a.sent();
-                    this_2.loadModuleMap.set(currentUrlPath_2, loadModule);
-                    FindComponent = loadModule.$bootstrap;
-                    return [4
-                    /*yield*/
-                    , this_2.instantiateComponent(FindComponent, rootDom, loadModule)];
-
-                  case 4:
-                    component = _a.sent();
-                    _a.label = 5;
-
-                  case 5:
-                    if (!FindComponent) throw new Error("route error: root route's path: " + rootRoute.path + " need a component");
-
-                    if (/^\/\:.+/.test(rootRoute.path)) {
-                      key = rootRoute.path.split('/:')[1];
-                      esRouteStatus.esRouteParmasObject[key] = path;
-                    }
-
-                    if (!utils.isBrowser()) return [2
-                    /*return*/
-                    , {
-                      value: void 0
-                    }];
-                    this_2.routesList.push(rootRoute); // 因为没有 所有要push进去
-
-                    if (component) this_2.hasRenderComponentList.push(component);
-                    if (index === this_2.renderRouteList.length - 1) this_2.routerChangeEvent(index);
-
-                    if (rootRoute.redirectTo && /^\/.*/.test(rootRoute.redirectTo) && index + 1 === this_2.renderRouteList.length) {
-                      this_2.needRedirectPath = rootRoute.redirectTo;
-                      this_2.renderRouteList.push(rootRoute.redirectTo);
-                      return [2
-                      /*return*/
-                      , {
-                        value: void 0
-                      }];
-                    }
-
-                    return [3
-                    /*break*/
-                    , 12];
-
-                  case 6:
-                    lastRoute = this_2.routesList[index - 1].children;
-                    if (!lastRoute || !(lastRoute instanceof Array)) throw new Error('route error: routes not exit or routes must be an array!');
-                    route = lastRoute.find(function (r) {
-                      return r.path === "/" + path || /^\/\:.+/.test(r.path);
-                    });
-                    if (!route) throw new Error("route error: wrong route instantiation: " + this_2.currentUrl);
-                    renderDom = document.querySelectorAll('router-render')[index - 1];
-                    FindComponent = null;
-                    component = null;
-                    currentUrlPath_3 = ''; // build current url with route.path
-                    // because rootRoute hasn't been pushed to this.routesList, we need to += route.path
-
-                    this_2.routesList.forEach(function (r, index) {
-                      if (index !== 0) currentUrlPath_3 += r.path;
-                    });
-                    currentUrlPath_3 += route.path;
-                    if (!route.component) return [3
-                    /*break*/
-                    , 8];
-                    findComponentFromModuleResult = this_2.findComponentFromModule(route.component, currentUrlPath_3);
-                    FindComponent = findComponentFromModuleResult.component;
-                    return [4
-                    /*yield*/
-                    , this_2.instantiateComponent(FindComponent, renderDom, findComponentFromModuleResult.loadModule)];
-
-                  case 7:
-                    component = _a.sent();
-                    _a.label = 8;
-
-                  case 8:
-                    if (!route.loadChild) return [3
-                    /*break*/
-                    , 11];
-                    return [4
-                    /*yield*/
-                    , this_2.NvModuleFactoryLoader(route.loadChild)];
-
-                  case 9:
-                    loadModule = _a.sent();
-                    this_2.loadModuleMap.set(currentUrlPath_3, loadModule);
-                    FindComponent = loadModule.$bootstrap;
-                    return [4
-                    /*yield*/
-                    , this_2.instantiateComponent(FindComponent, renderDom, loadModule)];
-
-                  case 10:
-                    component = _a.sent();
-                    _a.label = 11;
-
-                  case 11:
-                    if (!route.component && !route.redirectTo && !route.loadChild) throw new Error("route error: path " + route.path + " need a component which has children path or need a  redirectTo which has't children path");
-
-                    if (/^\/\:.+/.test(route.path)) {
-                      key = route.path.split('/:')[1];
-                      esRouteStatus.esRouteParmasObject[key] = path;
-                    }
-
-                    this_2.routesList.push(route);
-                    if (component) this_2.hasRenderComponentList.push(component);
-                    if (index === this_2.renderRouteList.length - 1) this_2.routerChangeEvent(index);
-
-                    if (route.redirectTo && /^\/.*/.test(route.redirectTo) && index + 1 === this_2.renderRouteList.length) {
-                      this_2.needRedirectPath = route.redirectTo;
-                      return [2
-                      /*return*/
-                      , {
-                        value: void 0
-                      }];
-                    }
-
-                    _a.label = 12;
-
-                  case 12:
-                    return [2
-                    /*return*/
-                    ];
-                }
-              });
-            };
-
-            this_2 = this;
-            index = 0;
-            _a.label = 1;
-
-          case 1:
-            if (!(index < this.renderRouteList.length)) return [3
-            /*break*/
-            , 4];
-            return [5
-            /*yield**/
-            , _loop_2(index)];
-
-          case 2:
-            state_2 = _a.sent();
-            if (_typeof(state_2) === "object") return [2
-            /*return*/
-            , state_2.value];
-            _a.label = 3;
-
-          case 3:
-            index++;
-            return [3
-            /*break*/
-            , 1];
-
-          case 4:
-            return [2
-            /*return*/
-            ];
-        }
-      });
-    });
-  };
-  /**
-   * emit nvRouteChange and nvOnDestory for Components
-   *
-   * @private
-   * @param {number} index
-   * @memberof Router
-   */
-
-
-  Router.prototype.routerChangeEvent = function (index) {
-    var _this = this;
-
-    this.hasRenderComponentList.forEach(function (component, i) {
-      if (component.nvRouteChange) component.nvRouteChange(_this.lastRoute, _this.currentUrl);
-
-      _this.emitComponentEvent(component.$componentList, 'nvRouteChange');
-
-      if (i >= index + 1) {
-        if (component.nvOnDestory) component.nvOnDestory();
-
-        _this.emitComponentEvent(component.$componentList, 'nvOnDestory');
-      }
-    });
-    this.hasRenderComponentList.length = index + 1;
-  };
-  /**
-   * emit nvRouteChange and nvOnDestory for Components with recursion
-   *
-   * @private
-   * @param {ComponentList<IComponent>[]} componentList
-   * @param {string} event
-   * @memberof Router
-   */
-
-
-  Router.prototype.emitComponentEvent = function (componentList, event) {
-    var _this = this;
-
-    if (event === 'nvRouteChange') {
-      componentList.forEach(function (component) {
-        if (component.scope.nvRouteChange) component.scope.nvRouteChange(_this.lastRoute, _this.currentUrl);
-
-        _this.emitComponentEvent(component.scope.$componentList, event);
-      });
-    }
-
-    if (event === 'nvOnDestory') {
-      componentList.forEach(function (component) {
-        if (component.scope.nvOnDestory) component.scope.nvOnDestory();
-
-        _this.emitComponentEvent(component.scope.$componentList, event);
-      });
-    }
-  };
-  /**
-   * instantiate Component
-   *
-   * use InDiv renderComponent
-   *
-   * if parmas has loadModule, use loadModule
-   * if parmas has'nt loadModule, use rootModule in InDiv
-   *
-   * @private
-   * @param {Function} FindComponent
-   * @param {Element} renderDom
-   * @param {INvModule} [loadModule]
-   * @returns {Promise<IComponent>}
-   * @memberof Router
-   */
-
-
-  Router.prototype.instantiateComponent = function (FindComponent, renderDom, loadModule) {
-    return this.$vm.renderComponent(FindComponent, renderDom, loadModule);
-  };
-  /**
-   * build Module and return Component for route.loadChild
-   *
-   * @private
-   * @param {(TChildModule | TLoadChild)} loadChild
-   * @returns {Promise<INvModule>}
-   * @memberof Router
-   */
-
-
-  Router.prototype.NvModuleFactoryLoader = function (loadChild) {
-    return __awaiter(this, void 0, Promise, function () {
-      var loadModule;
-      return __generator(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            loadModule = null;
-            if (!(loadChild instanceof Function && !loadChild.child)) return [3
-            /*break*/
-            , 2];
-            return [4
-            /*yield*/
-            , loadChild()];
-
-          case 1:
-            loadModule = _a.sent().default;
-            _a.label = 2;
-
-          case 2:
-            if (!(loadChild instanceof Object && loadChild.child)) return [3
-            /*break*/
-            , 4];
-            return [4
-            /*yield*/
-            , loadChild.child()];
-
-          case 3:
-            loadModule = _a.sent()[loadChild.name];
-            _a.label = 4;
-
-          case 4:
-            if (!loadModule) throw new Error('load child failed, please check your routes.');
-            return [2
-            /*return*/
-            , (0, _nvModule.factoryModule)(loadModule)];
-        }
-      });
-    });
-  };
-  /**
-   * find component from loadModule or rootModule
-   *
-   * if this.loadModuleMap.size === 0, only in $rootModule
-   * if has loadModule, return component in loadModule firstly
-   *
-   *
-   * @private
-   * @param {string} selector
-   * @param {string} currentUrlPath
-   * @returns {{ component: Function, loadModule: INvModule }}
-   * @memberof Router
-   */
-
-
-  Router.prototype.findComponentFromModule = function (selector, currentUrlPath) {
-    if (this.loadModuleMap.size === 0) return {
-      component: this.$vm.$rootModule.$components.find(function (component) {
-        return component.$selector === selector;
-      }),
-      loadModule: null
-    };
-    var component = null;
-    var loadModule = null;
-    this.loadModuleMap.forEach(function (value, key) {
-      if (new RegExp("^" + key + ".*").test(currentUrlPath)) {
-        component = value.$components.find(function (component) {
-          return component.$selector === selector;
-        });
-        loadModule = value;
-      }
-    });
-
-    if (!component) {
-      component = this.$vm.$rootModule.$components.find(function (component) {
-        return component.$selector === selector;
-      });
-      loadModule = null;
-    }
-
+  InDiv.prototype.getComponentRender = function () {
     return {
-      component: component,
-      loadModule: loadModule
+      render: this.render,
+      reRender: this.reRender
     };
   };
+  /**
+   * set InDiv can render module's bootstrap
+   *
+   * @param {boolean} canRenderModule
+   * @memberof InDiv
+   */
 
-  return Router;
+
+  InDiv.prototype.setCanRenderModule = function (canRenderModule) {
+    this.$canRenderModule = canRenderModule;
+  };
+  /**
+   * get InDiv can render module's bootstrap
+   *
+   * @returns {boolean}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.getCanRenderModule = function () {
+    return this.$canRenderModule;
+  };
+  /**
+   * set route's DOM tag name
+   *
+   * @param {string} routeDOMKey
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.setRouteDOMKey = function (routeDOMKey) {
+    this.$routeDOMKey = routeDOMKey;
+  };
+  /**
+   * get route's DOM tag name
+   *
+   * @returns {string}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.getRouteDOMKey = function () {
+    return this.$routeDOMKey;
+  };
+  /**
+   * get root module in InDiv
+   *
+   * @returns {INvModule}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.getRootModule = function () {
+    return this.$rootModule;
+  };
+  /**
+   * get root module in root module
+   *
+   * @returns {Function[]}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.getDirectives = function () {
+    return this.$declarations;
+  };
+  /**
+   * bootstrap NvModule
+   *
+   * if not use Route it will be used
+   *
+   * @param {Function} Esmodule
+   * @returns {void}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.bootstrapModule = function (Esmodule) {
+    if (!Esmodule) throw new Error('must send a root module');
+    this.$rootModule = (0, _nvModule.factoryModule)(Esmodule, null, this);
+    this.$declarations = this.$rootModule.$declarations.slice();
+  };
+  /**
+   * init InDiv and renderModuleBootstrap()
+   *
+   * @returns {void}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.init = function () {
+    if (!utils.isBrowser()) return;
+    if (!this.$rootModule) throw new Error('must use bootstrapModule to declare a root NvModule before init');
+    if (this.$canRenderModule) this.renderModuleBootstrap();
+  };
+  /**
+   * render NvModule Bootstrap
+   *
+   * @returns {void}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.renderModuleBootstrap = function () {
+    if (!this.$rootModule.$bootstrap) throw new Error('need bootstrap for render Module Bootstrap');
+    var BootstrapComponent = this.$rootModule.$bootstrap;
+    this.renderComponent(BootstrapComponent, this.rootDom);
+  };
+  /**
+   * expose function for render Component
+   *
+   * if otherModule don't has use rootModule
+   *
+   * if has otherInjector, build component will use otherInjector instead of rootInjector
+   *
+   * @param {Function} BootstrapComponent
+   * @param {Element} renderDOM
+   * @param {INvModule} [otherModule]
+   * @param {Injector} [otherInjector]
+   * @returns {Promise<IComponent>}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.renderComponent = function (BootstrapComponent, renderDOM, otherModule, otherInjector) {
+    var provideAndInstanceMap = new Map();
+    provideAndInstanceMap.set(InDiv, this);
+    provideAndInstanceMap.set(_types.ElementRef, renderDOM);
+    var component = (0, _di.factoryCreator)(BootstrapComponent, otherInjector, provideAndInstanceMap);
+    component.$vm = this;
+
+    if (otherModule) {
+      otherModule.$declarations.forEach(function (findDeclaration) {
+        if (!component.$declarationMap.has(findDeclaration.$selector)) component.$declarationMap.set(findDeclaration.$selector, findDeclaration);
+      });
+    } else {
+      this.$rootModule.$declarations.forEach(function (findDeclaration) {
+        if (!component.$declarationMap.has(findDeclaration.$selector)) component.$declarationMap.set(findDeclaration.$selector, findDeclaration);
+      });
+    }
+
+    component.render = this.render.bind(component);
+    component.reRender = this.reRender.bind(component);
+    component.otherInjector = otherInjector;
+    if (component.nvOnInit) component.nvOnInit();
+    if (component.watchData) component.watchData();
+    if (!component.$template) throw new Error('must decaler this.$template in bootstrap()');
+    var template = component.$template;
+
+    if (template && typeof template === 'string' && renderDOM) {
+      if (component.nvBeforeMount) component.nvBeforeMount();
+      return this.replaceDom(component, renderDOM).then(function (_component) {
+        if (_component.nvAfterMount) _component.nvAfterMount();
+        return _component;
+      });
+    } else {
+      throw new Error('renderBootstrap failed: template or rootDom is not exit');
+    }
+  };
+  /**
+   * render adn replace DOM
+   *
+   * @param {IComponent} component
+   * @param {Element} renderDOM
+   * @returns {Promise<IComponent>}
+   * @memberof InDiv
+   */
+
+
+  InDiv.prototype.replaceDom = function (component, renderDOM) {
+    component.renderDom = renderDOM;
+    return component.render();
+  };
+
+  return InDiv;
 }();
 
-exports.Router = Router;
-
-/**
- * getLocation in @Component or @Directive
- *
- * get $esRouteObject and $esRouteParmasObject in InDiv
- *
- * @export
- * @returns {{
- *   path?: string;
- *   query?: any;
- *   params?: any;
- *   data?: any;
- * }}
- */
-function getLocation() {
-  if (!utils.isBrowser()) return {};
-  return {
-    path: esRouteStatus.esRouteObject.path,
-    query: esRouteStatus.esRouteObject.query,
-    params: esRouteStatus.esRouteParmasObject,
-    data: esRouteStatus.esRouteObject.data
-  };
-}
-/**
- * setLocation in @Component or @Directive
- *
- * set $esRouteObject in InDiv
- *
- * @export
- * @param {string} path
- * @param {*} [query]
- * @param {*} [data]
- * @param {string} [title]
- * @returns {void}
- */
-
-
-function setLocation(path, query, data, title) {
-  if (!utils.isBrowser()) return;
-  var rootPath = this.$vm.$rootPath === '/' ? '' : this.$vm.$rootPath;
-  history.pushState({
-    path: path,
-    query: query,
-    data: data
-  }, title, "" + rootPath + path + utils.buildQuery(query));
-  esRouteStatus.esRouteObject = {
-    path: path,
-    query: query,
-    data: data
-  };
-}
-},{"../../utils":"../../InDiv/src/utils/index.ts","../../key-watcher":"../../InDiv/src/key-watcher/index.ts","../../nv-module":"../../InDiv/src/nv-module/index.ts","../../types":"../../InDiv/src/types/index.ts"}],"../../InDiv/src/platform-browser/render/render-utils.ts":[function(require,module,exports) {
+exports.InDiv = InDiv;
+},{"../types":"../../InDiv/src/types/index.ts","../utils":"../../InDiv/src/utils/index.ts","../di":"../../InDiv/src/di/index.ts","../nv-module":"../../InDiv/src/nv-module/index.ts","../platform-browser":"../../InDiv/src/platform-browser/index.ts"}],"../../InDiv/src/platform-browser/render/render-utils.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5668,16 +5441,22 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getPropsValue = getPropsValue;
 exports.buildProps = buildProps;
-exports.buildScope = buildScope;
+exports.buildComponentScope = buildComponentScope;
+exports.buildDirectiveScope = buildDirectiveScope;
+
+var _types = require("../../types");
 
 var _di = require("../../di");
 
 var _utils = require("../../utils");
 
+var _InDiv = require("../../InDiv");
+
 var utils = new _utils.Utils();
 /**
  * get props from value
  *
+ * @export
  * @param {any[]} valueList
  * @param {*} value
  * @returns {void}
@@ -5694,6 +5473,7 @@ function getPropsValue(valueList, value) {
 /**
  * build Actions for Props in Component
  *
+ * @export
  * @template State
  * @template Props
  * @template Vm
@@ -5713,6 +5493,7 @@ function buildProps(prop, vm) {
 /**
  * build scope for Components in Component
  *
+ * @export
  * @template State
  * @template Props
  * @template Vm
@@ -5724,31 +5505,66 @@ function buildProps(prop, vm) {
  */
 
 
-function buildScope(ComponentClass, props, dom, vm) {
-  var _component = (0, _di.factoryCreator)(ComponentClass, vm.$vm.$rootModule);
+function buildComponentScope(ComponentClass, props, dom, vm) {
+  var provideAndInstanceMap = new Map();
+  if (provideAndInstanceMap) provideAndInstanceMap.set(_InDiv.InDiv, vm.$vm);
+  provideAndInstanceMap.set(_types.ElementRef, dom);
+
+  var _component = (0, _di.factoryCreator)(ComponentClass, vm.otherInjector, provideAndInstanceMap);
 
   _component.props = props;
   _component.renderDom = dom;
-  _component.$components = vm.$components;
+  vm.$declarationMap.forEach(function (declaration, key) {
+    if (!_component.$declarationMap.has(key)) _component.$declarationMap.set(key, declaration);
+  });
   _component.render = vm.$vm.render.bind(_component);
   _component.reRender = vm.$vm.reRender.bind(_component);
+  _component.otherInjector = vm.otherInjector;
   return _component;
 }
-},{"../../di":"../../InDiv/src/di/index.ts","../../utils":"../../InDiv/src/utils/index.ts"}],"../../InDiv/src/platform-browser/render/component-render.ts":[function(require,module,exports) {
+/**
+ * build scope for Directives in Directive
+ *
+ * @export
+ * @template State
+ * @template Props
+ * @template Vm
+ * @param {Function} DirectiveClass
+ * @param {*} props
+ * @param {Element} dom
+ * @param {IComponent<State, Props, Vm>} vm
+ * @returns {IComponent<State, Props, Vm>}
+ */
+
+
+function buildDirectiveScope(DirectiveClass, props, dom, vm) {
+  var provideAndInstanceMap = new Map();
+  if (vm.$vm) provideAndInstanceMap.set(_InDiv.InDiv, vm.$vm);
+  provideAndInstanceMap.set(_types.ElementRef, dom);
+
+  var _directive = (0, _di.factoryCreator)(DirectiveClass, vm.otherInjector, provideAndInstanceMap);
+
+  _directive.props = props;
+  _directive.renderDom = dom;
+  _directive.otherInjector = vm.otherInjector;
+  vm.$declarationMap.forEach(function (declaration, key) {
+    if (!_directive.$declarationMap.has(key)) _directive.$declarationMap.set(key, declaration);
+  });
+  return _directive;
+}
+},{"../../types":"../../InDiv/src/types/index.ts","../../di":"../../InDiv/src/di/index.ts","../../utils":"../../InDiv/src/utils/index.ts","../../InDiv":"../../InDiv/src/InDiv/index.ts"}],"../../InDiv/src/platform-browser/render/directive-render.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.mountComponent = mountComponent;
-exports.componentsConstructor = componentsConstructor;
-exports.renderFunction = renderFunction;
-
-var _compile = require("../compile");
+exports.mountDirective = mountDirective;
+exports.directivesConstructor = directivesConstructor;
+exports.directiveRenderFunction = directiveRenderFunction;
 
 var _utils = require("../../utils");
 
-var _compileUtils = require("../compile-utils");
+var _compile = require("../compile");
 
 var _renderUtils = require("./render-utils");
 
@@ -5893,8 +5709,329 @@ var __generator = void 0 && (void 0).__generator || function (thisArg, body) {
 
 var utils = new _utils.Utils();
 /**
+ * mountDirective for Directives in Component
+ *
+ * @export
+ * @template State
+ * @template Props
+ * @template Vm
+ * @param {Element} dom
+ * @param {IComponent<State, Props, Vm>} vm
+ */
+
+function mountDirective(dom, vm) {
+  var cacheStates = vm.$directiveList.slice();
+  directivesConstructor(dom, vm);
+  var directiveListLength = vm.$directiveList.length;
+
+  var _loop_1 = function _loop_1(i) {
+    var directive = vm.$directiveList[i]; // find Directive from cache
+
+    var cacheDirectiveIndex = cacheStates.findIndex(function (cache) {
+      return cache.dom === directive.dom;
+    });
+    var cacheDirective = cacheStates[cacheDirectiveIndex]; // clear cache and the rest need to be destoried
+
+    if (cacheDirectiveIndex !== -1) cacheStates.splice(cacheDirectiveIndex, 1);
+
+    if (cacheDirective) {
+      directive.scope = cacheDirective.scope; // old props: directive.scope.props
+      // new props: directive.props
+
+      if (!utils.isEqual(directive.scope.props, directive.props)) {
+        if (directive.scope.nvReceiveProps) directive.scope.nvReceiveProps(directive.props);
+        directive.scope.props = directive.props;
+      }
+    } else {
+      directive.scope = (0, _renderUtils.buildDirectiveScope)(directive.constructorFunction, directive.props, directive.dom, vm);
+    }
+
+    directive.scope.$vm = vm.$vm;
+    if (directive.scope.nvOnInit && !cacheDirective) directive.scope.nvOnInit();
+    if (directive.scope.nvBeforeMount) directive.scope.nvBeforeMount();
+  };
+
+  for (var i = 0; i < directiveListLength; i++) {
+    _loop_1(i);
+  } // the rest should use nvOnDestory
+
+
+  var cacheStatesLength = cacheStates.length;
+
+  for (var i = 0; i < cacheStatesLength; i++) {
+    var cache = cacheStates[i];
+    if (cache.scope.nvOnDestory) cache.scope.nvOnDestory();
+  }
+}
+/**
+ * construct Directives in Directive
+ *
+ * @template State
+ * @template Props
+ * @template Vm
+ * @param {Element} dom
+ * @param {IComponent<State, Props, Vm>} vm
+ */
+
+
+function directivesConstructor(dom, vm) {
+  vm.$directiveList = [];
+  var routerRenderDom = dom.querySelectorAll(vm.$vm.getRouteDOMKey())[0];
+  vm.$declarationMap.forEach(function (declaration, name) {
+    if (declaration.nvType !== 'nvDirective') return;
+    var tags = dom.querySelectorAll("*[" + name + "]");
+    Array.from(tags).forEach(function (node) {
+      //  protect directive in <router-render>
+      if (routerRenderDom && routerRenderDom.contains(node)) return;
+      var attrValue = node.getAttribute(name);
+      var props = null; // only attribute return
+
+      if (!attrValue) {
+        vm.$directiveList.push({
+          dom: node,
+          props: props,
+          scope: null,
+          constructorFunction: declaration
+        });
+        return;
+      }
+
+      var valueList = attrValue.split('.');
+      var key = valueList[0]; // build props
+
+      if (vm.compileUtil.isFromState(vm.state, attrValue)) {
+        props = vm.compileUtil._getVMVal(vm.state, attrValue);
+      } else if (/^(\@.).*\(.*\)$/.test(attrValue)) {
+        var utilVm_1 = new _compile.CompileUtilForRepeat();
+
+        var fn = utilVm_1._getVMFunction(vm, attrValue);
+
+        var args = attrValue.replace(/^(\@)/, '').match(/\((.*)\)/)[1].replace(/\s+/g, '').split(',');
+        var argsList_1 = [];
+        args.forEach(function (arg) {
+          if (arg === '') return false;
+          if (arg === '$element') return argsList_1.push(node);
+          if (arg === 'true' || arg === 'false') return argsList_1.push(arg === 'true');
+          if (arg === 'null') return argsList_1.push(null);
+          if (arg === 'undefined') return argsList_1.push(undefined);
+          if (utilVm_1.isFromState(vm.state, arg)) return argsList_1.push(utilVm_1._getVMVal(vm.state, arg));
+          if (/^\'.*\'$/.test(arg)) return argsList_1.push(arg.match(/^\'(.*)\'$/)[1]);
+          if (!/^\'.*\'$/.test(arg) && /^[0-9]*$/.test(arg)) return argsList_1.push(Number(arg));
+
+          if (node.repeatData) {
+            // $index in this
+            Object.keys(node.repeatData).forEach(function (data) {
+              if (arg.indexOf(data) === 0 || arg.indexOf(data + ".") === 0) return argsList_1.push(utilVm_1._getValueByValue(node.repeatData[data], arg, data));
+            });
+          }
+        });
+        var value = fn.apply(vm, argsList_1);
+        props = value;
+      } else if (/^(\@.).*[^\(.*\)]$/g.test(attrValue)) props = vm.compileUtil._getVMVal(vm, attrValue.replace(/^(\@)/, ''));else if (node.repeatData && node.repeatData[key] !== null) props = vm.compileUtil._getValueByValue(node.repeatData[key], attrValue, key);else if (/^\'.*\'$/.test(attrValue)) props = attrValue.match(/^\'(.*)\'$/)[1];else if (!/^\'.*\'$/.test(attrValue) && /^[0-9]*$/.test(attrValue)) props = Number(attrValue);else if (attrValue === 'true' || attrValue === 'false') props = attrValue === 'true';else if (attrValue === 'null') props = null;else if (attrValue === 'undefined') props = undefined;
+
+      vm.$directiveList.push({
+        dom: node,
+        props: props,
+        scope: null,
+        constructorFunction: declaration
+      });
+    });
+  });
+}
+/**
+ * render Directive with using renderDom and RenderTask instance
+ *
+ * @export
+ * @param {Element} renderDom
+ * @param {RenderTaskQueue} RenderTaskQueue
+ * @returns {Promise<IDirective>}
+ */
+
+
+function directiveRenderFunction(renderDom, RenderTaskQueue) {
+  return __awaiter(this, void 0, Promise, function () {
+    return __generator(this, function (_a) {
+      return [2
+      /*return*/
+      , Promise.resolve().then(function () {
+        mountDirective(renderDom, RenderTaskQueue.$vm);
+        var directiveListLength = RenderTaskQueue.$vm.$directiveList.length;
+
+        for (var i = 0; i < directiveListLength; i++) {
+          var directive = RenderTaskQueue.$vm.$directiveList[i];
+          if (directive.scope.nvAfterMount) directive.scope.nvAfterMount();
+          if (directive.scope.nvHasRender) directive.scope.nvHasRender();
+        }
+
+        return RenderTaskQueue.$vm;
+      }).catch(function (e) {
+        throw new Error("directive " + RenderTaskQueue.$vm.constructor.$selector + " render failed: " + e);
+      })];
+    });
+  });
+}
+},{"../../utils":"../../InDiv/src/utils/index.ts","../compile":"../../InDiv/src/platform-browser/compile/index.ts","./render-utils":"../../InDiv/src/platform-browser/render/render-utils.ts"}],"../../InDiv/src/platform-browser/render/component-render.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.mountComponent = mountComponent;
+exports.componentsConstructor = componentsConstructor;
+exports.componentRenderFunction = componentRenderFunction;
+
+var _compile = require("../compile");
+
+var _utils = require("../../utils");
+
+var _renderUtils = require("./render-utils");
+
+var _directiveRender = require("./directive-render");
+
+var __awaiter = void 0 && (void 0).__awaiter || function (thisArg, _arguments, P, generator) {
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : new P(function (resolve) {
+        resolve(result.value);
+      }).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+var __generator = void 0 && (void 0).__generator || function (thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function sent() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  },
+      f,
+      y,
+      t,
+      g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+    return this;
+  }), g;
+
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
+
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
+
+          case 7:
+            op = _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
+      }
+    }
+
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+};
+
+var utils = new _utils.Utils();
+/**
  * mountComponent for Components in Component
  *
+ * @export
  * @template State
  * @template Props
  * @template Vm
@@ -5929,11 +6066,10 @@ function mountComponent(dom, vm) {
 
       component.hasRender = true;
     } else {
-      component.scope = (0, _renderUtils.buildScope)(component.constructorFunction, component.props, component.dom, vm);
+      component.scope = (0, _renderUtils.buildComponentScope)(component.constructorFunction, component.props, component.dom, vm);
     }
 
     component.scope.$vm = vm.$vm;
-    component.scope.$components = vm.$components;
     if (component.scope.nvOnInit && !cacheComponent) component.scope.nvOnInit();
     if (component.scope.watchData) component.scope.watchData();
     if (component.scope.nvBeforeMount) component.scope.nvBeforeMount();
@@ -5954,6 +6090,7 @@ function mountComponent(dom, vm) {
 /**
  * construct Components in Component
  *
+ * @export
  * @template State
  * @template Props
  * @template Vm
@@ -5964,18 +6101,9 @@ function mountComponent(dom, vm) {
 
 function componentsConstructor(dom, vm) {
   vm.$componentList = [];
-  var routerRenderDom = dom.querySelectorAll(vm.$vm.$routeDOMKey)[0];
-
-  vm.constructor._injectedComponents.forEach(function (value, key) {
-    if (!vm.$components.find(function (component) {
-      return component.$selector === key;
-    })) vm.$components.push(value);
-  });
-
-  var componentsLength = vm.$components.length;
-
-  var _loop_2 = function _loop_2(i) {
-    var name = vm.$components[i].$selector;
+  var routerRenderDom = dom.querySelectorAll(vm.$vm.getRouteDOMKey())[0];
+  vm.$declarationMap.forEach(function (declaration, name) {
+    if (declaration.nvType !== 'nvComponent') return;
     var tags = dom.getElementsByTagName(name);
     Array.from(tags).forEach(function (node) {
       //  protect component in <router-render>
@@ -6015,14 +6143,14 @@ function componentsConstructor(dom, vm) {
             var key = valueList[0];
             var _prop = null;
 
-            if (/^(\$\.).*/g.test(prop[1])) {
+            if (vm.compileUtil.isFromState(vm.state, prop[1])) {
               _prop = vm.compileUtil._getVMVal(vm.state, prop[1]);
               props[attrName] = (0, _renderUtils.buildProps)(_prop, vm);
               return;
             }
 
-            if (/^(\@.).*\(.*\)$/g.test(prop[1])) {
-              var utilVm_1 = new _compileUtils.CompileUtilForRepeat();
+            if (/^(\@.).*\(.*\)$/.test(prop[1])) {
+              var utilVm_1 = new _compile.CompileUtilForRepeat();
 
               var fn = utilVm_1._getVMFunction(vm, prop[1]);
 
@@ -6032,9 +6160,11 @@ function componentsConstructor(dom, vm) {
                 if (arg === '') return false;
                 if (arg === '$element') return argsList_1.push(node);
                 if (arg === 'true' || arg === 'false') return argsList_1.push(arg === 'true');
-                if (/(\$\.).*/g.test(arg)) return argsList_1.push(utilVm_1._getVMVal(vm.state, arg));
-                if (/\'.*\'/g.test(arg)) return argsList_1.push(arg.match(/\'(.*)\'/)[1]);
-                if (!/\'.*\'/g.test(arg) && /^[0-9]*$/g.test(arg)) return argsList_1.push(Number(arg));
+                if (arg === 'null') return argsList_1.push(null);
+                if (arg === 'undefined') return argsList_1.push(undefined);
+                if (utilVm_1.isFromState(vm.state, arg)) return argsList_1.push(utilVm_1._getVMVal(vm.state, arg));
+                if (/^\'.*\'$/.test(arg)) return argsList_1.push(arg.match(/^\'(.*)\'$/)[1]);
+                if (!/^\'.*\'$/.test(arg) && /^[0-9]*$/g.test(arg)) return argsList_1.push(Number(arg));
 
                 if (node.repeatData) {
                   // $index in this
@@ -6065,6 +6195,12 @@ function componentsConstructor(dom, vm) {
               props[attrName] = (0, _renderUtils.buildProps)(_prop, vm);
               return;
             }
+
+            if (/^\'.*\'$/.test(prop[1])) return props[attrName] = prop[1].match(/^\'(.*)\'$/)[1];
+            if (!/^\'.*\'$/.test(prop[1]) && /^[0-9]*$/.test(prop[1])) return props[attrName] = Number(prop[1]);
+            if (prop[1] === 'true' || prop[1] === 'false') return props[attrName] = prop[1] === 'true';
+            if (prop[1] === 'null') return props[attrName] = null;
+            if (prop[1] === 'undefined') return props[attrName] = undefined;
           } // can't remove indiv_repeat_key
 
 
@@ -6076,62 +6212,82 @@ function componentsConstructor(dom, vm) {
         dom: node,
         props: props,
         scope: null,
-        constructorFunction: vm.$components[i],
+        constructorFunction: declaration,
         // init hasRender false
         hasRender: false
       }); // after construct instance remove isComponent
 
       node.isComponent = false;
     });
-  };
-
-  for (var i = 0; i < componentsLength; i++) {
-    _loop_2(i);
-  }
+  });
 }
 /**
  * render Component with using renderDom and RenderTask instance
  *
  * @export
  * @param {Element} renderDom
- * @param {IRenderTaskQueue} vm
+ * @param {RenderTaskQueue} RenderTaskQueue
  * @returns {Promise<IComponent>}
  */
 
 
-function renderFunction(renderDom, vm) {
+function componentRenderFunction(renderDom, RenderTaskQueue) {
   return __awaiter(this, void 0, Promise, function () {
+    var _this = this;
+
     return __generator(this, function (_a) {
       return [2
       /*return*/
       , Promise.resolve().then(function () {
-        var compile = new _compile.Compile(renderDom, vm.$vm);
-        mountComponent(renderDom, vm.$vm);
-        var componentListLength = vm.$vm.$componentList.length;
+        return __awaiter(_this, void 0, void 0, function () {
+          var componentListLength, i, component;
+          return __generator(this, function (_a) {
+            switch (_a.label) {
+              case 0:
+                // compile has been added into Component instance by dirty method
+                if (!RenderTaskQueue.$vm.compile) RenderTaskQueue.$vm.compile = new _compile.Compile(renderDom, RenderTaskQueue.$vm);
+                RenderTaskQueue.$vm.compile.startCompile(); // first mount directive
 
-        for (var i = 0; i < componentListLength; i++) {
-          var component = vm.$vm.$componentList[i]; // if component has rendered , it will reRender
+                return [4
+                /*yield*/
+                , (0, _directiveRender.directiveRenderFunction)(renderDom, RenderTaskQueue)];
 
-          if (component.hasRender) {
-            component.scope.reRender();
-          } else {
-            // if component didn't rendered, it will render and set hasRender true
-            component.scope.render();
-            component.hasRender = true;
-          }
+              case 1:
+                // first mount directive
+                _a.sent(); // then mount component
 
-          if (component.scope.nvAfterMount) component.scope.nvAfterMount();
-        }
 
-        if (vm.$vm.nvHasRender) vm.$vm.nvHasRender();
-        return vm.$vm;
+                mountComponent(renderDom, RenderTaskQueue.$vm);
+                componentListLength = RenderTaskQueue.$vm.$componentList.length;
+
+                for (i = 0; i < componentListLength; i++) {
+                  component = RenderTaskQueue.$vm.$componentList[i];
+
+                  if (component.hasRender) {
+                    component.scope.reRender();
+                  } else {
+                    // if component didn't rendered, it will render and set hasRender true
+                    component.scope.render();
+                    component.hasRender = true;
+                  }
+
+                  if (component.scope.nvAfterMount) component.scope.nvAfterMount();
+                }
+
+                if (RenderTaskQueue.$vm.nvHasRender) RenderTaskQueue.$vm.nvHasRender();
+                return [2
+                /*return*/
+                , RenderTaskQueue.$vm];
+            }
+          });
+        });
       }).catch(function (e) {
-        throw new Error("component " + vm.$vm.constructor.$selector + " render failed: " + e);
+        throw new Error("component " + RenderTaskQueue.$vm.constructor.$selector + " render failed: " + e);
       })];
     });
   });
 }
-},{"../compile":"../../InDiv/src/platform-browser/compile/index.ts","../../utils":"../../InDiv/src/utils/index.ts","../compile-utils":"../../InDiv/src/platform-browser/compile-utils/index.ts","./render-utils":"../../InDiv/src/platform-browser/render/render-utils.ts"}],"../../InDiv/src/platform-browser/render/render-task-queue.ts":[function(require,module,exports) {
+},{"../compile":"../../InDiv/src/platform-browser/compile/index.ts","../../utils":"../../InDiv/src/utils/index.ts","./render-utils":"../../InDiv/src/platform-browser/render/render-utils.ts","./directive-render":"../../InDiv/src/platform-browser/render/directive-render.ts"}],"../../InDiv/src/platform-browser/render/render-task-queue.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6336,7 +6492,7 @@ function () {
           case 0:
             return [4
             /*yield*/
-            , (0, _componentRender.renderFunction)(this.taskQueue[this.queuePointer], this)];
+            , (0, _componentRender.componentRenderFunction)(this.taskQueue[this.queuePointer], this)];
 
           case 1:
             component = _a.sent();
@@ -6406,7 +6562,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.render = render;
 
-var _compileUtils = require("../compile-utils");
+var _compile = require("../compile");
 
 var _renderTaskQueue = require("./render-task-queue");
 
@@ -6419,12 +6575,12 @@ var _renderTaskQueue = require("./render-task-queue");
  * @returns {Promise<IComponent<State, Props, Vm>>}
  */
 function render() {
-  this.compileUtil = new _compileUtils.CompileUtil();
+  this.compileUtil = new _compile.CompileUtil();
   var dom = this.renderDom;
   if (!this.renderTaskQueue) this.renderTaskQueue = new _renderTaskQueue.RenderTaskQueue(this);
   return this.renderTaskQueue.push(dom);
 }
-},{"../compile-utils":"../../InDiv/src/platform-browser/compile-utils/index.ts","./render-task-queue":"../../InDiv/src/platform-browser/render/render-task-queue.ts"}],"../../InDiv/src/platform-browser/index.ts":[function(require,module,exports) {
+},{"../compile":"../../InDiv/src/platform-browser/compile/index.ts","./render-task-queue":"../../InDiv/src/platform-browser/render/render-task-queue.ts"}],"../../InDiv/src/platform-browser/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6439,37 +6595,13 @@ Object.defineProperty(exports, "Compile", {
 Object.defineProperty(exports, "CompileUtilForRepeat", {
   enumerable: true,
   get: function () {
-    return _compileUtils.CompileUtilForRepeat;
+    return _compile.CompileUtilForRepeat;
   }
 });
 Object.defineProperty(exports, "CompileUtil", {
   enumerable: true,
   get: function () {
-    return _compileUtils.CompileUtil;
-  }
-});
-Object.defineProperty(exports, "Router", {
-  enumerable: true,
-  get: function () {
-    return _router.Router;
-  }
-});
-Object.defineProperty(exports, "TRouter", {
-  enumerable: true,
-  get: function () {
-    return _router.TRouter;
-  }
-});
-Object.defineProperty(exports, "setLocation", {
-  enumerable: true,
-  get: function () {
-    return _router.setLocation;
-  }
-});
-Object.defineProperty(exports, "getLocation", {
-  enumerable: true,
-  get: function () {
-    return _router.getLocation;
+    return _compile.CompileUtil;
   }
 });
 Object.defineProperty(exports, "render", {
@@ -6481,12 +6613,8 @@ Object.defineProperty(exports, "render", {
 
 var _compile = require("./compile");
 
-var _compileUtils = require("./compile-utils");
-
-var _router = require("./router");
-
 var _render = require("./render");
-},{"./compile":"../../InDiv/src/platform-browser/compile/index.ts","./compile-utils":"../../InDiv/src/platform-browser/compile-utils/index.ts","./router":"../../InDiv/src/platform-browser/router/index.ts","./render":"../../InDiv/src/platform-browser/render/index.ts"}],"../../InDiv/src/component/index.ts":[function(require,module,exports) {
+},{"./compile":"../../InDiv/src/platform-browser/compile/index.ts","./render":"../../InDiv/src/platform-browser/render/index.ts"}],"../../InDiv/src/component/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6498,6 +6626,8 @@ exports.setState = setState;
 var _watcher = require("../watcher");
 
 var _utils = require("../utils");
+
+var _injected = require("../di/injected");
 
 var utils = new _utils.Utils();
 /**
@@ -6515,13 +6645,19 @@ var utils = new _utils.Utils();
 
 function Component(options) {
   return function (_constructor) {
+    (0, _injected.injected)(_constructor);
+    _constructor.nvType = 'nvComponent';
     _constructor.$selector = options.selector;
-    _constructor._injectedComponents = new Map();
     var vm = _constructor.prototype;
     vm.$template = options.template; // component $providerList for injector
 
+    vm.$providerList = new Map();
+    vm.$providerList.set(setState, {
+      provide: setState,
+      useValue: setState
+    });
+
     if (options.providers && options.providers.length > 0) {
-      vm.$providerList = new Map();
       var length = options.providers.length;
 
       for (var i = 0; i < length; i++) {
@@ -6535,8 +6671,11 @@ function Component(options) {
       }
     }
 
-    vm.$components = [];
-    vm.$componentList = [];
+    vm.$declarationMap = new Map(); // for Component
+
+    vm.$componentList = []; // for Directive
+
+    vm.$directiveList = [];
 
     vm.watchData = function () {
       if (this.state) {
@@ -6576,190 +6715,54 @@ function setState(newState) {
     this.reRender();
   }
 }
-},{"../watcher":"../../InDiv/src/watcher/index.ts","../utils":"../../InDiv/src/utils/index.ts"}],"../../InDiv/src/indiv/index.ts":[function(require,module,exports) {
+},{"../watcher":"../../InDiv/src/watcher/index.ts","../utils":"../../InDiv/src/utils/index.ts","../di/injected":"../../InDiv/src/di/injected.ts"}],"../../InDiv/src/directive/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.InDiv = void 0;
+exports.Directive = Directive;
 
-var _utils = require("../utils");
+var _injected = require("../di/injected");
 
-var _di = require("../di");
-
-var _nvModule = require("../nv-module");
-
-var _platformBrowser = require("../platform-browser");
-
-var utils = new _utils.Utils();
 /**
- * main: for new InDiv
+ * Decorator @Directive
  *
- * @class InDiv
+ * to decorate an InDiv Directive
+ *
+ * @template State
+ * @template Props
+ * @template Vm
+ * @param {TComponentOptions} options
+ * @returns {(_constructor: Function) => void}
  */
+function Directive(options) {
+  return function (_constructor) {
+    (0, _injected.injected)(_constructor);
+    _constructor.nvType = 'nvDirective';
+    _constructor.$selector = options.selector;
+    var vm = _constructor.prototype; // component $providerList for injector
 
-var InDiv =
-/** @class */
-function () {
-  function InDiv() {
-    this.modalList = [];
-    if (!utils.isBrowser()) return;
-    this.rootDom = document.querySelector('#root');
-    this.$rootPath = '/';
-    this.$canRenderModule = true;
-    this.$routeDOMKey = 'router-render';
-    this.$rootModule = null; // render,reRender for Component
-    // developer can use function use(modal: IMiddleware<InDiv>): number to change render and reRender
+    vm.$providerList = new Map();
 
-    this.render = _platformBrowser.render;
-    this.reRender = _platformBrowser.render;
-  }
-  /**
-   * for using middleware and use bootstrap method of middleware
-   *
-   * @param {IMiddleware<InDiv>} modal
-   * @returns {number}
-   * @memberof InDiv
-   */
+    if (options.providers && options.providers.length > 0) {
+      var length = options.providers.length;
 
+      for (var i = 0; i < length; i++) {
+        var service = options.providers[i];
 
-  InDiv.prototype.use = function (modal) {
-    modal.bootstrap(this);
-    this.modalList.push(modal);
-    return this.modalList.findIndex(function (md) {
-      return utils.isEqual(md, modal);
-    });
-  };
-  /**
-   * for Middleware set RootPath
-   *
-   * if not use, rootPath will be <router-render />
-   *
-   * @param {string} rootPath
-   * @memberof InDiv
-   */
-
-
-  InDiv.prototype.setRootPath = function (rootPath) {
-    if (rootPath && typeof rootPath === 'string') {
-      this.$rootPath = rootPath;
-    } else {
-      throw new Error('rootPath is not defined or rootPath must be a String');
+        if (service.provide) {
+          if (service.useClass || service.useValue) vm.$providerList.set(service.provide, service);
+        } else {
+          vm.$providerList.set(service, service);
+        }
+      }
     }
+
+    vm.$declarationMap = new Map();
   };
-  /**
-   * for Middleware set component Render function
-   *
-   * @template R
-   * @template Re
-   * @param {R} [render]
-   * @param {Re} [reRender]
-   * @memberof InDiv
-   */
-
-
-  InDiv.prototype.setComponentRender = function (render, reRender) {
-    this.render = render;
-    this.reRender = reRender;
-  };
-  /**
-   * bootstrap NvModule
-   *
-   * if not use Route it will be used
-   *
-   * @param {Function} Esmodule
-   * @returns {void}
-   * @memberof InDiv
-   */
-
-
-  InDiv.prototype.bootstrapModule = function (Esmodule) {
-    if (!Esmodule) throw new Error('must send a root module');
-    this.$rootModule = (0, _nvModule.factoryModule)(Esmodule);
-    this.$components = this.$rootModule.$components.slice();
-  };
-  /**
-   * init InDiv and renderModuleBootstrap()
-   *
-   * @returns {void}
-   * @memberof InDiv
-   */
-
-
-  InDiv.prototype.init = function () {
-    if (!utils.isBrowser()) return;
-    if (!this.$rootModule) throw new Error('must use bootstrapModule to declare a root NvModule before init');
-    if (this.$canRenderModule) this.renderModuleBootstrap();
-  };
-  /**
-   * render NvModule Bootstrap
-   *
-   * @returns {void}
-   * @memberof InDiv
-   */
-
-
-  InDiv.prototype.renderModuleBootstrap = function () {
-    if (!this.$rootModule.$bootstrap) throw new Error('need bootstrap for render Module Bootstrap');
-    var BootstrapComponent = this.$rootModule.$bootstrap;
-    this.renderComponent(BootstrapComponent, this.rootDom);
-  };
-  /**
-   * expose function for render Component
-   *
-   * if loadModule don't has use rootModule
-   *
-   * @param {Function} BootstrapComponent
-   * @param {Element} renderDOM
-   * @param {INvModule} [loadModule]
-   * @returns {Promise<IComponent>}
-   * @memberof InDiv
-   */
-
-
-  InDiv.prototype.renderComponent = function (BootstrapComponent, renderDOM, loadModule) {
-    var component = (0, _di.factoryCreator)(BootstrapComponent, this.$rootModule, loadModule);
-    component.$vm = this; // component which comes from loadModule can only extends $components from loadModule
-
-    if (loadModule) component.$components = loadModule.$components;else component.$components = this.$rootModule.$components;
-    component.render = this.render.bind(component);
-    component.reRender = this.reRender.bind(component);
-    if (component.nvOnInit) component.nvOnInit();
-    if (component.watchData) component.watchData();
-    if (!component.$template) throw new Error('must decaler this.$template in bootstrap()');
-    var template = component.$template;
-
-    if (template && typeof template === 'string' && renderDOM) {
-      if (component.nvBeforeMount) component.nvBeforeMount();
-      return this.replaceDom(component, renderDOM).then(function (_component) {
-        if (_component.nvAfterMount) _component.nvAfterMount();
-        return _component;
-      });
-    } else {
-      throw new Error('renderBootstrap failed: template or rootDom is not exit');
-    }
-  };
-  /**
-   * render adn replace DOM
-   *
-   * @param {IComponent} component
-   * @param {Element} renderDOM
-   * @returns {Promise<IComponent>}
-   * @memberof InDiv
-   */
-
-
-  InDiv.prototype.replaceDom = function (component, renderDOM) {
-    component.renderDom = renderDOM;
-    return component.render();
-  };
-
-  return InDiv;
-}();
-
-exports.InDiv = InDiv;
-},{"../utils":"../../InDiv/src/utils/index.ts","../di":"../../InDiv/src/di/index.ts","../nv-module":"../../InDiv/src/nv-module/index.ts","../platform-browser":"../../InDiv/src/platform-browser/index.ts"}],"../../InDiv/node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
+}
+},{"../di/injected":"../../InDiv/src/di/injected.ts"}],"../../InDiv/node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
 'use strict';
 
 module.exports = function bind(fn, thisArg) {
@@ -8195,86 +8198,7 @@ module.exports.default = axios;
 
 },{"./utils":"../../InDiv/node_modules/axios/lib/utils.js","./helpers/bind":"../../InDiv/node_modules/axios/lib/helpers/bind.js","./core/Axios":"../../InDiv/node_modules/axios/lib/core/Axios.js","./defaults":"../../InDiv/node_modules/axios/lib/defaults.js","./cancel/Cancel":"../../InDiv/node_modules/axios/lib/cancel/Cancel.js","./cancel/CancelToken":"../../InDiv/node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"../../InDiv/node_modules/axios/lib/cancel/isCancel.js","./helpers/spread":"../../InDiv/node_modules/axios/lib/helpers/spread.js"}],"../../InDiv/node_modules/axios/index.js":[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":"../../InDiv/node_modules/axios/lib/axios.js"}],"../../InDiv/src/http/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.NVHttp = void 0;
-
-var _axios = _interopRequireDefault(require("axios"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var NVHttp =
-/** @class */
-function () {
-  function NVHttp() {}
-
-  NVHttp.prototype.get = function (url, params) {
-    return new Promise(function (resolve, reject) {
-      var pms = params ? {
-        params: params
-      } : null;
-
-      _axios.default.get(url, pms).then(function (res) {
-        resolve(res.data);
-      }).catch(function (e) {
-        reject(e.response.data);
-      });
-    });
-  };
-
-  NVHttp.prototype.delete = function (url, params) {
-    return new Promise(function (resolve, reject) {
-      var pms = params ? {
-        params: params
-      } : null;
-
-      _axios.default.delete(url, pms).then(function (res) {
-        resolve(res.data);
-      }).catch(function (e) {
-        reject(e.response.data);
-      });
-    });
-  };
-
-  NVHttp.prototype.post = function (url, params) {
-    return new Promise(function (resolve, reject) {
-      _axios.default.post(url, params).then(function (res) {
-        resolve(res.data);
-      }).catch(function (e) {
-        reject(e.response.data);
-      });
-    });
-  };
-
-  NVHttp.prototype.put = function (url, params) {
-    return new Promise(function (resolve, reject) {
-      _axios.default.put(url, params).then(function (res) {
-        resolve(res.data);
-      }).catch(function (e) {
-        reject(e.response.data);
-      });
-    });
-  };
-
-  NVHttp.prototype.patch = function (url, params) {
-    return new Promise(function (resolve, reject) {
-      _axios.default.patch(url, params).then(function (res) {
-        resolve(res.data);
-      }).catch(function (e) {
-        reject(e.response.data);
-      });
-    });
-  };
-
-  return NVHttp;
-}();
-
-exports.NVHttp = NVHttp;
-},{"axios":"../../InDiv/node_modules/axios/index.js"}],"../../InDiv/node_modules/rxjs/node_modules/tslib/tslib.es6.js":[function(require,module,exports) {
+},{"./lib/axios":"../../InDiv/node_modules/axios/lib/axios.js"}],"../../InDiv/node_modules/rxjs/node_modules/tslib/tslib.es6.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15442,7 +15366,1341 @@ function () {
 }();
 
 exports.HttpClient = HttpClient;
-},{"axios":"../../InDiv/node_modules/axios/index.js","rxjs":"../../InDiv/node_modules/rxjs/_esm5/index.js","../di":"../../InDiv/src/di/index.ts","../types":"../../InDiv/src/types/index.ts"}],"../../InDiv/src/index.ts":[function(require,module,exports) {
+},{"axios":"../../InDiv/node_modules/axios/index.js","rxjs":"../../InDiv/node_modules/rxjs/_esm5/index.js","../di":"../../InDiv/src/di/index.ts","../types":"../../InDiv/src/types/index.ts"}],"../../InDiv/src/router/location.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.NvLocation = void 0;
+
+var _injectable = require("../di/injectable");
+
+var _utils = require("../utils");
+
+var _index = require("./index");
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var __decorate = void 0 && (void 0).__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+      r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+      d;
+  if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+    if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  }
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var utils = new _utils.Utils();
+
+var NvLocation =
+/** @class */
+function () {
+  function NvLocation() {}
+  /**
+   * get route in @Component or @Directive
+   *
+   * get nvRouteObject and nvRouteParmasObject in InDiv
+   *
+   * @export
+   * @returns {{
+   *   path?: string;
+   *   query?: any;
+   *   params?: any;
+   *   data?: any;
+   *   rootPath?: string;
+   * }}
+   */
+
+
+  NvLocation.prototype.get = function () {
+    if (!utils.isBrowser()) return {};
+    return {
+      path: _index.nvRouteStatus.nvRouteObject.path,
+      query: _index.nvRouteStatus.nvRouteObject.query,
+      params: _index.nvRouteStatus.nvRouteParmasObject,
+      data: _index.nvRouteStatus.nvRouteObject.data,
+      rootPath: _index.nvRouteStatus.nvRootPath
+    };
+  };
+  /**
+   * set route in @Component or @Directive
+   *
+   * set nvRouteObject in InDiv
+   *
+   * @export
+   * @param {string} path
+   * @param {*} [query]
+   * @param {*} [data]
+   * @param {string} [title]
+   * @returns {void}
+   */
+
+
+  NvLocation.prototype.set = function (path, query, data, title) {
+    if (!utils.isBrowser()) return;
+    var rootPath = _index.nvRouteStatus.nvRootPath === '/' ? '' : _index.nvRouteStatus.nvRootPath;
+    history.pushState({
+      path: path,
+      query: query,
+      data: data
+    }, title, "" + rootPath + path + utils.buildQuery(query));
+    _index.nvRouteStatus.nvRouteObject = {
+      path: path,
+      query: query,
+      data: data
+    };
+  };
+  /**
+   * redirect route in @Component or @Directive
+   *
+   * set nvRouteObject in InDiv
+   *
+   * @param {string} path
+   * @param {*} [query]
+   * @param {*} [data]
+   * @param {string} [title]
+   * @memberof NvLocation
+   */
+
+
+  NvLocation.prototype.redirectTo = function (path, query, data, title) {
+    var rootPath = _index.nvRouteStatus.nvRootPath === '/' ? '' : _index.nvRouteStatus.nvRootPath;
+    history.replaceState({
+      path: path,
+      query: query,
+      data: data
+    }, title, "" + rootPath + path + utils.buildQuery(query));
+    _index.nvRouteStatus.nvRouteObject = {
+      path: path,
+      query: query,
+      data: data
+    };
+    _index.nvRouteStatus.nvRouteParmasObject = {};
+  };
+
+  NvLocation = __decorate([(0, _injectable.Injectable)()], NvLocation);
+  return NvLocation;
+}();
+
+exports.NvLocation = NvLocation;
+},{"../di/injectable":"../../InDiv/src/di/injectable.ts","../utils":"../../InDiv/src/utils/index.ts","./index":"../../InDiv/src/router/index.ts"}],"../../InDiv/src/router/directives.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.RouterActive = exports.RouterFrom = exports.RouterTo = void 0;
+
+var _types = require("../types");
+
+var _utils = require("../utils");
+
+var _directive = require("../directive");
+
+var _location = require("./location");
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var __decorate = void 0 && (void 0).__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+      r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+      d;
+  if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+    if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  }
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var __metadata = void 0 && (void 0).__metadata || function (k, v) {
+  if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var utils = new _utils.Utils();
+/**
+ * @Directive can be used as `router-to=""`
+ *
+ * @export
+ * @class RouterTo
+ * @implements {OnInit}
+ * @implements {ReceiveProps}
+ * @implements {RouteChange}
+ */
+
+var RouterTo =
+/** @class */
+function () {
+  function RouterTo(element, location) {
+    var _this = this;
+
+    this.element = element;
+    this.location = location;
+
+    this.routeTo = function () {
+      _this.resetState(_this.props);
+
+      var location = _this.location.get();
+
+      var currentUrl = "" + location.path + utils.buildQuery(location.query);
+
+      if (!_this.to) {
+        console.error('Directive router-to on element', _this.element, 'need a prop');
+        return;
+      }
+
+      if (_this.from && currentUrl === _this.from) _this.location.set(_this.to);
+      if (!_this.from) _this.location.set(_this.to);
+    };
+  }
+
+  RouterTo.prototype.nvOnInit = function () {
+    this.resetState(this.props);
+    this.element.addEventListener('click', this.routeTo, false);
+  };
+
+  RouterTo.prototype.nvReceiveProps = function (nextProps) {
+    this.resetState(nextProps);
+  };
+
+  RouterTo.prototype.nvRouteChange = function (lastRoute, newRoute) {
+    this.resetState(this.props);
+    if (!this.activeClass) return;
+    if (newRoute === this.to && !this.element.classList.contains(this.activeClass)) this.element.classList.add(this.activeClass);
+    if (newRoute !== this.to && this.element.classList.contains(this.activeClass)) this.element.classList.remove(this.activeClass);
+  };
+
+  RouterTo.prototype.nvOnDestory = function () {
+    this.element.removeEventListener('click', this.routeTo, false);
+  };
+
+  RouterTo.prototype.resetState = function (props) {
+    this.to = props;
+    this.element.setAttribute('router-link-to', props);
+    this.from = this.element.getAttribute('router-link-from');
+    this.activeClass = this.element.getAttribute('router-link-active');
+  };
+
+  var _a, _b;
+
+  RouterTo = __decorate([(0, _directive.Directive)({
+    selector: 'router-to'
+  }), __metadata("design:paramtypes", [typeof (_a = typeof _types.ElementRef !== "undefined" && _types.ElementRef) === "function" ? _a : Object, typeof (_b = typeof _location.NvLocation !== "undefined" && _location.NvLocation) === "function" ? _b : Object])], RouterTo);
+  return RouterTo;
+}();
+
+exports.RouterTo = RouterTo;
+
+/**
+ * @Directive can be used as `router-from=""`
+ *
+ * @export
+ * @class RouterFrom
+ * @implements {OnInit}
+ * @implements {ReceiveProps}
+ */
+var RouterFrom =
+/** @class */
+function () {
+  function RouterFrom(element) {
+    this.element = element;
+  }
+
+  RouterFrom.prototype.nvOnInit = function () {
+    this.element.setAttribute('router-link-from', this.props);
+  };
+
+  RouterFrom.prototype.nvReceiveProps = function (nextProps) {
+    this.element.setAttribute('router-link-from', nextProps);
+  };
+
+  var _c;
+
+  RouterFrom = __decorate([(0, _directive.Directive)({
+    selector: 'router-from'
+  }), __metadata("design:paramtypes", [typeof (_c = typeof _types.ElementRef !== "undefined" && _types.ElementRef) === "function" ? _c : Object])], RouterFrom);
+  return RouterFrom;
+}();
+
+exports.RouterFrom = RouterFrom;
+
+/**
+ * @Directive can be used as `router-active=""`
+ *
+ * @export
+ * @class RouterActive
+ * @implements {OnInit}
+ * @implements {ReceiveProps}
+ */
+var RouterActive =
+/** @class */
+function () {
+  function RouterActive(element) {
+    this.element = element;
+  }
+
+  RouterActive.prototype.nvOnInit = function () {
+    this.element.setAttribute('router-link-active', this.props);
+  };
+
+  RouterActive.prototype.nvReceiveProps = function (nextProps) {
+    this.element.setAttribute('router-link-active', nextProps);
+  };
+
+  var _d;
+
+  RouterActive = __decorate([(0, _directive.Directive)({
+    selector: 'router-active'
+  }), __metadata("design:paramtypes", [typeof (_d = typeof _types.ElementRef !== "undefined" && _types.ElementRef) === "function" ? _d : Object])], RouterActive);
+  return RouterActive;
+}();
+
+exports.RouterActive = RouterActive;
+},{"../types":"../../InDiv/src/types/index.ts","../utils":"../../InDiv/src/utils/index.ts","../directive":"../../InDiv/src/directive/index.ts","./location":"../../InDiv/src/router/location.ts"}],"../../InDiv/src/router/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "NvLocation", {
+  enumerable: true,
+  get: function () {
+    return _location.NvLocation;
+  }
+});
+Object.defineProperty(exports, "RouterTo", {
+  enumerable: true,
+  get: function () {
+    return _directives.RouterTo;
+  }
+});
+Object.defineProperty(exports, "RouterFrom", {
+  enumerable: true,
+  get: function () {
+    return _directives.RouterFrom;
+  }
+});
+Object.defineProperty(exports, "RouterActive", {
+  enumerable: true,
+  get: function () {
+    return _directives.RouterActive;
+  }
+});
+exports.RouteModule = exports.nvRouteStatus = void 0;
+
+var _utils = require("../utils");
+
+var _nvModule = require("../nv-module");
+
+var _indiv = require("../indiv");
+
+var _di = require("../di");
+
+var _location = require("./location");
+
+var _directives = require("./directives");
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var __decorate = void 0 && (void 0).__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+      r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+      d;
+  if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+    if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  }
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var __metadata = void 0 && (void 0).__metadata || function (k, v) {
+  if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var __awaiter = void 0 && (void 0).__awaiter || function (thisArg, _arguments, P, generator) {
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : new P(function (resolve) {
+        resolve(result.value);
+      }).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+var __generator = void 0 && (void 0).__generator || function (thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function sent() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  },
+      f,
+      y,
+      t,
+      g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+    return this;
+  }), g;
+
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
+
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
+
+          case 7:
+            op = _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
+      }
+    }
+
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+};
+
+var utils = new _utils.Utils();
+var nvRouteStatus = {
+  nvRouteObject: {
+    path: null,
+    query: {},
+    data: null
+  },
+  nvRouteParmasObject: {},
+  nvRootPath: '/'
+};
+exports.nvRouteStatus = nvRouteStatus;
+
+var RouteModule =
+/** @class */
+function () {
+  function RouteModule(indivInstance) {
+    this.indivInstance = indivInstance;
+    this.routesList = [];
+    this.currentUrl = '';
+    this.lastRoute = null;
+    this.hasRenderComponentList = [];
+    this.needRedirectPath = null;
+    this.watcher = false;
+    this.renderRouteList = [];
+    this.loadModuleMap = new Map();
+    this.loadModuleInjectorMap = new Map();
+    this.canWatch = false; // if don't use static function forRoot, RouteModule.prototype.canWatch is false
+    // if RouteModule.prototype.canWatch is false, don't watch router
+    // if RouteModule.prototype.canWatch is true, watch router and reset RouteModule.prototype.canWatch
+
+    if (!RouteModule_1.prototype.canWatch) return;
+    RouteModule_1.prototype.canWatch = false;
+    if (!this.routes) this.routes = [];
+    if (!nvRouteStatus.nvRootPath) nvRouteStatus.nvRootPath = '/';
+    this.indivInstance.setRootPath(nvRouteStatus.nvRootPath);
+    this.indivInstance.setCanRenderModule(false);
+    this.indivInstance.setRouteDOMKey('router-render');
+    if (!utils.isBrowser()) return;
+    this.refresh = this.refresh.bind(this);
+    window.addEventListener('load', this.refresh, false);
+    window.addEventListener('popstate', function () {
+      var path;
+
+      if (nvRouteStatus.nvRootPath === '/') {
+        path = location.pathname || '/';
+      } else {
+        path = location.pathname.replace(nvRouteStatus.nvRootPath, '') === '' ? '/' : location.pathname.replace(nvRouteStatus.nvRootPath, '');
+      }
+
+      nvRouteStatus.nvRouteObject = {
+        path: path,
+        query: {},
+        data: null
+      };
+      nvRouteStatus.nvRouteParmasObject = {};
+    }, false);
+  }
+
+  RouteModule_1 = RouteModule;
+  /**
+   * init root data
+   *
+   * @static
+   * @param {{
+   *     routes: TRouter[],
+   *     rootPath?: string,
+   *     routeChange?: (lastRoute?: string, nextRoute?: string) => void,
+   *   }} routeData
+   * @returns {Function}
+   * @memberof RouteModule
+   */
+
+  RouteModule.forRoot = function (routeData) {
+    if (routeData.rootPath) nvRouteStatus.nvRootPath = routeData.rootPath;
+    if (routeData.routeChange) RouteModule_1.prototype.routeChange = routeData.routeChange;
+
+    if (routeData.routes && routeData.routes instanceof Array) {
+      RouteModule_1.prototype.routes = routeData.routes;
+    } else {
+      throw new Error("route error: no routes exit");
+    }
+
+    if (!utils.isBrowser()) return;
+    RouteModule_1.prototype.canWatch = true;
+    return RouteModule_1;
+  };
+  /**
+   * redirectTo a path
+   *
+   * @private
+   * @param {string} redirectTo
+   * @memberof Router
+   */
+
+
+  RouteModule.prototype.redirectTo = function (redirectTo) {
+    var rootPath = nvRouteStatus.nvRootPath === '/' ? '' : nvRouteStatus.nvRootPath;
+    history.replaceState(null, null, "" + rootPath + redirectTo);
+    nvRouteStatus.nvRouteObject = {
+      path: redirectTo || '/',
+      query: {},
+      data: null
+    };
+    nvRouteStatus.nvRouteParmasObject = {};
+  };
+  /**
+   * refresh if not watch $nvRouteObject
+   *
+   * @private
+   * @memberof Router
+   */
+
+
+  RouteModule.prototype.refresh = function () {
+    if (!nvRouteStatus.nvRouteObject || !this.watcher) {
+      var path = void 0;
+      if (nvRouteStatus.nvRootPath === '/') path = location.pathname || '/';else path = location.pathname.replace(nvRouteStatus.nvRootPath, '') === '' ? '/' : location.pathname.replace(nvRouteStatus.nvRootPath, '');
+      nvRouteStatus.nvRouteObject = {
+        path: path,
+        query: {},
+        data: null
+      };
+      nvRouteStatus.nvRouteParmasObject = {};
+      this.routeWatcher();
+      this.watcher = true;
+    }
+
+    this.currentUrl = nvRouteStatus.nvRouteObject.path || '/';
+    this.routesList = [];
+    this.renderRouteList = this.currentUrl === '/' ? ['/'] : this.currentUrl.split('/');
+    this.renderRouteList[0] = '/';
+    this.distributeRoutes();
+  };
+  /**
+   * open watcher on nvRouteStatus.nvRouteObject
+   *
+   * @private
+   * @returns
+   * @memberof RouteModule
+   */
+
+
+  RouteModule.prototype.routeWatcher = function () {
+    var routeModuleInstance = this;
+    var val = nvRouteStatus.nvRouteObject;
+    Object.defineProperty(nvRouteStatus, 'nvRouteObject', {
+      configurable: true,
+      enumerable: true,
+      get: function get() {
+        return val;
+      },
+      set: function set(newVal) {
+        if (utils.isEqual(newVal, val)) return;
+        val = newVal;
+        routeModuleInstance.refresh();
+      }
+    });
+  };
+  /**
+   * distribute routes and decide insert or general Routes
+   *
+   * @private
+   * @returns {Promise<any>}
+   * @memberof Router
+   */
+
+
+  RouteModule.prototype.distributeRoutes = function () {
+    return __awaiter(this, void 0, Promise, function () {
+      return __generator(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            if (!(this.lastRoute && this.lastRoute !== this.currentUrl)) return [3
+            /*break*/
+            , 2]; // has rendered
+
+            nvRouteStatus.nvRouteParmasObject = {};
+            return [4
+            /*yield*/
+            , this.insertRenderRoutes()];
+
+          case 1:
+            _a.sent();
+
+            return [3
+            /*break*/
+            , 4];
+
+          case 2:
+            // first render
+            return [4
+            /*yield*/
+            , this.generalDistributeRoutes()];
+
+          case 3:
+            // first render
+            _a.sent();
+
+            _a.label = 4;
+
+          case 4:
+            if (this.routeChange) this.routeChange(this.lastRoute, this.currentUrl);
+            this.lastRoute = this.currentUrl;
+
+            if (this.needRedirectPath) {
+              this.redirectTo(this.needRedirectPath);
+              this.needRedirectPath = null;
+            }
+
+            return [2
+            /*return*/
+            ];
+        }
+      });
+    });
+  };
+  /**
+   * insert Routes and render
+   *
+   * if has rendered Routes, it will find which is different and render it
+   *
+   * @private
+   * @returns {Promise<IComponent>}
+   * @memberof Router
+   */
+
+
+  RouteModule.prototype.insertRenderRoutes = function () {
+    return __awaiter(this, void 0, Promise, function () {
+      var lastRouteList, _loop_1, this_1, index, state_1;
+
+      return __generator(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            lastRouteList = this.lastRoute === '/' ? ['/'] : this.lastRoute.split('/');
+            lastRouteList[0] = '/';
+
+            _loop_1 = function _loop_1(index) {
+              var path, rootRoute, lastRoute, route, needRenderRoute, renderDom, key, FindComponent, component, currentUrlPath_1, findComponentFromModuleResult, loadModule, needRenderRoute, key, renderDom, needRenderRoute;
+              return __generator(this, function (_a) {
+                switch (_a.label) {
+                  case 0:
+                    path = this_1.renderRouteList[index];
+
+                    if (index === 0) {
+                      rootRoute = this_1.routes.find(function (route) {
+                        return route.path === "" + path || /^\/\:.+/.test(route.path);
+                      });
+                      if (!rootRoute) throw new Error("route error: wrong route instantiation in insertRenderRoutes: " + this_1.currentUrl);
+                      this_1.routesList.push(rootRoute);
+                    } else {
+                      lastRoute = this_1.routesList[index - 1].children;
+                      if (!lastRoute || !(lastRoute instanceof Array)) throw new Error('route error: routes not exit or routes must be an array!');
+                      route = lastRoute.find(function (r) {
+                        return r.path === "/" + path || /^\/\:.+/.test(r.path);
+                      });
+                      if (!route) throw new Error("route error: wrong route instantiation: " + this_1.currentUrl);
+                      this_1.routesList.push(route);
+                    }
+
+                    if (!(path !== lastRouteList[index])) return [3
+                    /*break*/
+                    , 6];
+                    needRenderRoute = this_1.routesList[index];
+                    if (!needRenderRoute) throw new Error("route error: wrong route instantiation in insertRenderRoutes: " + this_1.currentUrl);
+                    renderDom = document.querySelectorAll('router-render')[index - 1];
+                    if (!needRenderRoute.component && !needRenderRoute.redirectTo && !needRenderRoute.loadChild) throw new Error("route error: path " + needRenderRoute.path + " need a component which has children path or need a redirectTo which has't children path");
+
+                    if (/^\/\:.+/.test(needRenderRoute.path) && !needRenderRoute.redirectTo) {
+                      key = needRenderRoute.path.split('/:')[1];
+                      nvRouteStatus.nvRouteParmasObject[key] = path;
+                    }
+
+                    FindComponent = null;
+                    component = null;
+                    currentUrlPath_1 = ''; // build current url with route.path
+                    // bucause route has been pushed to this.routesList, don't use to += path
+
+                    this_1.routesList.forEach(function (r, index) {
+                      if (index !== 0) currentUrlPath_1 += r.path;
+                    });
+                    if (!needRenderRoute.component) return [3
+                    /*break*/
+                    , 2];
+                    findComponentFromModuleResult = this_1.findComponentFromModule(needRenderRoute.component, currentUrlPath_1);
+                    FindComponent = findComponentFromModuleResult.component;
+                    return [4
+                    /*yield*/
+                    , this_1.instantiateComponent(FindComponent, renderDom, findComponentFromModuleResult.loadModule, currentUrlPath_1)];
+
+                  case 1:
+                    component = _a.sent();
+                    _a.label = 2;
+
+                  case 2:
+                    if (!needRenderRoute.loadChild) return [3
+                    /*break*/
+                    , 5];
+                    return [4
+                    /*yield*/
+                    , this_1.NvModuleFactoryLoader(needRenderRoute.loadChild, currentUrlPath_1)];
+
+                  case 3:
+                    loadModule = _a.sent();
+                    FindComponent = loadModule.$bootstrap;
+                    return [4
+                    /*yield*/
+                    , this_1.instantiateComponent(FindComponent, renderDom, loadModule, currentUrlPath_1)];
+
+                  case 4:
+                    component = _a.sent();
+                    _a.label = 5;
+
+                  case 5:
+                    if (FindComponent) {
+                      // insert needRenderComponent on index in this.hasRenderComponentList
+                      // and remove other component which index >= index of FindComponent
+                      if (component) {
+                        if (this_1.hasRenderComponentList[index]) this_1.hasRenderComponentList.splice(index, 0, component);
+                        if (!this_1.hasRenderComponentList[index]) this_1.hasRenderComponentList[index] = component;
+                      } else {
+                        throw new Error("route error: path " + needRenderRoute.path + " need a component");
+                      }
+
+                      this_1.routerChangeEvent(index);
+                    }
+
+                    if (needRenderRoute.redirectTo && /^\/.*/.test(needRenderRoute.redirectTo) && index + 1 === this_1.renderRouteList.length) {
+                      this_1.needRedirectPath = needRenderRoute.redirectTo;
+                      return [2
+                      /*return*/
+                      , {
+                        value: void 0
+                      }];
+                    }
+
+                    _a.label = 6;
+
+                  case 6:
+                    // add parmas in $nvRouteParmasObject
+                    if (path === lastRouteList[index]) {
+                      needRenderRoute = this_1.routesList[index];
+
+                      if (/^\/\:.+/.test(needRenderRoute.path) && !needRenderRoute.redirectTo) {
+                        key = needRenderRoute.path.split('/:')[1];
+                        nvRouteStatus.nvRouteParmasObject[key] = path;
+                      }
+                    }
+
+                    if (index === this_1.renderRouteList.length - 1 && index < lastRouteList.length - 1) {
+                      renderDom = document.querySelectorAll('router-render')[index];
+                      this_1.routerChangeEvent(index);
+                      if (renderDom && renderDom.hasChildNodes()) renderDom.removeChild(renderDom.childNodes[0]);
+                      needRenderRoute = this_1.routesList[index];
+
+                      if (needRenderRoute.redirectTo && /^\/.*/.test(needRenderRoute.redirectTo) && index + 1 === this_1.renderRouteList.length) {
+                        this_1.needRedirectPath = needRenderRoute.redirectTo;
+                        return [2
+                        /*return*/
+                        , {
+                          value: void 0
+                        }];
+                      }
+                    }
+
+                    return [2
+                    /*return*/
+                    ];
+                }
+              });
+            };
+
+            this_1 = this;
+            index = 0;
+            _a.label = 1;
+
+          case 1:
+            if (!(index < this.renderRouteList.length)) return [3
+            /*break*/
+            , 4];
+            return [5
+            /*yield**/
+            , _loop_1(index)];
+
+          case 2:
+            state_1 = _a.sent();
+            if (_typeof(state_1) === "object") return [2
+            /*return*/
+            , state_1.value];
+            _a.label = 3;
+
+          case 3:
+            index++;
+            return [3
+            /*break*/
+            , 1];
+
+          case 4:
+            return [2
+            /*return*/
+            ];
+        }
+      });
+    });
+  };
+  /**
+   * render Routes
+   *
+   * first render
+   *
+   * @private
+   * @returns {Promise<IComponent>}
+   * @memberof Router
+   */
+
+
+  RouteModule.prototype.generalDistributeRoutes = function () {
+    return __awaiter(this, void 0, Promise, function () {
+      var _loop_2, this_2, index, state_2;
+
+      return __generator(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            _loop_2 = function _loop_2(index) {
+              var path, rootRoute, rootDom, FindComponent, component, currentUrlPath_2, findComponentFromModuleResult, loadModule, key, lastRoute, route, renderDom, FindComponent, component, currentUrlPath_3, findComponentFromModuleResult, loadModule, key;
+              return __generator(this, function (_a) {
+                switch (_a.label) {
+                  case 0:
+                    path = this_2.renderRouteList[index];
+                    if (!(index === 0)) return [3
+                    /*break*/
+                    , 6];
+                    rootRoute = this_2.routes.find(function (route) {
+                      return route.path === "" + path || /^\/\:.+/.test(route.path);
+                    });
+                    if (!rootRoute) throw new Error("route error: wrong route instantiation in generalDistributeRoutes: " + this_2.currentUrl);
+                    rootDom = document.querySelector('#root');
+                    FindComponent = null;
+                    component = null;
+                    currentUrlPath_2 = ''; // build current url with route.path
+                    // because rootRoute hasn't been pushed to this.routesList, we need to += route.path
+
+                    this_2.routesList.forEach(function (r, index) {
+                      if (index !== 0) currentUrlPath_2 += r.path;
+                    });
+                    currentUrlPath_2 += rootRoute.path;
+                    if (!rootRoute.component) return [3
+                    /*break*/
+                    , 2];
+                    findComponentFromModuleResult = this_2.findComponentFromModule(rootRoute.component, currentUrlPath_2);
+                    FindComponent = findComponentFromModuleResult.component;
+                    return [4
+                    /*yield*/
+                    , this_2.instantiateComponent(FindComponent, rootDom, findComponentFromModuleResult.loadModule, currentUrlPath_2)];
+
+                  case 1:
+                    component = _a.sent();
+                    _a.label = 2;
+
+                  case 2:
+                    if (!rootRoute.loadChild) return [3
+                    /*break*/
+                    , 5];
+                    return [4
+                    /*yield*/
+                    , this_2.NvModuleFactoryLoader(rootRoute.loadChild, currentUrlPath_2)];
+
+                  case 3:
+                    loadModule = _a.sent();
+                    FindComponent = loadModule.$bootstrap;
+                    return [4
+                    /*yield*/
+                    , this_2.instantiateComponent(FindComponent, rootDom, loadModule, currentUrlPath_2)];
+
+                  case 4:
+                    component = _a.sent();
+                    _a.label = 5;
+
+                  case 5:
+                    if (!FindComponent) throw new Error("route error: root route's path: " + rootRoute.path + " need a component");
+
+                    if (/^\/\:.+/.test(rootRoute.path)) {
+                      key = rootRoute.path.split('/:')[1];
+                      nvRouteStatus.nvRouteParmasObject[key] = path;
+                    }
+
+                    if (!utils.isBrowser()) return [2
+                    /*return*/
+                    , {
+                      value: void 0
+                    }];
+                    this_2.routesList.push(rootRoute);
+                    if (component) this_2.hasRenderComponentList.push(component);
+                    if (index === this_2.renderRouteList.length - 1) this_2.routerChangeEvent(index);
+
+                    if (rootRoute.redirectTo && /^\/.*/.test(rootRoute.redirectTo) && index + 1 === this_2.renderRouteList.length) {
+                      this_2.needRedirectPath = rootRoute.redirectTo;
+                      this_2.renderRouteList.push(rootRoute.redirectTo);
+                      return [2
+                      /*return*/
+                      , {
+                        value: void 0
+                      }];
+                    }
+
+                    return [3
+                    /*break*/
+                    , 12];
+
+                  case 6:
+                    lastRoute = this_2.routesList[index - 1].children;
+                    if (!lastRoute || !(lastRoute instanceof Array)) throw new Error('route error: routes not exit or routes must be an array!');
+                    route = lastRoute.find(function (r) {
+                      return r.path === "/" + path || /^\/\:.+/.test(r.path);
+                    });
+                    if (!route) throw new Error("route error: wrong route instantiation: " + this_2.currentUrl);
+                    renderDom = document.querySelectorAll('router-render')[index - 1];
+                    FindComponent = null;
+                    component = null;
+                    currentUrlPath_3 = ''; // build current url with route.path
+                    // because rootRoute hasn't been pushed to this.routesList, we need to += route.path
+
+                    this_2.routesList.forEach(function (r, index) {
+                      if (index !== 0) currentUrlPath_3 += r.path;
+                    });
+                    currentUrlPath_3 += route.path;
+                    if (!route.component) return [3
+                    /*break*/
+                    , 8];
+                    findComponentFromModuleResult = this_2.findComponentFromModule(route.component, currentUrlPath_3);
+                    FindComponent = findComponentFromModuleResult.component;
+                    return [4
+                    /*yield*/
+                    , this_2.instantiateComponent(FindComponent, renderDom, findComponentFromModuleResult.loadModule, currentUrlPath_3)];
+
+                  case 7:
+                    component = _a.sent();
+                    _a.label = 8;
+
+                  case 8:
+                    if (!route.loadChild) return [3
+                    /*break*/
+                    , 11];
+                    return [4
+                    /*yield*/
+                    , this_2.NvModuleFactoryLoader(route.loadChild, currentUrlPath_3)];
+
+                  case 9:
+                    loadModule = _a.sent();
+                    FindComponent = loadModule.$bootstrap;
+                    return [4
+                    /*yield*/
+                    , this_2.instantiateComponent(FindComponent, renderDom, loadModule, currentUrlPath_3)];
+
+                  case 10:
+                    component = _a.sent();
+                    _a.label = 11;
+
+                  case 11:
+                    if (!route.component && !route.redirectTo && !route.loadChild) throw new Error("route error: path " + route.path + " need a component which has children path or need a  redirectTo which has't children path");
+
+                    if (/^\/\:.+/.test(route.path)) {
+                      key = route.path.split('/:')[1];
+                      nvRouteStatus.nvRouteParmasObject[key] = path;
+                    }
+
+                    this_2.routesList.push(route);
+                    if (component) this_2.hasRenderComponentList.push(component);
+                    if (index === this_2.renderRouteList.length - 1) this_2.routerChangeEvent(index);
+
+                    if (route.redirectTo && /^\/.*/.test(route.redirectTo) && index + 1 === this_2.renderRouteList.length) {
+                      this_2.needRedirectPath = route.redirectTo;
+                      return [2
+                      /*return*/
+                      , {
+                        value: void 0
+                      }];
+                    }
+
+                    _a.label = 12;
+
+                  case 12:
+                    return [2
+                    /*return*/
+                    ];
+                }
+              });
+            };
+
+            this_2 = this;
+            index = 0;
+            _a.label = 1;
+
+          case 1:
+            if (!(index < this.renderRouteList.length)) return [3
+            /*break*/
+            , 4];
+            return [5
+            /*yield**/
+            , _loop_2(index)];
+
+          case 2:
+            state_2 = _a.sent();
+            if (_typeof(state_2) === "object") return [2
+            /*return*/
+            , state_2.value];
+            _a.label = 3;
+
+          case 3:
+            index++;
+            return [3
+            /*break*/
+            , 1];
+
+          case 4:
+            return [2
+            /*return*/
+            ];
+        }
+      });
+    });
+  };
+  /**
+   * emit nvRouteChange and nvOnDestory for Components
+   *
+   * @private
+   * @param {number} index
+   * @memberof Router
+   */
+
+
+  RouteModule.prototype.routerChangeEvent = function (index) {
+    var _this = this;
+
+    this.hasRenderComponentList.forEach(function (component, i) {
+      if (component.nvRouteChange) component.nvRouteChange(_this.lastRoute, _this.currentUrl);
+
+      _this.emitDirectiveEvent(component.$directiveList, 'nvRouteChange');
+
+      _this.emitComponentEvent(component.$componentList, 'nvRouteChange');
+
+      if (i >= index + 1) {
+        if (component.nvOnDestory) component.nvOnDestory();
+
+        _this.emitDirectiveEvent(component.$directiveList, 'nvOnDestory');
+
+        _this.emitComponentEvent(component.$componentList, 'nvOnDestory');
+      }
+    });
+    this.hasRenderComponentList.length = index + 1;
+  };
+  /**
+   * emit nvRouteChange and nvOnDestory for Components with recursion
+   *
+   * @private
+   * @param {ComponentList<IComponent>[]} componentList
+   * @param {string} event
+   * @memberof Router
+   */
+
+
+  RouteModule.prototype.emitComponentEvent = function (componentList, event) {
+    var _this = this;
+
+    if (event === 'nvRouteChange') {
+      componentList.forEach(function (component) {
+        if (component.scope.nvRouteChange) component.scope.nvRouteChange(_this.lastRoute, _this.currentUrl);
+
+        _this.emitDirectiveEvent(component.scope.$directiveList, event);
+
+        _this.emitComponentEvent(component.scope.$componentList, event);
+      });
+    }
+
+    if (event === 'nvOnDestory') {
+      componentList.forEach(function (component) {
+        if (component.scope.nvOnDestory) component.scope.nvOnDestory();
+
+        _this.emitDirectiveEvent(component.scope.$directiveList, event);
+
+        _this.emitComponentEvent(component.scope.$componentList, event);
+      });
+    }
+  };
+  /**
+   * emit nvRouteChange and nvOnDestory for Directives with recursion
+   *
+   * @private
+   * @param {DirectiveList<IDirective>[]} directiveList
+   * @param {string} event
+   * @memberof RouteModule
+   */
+
+
+  RouteModule.prototype.emitDirectiveEvent = function (directiveList, event) {
+    var _this = this;
+
+    if (event === 'nvRouteChange') {
+      directiveList.forEach(function (directive) {
+        if (directive.scope.nvRouteChange) directive.scope.nvRouteChange(_this.lastRoute, _this.currentUrl);
+      });
+    }
+
+    if (event === 'nvOnDestory') {
+      directiveList.forEach(function (directive) {
+        if (directive.scope.nvOnDestory) directive.scope.nvOnDestory();
+      });
+    }
+  };
+  /**
+   * instantiate Component
+   *
+   * use InDiv renderComponent
+   *
+   * if parmas has loadModule, use loadModule
+   * if parmas has'nt loadModule, use rootModule in InDiv
+   *
+   * @private
+   * @param {Function} FindComponent
+   * @param {Element} renderDom
+   * @param {INvModule} [loadModule]
+   * @returns {Promise<IComponent>}
+   * @memberof Router
+   */
+
+
+  RouteModule.prototype.instantiateComponent = function (FindComponent, renderDom, loadModule, currentUrlPath) {
+    return this.indivInstance.renderComponent(FindComponent, renderDom, loadModule, this.loadModuleInjectorMap.get(currentUrlPath));
+  };
+  /**
+   * build Module and return Component for route.loadChild
+   *
+   * @private
+   * @param {(TChildModule | TLoadChild)} loadChild
+   * @returns {Promise<INvModule>}
+   * @memberof Router
+   */
+
+
+  RouteModule.prototype.NvModuleFactoryLoader = function (loadChild, currentUrlPath) {
+    return __awaiter(this, void 0, Promise, function () {
+      var loadModule, otherInjector, loadModuleInstance;
+      return __generator(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            if (this.loadModuleMap.has(currentUrlPath)) return [2
+            /*return*/
+            , this.loadModuleMap.get(currentUrlPath)];
+            loadModule = null;
+            if (!(loadChild instanceof Function && !loadChild.child)) return [3
+            /*break*/
+            , 2];
+            return [4
+            /*yield*/
+            , loadChild()];
+
+          case 1:
+            loadModule = _a.sent().default;
+            _a.label = 2;
+
+          case 2:
+            if (!(loadChild instanceof Object && loadChild.child)) return [3
+            /*break*/
+            , 4];
+            return [4
+            /*yield*/
+            , loadChild.child()];
+
+          case 3:
+            loadModule = _a.sent()[loadChild.name];
+            _a.label = 4;
+
+          case 4:
+            if (!loadModule) throw new Error('load child failed, please check your routes.');
+            otherInjector = new _di.Injector();
+            this.loadModuleInjectorMap.set(currentUrlPath, otherInjector);
+            loadModuleInstance = (0, _nvModule.factoryModule)(loadModule, otherInjector, this.indivInstance);
+            this.loadModuleMap.set(currentUrlPath, loadModuleInstance);
+            return [2
+            /*return*/
+            , loadModuleInstance];
+        }
+      });
+    });
+  };
+  /**
+   * find component from loadModule or rootModule
+   *
+   * if this.loadModuleMap.size === 0, only in $rootModule
+   * if has loadModule, return component in loadModule firstly
+   *
+   *
+   * @private
+   * @param {string} selector
+   * @param {string} currentUrlPath
+   * @returns {{ component: Function, loadModule: INvModule }}
+   * @memberof Router
+   */
+
+
+  RouteModule.prototype.findComponentFromModule = function (selector, currentUrlPath) {
+    if (this.loadModuleMap.size === 0) return {
+      component: this.indivInstance.getDirectives().find(function (component) {
+        return component.$selector === selector && component.nvType === 'nvComponent';
+      }),
+      loadModule: null
+    };
+    var component = null;
+    var loadModule = null;
+    this.loadModuleMap.forEach(function (value, key) {
+      if (new RegExp("^" + key + ".*").test(currentUrlPath)) {
+        component = value.$declarations.find(function (component) {
+          return component.$selector === selector && component.nvType === 'nvComponent';
+        });
+        loadModule = value;
+      }
+    });
+
+    if (!component) {
+      component = this.indivInstance.getDirectives().find(function (component) {
+        return component.$selector === selector && component.nvType === 'nvComponent';
+      });
+      loadModule = null;
+    }
+
+    return {
+      component: component,
+      loadModule: loadModule
+    };
+  };
+
+  var RouteModule_1, _a;
+
+  RouteModule = RouteModule_1 = __decorate([(0, _nvModule.NvModule)({
+    declarations: [_directives.RouterTo, _directives.RouterFrom, _directives.RouterActive],
+    providers: [{
+      useClass: _location.NvLocation,
+      provide: _location.NvLocation
+    }],
+    exports: [_directives.RouterTo, _directives.RouterFrom, _directives.RouterActive]
+  }), __metadata("design:paramtypes", [typeof (_a = typeof _indiv.InDiv !== "undefined" && _indiv.InDiv) === "function" ? _a : Object])], RouteModule);
+  return RouteModule;
+}();
+
+exports.RouteModule = RouteModule;
+},{"../utils":"../../InDiv/src/utils/index.ts","../nv-module":"../../InDiv/src/nv-module/index.ts","../indiv":"../../InDiv/src/indiv/index.ts","../di":"../../InDiv/src/di/index.ts","./location":"../../InDiv/src/router/location.ts","./directives":"../../InDiv/src/router/directives.ts"}],"../../InDiv/src/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15490,46 +16748,16 @@ Object.defineProperty(exports, "WatchState", {
     return _lifecycle.WatchState;
   }
 });
-Object.defineProperty(exports, "RouteChange", {
-  enumerable: true,
-  get: function () {
-    return _lifecycle.RouteChange;
-  }
-});
 Object.defineProperty(exports, "ReceiveProps", {
   enumerable: true,
   get: function () {
     return _lifecycle.ReceiveProps;
   }
 });
-Object.defineProperty(exports, "SetState", {
-  enumerable: true,
-  get: function () {
-    return _lifecycle.SetState;
-  }
-});
-Object.defineProperty(exports, "SetLocation", {
-  enumerable: true,
-  get: function () {
-    return _lifecycle.SetLocation;
-  }
-});
-Object.defineProperty(exports, "GetLocation", {
-  enumerable: true,
-  get: function () {
-    return _lifecycle.GetLocation;
-  }
-});
 Object.defineProperty(exports, "Watcher", {
   enumerable: true,
   get: function () {
     return _watcher.Watcher;
-  }
-});
-Object.defineProperty(exports, "KeyWatcher", {
-  enumerable: true,
-  get: function () {
-    return _keyWatcher.KeyWatcher;
   }
 });
 Object.defineProperty(exports, "Compile", {
@@ -15550,30 +16778,6 @@ Object.defineProperty(exports, "CompileUtilForRepeat", {
     return _platformBrowser.CompileUtilForRepeat;
   }
 });
-Object.defineProperty(exports, "Router", {
-  enumerable: true,
-  get: function () {
-    return _platformBrowser.Router;
-  }
-});
-Object.defineProperty(exports, "TRouter", {
-  enumerable: true,
-  get: function () {
-    return _platformBrowser.TRouter;
-  }
-});
-Object.defineProperty(exports, "setLocation", {
-  enumerable: true,
-  get: function () {
-    return _platformBrowser.setLocation;
-  }
-});
-Object.defineProperty(exports, "getLocation", {
-  enumerable: true,
-  get: function () {
-    return _platformBrowser.getLocation;
-  }
-});
 Object.defineProperty(exports, "Component", {
   enumerable: true,
   get: function () {
@@ -15586,10 +16790,28 @@ Object.defineProperty(exports, "setState", {
     return _component.setState;
   }
 });
+Object.defineProperty(exports, "SetState", {
+  enumerable: true,
+  get: function () {
+    return _component.SetState;
+  }
+});
+Object.defineProperty(exports, "Directive", {
+  enumerable: true,
+  get: function () {
+    return _directive.Directive;
+  }
+});
 Object.defineProperty(exports, "InDiv", {
   enumerable: true,
   get: function () {
     return _indiv.InDiv;
+  }
+});
+Object.defineProperty(exports, "ElementRef", {
+  enumerable: true,
+  get: function () {
+    return _indiv.ElementRef;
   }
 });
 Object.defineProperty(exports, "NvModule", {
@@ -15604,16 +16826,28 @@ Object.defineProperty(exports, "factoryModule", {
     return _nvModule.factoryModule;
   }
 });
-Object.defineProperty(exports, "NVHttp", {
-  enumerable: true,
-  get: function () {
-    return _http.NVHttp;
-  }
-});
 Object.defineProperty(exports, "HttpClient", {
   enumerable: true,
   get: function () {
     return _httpClient.HttpClient;
+  }
+});
+Object.defineProperty(exports, "HttpClientRequestConfig", {
+  enumerable: true,
+  get: function () {
+    return _httpClient.HttpClientRequestConfig;
+  }
+});
+Object.defineProperty(exports, "HttpClientResponse", {
+  enumerable: true,
+  get: function () {
+    return _httpClient.HttpClientResponse;
+  }
+});
+Object.defineProperty(exports, "HttpClientRequestInstance", {
+  enumerable: true,
+  get: function () {
+    return _httpClient.HttpClientRequestInstance;
   }
 });
 Object.defineProperty(exports, "Injectable", {
@@ -15622,16 +16856,22 @@ Object.defineProperty(exports, "Injectable", {
     return _di.Injectable;
   }
 });
-Object.defineProperty(exports, "Injected", {
+Object.defineProperty(exports, "inject", {
   enumerable: true,
   get: function () {
-    return _di.Injected;
+    return _di.inject;
   }
 });
-Object.defineProperty(exports, "injector", {
+Object.defineProperty(exports, "Injector", {
   enumerable: true,
   get: function () {
-    return _di.injector;
+    return _di.Injector;
+  }
+});
+Object.defineProperty(exports, "rootInjector", {
+  enumerable: true,
+  get: function () {
+    return _di.rootInjector;
   }
 });
 Object.defineProperty(exports, "factoryCreator", {
@@ -15640,8 +16880,48 @@ Object.defineProperty(exports, "factoryCreator", {
     return _di.factoryCreator;
   }
 });
-
-require("reflect-metadata");
+Object.defineProperty(exports, "RouteChange", {
+  enumerable: true,
+  get: function () {
+    return _router.RouteChange;
+  }
+});
+Object.defineProperty(exports, "TRouter", {
+  enumerable: true,
+  get: function () {
+    return _router.TRouter;
+  }
+});
+Object.defineProperty(exports, "RouteModule", {
+  enumerable: true,
+  get: function () {
+    return _router.RouteModule;
+  }
+});
+Object.defineProperty(exports, "NvLocation", {
+  enumerable: true,
+  get: function () {
+    return _router.NvLocation;
+  }
+});
+Object.defineProperty(exports, "RouterTo", {
+  enumerable: true,
+  get: function () {
+    return _router.RouterTo;
+  }
+});
+Object.defineProperty(exports, "RouterFrom", {
+  enumerable: true,
+  get: function () {
+    return _router.RouterFrom;
+  }
+});
+Object.defineProperty(exports, "RouterActive", {
+  enumerable: true,
+  get: function () {
+    return _router.RouterActive;
+  }
+});
 
 var _utils = require("./utils");
 
@@ -15649,185 +16929,22 @@ var _lifecycle = require("./lifecycle");
 
 var _watcher = require("./watcher");
 
-var _keyWatcher = require("./key-watcher");
-
 var _platformBrowser = require("./platform-browser");
 
 var _component = require("./component");
+
+var _directive = require("./directive");
 
 var _indiv = require("./indiv");
 
 var _nvModule = require("./nv-module");
 
-var _http = require("./http");
-
 var _httpClient = require("./http-client");
 
 var _di = require("./di");
-},{"reflect-metadata":"../../InDiv/node_modules/reflect-metadata/Reflect.js","./utils":"../../InDiv/src/utils/index.ts","./lifecycle":"../../InDiv/src/lifecycle/index.ts","./watcher":"../../InDiv/src/watcher/index.ts","./key-watcher":"../../InDiv/src/key-watcher/index.ts","./platform-browser":"../../InDiv/src/platform-browser/index.ts","./component":"../../InDiv/src/component/index.ts","./indiv":"../../InDiv/src/indiv/index.ts","./nv-module":"../../InDiv/src/nv-module/index.ts","./http":"../../InDiv/src/http/index.ts","./http-client":"../../InDiv/src/http-client/index.ts","./di":"../../InDiv/src/di/index.ts"}],"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/bundle-loader.js":[function(require,module,exports) {
-var getBundleURL = require('./bundle-url').getBundleURL;
 
-function loadBundlesLazy(bundles) {
-  if (!Array.isArray(bundles)) {
-    bundles = [bundles];
-  }
-
-  var id = bundles[bundles.length - 1];
-
-  try {
-    return Promise.resolve(require(id));
-  } catch (err) {
-    if (err.code === 'MODULE_NOT_FOUND') {
-      return new LazyPromise(function (resolve, reject) {
-        loadBundles(bundles.slice(0, -1)).then(function () {
-          return require(id);
-        }).then(resolve, reject);
-      });
-    }
-
-    throw err;
-  }
-}
-
-function loadBundles(bundles) {
-  return Promise.all(bundles.map(loadBundle));
-}
-
-var bundleLoaders = {};
-
-function registerBundleLoader(type, loader) {
-  bundleLoaders[type] = loader;
-}
-
-module.exports = exports = loadBundlesLazy;
-exports.load = loadBundles;
-exports.register = registerBundleLoader;
-var bundles = {};
-
-function loadBundle(bundle) {
-  var id;
-
-  if (Array.isArray(bundle)) {
-    id = bundle[1];
-    bundle = bundle[0];
-  }
-
-  if (bundles[bundle]) {
-    return bundles[bundle];
-  }
-
-  var type = (bundle.substring(bundle.lastIndexOf('.') + 1, bundle.length) || bundle).toLowerCase();
-  var bundleLoader = bundleLoaders[type];
-
-  if (bundleLoader) {
-    return bundles[bundle] = bundleLoader(getBundleURL() + bundle).then(function (resolved) {
-      if (resolved) {
-        module.bundle.register(id, resolved);
-      }
-
-      return resolved;
-    });
-  }
-}
-
-function LazyPromise(executor) {
-  this.executor = executor;
-  this.promise = null;
-}
-
-LazyPromise.prototype.then = function (onSuccess, onError) {
-  if (this.promise === null) this.promise = new Promise(this.executor);
-  return this.promise.then(onSuccess, onError);
-};
-
-LazyPromise.prototype.catch = function (onError) {
-  if (this.promise === null) this.promise = new Promise(this.executor);
-  return this.promise.catch(onError);
-};
-},{"./bundle-url":"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/bundle-url.js"}],"routes/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _src = require("../../../InDiv/src");
-
-// import { Router, TRouter } from 'indiv';
-// import { Router, TRouter } from '../../../InDiv/build';
-var router = new _src.Router();
-var routes = [{
-  path: '/',
-  redirectTo: '/introduction',
-  component: 'root-component',
-  children: [{
-    path: '/introduction',
-    // component: 'introduction-container',
-    loadChild: function loadChild() {
-      return require("_bundle_loader")(require.resolve('../modules/introduction.module'));
-    }
-  }, {
-    path: '/architecture',
-    // component: 'architecture-container',
-    loadChild: function loadChild() {
-      return require("_bundle_loader")(require.resolve('../modules/architecture.module'));
-    }
-  }, {
-    path: '/docs',
-    redirectTo: '/docs/component',
-    // component: 'docs-container',
-    loadChild: function loadChild() {
-      return require("_bundle_loader")(require.resolve('../modules/docs.module'));
-    },
-    children: [{
-      path: '/component',
-      component: 'docs-component-container'
-    }, {
-      path: '/template',
-      component: 'docs-template-container'
-    }, {
-      path: '/service',
-      component: 'docs-service-container'
-    }, {
-      path: '/module',
-      component: 'docs-module-container'
-    }, {
-      path: '/route',
-      component: 'docs-route-container'
-    }, {
-      path: '/indiv',
-      component: 'docs-indiv-container'
-    }, {
-      path: '/libs',
-      component: 'docs-libs-container'
-    }, {
-      path: '/http',
-      component: 'docs-http-container'
-    }]
-  }, {
-    path: '/ssr',
-    // component: 'ssr-container',
-    loadChild: function loadChild() {
-      return require("_bundle_loader")(require.resolve('../modules/ssr.module'));
-    }
-  }, {
-    path: '/middleware',
-    // component: 'middleware-container',
-    loadChild: function loadChild() {
-      return require("_bundle_loader")(require.resolve('../modules/middleware.module'));
-    }
-  }]
-}];
-router.setRootPath('/indiv-doc');
-router.init(routes);
-
-router.routeChange = function (old, next) {// console.log('$routeChange', old, next);
-};
-
-var _default = router;
-exports.default = _default;
-},{"../../../InDiv/src":"../../InDiv/src/index.ts","_bundle_loader":"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/bundle-loader.js","../modules/introduction.module":[["introduction.module.16cfd330.js","modules/introduction.module.ts"],"introduction.module.16cfd330.map","introduction.module.16cfd330.css","modules/introduction.module.ts"],"../modules/architecture.module":[["architecture.module.5a3de5ca.js","modules/architecture.module.ts"],"architecture.module.5a3de5ca.map","architecture.module.5a3de5ca.css","modules/architecture.module.ts"],"../modules/docs.module":[["docs.module.76cfd183.js","modules/docs.module.ts"],"docs.module.76cfd183.map","docs.module.76cfd183.css","modules/docs.module.ts"],"../modules/ssr.module":[["ssr.module.01572ac7.js","modules/ssr.module.ts"],"ssr.module.01572ac7.map","ssr.module.01572ac7.css","modules/ssr.module.ts"],"../modules/middleware.module":[["middleware.module.5f0123e1.js","modules/middleware.module.ts"],"middleware.module.5f0123e1.map","middleware.module.5f0123e1.css","modules/middleware.module.ts"]}],"components/root-component/style.less":[function(require,module,exports) {
+var _router = require("./router");
+},{"./utils":"../../InDiv/src/utils/index.ts","./lifecycle":"../../InDiv/src/lifecycle/index.ts","./watcher":"../../InDiv/src/watcher/index.ts","./platform-browser":"../../InDiv/src/platform-browser/index.ts","./component":"../../InDiv/src/component/index.ts","./directive":"../../InDiv/src/directive/index.ts","./indiv":"../../InDiv/src/indiv/index.ts","./nv-module":"../../InDiv/src/nv-module/index.ts","./http-client":"../../InDiv/src/http-client/index.ts","./di":"../../InDiv/src/di/index.ts","./router":"../../InDiv/src/router/index.ts"}],"components/root-component/style.less":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -15867,7 +16984,7 @@ function () {
   function RootComponent() {
     this.state = {
       showSideBar: 'open',
-      currentVersion: 'v1.2.1'
+      currentVersion: 'v1.2.2'
     };
   }
 
@@ -15881,7 +16998,7 @@ function () {
 
   RootComponent = __decorate([(0, _src.Component)({
     selector: 'root-component',
-    template: "\n        <div class=\"app-container\" nv-class=\"$.showSideBar\">\n            <a href=\"https://github.com/DimaLiLongJi/InDiv\" class=\"github-corner\" aria-label=\"View source on Github\">\n                <p>\u5F53\u524D\u7248\u672C\uFF1A {{$.currentVersion}}</p>\n                <svg viewBox=\"0 0 250 250\" aria-hidden=\"true\"><path d=\"M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z\"></path><path d=\"M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2\" fill=\"currentColor\" style=\"transform-origin: 130px 106px;\" class=\"octo-arm\"></path><path d=\"M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z\" fill=\"currentColor\" class=\"octo-body\"></path></svg>\n            </a>\n            <side-bar handle-side-bar=\"{@changeShowSideBar}\"></side-bar>\n            <router-render></router-render>\n        </div>\n    "
+    template: "\n        <div class=\"app-container\" nv-class=\"showSideBar\">\n            <a href=\"https://github.com/DimaLiLongJi/InDiv\" class=\"github-corner\" aria-label=\"View source on Github\">\n                <p>\u5F53\u524D\u7248\u672C\uFF1A {{currentVersion}}</p>\n                <svg viewBox=\"0 0 250 250\" aria-hidden=\"true\"><path d=\"M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z\"></path><path d=\"M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2\" fill=\"currentColor\" style=\"transform-origin: 130px 106px;\" class=\"octo-arm\"></path><path d=\"M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z\" fill=\"currentColor\" class=\"octo-body\"></path></svg>\n            </a>\n            <side-bar handle-side-bar=\"{@changeShowSideBar}\"></side-bar>\n            <router-render></router-render>\n        </div>\n    "
   }), __metadata("design:paramtypes", [])], RootComponent);
   return RootComponent;
 }();
@@ -22979,10 +24096,9 @@ var __metadata = void 0 && (void 0).__metadata || function (k, v) {
 var SideBar =
 /** @class */
 function () {
-  function SideBar(testS) {
+  function SideBar(testS, location) {
     this.testS = testS;
-    this.getLocation = _src.getLocation;
-    this.setLocation = _src.setLocation;
+    this.location = location;
     this.setState = _src.setState;
     this.subscribeToken = this.testS.subscribe(this.subscribe);
   }
@@ -23010,7 +24126,7 @@ function () {
   };
 
   SideBar.prototype.showColor = function () {
-    var location = this.getLocation();
+    var location = this.location.get();
     this.state.navs.forEach(function (nav) {
       nav.active = null;
       if (nav.to === location.path) nav.active = 'active';
@@ -23032,12 +24148,12 @@ function () {
     this.props.handleSideBar();
   };
 
-  var _a;
+  var _a, _b;
 
-  SideBar = __decorate([_src.Injected, (0, _src.Component)({
+  SideBar = __decorate([(0, _src.Component)({
     selector: 'side-bar',
-    template: "\n        <div class=\"side-bar-container\">\n            <div class=\"nav-wrap\" nv-class=\"nav.active\" nv-repeat=\"let nav in $.navs\">\n                <a class=\"nav\" nv-on:click=\"@setLocation(nav.to)\">{{nav.name}}</a>\n                <div class=\"child-wrap\" nv-if=\"nav.child\">\n                    <a class=\"nav nav-child\" nv-class=\"child.active\" nv-repeat=\"let child in nav.child\" nv-on:click=\"@setLocation(child.to)\">{{child.name}}</a>\n                </div>\n            </div>\n            <button class=\"sidebar-toggle\" nv-on:click=\"@changeShowSideBar()\">\n                <div class=\"sidebar-toggle-button\">\n                    <span></span>\n                    <span></span>\n                    <span></span>\n                </div>\n            </button>\n        </div>\n    "
-  }), __metadata("design:paramtypes", [typeof (_a = typeof _test.default !== "undefined" && _test.default) === "function" && _a || Object])], SideBar);
+    template: "\n        <div class=\"side-bar-container\">\n            <div class=\"nav-wrap\" nv-class=\"nav.active\" nv-repeat=\"let nav in navs\">\n                <a class=\"nav\" nv-on:click=\"@location.set(nav.to)\">{{nav.name}}</a>\n                <div class=\"child-wrap\" nv-if=\"nav.child\">\n                    <a class=\"nav nav-child\" nv-class=\"child.active\" nv-repeat=\"let child in nav.child\" nv-on:click=\"@location.set(child.to)\">{{child.name}}</a>\n                </div>\n            </div>\n            <button class=\"sidebar-toggle\" nv-on:click=\"@changeShowSideBar()\">\n                <div class=\"sidebar-toggle-button\">\n                    <span></span>\n                    <span></span>\n                    <span></span>\n                </div>\n            </button>\n        </div>\n    "
+  }), __metadata("design:paramtypes", [typeof (_a = typeof _test.default !== "undefined" && _test.default) === "function" && _a || Object, typeof (_b = typeof _src.NvLocation !== "undefined" && _src.NvLocation) === "function" && _b || Object])], SideBar);
   return SideBar;
 }();
 
@@ -45399,14 +46515,195 @@ function () {
 
   CodeShower = __decorate([(0, _src.Component)({
     selector: 'code-shower',
-    template: "\n        <div nv-on:click=\"@show()\" class=\"code-show-container\">\n            <blockquote>\n                <pre>\n                    <code nv-class=\"$.type\">{{$.codes}}</code>\n                </pre>\n            </blockquote>\n        </div>\n    "
+    template: "\n        <div nv-on:click=\"@show()\" class=\"code-show-container\">\n            <blockquote>\n                <pre>\n                    <code nv-class=\"type\">{{codes}}</code>\n                </pre>\n            </blockquote>\n        </div>\n    "
   })], CodeShower);
   return CodeShower;
 }();
 
 var _default = CodeShower;
 exports.default = _default;
-},{"highlight.js/styles/atom-one-dark.css":"../node_modules/highlight.js/styles/atom-one-dark.css","../../../../InDiv/src":"../../InDiv/src/index.ts","highlight.js":"../node_modules/highlight.js/lib/index.js"}],"modules/index.ts":[function(require,module,exports) {
+},{"highlight.js/styles/atom-one-dark.css":"../node_modules/highlight.js/styles/atom-one-dark.css","../../../../InDiv/src":"../../InDiv/src/index.ts","highlight.js":"../node_modules/highlight.js/lib/index.js"}],"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/bundle-loader.js":[function(require,module,exports) {
+var getBundleURL = require('./bundle-url').getBundleURL;
+
+function loadBundlesLazy(bundles) {
+  if (!Array.isArray(bundles)) {
+    bundles = [bundles];
+  }
+
+  var id = bundles[bundles.length - 1];
+
+  try {
+    return Promise.resolve(require(id));
+  } catch (err) {
+    if (err.code === 'MODULE_NOT_FOUND') {
+      return new LazyPromise(function (resolve, reject) {
+        loadBundles(bundles.slice(0, -1)).then(function () {
+          return require(id);
+        }).then(resolve, reject);
+      });
+    }
+
+    throw err;
+  }
+}
+
+function loadBundles(bundles) {
+  return Promise.all(bundles.map(loadBundle));
+}
+
+var bundleLoaders = {};
+
+function registerBundleLoader(type, loader) {
+  bundleLoaders[type] = loader;
+}
+
+module.exports = exports = loadBundlesLazy;
+exports.load = loadBundles;
+exports.register = registerBundleLoader;
+var bundles = {};
+
+function loadBundle(bundle) {
+  var id;
+
+  if (Array.isArray(bundle)) {
+    id = bundle[1];
+    bundle = bundle[0];
+  }
+
+  if (bundles[bundle]) {
+    return bundles[bundle];
+  }
+
+  var type = (bundle.substring(bundle.lastIndexOf('.') + 1, bundle.length) || bundle).toLowerCase();
+  var bundleLoader = bundleLoaders[type];
+
+  if (bundleLoader) {
+    return bundles[bundle] = bundleLoader(getBundleURL() + bundle).then(function (resolved) {
+      if (resolved) {
+        module.bundle.register(id, resolved);
+      }
+
+      return resolved;
+    });
+  }
+}
+
+function LazyPromise(executor) {
+  this.executor = executor;
+  this.promise = null;
+}
+
+LazyPromise.prototype.then = function (onSuccess, onError) {
+  if (this.promise === null) this.promise = new Promise(this.executor);
+  return this.promise.then(onSuccess, onError);
+};
+
+LazyPromise.prototype.catch = function (onError) {
+  if (this.promise === null) this.promise = new Promise(this.executor);
+  return this.promise.catch(onError);
+};
+},{"./bundle-url":"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/bundle-url.js"}],"routes/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _src = require("../../../InDiv/src");
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var __decorate = void 0 && (void 0).__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+      r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+      d;
+  if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+    if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  }
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+}; // import { Router, TRouter } from 'indiv';
+
+
+var routes = [{
+  path: '/',
+  redirectTo: '/introduction',
+  component: 'root-component',
+  children: [{
+    path: '/introduction',
+    loadChild: function loadChild() {
+      return require("_bundle_loader")(require.resolve('../modules/introduction.module'));
+    }
+  }, {
+    path: '/architecture',
+    loadChild: function loadChild() {
+      return require("_bundle_loader")(require.resolve('../modules/architecture.module'));
+    }
+  }, {
+    path: '/docs',
+    redirectTo: '/docs/component',
+    loadChild: function loadChild() {
+      return require("_bundle_loader")(require.resolve('../modules/docs.module'));
+    },
+    children: [{
+      path: '/component',
+      component: 'docs-component-container'
+    }, {
+      path: '/template',
+      component: 'docs-template-container'
+    }, {
+      path: '/service',
+      component: 'docs-service-container'
+    }, {
+      path: '/module',
+      component: 'docs-module-container'
+    }, {
+      path: '/route',
+      component: 'docs-route-container'
+    }, {
+      path: '/indiv',
+      component: 'docs-indiv-container'
+    }, {
+      path: '/libs',
+      component: 'docs-libs-container'
+    }, {
+      path: '/http',
+      component: 'docs-http-container'
+    }]
+  }, {
+    path: '/ssr',
+    loadChild: function loadChild() {
+      return require("_bundle_loader")(require.resolve('../modules/ssr.module'));
+    }
+  }, {
+    path: '/middleware',
+    loadChild: function loadChild() {
+      return require("_bundle_loader")(require.resolve('../modules/middleware.module'));
+    }
+  }]
+}];
+
+var RouterModule =
+/** @class */
+function () {
+  function RouterModule() {}
+
+  RouterModule = __decorate([(0, _src.NvModule)({
+    imports: [_src.RouteModule.forRoot({
+      rootPath: '/indiv-doc',
+      routes: routes,
+      routeChange: function routeChange(old, next) {
+        console.log('$routeChange', old, next);
+      }
+    })],
+    exports: [_src.RouteModule]
+  })], RouterModule);
+  return RouterModule;
+}();
+
+var _default = RouterModule;
+exports.default = _default;
+},{"../../../InDiv/src":"../../InDiv/src/index.ts","_bundle_loader":"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/bundle-loader.js","../modules/introduction.module":[["introduction.module.16cfd330.js","modules/introduction.module.ts"],"introduction.module.16cfd330.map","introduction.module.16cfd330.css","modules/introduction.module.ts"],"../modules/architecture.module":[["architecture.module.5a3de5ca.js","modules/architecture.module.ts"],"architecture.module.5a3de5ca.map","architecture.module.5a3de5ca.css","modules/architecture.module.ts"],"../modules/docs.module":[["docs.module.76cfd183.js","modules/docs.module.ts"],"docs.module.76cfd183.map","docs.module.76cfd183.css","modules/docs.module.ts"],"../modules/ssr.module":[["ssr.module.01572ac7.js","modules/ssr.module.ts"],"ssr.module.01572ac7.map","ssr.module.01572ac7.css","modules/ssr.module.ts"],"../modules/middleware.module":[["middleware.module.5f0123e1.js","modules/middleware.module.ts"],"middleware.module.5f0123e1.map","middleware.module.5f0123e1.css","modules/middleware.module.ts"]}],"modules/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45421,6 +46718,8 @@ var _rootComponent = _interopRequireDefault(require("../components/root-componen
 var _sideBars = _interopRequireDefault(require("../components/side-bars"));
 
 var _codeShow = _interopRequireDefault(require("../components/code-show"));
+
+var _routes = _interopRequireDefault(require("../routes"));
 
 var _test = _interopRequireDefault(require("../service/test.service"));
 
@@ -45445,14 +46744,8 @@ function () {
   function RootModule() {}
 
   RootModule = __decorate([(0, _src.NvModule)({
-    // imports: [
-    //   IntroductionModule,
-    //   ArchitectureModule,
-    //   DocsModule,
-    //   SSRModule,
-    //   MiddlewareModule,
-    // ],
-    components: [_sideBars.default, _rootComponent.default, _codeShow.default],
+    imports: [_routes.default],
+    declarations: [_sideBars.default, _rootComponent.default, _codeShow.default],
     providers: [_test.default],
     bootstrap: _rootComponent.default
   })], RootModule);
@@ -45461,7 +46754,7 @@ function () {
 
 var _default = RootModule;
 exports.default = _default;
-},{"../../../InDiv/src":"../../InDiv/src/index.ts","../components/root-component":"components/root-component/index.ts","../components/side-bars":"components/side-bars/index.ts","../components/code-show":"components/code-show/index.ts","../service/test.service":"service/test.service.ts"}],"main.ts":[function(require,module,exports) {
+},{"../../../InDiv/src":"../../InDiv/src/index.ts","../components/root-component":"components/root-component/index.ts","../components/side-bars":"components/side-bars/index.ts","../components/code-show":"components/code-show/index.ts","../routes":"routes/index.ts","../service/test.service":"service/test.service.ts"}],"main.ts":[function(require,module,exports) {
 "use strict";
 
 require("./styles/reset");
@@ -45469,8 +46762,6 @@ require("./styles/reset");
 require("./styles/global");
 
 var _src = require("../../InDiv/src");
-
-var _routes = _interopRequireDefault(require("./routes"));
 
 var _modules = _interopRequireDefault(require("./modules"));
 
@@ -45480,10 +46771,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // import { InDiv } from '../../InDiv/build';
 var inDiv = new _src.InDiv();
 inDiv.bootstrapModule(_modules.default);
-inDiv.use(_routes.default);
 inDiv.init();
 console.log('indiv', inDiv);
-},{"./styles/reset":"styles/reset.less","./styles/global":"styles/global.less","../../InDiv/src":"../../InDiv/src/index.ts","./routes":"routes/index.ts","./modules":"modules/index.ts"}],"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./styles/reset":"styles/reset.less","./styles/global":"styles/global.less","../../InDiv/src":"../../InDiv/src/index.ts","./modules":"modules/index.ts"}],"../node_modules/_parcel-bundler@1.10.3@parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -45510,7 +46800,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53640" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51008" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

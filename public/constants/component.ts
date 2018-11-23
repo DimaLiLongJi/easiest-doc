@@ -29,7 +29,7 @@ export const componentInfo = () => [
   @Component({
     selector: 'container-component'
     template: ('
-      <div>ContainerComponent {{$.a}}</div>
+      <div>ContainerComponent {{a}}</div>
     '),
     providers: [
       TestService,
@@ -84,7 +84,7 @@ export const componentInfo = () => [
   Component({
     selector: 'container-component'
     template: ('
-      <div>ContainerComponent {{$.a}}</div>
+      <div>ContainerComponent {{a}}</div>
     '),
     providers: [
       {
@@ -111,22 +111,22 @@ export const componentInfo = () => [
         ],
         pchild: [
           '1. 往模板HTML字符串中添加绑定 nv- 开头的标记可以告诉 InDiv 该如何渲染它们。',
-          '2. 因为 InDiv 使用单向数据流，所以仅仅支持使用 this.state 内的值($.开头，作为this.state.的指代) 或是 有返回值的实例上的方法(@开头，作为this的指代) 作为绑定数据， 实例的方法作为事件方法。',
+          '2. 因为 InDiv 使用单向数据流，所以仅仅支持使用 this.state 内的值(开头，作为this.state.的指代) 或是 有返回值的实例上的方法(@开头，作为this的指代) 作为绑定数据， 实例的方法作为事件方法。',
           '3. 如果要在组件内使用 props ，请在 nvReceiveProps 或 Class的getter setter方法 或 在 nvOnInit 生命周期内用 props 对 state 赋值。',
           '4. 如果组件在 根模块（root NvModule）或模块（NvModule） 上的 components：Function[]; 声明过，则在其他同模块组件内的 template 可以像 HTML 标签一样使用组件。',
           '4. 模板上的组件可接受的 props的值 必须用 {} 包裹起来。',
-          '5. props的值 有三种: <test-component man="{@countState(man.name)}" women="{$.name}" handler="{@getProps}"></test-component>',
-          '(1) 直接使用 state上的值 或 nv-repeat 的值：women="{$.name} women="{man.name}"',
-          '(2) 使用 @ 加 实例上带有返回值的方法，返回值将作为被传递的值：man="{@countState($.name)}"',
+          '5. props的值 有三种: <test-component man="{@countState(man.name)}" women="{name}" handler="{@getProps}"></test-component>',
+          '(1) 直接使用 state上的值 或 nv-repeat 的值：women="{name} women="{man.name}"',
+          '(2) 使用 @ 加 实例上带有返回值的方法，返回值将作为被传递的值：man="{@countState(name)}"',
           '(3) 使用 @ 加 实例上的方法，方法将作为 props 传递：handler="{@getProps}"',
         ],
         code: `
   @Component({
     selector: 'container-component',
     template: ('
-      <div nv-on:click="@show($.a)">
-        ContainerComponent {{$.a}}
-        <test-component value-a="{$.a}" show="{@show}"></test-component>
+      <div nv-on:click="@show(a)">
+        ContainerComponent {{a}}
+        <test-component value-a="{a}" show="{@show}"></test-component>
       </div>
       '),
   })
@@ -159,8 +159,8 @@ export const componentInfo = () => [
           '从v1.2.1开始，实例上将无法找到 setState 方法，你需要在 indiv包 中手动引入setState并赋值给实例的一个方法。但在v1.2.0及之前版本都存在于实例中。',
         ],
         pchild: [
-          '1. 可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 prop-value="{$.value}" prop-value="{@returnValue($.value)}" pro-function="{@fn}" 的引号包裹花括号的写法传递值与方法。',
-          '2. template 上组件内的传值应按照 下划线命名法(UnderScoreCase) 书写，而在组件Class中应按照 驼峰命名法(CamelCase) 使用。例如: prop-value="{$.value}" => this.props.propValue',
+          '1. 可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 prop-value="{value}" prop-value="{@returnValue(value)}" pro-function="{@fn}" 的引号包裹花括号的写法传递值与方法。',
+          '2. template 上组件内的传值应按照 下划线命名法(UnderScoreCase) 书写，而在组件Class中应按照 驼峰命名法(CamelCase) 使用。例如: prop-value="{value}" => this.props.propValue',
           '3. 例如在下面例子，在 hero-component 内可以用循环 nv-repeat 的value，也可以使用 实例上有返回值的方法，也可以直接在实例方法中触发 handelClick 回调。',
           '4. 如果该 DOM 会发生频繁变化，并且有可追踪的唯一 key 值，可以添加指令 nv-key, 让 InDiv 直接追踪到 DOM 变化，帮助保存 组件 内的 state。',
           '5. 但是渲染的时候，不可以在模板上直接使用 props 的值，仅仅可以使用 class 实例的方法和 this.state 的值。',
@@ -175,8 +175,8 @@ export const componentInfo = () => [
     selector: 'hero-component',
     template: ('
       <div>
-        <p>来自父组件的stateValue: {{$.stateValue}}</p>
-        <p>idValue: {{$.idValue}}</p>
+        <p>来自父组件的stateValue: {{stateValue}}</p>
+        <p>idValue: {{idValue}}</p>
       </div>
     '),
   })
@@ -218,8 +218,8 @@ export const componentInfo = () => [
     selector: 'container-component',
     template: ('
       <div>
-        <div nv-repeat="let person in $.b" nv-key="person.id">
-          <hero-component handel-click="@show" state-value="$.a" id-value="person.id" ></hero-component>
+        <div nv-repeat="let person in b" nv-key="person.id">
+          <hero-component handel-click="@show" state-value="a" id-value="person.id" ></hero-component>
         </div>
       </div>
     '),
@@ -279,7 +279,7 @@ export const componentInfo = () => [
     selector: 'hero-component',
     template: ('
       <div>
-        <p>{{$.stateValue}}</p>
+        <p>{{stateValue}}</p>
       </div>
     '),
     providers: [ HeroService ],
@@ -318,7 +318,7 @@ export const componentInfo = () => [
     selector: 'hero-component',
     template: ('
       <div>
-        <p>{{$.stateValue}}</p>
+        <p>{{stateValue}}</p>
       </div>
     '),
     providers: [{
@@ -356,8 +356,8 @@ export const componentInfo = () => [
     selector: 'hero-component',
     template: ('
       <div>
-        <p>来自父组件的stateValue: {{$.stateValue}}</p>
-        <p>idValue: {{$.idValue}}</p>
+        <p>来自父组件的stateValue: {{stateValue}}</p>
+        <p>idValue: {{idValue}}</p>
       </div>
     '),
   })

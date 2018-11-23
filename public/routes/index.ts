@@ -1,9 +1,5 @@
 // import { Router, TRouter } from 'indiv';
-import { Router, TRouter } from '../../../InDiv/src';
-// import { Router, TRouter } from '../../../InDiv/build';
-
-const router = new Router();
-
+import { TRouter, NvModule, RouteModule } from '../../../InDiv/src';
 
 const routes: TRouter[] = [
     {
@@ -13,18 +9,15 @@ const routes: TRouter[] = [
         children: [
             {
                 path: '/introduction',
-                // component: 'introduction-container',
                 loadChild: () => import('../modules/introduction.module'),
             },
             {
                 path: '/architecture',
-                // component: 'architecture-container',
                 loadChild: () => import('../modules/architecture.module'),
             },
             {
                 path: '/docs',
                 redirectTo: '/docs/component',
-                // component: 'docs-container',
                 loadChild: () => import('../modules/docs.module'),
                 children: [
                     {
@@ -63,21 +56,28 @@ const routes: TRouter[] = [
             },
             {
                 path: '/ssr',
-                // component: 'ssr-container',
                 loadChild: () => import('../modules/ssr.module'),
             },
             {
                 path: '/middleware',
-                // component: 'middleware-container',
                 loadChild: () => import('../modules/middleware.module'),
             },
         ],
     },
 ];
-router.setRootPath('/indiv-doc');
-router.init(routes);
-router.routeChange = (old: string, next: string) => {
-    // console.log('$routeChange', old, next);
-};
 
-export default router;
+@NvModule({
+    imports: [
+        RouteModule.forRoot({
+            rootPath: '/indiv-doc',
+            routes,
+            routeChange: (old: string, next: string) => {
+                console.log('$routeChange', old, next);
+            },
+        }),
+    ],
+    exports: [
+        RouteModule,
+    ],
+})
+export default class RouterModule { }

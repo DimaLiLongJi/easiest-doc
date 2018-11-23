@@ -5,12 +5,12 @@ import { NvModule } from '../../../InDiv/src';
 import MiddlewareContainer from '../pages/middleware';
 
 @NvModule({
-    components: [
+  declarations: [
       MiddlewareContainer,
     ],
-    exports: [
+  exports: [
       MiddlewareContainer,
     ],
-    bootstrap: MiddlewareContainer,
+  bootstrap: MiddlewareContainer,
 })
 export default class MiddlewareModule { }

@@ -172,17 +172,17 @@ var componentInfo = function componentInfo() {
       title: '装饰器 Component',
       p: ['@Component 装饰器会指出紧随其后的那个类是个组件类，并为其指定元数据。', '在下面的范例代码中，你可以看到 ContainerComponent 只是一个普通类，完全没有 InDiv 特有的标记或语法。 直到给它加上了 @Component 装饰器，它才变成了组件。', '@Component 接收3个参数: selector, template, providers'],
       pchild: ['1. selector: string; 作为组件（component）被渲染成 DOM 的标签，类似于 <div></div>', '2. template: string; 视图模板，用来声明被渲染的视图', '3. providers?: (Function | { provide: any; useClass: Function; } | { provide: any; useValue: any; })[]; 声明可以被组件注入的服务。', '4. 在 JavaScript 中，只能把 装饰器Component 当做一个函数使用，最后应该导出被声明的类。', '5. 组件会优先去组件 providers 查找依赖，其次才会去模块 providers 查找依赖。', '6. 组件 providers 中的服务在每个组件实例内都有独立的实例。而模块 providers 则根据 isSingletonMode 决定是否为 全局单例 还是每次都实现一个新的实例。', '7. 在 TypeScript 中 providers 仅仅能使用 providers: (Function | { provide: Function; useClass: Function; } | { provide: Function; useValue: any; })[]; 类型。', '8. 在 JavaScript 中 providers 仅仅能使用 providers: ({ provide: string; useClass: Function; } | { provide: string; useValue: any; })[]; 类型。', '9. 从v1.2.1开始，实例上将无法找到 setState, setLocation, getLocation 方法，你需要在 indiv包 中手动引入并赋值给实例的一个方法。但在v1.2.0及之前版本都存在于实例中。'],
-      code: "\n  // in TypeScript\n  import { Component, setState, setLocation, getLocation, SetState, SetLocation, GetLocation } from 'indiv';\n  @Component({\n    selector: 'container-component'\n    template: ('\n      <div>ContainerComponent {{$.a}}</div>\n    '),\n    providers: [\n      TestService,\n      {\n        provide: TestService1,\n        useClass: TestService1,\n      },\n      {\n        provide: TestService2,\n        useClass: '123',\n      },\n    ],\n  })\n  export default class ContainerComponent {\n    public state: {\n      a: number;\n    };\n    private setState: SetState;\n    private setLocation: SetLocation;\n    private getLocation: GetLocation;\n\n    constructor(\n      private: testService: TestService\n    ) {\n      this.state = {\n        a: 1\n      };\n      this.setState = setState;\n      this.setLocation = setLocation;\n      this.getLocation = getLocation;\n    }\n  }\n\n  // in JavaScript\n  import { Component, setState, setLocation, getLocation } from 'indiv';\n\n  export default class ContainerComponent {\n    static injectTokens = [\n      'testService'\n    ];\n\n    constructor(testService) {\n      this.testService = testService;\n      this.state = {\n        a: 1\n      };\n      this.setState = setState;\n      this.setLocation = setLocation;\n      this.getLocation = getLocation;\n    }\n  }\n  Component({\n    selector: 'container-component'\n    template: ('\n      <div>ContainerComponent {{$.a}}</div>\n    '),\n    providers: [\n      {\n        provide: 'testService',\n        useClass: TestService,\n      },\n      {\n        provide: 'testService1',\n        useClass: TestService1,\n      },\n      {\n        provide: 'testService2',\n        useClass: '123',\n      },\n    ],\n  })(ContainerComponent)\n "
+      code: "\n  // in TypeScript\n  import { Component, setState, setLocation, getLocation, SetState, SetLocation, GetLocation } from 'indiv';\n  @Component({\n    selector: 'container-component'\n    template: ('\n      <div>ContainerComponent {{a}}</div>\n    '),\n    providers: [\n      TestService,\n      {\n        provide: TestService1,\n        useClass: TestService1,\n      },\n      {\n        provide: TestService2,\n        useClass: '123',\n      },\n    ],\n  })\n  export default class ContainerComponent {\n    public state: {\n      a: number;\n    };\n    private setState: SetState;\n    private setLocation: SetLocation;\n    private getLocation: GetLocation;\n\n    constructor(\n      private: testService: TestService\n    ) {\n      this.state = {\n        a: 1\n      };\n      this.setState = setState;\n      this.setLocation = setLocation;\n      this.getLocation = getLocation;\n    }\n  }\n\n  // in JavaScript\n  import { Component, setState, setLocation, getLocation } from 'indiv';\n\n  export default class ContainerComponent {\n    static injectTokens = [\n      'testService'\n    ];\n\n    constructor(testService) {\n      this.testService = testService;\n      this.state = {\n        a: 1\n      };\n      this.setState = setState;\n      this.setLocation = setLocation;\n      this.getLocation = getLocation;\n    }\n  }\n  Component({\n    selector: 'container-component'\n    template: ('\n      <div>ContainerComponent {{a}}</div>\n    '),\n    providers: [\n      {\n        provide: 'testService',\n        useClass: TestService,\n      },\n      {\n        provide: 'testService1',\n        useClass: TestService1,\n      },\n      {\n        provide: 'testService2',\n        useClass: '123',\n      },\n    ],\n  })(ContainerComponent)\n "
     }, {
       title: '模板数据绑定',
       p: ['如果没有框架，你就要自己负责把数据渲染到 HTML 控件中，并把来自用户的响应转换成动作和对值的更新。 手动写这种数据推拉逻辑会很枯燥、容易出错，难以阅读 —— 用过 jQuery 的程序员一定深有体会。', 'InDiv 支持双向数据绑定，这是一种对模板中的各个部件与组件中的各个部件进行协调的机制。'],
-      pchild: ['1. 往模板HTML字符串中添加绑定 nv- 开头的标记可以告诉 InDiv 该如何渲染它们。', '2. 因为 InDiv 使用单向数据流，所以仅仅支持使用 this.state 内的值($.开头，作为this.state.的指代) 或是 有返回值的实例上的方法(@开头，作为this的指代) 作为绑定数据， 实例的方法作为事件方法。', '3. 如果要在组件内使用 props ，请在 nvReceiveProps 或 Class的getter setter方法 或 在 nvOnInit 生命周期内用 props 对 state 赋值。', '4. 如果组件在 根模块（root NvModule）或模块（NvModule） 上的 components：Function[]; 声明过，则在其他同模块组件内的 template 可以像 HTML 标签一样使用组件。', '4. 模板上的组件可接受的 props的值 必须用 {} 包裹起来。', '5. props的值 有三种: <test-component man="{@countState(man.name)}" women="{$.name}" handler="{@getProps}"></test-component>', '(1) 直接使用 state上的值 或 nv-repeat 的值：women="{$.name} women="{man.name}"', '(2) 使用 @ 加 实例上带有返回值的方法，返回值将作为被传递的值：man="{@countState($.name)}"', '(3) 使用 @ 加 实例上的方法，方法将作为 props 传递：handler="{@getProps}"'],
-      code: "\n  @Component({\n    selector: 'container-component',\n    template: ('\n      <div nv-on:click=\"@show($.a)\">\n        ContainerComponent {{$.a}}\n        <test-component value-a=\"{$.a}\" show=\"{@show}\"></test-component>\n      </div>\n      '),\n  })\n  export default class ContainerComponent {\n    constructor() {\n      this.state = {\n        a: null,\n      };\n    }\n\n    public show(a: any) {\n      console.log(a);\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.a = nextProps.a;\n    }\n  }\n "
+      pchild: ['1. 往模板HTML字符串中添加绑定 nv- 开头的标记可以告诉 InDiv 该如何渲染它们。', '2. 因为 InDiv 使用单向数据流，所以仅仅支持使用 this.state 内的值(开头，作为this.state.的指代) 或是 有返回值的实例上的方法(@开头，作为this的指代) 作为绑定数据， 实例的方法作为事件方法。', '3. 如果要在组件内使用 props ，请在 nvReceiveProps 或 Class的getter setter方法 或 在 nvOnInit 生命周期内用 props 对 state 赋值。', '4. 如果组件在 根模块（root NvModule）或模块（NvModule） 上的 components：Function[]; 声明过，则在其他同模块组件内的 template 可以像 HTML 标签一样使用组件。', '4. 模板上的组件可接受的 props的值 必须用 {} 包裹起来。', '5. props的值 有三种: <test-component man="{@countState(man.name)}" women="{name}" handler="{@getProps}"></test-component>', '(1) 直接使用 state上的值 或 nv-repeat 的值：women="{name} women="{man.name}"', '(2) 使用 @ 加 实例上带有返回值的方法，返回值将作为被传递的值：man="{@countState(name)}"', '(3) 使用 @ 加 实例上的方法，方法将作为 props 传递：handler="{@getProps}"'],
+      code: "\n  @Component({\n    selector: 'container-component',\n    template: ('\n      <div nv-on:click=\"@show(a)\">\n        ContainerComponent {{a}}\n        <test-component value-a=\"{a}\" show=\"{@show}\"></test-component>\n      </div>\n      '),\n  })\n  export default class ContainerComponent {\n    constructor() {\n      this.state = {\n        a: null,\n      };\n    }\n\n    public show(a: any) {\n      console.log(a);\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.a = nextProps.a;\n    }\n  }\n "
     }, {
       title: '组件通信1: props 与 state',
       p: ['InDiv 的组件之间可以 props 来通信。', '组件间通信应该是单向的，通过传递值到子组件，并通过传递一个回调方法在子组件调用来更改对应父组件的值来完成通信。', '直接改变 state 上的值，或通过 setState 更改 state 的值时，state会被立刻改变，因此更改state的行为为 同步的。', '但是更改 state 值时，会触发异步的重新渲染，并在渲染后更新子组件的 props，', '因此，通过在子组件中调用 props 上的方法来更新父组件的 state 时，子组件的 props 并不会立即更新。', '如果想知道子组件的 props 何时被更新，应该通过生命周期 nvReceiveProps(nextProps: Props) 或 Class的getter setter方法去监听props的变化。', '从v1.2.1开始，实例上将无法找到 setState 方法，你需要在 indiv包 中手动引入setState并赋值给实例的一个方法。但在v1.2.0及之前版本都存在于实例中。'],
-      pchild: ['1. 可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 prop-value="{$.value}" prop-value="{@returnValue($.value)}" pro-function="{@fn}" 的引号包裹花括号的写法传递值与方法。', '2. template 上组件内的传值应按照 下划线命名法(UnderScoreCase) 书写，而在组件Class中应按照 驼峰命名法(CamelCase) 使用。例如: prop-value="{$.value}" => this.props.propValue', '3. 例如在下面例子，在 hero-component 内可以用循环 nv-repeat 的value，也可以使用 实例上有返回值的方法，也可以直接在实例方法中触发 handelClick 回调。', '4. 如果该 DOM 会发生频繁变化，并且有可追踪的唯一 key 值，可以添加指令 nv-key, 让 InDiv 直接追踪到 DOM 变化，帮助保存 组件 内的 state。', '5. 但是渲染的时候，不可以在模板上直接使用 props 的值，仅仅可以使用 class 实例的方法和 this.state 的值。', '6. 在生命周期 constructor 和 nvOnInit 之后，会开启对 this.state 的监听，此监听会监听每个挂载到 this.state 上的属性及属性的属性，因此如果不对 this.state 添加新的属性或对属性的属性添加新的属性的话，可以直接对某个属性赋值。', '7. 相反，如果要对 this.state 上的属性 增加属性或删除，则需要使用 setState<S>(newState: {[key: string]: S}) 方法对 this.state 重新添加监听', '8. 可以直接引用 InDiv 的 SetState 来为 setState方法声明类型。', '9. 可以通过生命周期 nvReceiveProps(nextProps: Props) 或 Class的getter setter方法去监听props的变化。(nvReceiveProps会先于getter setter被触发)。'],
-      code: "\n  import { Component, SetState, OnInit, ReceiveProps, setState } from 'InDiv';\n  @Component({\n    selector: 'hero-component',\n    template: ('\n      <div>\n        <p>\u6765\u81EA\u7236\u7EC4\u4EF6\u7684stateValue: {{$.stateValue}}</p>\n        <p>idValue: {{$.idValue}}</p>\n      </div>\n    '),\n  })\n  export default class HeroComponent implements OnInit, ReceiveProps {\n    private setState: SetState;\n    public state: any;\n    public props: any;\n    public _props: any;\n\n    public nvOnInit() {\n      this.state = {\n        idValue: this.props.idValue,\n        stateValue: this.props.stateValue,\n      };\n      this.setState = setState;\n    }\n\n    public show(a: any) {\n      this.props.handelClick(a);\n    }\n\n    set props(props: any) {\n      this._props = props;\n    }\n\n    get props(): any {\n      return this._props;\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.idValue = nextProps.idValue;\n      this.setState({\n        stateValue: nextProps.stateValue,\n      });\n    }\n  }\n\n @Component({\n    selector: 'container-component',\n    template: ('\n      <div>\n        <div nv-repeat=\"let person in $.b\" nv-key=\"person.id\">\n          <hero-component handel-click=\"@show\" state-value=\"$.a\" id-value=\"person.id\" ></hero-component>\n        </div>\n      </div>\n    '),\n  })\n  export default class ContainerComponent {\n    constructor() {\n      this.state = {\n        a: {\n          id: 3,\n          name: '\u7801\u519C3',\n        },\n        b: [\n          {id: 1, name: '\u7801\u519C1'},\n          {id: 2, name: '\u7801\u519C2'},\n        ],\n      };\n    }\n\n    public show(a: any) {\n      console.log(a);\n    }\n  }\n "
+      pchild: ['1. 可以直接在 template 上使用在 NvModule 注册过的组件标签，并通过 prop-value="{value}" prop-value="{@returnValue(value)}" pro-function="{@fn}" 的引号包裹花括号的写法传递值与方法。', '2. template 上组件内的传值应按照 下划线命名法(UnderScoreCase) 书写，而在组件Class中应按照 驼峰命名法(CamelCase) 使用。例如: prop-value="{value}" => this.props.propValue', '3. 例如在下面例子，在 hero-component 内可以用循环 nv-repeat 的value，也可以使用 实例上有返回值的方法，也可以直接在实例方法中触发 handelClick 回调。', '4. 如果该 DOM 会发生频繁变化，并且有可追踪的唯一 key 值，可以添加指令 nv-key, 让 InDiv 直接追踪到 DOM 变化，帮助保存 组件 内的 state。', '5. 但是渲染的时候，不可以在模板上直接使用 props 的值，仅仅可以使用 class 实例的方法和 this.state 的值。', '6. 在生命周期 constructor 和 nvOnInit 之后，会开启对 this.state 的监听，此监听会监听每个挂载到 this.state 上的属性及属性的属性，因此如果不对 this.state 添加新的属性或对属性的属性添加新的属性的话，可以直接对某个属性赋值。', '7. 相反，如果要对 this.state 上的属性 增加属性或删除，则需要使用 setState<S>(newState: {[key: string]: S}) 方法对 this.state 重新添加监听', '8. 可以直接引用 InDiv 的 SetState 来为 setState方法声明类型。', '9. 可以通过生命周期 nvReceiveProps(nextProps: Props) 或 Class的getter setter方法去监听props的变化。(nvReceiveProps会先于getter setter被触发)。'],
+      code: "\n  import { Component, SetState, OnInit, ReceiveProps, setState } from 'InDiv';\n  @Component({\n    selector: 'hero-component',\n    template: ('\n      <div>\n        <p>\u6765\u81EA\u7236\u7EC4\u4EF6\u7684stateValue: {{stateValue}}</p>\n        <p>idValue: {{idValue}}</p>\n      </div>\n    '),\n  })\n  export default class HeroComponent implements OnInit, ReceiveProps {\n    private setState: SetState;\n    public state: any;\n    public props: any;\n    public _props: any;\n\n    public nvOnInit() {\n      this.state = {\n        idValue: this.props.idValue,\n        stateValue: this.props.stateValue,\n      };\n      this.setState = setState;\n    }\n\n    public show(a: any) {\n      this.props.handelClick(a);\n    }\n\n    set props(props: any) {\n      this._props = props;\n    }\n\n    get props(): any {\n      return this._props;\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.idValue = nextProps.idValue;\n      this.setState({\n        stateValue: nextProps.stateValue,\n      });\n    }\n  }\n\n @Component({\n    selector: 'container-component',\n    template: ('\n      <div>\n        <div nv-repeat=\"let person in b\" nv-key=\"person.id\">\n          <hero-component handel-click=\"@show\" state-value=\"a\" id-value=\"person.id\" ></hero-component>\n        </div>\n      </div>\n    '),\n  })\n  export default class ContainerComponent {\n    constructor() {\n      this.state = {\n        a: {\n          id: 3,\n          name: '\u7801\u519C3',\n        },\n        b: [\n          {id: 1, name: '\u7801\u519C1'},\n          {id: 2, name: '\u7801\u519C2'},\n        ],\n      };\n    }\n\n    public show(a: any) {\n      console.log(a);\n    }\n  }\n "
     }, {
       title: '组件通信2: service 与 RxJS',
       p: ['父子组件的通信可以通过 props , 但跨层级组件间的通信该怎么办？', '相比于构建全局变量，InDiv 的服务显然更适合这种场景。'],
@@ -191,12 +191,12 @@ var componentInfo = function componentInfo() {
       title: '组件的依赖注入',
       p: ['通过依赖注入系统，可以无需关注任何过程直接拿到一个所需的服务实例。', '每个组件实例都拥有一个同级的注入器，负责调用组件和模块的 providers，获取组件依赖的实例。', '在 TypeScript 与 JavaScript 中，声明依赖的方式不一样', '组件 providers 中的服务在每个组件实例内都有独立的实例。而模块 providers 则根据 isSingletonMode 决定是否为 全局单例 还是每次都实现一个新的实例。'],
       pchild: ['1. 在 TypeScript 中，通过 @Injected 注解，获取组件的构造函数中参数的类型，根据 provide: Function  查找依赖，并注入实例。', '2. 在 JavaScript 中，通过组件类的静态属性 injectTokens: string[]，查找 provide: string 查找依赖，并注入实例。', '3. 优先查找组件中被声明的服务，其次再在模块中被声明的服务中查找依赖'],
-      code: "\n import { Component, Injected } from 'InDiv';\n \n // in TypeScript\n @Injected\n @Component({\n    selector: 'hero-component',\n    template: ('\n      <div>\n        <p>{{$.stateValue}}</p>\n      </div>\n    '),\n    providers: [ HeroService ],\n  })\n  export default class HeroComponent {\n    public state: any;\n\n    constructor(\n      private heroService: HeroService\n    ) {}\n\n    public nvOnInit() {\n      this.state = {\n        stateValue: 111,\n      };\n    }\n  }\n\n  // in JavaScript\n  export default class HeroComponent {\n    static injectTokens = [\n      'heroService'\n    ];\n\n    constructor(heroService) {\n      this.heroService = heroService;\n    }\n\n    nvOnInit() {\n      this.state = {\n        stateValue: 111,\n      };\n    }\n  }\n  Component({\n    selector: 'hero-component',\n    template: ('\n      <div>\n        <p>{{$.stateValue}}</p>\n      </div>\n    '),\n    providers: [{\n      provide: 'heroService',\n      useClass: HeroService,\n    }],\n  })(HeroComponent);\n "
+      code: "\n import { Component, Injected } from 'InDiv';\n \n // in TypeScript\n @Injected\n @Component({\n    selector: 'hero-component',\n    template: ('\n      <div>\n        <p>{{stateValue}}</p>\n      </div>\n    '),\n    providers: [ HeroService ],\n  })\n  export default class HeroComponent {\n    public state: any;\n\n    constructor(\n      private heroService: HeroService\n    ) {}\n\n    public nvOnInit() {\n      this.state = {\n        stateValue: 111,\n      };\n    }\n  }\n\n  // in JavaScript\n  export default class HeroComponent {\n    static injectTokens = [\n      'heroService'\n    ];\n\n    constructor(heroService) {\n      this.heroService = heroService;\n    }\n\n    nvOnInit() {\n      this.state = {\n        stateValue: 111,\n      };\n    }\n  }\n  Component({\n    selector: 'hero-component',\n    template: ('\n      <div>\n        <p>{{stateValue}}</p>\n      </div>\n    '),\n    providers: [{\n      provide: 'heroService',\n      useClass: HeroService,\n    }],\n  })(HeroComponent);\n "
     }, {
       title: '生命周期钩子',
       p: ['每个组件都有一个被 InDiv 管理的生命周期。', '生命周期钩子其实就是定义在实例中的一些方法，在 InDiv 中，通过不同的时刻调用不同的生命周期钩子，', '赋予你在它们发生时采取行动的能力。', '在 TypeScript 中，引用 InDiv 提供的 interface，通过 implements 的方式让类去实现被预先定义好的生命周期，而在 JavaScript 中，你只能自己手动去定义应该实现的生命周期方法。'],
       pchild: ['1. constructor 在类被实例化的时候回触发，你可以在这里预先定义你的 state', '2. nvOnInit(): void; constructor 之后，在这个生命周期中，可以通过 this.props 获取 props，并定义 state，此生命周期会在开启监听前被触发，并且之后再也不会触发', '3. nvBeforeMount(): void; 在 nvOnInit 之后，template 挂载页面之前被触发，每次触发渲染页面都会被触发', '4. nvAfterMount(): void; 在 nvBeforeMount 之后，template 挂载页面之后被触发，每次触发渲染页面（render）都会被触发', '5. nvHasRender(): void; 在 nvAfterMount 之后，渲染完成后被触发，每次触发渲染页面（render）都会被触发', '6. nvRouteChange(lastRoute?: string, newRoute?: string): void; 监听路由变化，当更换路由后被触发', '7. nvOnDestory(): void; 仅仅在路由决定销毁此组件时被触发', '8. nvWatchState(oldState?: any): void; 监听 state 变化，当 state 被更改后触发', '9. nvReceiveProps(nextProps: any): void; 监听 props 变化，当 props 即将被更改时触发', '10. getter: 当监听 props 时，getter 会先于 nvReceiveProps 被触发', '11. setter: 当监听 state 时，setter 会晚于 nvWatchState 被触发'],
-      code: "\n import { Component, OnInit, BeforeMount, AfterMount, HasRender, OnDestory, WatchState, ReceiveProps } from 'InDiv';\n\n @Component({\n    selector: 'hero-component',\n    template: ('\n      <div>\n        <p>\u6765\u81EA\u7236\u7EC4\u4EF6\u7684stateValue: {{$.stateValue}}</p>\n        <p>idValue: {{$.idValue}}</p>\n      </div>\n    '),\n  })\n  class HeroComponent implements\n    OnInit,\n    BeforeMount,\n    AfterMount,\n    HasRender,\n    WatchState,\n    ReceiveProps,\n  {\n    public setState: SetState;\n    public state: any;\n    public props: any;\n\n    public nvOnInit() {\n      this.state = {\n        idValue: this.props.idValue,\n        stateValue: this.props.stateValue,\n      };\n    }\n\n    public nvBeforeMount() {\n      console.log('component in BeforeMount');\n    }\n\n    public nvAfterMount() {\n      console.log('component in AfterMount');\n    }\n\n    public nvHasRender() {\n      console.log('component in HasRender');\n    }\n\n    public nvWatchState(oldState?: any) {\n      console.log('component in WatchState');\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.idValue = nextProps.idValue;\n      this.setState({\n        stateValue: nextProps.stateValue,\n      });\n    }\n\n    public show(a: any) {\n      this.props.handelClick(a);\n    }\n  }\n "
+      code: "\n import { Component, OnInit, BeforeMount, AfterMount, HasRender, OnDestory, WatchState, ReceiveProps } from 'InDiv';\n\n @Component({\n    selector: 'hero-component',\n    template: ('\n      <div>\n        <p>\u6765\u81EA\u7236\u7EC4\u4EF6\u7684stateValue: {{stateValue}}</p>\n        <p>idValue: {{idValue}}</p>\n      </div>\n    '),\n  })\n  class HeroComponent implements\n    OnInit,\n    BeforeMount,\n    AfterMount,\n    HasRender,\n    WatchState,\n    ReceiveProps,\n  {\n    public setState: SetState;\n    public state: any;\n    public props: any;\n\n    public nvOnInit() {\n      this.state = {\n        idValue: this.props.idValue,\n        stateValue: this.props.stateValue,\n      };\n    }\n\n    public nvBeforeMount() {\n      console.log('component in BeforeMount');\n    }\n\n    public nvAfterMount() {\n      console.log('component in AfterMount');\n    }\n\n    public nvHasRender() {\n      console.log('component in HasRender');\n    }\n\n    public nvWatchState(oldState?: any) {\n      console.log('component in WatchState');\n    }\n\n    public nvReceiveProps(nextProps: any): void {\n      this.state.idValue = nextProps.idValue;\n      this.setState({\n        stateValue: nextProps.stateValue,\n      });\n    }\n\n    public show(a: any) {\n      this.props.handelClick(a);\n    }\n  }\n "
     }]
   }];
 };
@@ -241,7 +241,7 @@ function () {
   function DocsComponentContainer(testS) {
     this.testS = testS;
     this.state = {
-      info: (0, _component.componentInfo)()
+      content: (0, _component.componentInfo)()
     };
     this.subscribeToken = this.testS.subscribe(this.subscribe);
   }
@@ -283,9 +283,9 @@ function () {
 
   var _a;
 
-  DocsComponentContainer = __decorate([_src.Injected, (0, _src.Component)({
+  DocsComponentContainer = __decorate([(0, _src.Component)({
     selector: 'docs-component-container',
-    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2 class=\"fucker\" nv-on:click=\"@click(code, $index)\">{{@showText(code.title)}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in content\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2 class=\"fucker\" nv-on:click=\"@click(code, $index)\">{{@showText(code.title)}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
   }), __metadata("design:paramtypes", [typeof (_a = typeof _test.default !== "undefined" && _test.default) === "function" && _a || Object])], DocsComponentContainer);
   return DocsComponentContainer;
 }();
@@ -303,52 +303,52 @@ exports.templateInfo = void 0;
 var templateInfo = function templateInfo() {
   return [{
     h1: '模板语法',
-    p: ['从使用模型-视图-控制器 (MVC) 或模型-视图-视图模型 (MVVM) 的经验中，很多开发人员都熟悉了组件和模板这两个概念。', '在 InDiv 中，组件扮演着控制器或视图模型的角色，模板则扮演视图的角色。', '模板很像字符串的HTML，但是它还包含 InDiv 的模板语法，这些模板语法可以根据你的应用逻辑、应用状态和 DOM 数据来修改这些 HTML。', '你的模板可以使用数据绑定来协调应用和 DOM 中的数据，把程序逻辑应用到要显示的内容上。', 'InDiv 模板指令使用 nv- 开头，下面介绍一下 InDiv 的模板语法。', '1. 拥有特殊渲染方法的指令有 nv-model nv-text nv-html nv-if nv-class nv-repeat nv-key nv-on:Event。', '2. 如果属性可以通过 Element.attribute = value来设置的话，也可以使用 nv-attribute 来使用。例如：nv-src nv-href nv-alt', '3. 内置指令接收2种：', '(1) $.xxx(指代this.state.xxx) 和 nv-repeat被循环的itme值：nv-text="$.text" nv-text="repeatData.text"', '(2) （其实就是filter）除 nv-on:Event 和 nv-model 外，其他指令可以接收 @开头 加 组件实例上带返回值的方法 ，参数可以使用事件指令中除了$event之外的参数，指令的值渲染为方法返回值：nv-text="@bindText($.text, $index, $element)"'],
+    p: ['从使用模型-视图-控制器 (MVC) 或模型-视图-视图模型 (MVVM) 的经验中，很多开发人员都熟悉了组件和模板这两个概念。', '在 InDiv 中，组件扮演着控制器或视图模型的角色，模板则扮演视图的角色。', '模板很像字符串的HTML，但是它还包含 InDiv 的模板语法，这些模板语法可以根据你的应用逻辑、应用状态和 DOM 数据来修改这些 HTML。', '你的模板可以使用数据绑定来协调应用和 DOM 中的数据，把程序逻辑应用到要显示的内容上。', 'InDiv 模板指令使用 nv- 开头，下面介绍一下 InDiv 的模板语法。', '1. 拥有特殊渲染方法的指令有 nv-model nv-text nv-html nv-if nv-class nv-repeat nv-key nv-on:Event。', '2. 如果属性可以通过 Element.attribute = value来设置的话，也可以使用 nv-attribute 来使用。例如：nv-src nv-href nv-alt', '3. 内置指令接收2种：', '(1) xxx(指代this.state.xxx) 和 nv-repeat被循环的itme值：nv-text="text" nv-text="repeatData.text"', '(2) （其实就是filter）除 nv-on:Event 和 nv-model 外，其他指令可以接收 @开头 加 组件实例上带返回值的方法 ，参数可以使用事件指令中除了$event之外的参数，指令的值渲染为方法返回值：nv-text="@bindText(text, $index, $element)"'],
     info: [{
       title: '1. 事件指令',
       p: ['以 nv-on:event 开头, event 为未加on的事件名， 指令值为 @开头 加 组件实例上的方法', '例如：nv-on:click="@goTo()"', '方法可使用参数：'],
-      pchild: ["- Element => $element", "- event => $event", "- string => '1','2','3'", " - number => 1,2,3", " - index > $index", "- \u53D8\u91CF: \u4EC5\u80FD\u4F20\u9012state\u4E0A\u7684\u503C\uFF0C \u901A\u8FC7 $.xxx \u6807\u793A", "- repeat value: \u4F20\u9012nv-repeat='let item in array'\u7684item\u503C\uFF0C\u5982\uFF1A nv-on:click=\"@show(nav)\" nv-repeat=\"let nav in $.navList\" nv-key=\"nav.id\""],
-      code: "\n  <a class=\"nav\" nv-on:click=\"@goTo($event, $index, 1, 'state', $.nav.to)\">{{$.nav.name}}</a>\n\n  public goTo(event: Event, index: number, aa: number, s: string, to: string) {\n    this.$setLocation(to);\n  }\n "
+      pchild: ["- Element => $element", "- event => $event", "- string => '1','2','3'", " - number => 1,2,3", " - index > $index", "- \u53D8\u91CF: \u4EC5\u80FD\u4F20\u9012state\u4E0A\u7684\u503C\uFF0C \u901A\u8FC7 xxx \u6807\u793A", "- repeat value: \u4F20\u9012nv-repeat='let item in array'\u7684item\u503C\uFF0C\u5982\uFF1A nv-on:click=\"@show(nav)\" nv-repeat=\"let nav in navList\" nv-key=\"nav.id\""],
+      code: "\n  <a class=\"nav\" nv-on:click=\"@goTo($event, $index, 1, 'state', nav.to)\">{{nav.name}}</a>\n\n  public goTo(event: Event, index: number, aa: number, s: string, to: string) {\n    this.$setLocation(to);\n  }\n "
     }, {
       title: '2. text 指令',
       p: ['该指令可直接渲染为标签内的文字，或 <input> 的 value。'],
       pchild: ['可以使用 nv-text 也可以使用模板语法 {{}}。'],
-      code: "\n  <p nv-text=\"$.b\"></p>\n  <p nv-text=\"@returnValue($.b)\"></p>\n  <p>{{$.b}}</p>\n  <p>{{@returnValue($.b)}}</p>\n "
+      code: "\n  <p nv-text=\"b\"></p>\n  <p nv-text=\"@returnValue(b)\"></p>\n  <p>{{b}}</p>\n  <p>{{@returnValue(b)}}</p>\n "
     }, {
       title: '3. html 指令',
       p: ['该指令可直接渲染为标签内的 HTML，内部实现相当于 innerHTML。'],
       pchild: ['可以使用 nv-html。'],
-      code: "\n  <p nv-html=\"$.b\"></p>\n  <p nv-html=\"@returnValue($.b)\"></p>\n "
+      code: "\n  <p nv-html=\"b\"></p>\n  <p nv-html=\"@returnValue(b)\"></p>\n "
     }, {
       title: '4. model 指令',
       p: ['此指令等同于 nv-text 和 nv-on:input 同时使用'],
       pchild: ['仅仅可以对 <input> 使用 nv-model, model会主动更新被绑定的值并更新视图。'],
-      code: "\n  <input nv-model=\"$.c\"/>\n "
+      code: "\n  <input nv-model=\"c\"/>\n "
     }, {
       title: '5. class 指令',
       p: ['指令会主动把被绑定的值作为 className 增加到元素的class中。'],
       pchild: ['使用 nv-class。'],
-      code: "\n  <input nv-class=\"$.d\"/>\n  <input nv-class=\"@returnValue($.d)\"/>\n "
+      code: "\n  <input nv-class=\"d\"/>\n  <input nv-class=\"@returnValue(d)\"/>\n "
     }, {
       title: '6. if 指令',
       p: ['如果被绑定的值被 javascript 判定为 true/false，将分别在DOM树中显示或移除。'],
       pchild: ['使用 nv-if。'],
-      code: "\n  <input nv-if=\"$.e\"/>\n  <input nv-if=\"@returnValue($.e)\"/>\n "
+      code: "\n  <input nv-if=\"e\"/>\n  <input nv-if=\"@returnValue(e)\"/>\n "
     }, {
       title: '7. repeat 指令',
       p: ['repeat 是一个重复器指令 —— 自定义数据显示的一种方式。', '你的目标是展示一个由多个条目组成的列表。', '首先定义了一个 HTML 块，它规定了单个条目应该如何显示。', '再告诉 InDiv 把这个块当做模板，渲染列表中的每个条目。', '该指令可以搭配 nv-key 指令使用提高渲染性能。'],
       pchild: ['使用 nv-repeat="let item in Array"语法, Array只能为其他被repeat值或组件实例state上的数组。', '可以通过 let item in Array 的语法定义 nv-repeat 指令，在元素本身或子元素可以直接使用 item 作为值。', '此指令十分耗费性能，不建议多用，并且建议搭配 nv-key 使用。'],
-      code: "\n  <div nv-class=\"li.class\" nv-repeat=\"let li in $.arrayList\" nv-key=\"li.id\">\n    <input nv-model=\"l.value\" nv-repeat=\"let l in li\" nv-key=\"l.id\"/>\n    <demo-component value=\"{l}\" nv-key=\"li.id\"></demo-component>\n  </div>\n "
+      code: "\n  <div nv-class=\"li.class\" nv-repeat=\"let li in arrayList\" nv-key=\"li.id\">\n    <input nv-model=\"l.value\" nv-repeat=\"let l in li\" nv-key=\"l.id\"/>\n    <demo-component value=\"{l}\" nv-key=\"li.id\"></demo-component>\n  </div>\n "
     }, {
       title: '8. key 指令',
       p: ['搭配 repeat 指令使用，为每个被 repeat 的元素指定一个唯一的值', '该指令会提高 repeat 指令的渲染性能，', '每次虚拟DOM更新时会优先匹配 tagName 和 key 都相同的虚拟DOM。'],
       pchild: ['nv-key 的值必须在 同级且同标签名的元素 中为唯一值', '建议如果对 自定义组件的父元素 或 自定义组件本身 使用 nv-repeat，尽量加上 nv-key 指令来避免重复创建组件实例，并保存组件内部状态。'],
-      code: "\n  <div nv-class=\"li.class\" nv-repeat=\"let li in $.arrayList\" nv-key=\"li.id\">\n    <input nv-model=\"l.value\" nv-repeat=\"let l in li\" nv-key=\"l.id\"/>\n    <demo-component value=\"{l}\" nv-key=\"li.id\"></demo-component>\n  </div>\n "
+      code: "\n  <div nv-class=\"li.class\" nv-repeat=\"let li in arrayList\" nv-key=\"li.id\">\n    <input nv-model=\"l.value\" nv-repeat=\"let l in li\" nv-key=\"l.id\"/>\n    <demo-component value=\"{l}\" nv-key=\"li.id\"></demo-component>\n  </div>\n "
     }, {
       title: '9. 其他指令',
       p: ['如果属性可以通过 Element.attribute = value来设置的话，也可以使用 nv-attribute 来使用。'],
       pchild: ['例如：nv-src nv-href nv-alt等'],
-      code: "\n  <img nv-src=\"$.src\" nv-alt=\"$.alt\"/>\n  <img nv-src=\"@return($.src)\" nv-alt=\"@return($.alt)\"/>\n "
+      code: "\n  <img nv-src=\"src\" nv-alt=\"alt\"/>\n  <img nv-src=\"@return(src)\" nv-alt=\"@return(alt)\"/>\n "
     }]
   }];
 };
@@ -388,7 +388,7 @@ var DocsTemplateContainer =
 function () {
   function DocsTemplateContainer() {
     this.state = {
-      info: (0, _template.templateInfo)(),
+      infos: (0, _template.templateInfo)(),
       codeType: "html"
     };
   }
@@ -399,7 +399,7 @@ function () {
 
   DocsTemplateContainer = __decorate([(0, _src.Component)({
     selector: 'docs-template-container',
-    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2 class=\"fucker\">{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" type=\"{$.codeType}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in infos\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2 class=\"fucker\">{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" type=\"{codeType}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
   }), __metadata("design:paramtypes", [])], DocsTemplateContainer);
   return DocsTemplateContainer;
 }();
@@ -487,7 +487,7 @@ var DocsModuleContainer =
 function () {
   function DocsModuleContainer() {
     this.state = {
-      info: (0, _module.moduleInfo)()
+      content: (0, _module.moduleInfo)()
     };
   }
 
@@ -497,7 +497,7 @@ function () {
 
   DocsModuleContainer = __decorate([(0, _src.Component)({
     selector: 'docs-module-container',
-    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in content\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
   }), __metadata("design:paramtypes", [])], DocsModuleContainer);
   return DocsModuleContainer;
 }();
@@ -565,7 +565,7 @@ var DocsServiceContainer =
 function () {
   function DocsServiceContainer() {
     this.state = {
-      info: (0, _service.serviceInfo)()
+      infos: (0, _service.serviceInfo)()
     };
   }
 
@@ -579,7 +579,7 @@ function () {
 
   DocsServiceContainer = __decorate([(0, _src.Component)({
     selector: 'docs-service-container',
-    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in infos\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
   }), __metadata("design:paramtypes", [])], DocsServiceContainer);
   return DocsServiceContainer;
 }();
@@ -652,13 +652,13 @@ var DocsRouteContainer =
 function () {
   function DocsRouteContainer() {
     this.state = {
-      info: (0, _route.routeInfo)()
+      infos: (0, _route.routeInfo)()
     };
   }
 
   DocsRouteContainer = __decorate([(0, _src.Component)({
     selector: 'docs-route-container',
-    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in infos\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
   }), __metadata("design:paramtypes", [])], DocsRouteContainer);
   return DocsRouteContainer;
 }();
@@ -721,13 +721,13 @@ var DocsInDivContainer =
 function () {
   function DocsInDivContainer() {
     this.state = {
-      info: (0, _indiv.inDivInfo)()
+      content: (0, _indiv.inDivInfo)()
     };
   }
 
   DocsInDivContainer = __decorate([(0, _src.Component)({
     selector: 'docs-indiv-container',
-    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in content\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
   }), __metadata("design:paramtypes", [])], DocsInDivContainer);
   return DocsInDivContainer;
 }();
@@ -790,13 +790,13 @@ var DocsLibsContainer =
 function () {
   function DocsLibsContainer() {
     this.state = {
-      info: (0, _libs.libInfo)()
+      content: (0, _libs.libInfo)()
     };
   }
 
   DocsLibsContainer = __decorate([(0, _src.Component)({
     selector: 'docs-libs-container',
-    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in content\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
   }), __metadata("design:paramtypes", [])], DocsLibsContainer);
   return DocsLibsContainer;
 }();
@@ -859,13 +859,13 @@ var DocsHttpContainer =
 function () {
   function DocsHttpContainer() {
     this.state = {
-      info: (0, _http.httpInfo)()
+      content: (0, _http.httpInfo)()
     };
   }
 
   DocsHttpContainer = __decorate([(0, _src.Component)({
     selector: 'docs-http-container',
-    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
+    template: "\n    <div class=\"child-page-wrapper\">\n      <div class=\"info-content\" nv-repeat=\"let info in content\">\n        <h1>{{info.h1}}</h1>\n        <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n        <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n          <h2>{{code.title}}</h2>\n          <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n          <div class=\"pchild\" nv-if=\"code.pchild\">\n            <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n          </div>\n          <code-shower codes=\"{code.code}\" nv-if=\"code.code\"></code-shower>\n        </div>\n      </div>\n    </div>\n  "
   }), __metadata("design:paramtypes", [])], DocsHttpContainer);
   return DocsHttpContainer;
 }();
@@ -927,7 +927,7 @@ function () {
   }
 
   DocsModule = __decorate([(0, _src.NvModule)({
-    components: [_docs.default, _component.default, _template.default, _module.default, _service.default, _route.default, _indiv.default, _libs.default, _http.default],
+    declarations: [_docs.default, _component.default, _template.default, _module.default, _service.default, _route.default, _indiv.default, _libs.default, _http.default],
     // providers: [
     //     {
     //         provide: TestService,
@@ -969,7 +969,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53640" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51008" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

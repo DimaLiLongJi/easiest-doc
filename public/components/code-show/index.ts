@@ -1,8 +1,8 @@
 import 'highlight.js/styles/atom-one-dark.css';
 
-// import { Component, OnInit, SetState, SetLocation, GetLocation, HasRender, ReceiveProps, setState } from 'indiv';
-import { Component, OnInit, SetState, SetLocation, GetLocation, HasRender, ReceiveProps, setState } from '../../../../InDiv/src';
-// import { Component, OnInit, SetState, SetLocation, GetLocation, HasRender, ReceiveProps, setState } from '../../../../InDiv/build';
+// import { Component, OnInit, SetState, HasRender, ReceiveProps, setState } from 'indiv';
+import { Component, OnInit, SetState, HasRender, ReceiveProps, setState } from '../../../../InDiv/src';
+// import { Component, OnInit, SetState, HasRender, ReceiveProps, setState } from '../../../../InDiv/build';
 import hljs from 'highlight.js';
 
 interface State {
@@ -21,7 +21,7 @@ interface Props {
         <div nv-on:click="@show()" class="code-show-container">
             <blockquote>
                 <pre>
-                    <code nv-class="$.type">{{$.codes}}</code>
+                    <code nv-class="type">{{codes}}</code>
                 </pre>
             </blockquote>
         </div>
@@ -30,8 +30,6 @@ interface Props {
 export default class CodeShower implements OnInit, HasRender, ReceiveProps {
     public state: State;
     public props: Props;
-    public getLocation: GetLocation;
-    public setLocation: SetLocation;
     public setState: SetState;
 
     public nvOnInit() {

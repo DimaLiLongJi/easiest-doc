@@ -20,13 +20,13 @@ interface Info {
 }
 
 interface State {
-  info: Info[];
+  content: Info[];
 }
 @Component<State>({
   selector: 'docs-module-container',
   template: (`
     <div class="child-page-wrapper">
-      <div class="info-content" nv-repeat="let info in $.info">
+      <div class="info-content" nv-repeat="let info in content">
         <h1>{{info.h1}}</h1>
         <p nv-repeat="let rp in info.p">{{rp}}</p>
         <div class="child-info" nv-repeat="let code in info.info">
@@ -48,7 +48,7 @@ export default class DocsModuleContainer implements HasRender {
 
   constructor() {
     this.state = {
-      info: moduleInfo(),
+      content: moduleInfo(),
     };
   }
 

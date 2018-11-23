@@ -20,13 +20,13 @@ interface Info {
 }
 
 interface State {
-  info: Info[];
+  infos: Info[];
 }
 @Component<State>({
   selector: 'docs-route-container',
   template: (`
     <div class="child-page-wrapper">
-      <div class="info-content" nv-repeat="let info in $.info">
+      <div class="info-content" nv-repeat="let info in infos">
         <h1>{{info.h1}}</h1>
         <p nv-repeat="let rp in info.p">{{rp}}</p>
         <div class="child-info" nv-repeat="let code in info.info">
@@ -48,7 +48,7 @@ export default class DocsRouteContainer {
 
   constructor() {
     this.state = {
-      info: routeInfo(),
+      infos: routeInfo(),
     };
   }
 }

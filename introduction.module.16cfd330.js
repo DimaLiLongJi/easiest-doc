@@ -171,13 +171,13 @@ var IntroductionContainer =
 function () {
   function IntroductionContainer() {
     this.state = {
-      info: (0, _introduction.content)()
+      infos: (0, _introduction.content)()
     };
   }
 
   IntroductionContainer = __decorate([(0, _src.Component)({
     selector: 'introduction-container',
-    template: "\n        <div class=\"page-container\">\n            <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n                <h1>{{info.h1}}</h1>\n                <p nv-repeat=\"let pp in info.p\">{{pp}}</p>\n                <div class=\"child-info\" nv-if=\"info.info\">\n                    <div class=\"pchild\">\n                        <p nv-repeat=\"let child in info.info\">{{child}}</p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    "
+    template: "\n        <div class=\"page-container\">\n            <div class=\"info-content\" nv-repeat=\"let info in infos\">\n                <h1>{{info.h1}}</h1>\n                <p nv-repeat=\"let pp in info.p\">{{pp}}</p>\n                <div class=\"child-info\" nv-if=\"info.info\">\n                    <div class=\"pchild\">\n                        <p nv-repeat=\"let child in info.info\">{{child}}</p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    "
   }), __metadata("design:paramtypes", [])], IntroductionContainer);
   return IntroductionContainer;
 }();
@@ -218,7 +218,7 @@ function () {
 
   IntroductionModule = __decorate([(0, _src.NvModule)({
     imports: [],
-    components: [_introduction.default],
+    declarations: [_introduction.default],
     providers: [],
     exports: [_introduction.default],
     bootstrap: _introduction.default
@@ -255,7 +255,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53640" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51008" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

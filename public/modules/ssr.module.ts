@@ -5,7 +5,7 @@ import { NvModule } from '../../../InDiv/src';
 import SSRContainer from '../pages/ssr';
 
 @NvModule({
-    components: [
+    declarations: [
         SSRContainer,
     ],
     exports: [

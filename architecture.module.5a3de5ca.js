@@ -177,13 +177,13 @@ var ArchitectureContainer =
 function () {
   function ArchitectureContainer() {
     this.state = {
-      info: (0, _start.content)()
+      content: (0, _start.content)()
     };
   }
 
   ArchitectureContainer = __decorate([(0, _src.Component)({
     selector: 'architecture-container',
-    template: "\n    <div class=\"page-container\">\n      <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n          <h1>{{info.h1}}</h1>\n          <p nv-repeat=\"let pp in info.p\">{{pp}}</p>\n          <div class=\"child-info\" nv-if=\"info.info\">\n              <div class=\"pchild\">\n                  <p nv-repeat=\"let child in info.info\">{{child}}</p>\n              </div>\n          </div>\n      </div>\n    </div>\n  "
+    template: "\n    <div class=\"page-container\">\n      <div class=\"info-content\" nv-repeat=\"let info in content\">\n          <h1>{{info.h1}}</h1>\n          <p nv-repeat=\"let pp in info.p\">{{pp}}</p>\n          <div class=\"child-info\" nv-if=\"info.info\">\n              <div class=\"pchild\">\n                  <p nv-repeat=\"let child in info.info\">{{child}}</p>\n              </div>\n          </div>\n      </div>\n    </div>\n  "
   }), __metadata("design:paramtypes", [])], ArchitectureContainer);
   return ArchitectureContainer;
 }();
@@ -223,7 +223,7 @@ function () {
   function ArchitectureModule() {}
 
   ArchitectureModule = __decorate([(0, _src.NvModule)({
-    components: [_architecture.default],
+    declarations: [_architecture.default],
     exports: [_architecture.default],
     bootstrap: _architecture.default
   })], ArchitectureModule);
@@ -259,7 +259,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53640" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51008" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

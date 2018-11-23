@@ -14,13 +14,13 @@ type Info = {
 }
 
 interface State {
-    info: Info[];
+    infos: Info[];
 }
 @Component<State>({
     selector: 'introduction-container',
     template: (`
         <div class="page-container">
-            <div class="info-content" nv-repeat="let info in $.info">
+            <div class="info-content" nv-repeat="let info in infos">
                 <h1>{{info.h1}}</h1>
                 <p nv-repeat="let pp in info.p">{{pp}}</p>
                 <div class="child-info" nv-if="info.info">
@@ -36,7 +36,7 @@ export default class IntroductionContainer {
     public state: State;
     constructor() {
         this.state = {
-            info: content(),
+            infos: content(),
         };
     }
 }

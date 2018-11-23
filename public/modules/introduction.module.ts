@@ -7,7 +7,7 @@ import IntroductionContainer from '../pages/introduction';
 @NvModule({
     imports: [
     ],
-    components: [
+    declarations: [
         IntroductionContainer,
     ],
     providers: [

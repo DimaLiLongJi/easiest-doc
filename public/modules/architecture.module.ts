@@ -5,7 +5,7 @@ import { NvModule } from '../../../InDiv/src';
 import ArchitectureContainer from '../pages/architecture';
 
 @NvModule({
-    components: [
+    declarations: [
         ArchitectureContainer,
     ],
     exports: [

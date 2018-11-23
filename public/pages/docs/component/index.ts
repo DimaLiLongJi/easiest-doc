@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 // import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from 'indiv';
-import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from '../../../../../InDiv/src';
+import { Component, HasRender, SetState, WatchState, OnInit, OnDestory, RouteChange } from '../../../../../InDiv/src';
 // import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from '../../../../../InDiv/build';
 import { componentInfo } from '../../../constants/component';
 
@@ -23,15 +23,14 @@ interface Info {
 }
 
 interface State {
-  info: Info[];
+  content: Info[];
 }
 
-@Injected
 @Component<State>({
   selector: 'docs-component-container',
   template: (`
     <div class="child-page-wrapper">
-      <div class="info-content" nv-repeat="let info in $.info">
+      <div class="info-content" nv-repeat="let info in content">
         <h1>{{info.h1}}</h1>
         <p nv-repeat="let rp in info.p">{{rp}}</p>
         <div class="child-info" nv-repeat="let code in info.info">
@@ -64,7 +63,7 @@ export default class DocsComponentContainer implements OnInit, HasRender, WatchS
     private testS: TestService,
   ) {
     this.state = {
-      info: componentInfo(),
+      content: componentInfo(),
     };
     this.subscribeToken = this.testS.subscribe(this.subscribe);
   }

@@ -168,14 +168,14 @@ var MiddlewareContainer =
 function () {
   function MiddlewareContainer() {
     this.state = {
-      info: (0, _middleware.middlewareInfo)(),
+      infos: (0, _middleware.middlewareInfo)(),
       codeType: 'javascript'
     };
   }
 
   MiddlewareContainer = __decorate([(0, _src.Component)({
     selector: 'middleware-container',
-    template: "\n        <div class=\"page-container\">\n            <div class=\"info-content\" nv-repeat=\"let info in $.info\">\n                <h1>{{info.h1}}</h1>\n                <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n                <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n                    <h2>{{code.title}}</h2>\n                    <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n                    <div class=\"pchild\" nv-if=\"code.pchild\">\n                    <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n                    </div>\n                    <code-shower nv-if=\"code.code\" type=\"{$.codeType}\" codes=\"{code.code}\"></code-shower>\n                </div>\n            </div>\n        </div>\n    "
+    template: "\n        <div class=\"page-container\">\n            <div class=\"info-content\" nv-repeat=\"let info in infos\">\n                <h1>{{info.h1}}</h1>\n                <p nv-repeat=\"let rp in info.p\">{{rp}}</p>\n                <div class=\"child-info\" nv-repeat=\"let code in info.info\">\n                    <h2>{{code.title}}</h2>\n                    <p nv-repeat=\"let pli in code.p\">{{pli}}</p>\n                    <div class=\"pchild\" nv-if=\"code.pchild\">\n                    <p nv-repeat=\"let child in code.pchild\">{{child}}</p>\n                    </div>\n                    <code-shower nv-if=\"code.code\" type=\"{codeType}\" codes=\"{code.code}\"></code-shower>\n                </div>\n            </div>\n        </div>\n    "
   }), __metadata("design:paramtypes", [])], MiddlewareContainer);
   return MiddlewareContainer;
 }();
@@ -215,7 +215,7 @@ function () {
   function MiddlewareModule() {}
 
   MiddlewareModule = __decorate([(0, _src.NvModule)({
-    components: [_middleware.default],
+    declarations: [_middleware.default],
     exports: [_middleware.default],
     bootstrap: _middleware.default
   })], MiddlewareModule);
@@ -251,7 +251,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53640" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51008" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

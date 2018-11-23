@@ -2,7 +2,7 @@ import './style.less';
 
 import { Subscription } from 'rxjs';
 // import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from 'indiv';
-import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from '../../../../InDiv/src';
+import { Component, OnInit, RouteChange, SetState, OnDestory, setState, NvLocation } from '../../../../InDiv/src';
 // import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from '../../../../InDiv/build';
 
 import { navs } from '../../constants/nav';
@@ -24,15 +24,14 @@ interface Props {
     handleSideBar: () => void;
 }
 
-@Injected
 @Component<State, Props>({
     selector: 'side-bar',
     template: (`
         <div class="side-bar-container">
-            <div class="nav-wrap" nv-class="nav.active" nv-repeat="let nav in $.navs">
-                <a class="nav" nv-on:click="@setLocation(nav.to)">{{nav.name}}</a>
+            <div class="nav-wrap" nv-class="nav.active" nv-repeat="let nav in navs">
+                <a class="nav" nv-on:click="@location.set(nav.to)">{{nav.name}}</a>
                 <div class="child-wrap" nv-if="nav.child">
-                    <a class="nav nav-child" nv-class="child.active" nv-repeat="let child in nav.child" nv-on:click="@setLocation(child.to)">{{child.name}}</a>
+                    <a class="nav nav-child" nv-class="child.active" nv-repeat="let child in nav.child" nv-on:click="@location.set(child.to)">{{child.name}}</a>
                 </div>
             </div>
             <button class="sidebar-toggle" nv-on:click="@changeShowSideBar()">
@@ -49,16 +48,13 @@ interface Props {
 export default class SideBar implements OnInit, RouteChange, OnDestory {
     public state: State;
     public props: Props;
-    public getLocation: GetLocation;
-    public setLocation: SetLocation;
     public setState: SetState;
     public subscribeToken: Subscription;
 
     constructor(
         private testS: TestService,
+        private location: NvLocation,
     ) {
-        this.getLocation = getLocation;
-        this.setLocation = setLocation;
         this.setState = setState;
         this.subscribeToken = this.testS.subscribe(this.subscribe);
     }
@@ -86,7 +82,7 @@ export default class SideBar implements OnInit, RouteChange, OnDestory {
     }
 
     public showColor() {
-        const location = this.getLocation();
+        const location = this.location.get();
         this.state.navs.forEach(nav => {
             nav.active = null;
             if (nav.to === location.path) nav.active = 'active';

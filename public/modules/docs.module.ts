@@ -15,7 +15,7 @@ import DocsHttpContainer from '../pages/docs/http';
 import TestService from '../service/test.service';
 
 @NvModule({
-    components: [
+    declarations: [
         DocsContainer,
         DocsComponentContainer,
         DocsTemplateContainer,
