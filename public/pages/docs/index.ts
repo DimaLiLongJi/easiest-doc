@@ -1,10 +1,10 @@
 import './style.less';
 
-// import { Component, RouteChange } from 'indiv';
-import { Component, RouteChange } from '../../../../InDiv/src';
-// import { Component, RouteChange } from '../../../../InDiv/build';
+import { Component } from '@indiv/core';
+import { RouteChange } from '@indiv/router'
 
-@Component<any>({
+
+@Component({
   selector: 'docs-container',
   template: (`
       <div class="page-container">
@@ -13,8 +13,6 @@ import { Component, RouteChange } from '../../../../InDiv/src';
   `),
 })
 export default class DocsContainer implements RouteChange {
-  constructor() {}
-
   public nvRouteChange(lastRoute?: string, newRoute?: string) {
     console.log('DocsContainer nvRouteChange', lastRoute, newRoute);
   }

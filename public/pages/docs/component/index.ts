@@ -1,7 +1,6 @@
 import { Subscription } from 'rxjs';
-// import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from 'indiv';
-import { Component, HasRender, SetState, WatchState, OnInit, OnDestory, RouteChange } from '../../../../../InDiv/src';
-// import { Component, HasRender, SetState, Injected, WatchState, OnInit, OnDestory, RouteChange } from '../../../../../InDiv/build';
+import { Component, HasRender, DoCheck, OnInit, OnDestory,  } from '@indiv/core';
+import { RouteChange } from '@indiv/router';
 import { componentInfo } from '../../../constants/component';
 
 import TestService from '../../../service/test.service';
@@ -22,22 +21,18 @@ interface Info {
     }[];
 }
 
-interface State {
-  content: Info[];
-}
-
-@Component<State>({
+@Component({
   selector: 'docs-component-container',
   template: (`
     <div class="child-page-wrapper">
-      <div class="info-content" nv-repeat="let info in content">
+      <div class="info-content" nv-repeat="info in content">
         <h1>{{info.h1}}</h1>
-        <p nv-repeat="let rp in info.p">{{rp}}</p>
-        <div class="child-info" nv-repeat="let code in info.info">
-          <h2 class="fucker" nv-on:click="@click(code, $index)">{{@showText(code.title)}}</h2>
-          <p nv-repeat="let pli in code.p">{{pli}}</p>
+        <p nv-repeat="rp in info.p">{{rp}}</p>
+        <div class="child-info" nv-repeat="code in info.info">
+          <h2 class="fucker" nv-on:click="click(code, $index)">{{showText(code.title)}}</h2>
+          <p nv-repeat="pli in code.p">{{pli}}</p>
           <div class="pchild" nv-if="code.pchild">
-            <p nv-repeat="let child in code.pchild">{{child}}</p>
+            <p nv-repeat="child in code.pchild">{{child}}</p>
           </div>
           <code-shower codes="{code.code}" nv-if="code.code"></code-shower>
         </div>
@@ -51,20 +46,13 @@ interface State {
   //   },
   // ],
 })
-export default class DocsComponentContainer implements OnInit, HasRender, WatchState, OnDestory, RouteChange {
-  public state: State;
-  public func: string;
-  public setState: SetState;
+export default class DocsComponentContainer implements OnInit, HasRender, DoCheck, OnDestory, RouteChange {
+  public content: Info[] = componentInfo();
   public subscribeToken: Subscription;
-  public reRender: () => void;
-  public stateWatcher: () => void;
 
   constructor(
     private testS: TestService,
   ) {
-    this.state = {
-      content: componentInfo(),
-    };
     this.subscribeToken = this.testS.subscribe(this.subscribe);
   }
 
@@ -72,8 +60,8 @@ export default class DocsComponentContainer implements OnInit, HasRender, WatchS
     console.log('DocsComponentContainer has oninit');
   }
   
-  public nvWatchState(oldState: State) {
-    console.log('oldState is: ', oldState);
+  public nvDoCheck() {
+    console.log('oldState is changes');
   }
 
   public subscribe(value: any) {
@@ -91,7 +79,7 @@ export default class DocsComponentContainer implements OnInit, HasRender, WatchS
   }
 
   public nvHasRender() {
-    console.log('nvHasRender', this.state);
+    console.log('nvHasRender');
   }
 
   public nvOnDestory() {

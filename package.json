@@ -4,10 +4,10 @@
   "description": "indiv doc",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build public/main.ts -d ./ & nodemon app.js",
-    "start": "parcel watch public/main.ts -d ./ & nodemon app.js",
-    "start-win": "parcel ./win.html -d dist --open"
+    "clear": "rm -rf dist",
+    "start:build": "npm run build && nodemon app.js",
+    "start": "npm run clear && webpack --watch --mode=development & nodemon app.js",
+    "build": "npm run clear && webpack --env=production --mode=production --progress"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,15 @@
     "rxjs": "^6.3.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.2.3",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-eslint": "^8.2.3",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-dynamic-import-webpack": "^1.1.0",
     "babel-plugin-module-resolver": "^3.1.1",
+    "css-loader": "^1.0.1",
     "ejs": "^2.6.1",
     "eslint": "^5.8.0",
     "eslint-config-airbnb-base": "^12.1.0",
@@ -38,10 +45,15 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react": "^7.9.1",
     "express": "^4.16.3",
-    "less": "^3.8.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "mini-css-extract-plugin": "^0.5.0",
     "nodemon": "^1.17.5",
     "parcel-bundler": "^1.10.3",
+    "style-loader": "^0.23.1",
     "tslint": "^5.11.0",
-    "typescript": "^2.9.2"
+    "typescript": "^3.2.2",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2"
   }
 }

@@ -1,6 +1,5 @@
-// import { Component, HasRender, SetState } from 'indiv';
-import { Component, HasRender, SetState } from '../../../../../InDiv/src';
-// import { Component, HasRender, SetState } from '../../../../../InDiv/build';
+import { Component, HasRender } from '@indiv/core';
+
 import { moduleInfo } from '../../../constants/module';
 
 interface Info {
@@ -19,21 +18,18 @@ interface Info {
     }[];
 }
 
-interface State {
-  content: Info[];
-}
-@Component<State>({
+@Component({
   selector: 'docs-module-container',
   template: (`
     <div class="child-page-wrapper">
-      <div class="info-content" nv-repeat="let info in content">
+      <div class="info-content" nv-repeat="info in content">
         <h1>{{info.h1}}</h1>
-        <p nv-repeat="let rp in info.p">{{rp}}</p>
-        <div class="child-info" nv-repeat="let code in info.info">
+        <p nv-repeat="rp in info.p">{{rp}}</p>
+        <div class="child-info" nv-repeat="code in info.info">
           <h2>{{code.title}}</h2>
-          <p nv-repeat="let pli in code.p">{{pli}}</p>
+          <p nv-repeat="pli in code.p">{{pli}}</p>
           <div class="pchild" nv-if="code.pchild">
-            <p nv-repeat="let child in code.pchild">{{child}}</p>
+            <p nv-repeat="child in code.pchild">{{child}}</p>
           </div>
           <code-shower codes="{code.code}" nv-if="code.code"></code-shower>
         </div>
@@ -42,17 +38,9 @@ interface State {
   `),
 })
 export default class DocsModuleContainer implements HasRender {
-  public state: State;
-  public func: string;
-  public setState: SetState;
-
-  constructor() {
-    this.state = {
-      content: moduleInfo(),
-    };
-  }
+  public content: Info[] = moduleInfo();
 
   public nvHasRender() {
-    console.log('DocsTemplateContainer nvHasRender', this.state);
+    console.log('DocsTemplateContainer nvHasRender');
   }
 }

@@ -1,6 +1,5 @@
-// import { Component, HasRender, SetState, OnDestory } from 'indiv';
-import { Component, HasRender, SetState, OnDestory } from '../../../../../InDiv/src';
-// import { Component, HasRender, SetState, OnDestory } from '../../../../../InDiv/build';
+import { Component, HasRender, OnDestory } from '@indiv/core';
+
 import { serviceInfo } from '../../../constants/service';
 
 interface Info {
@@ -19,21 +18,18 @@ interface Info {
     }[];
 }
 
-interface State {
-  infos: Info[];
-}
-@Component<State>({
+@Component({
   selector: 'docs-service-container',
   template: (`
     <div class="child-page-wrapper">
-      <div class="info-content" nv-repeat="let info in infos">
+      <div class="info-content" nv-repeat="info in infos">
         <h1>{{info.h1}}</h1>
-        <p nv-repeat="let rp in info.p">{{rp}}</p>
-        <div class="child-info" nv-repeat="let code in info.info">
+        <p nv-repeat="rp in info.p">{{rp}}</p>
+        <div class="child-info" nv-repeat="code in info.info">
           <h2>{{code.title}}</h2>
-          <p nv-repeat="let pli in code.p">{{pli}}</p>
+          <p nv-repeat="pli in code.p">{{pli}}</p>
           <div class="pchild" nv-if="code.pchild">
-            <p nv-repeat="let child in code.pchild">{{child}}</p>
+            <p nv-repeat="child in code.pchild">{{child}}</p>
           </div>
           <code-shower codes="{code.code}" nv-if="code.code"></code-shower>
         </div>
@@ -42,21 +38,13 @@ interface State {
   `),
 })
 export default class DocsServiceContainer implements HasRender, OnDestory {
-  public state: State;
-  public func: string;
-  public setState: SetState;
-
-  constructor() {
-    this.state = {
-      infos: serviceInfo(),
-    };
-  }
+  public infos: Info[] = serviceInfo();
 
   public nvOnDestory() {
     console.log(9999, 'DocsServiceContainer destory');
   }
 
   public nvHasRender() {
-    console.log('DocsServiceContainer nvHasRender', this.state);
+    console.log('DocsServiceContainer nvHasRender');
   }
 }

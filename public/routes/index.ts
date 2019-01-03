@@ -1,5 +1,5 @@
-// import { Router, TRouter } from 'indiv';
-import { TRouter, NvModule, RouteModule } from '../../../InDiv/src';
+import { NvModule } from '@indiv/core';
+import { TRouter, RouteModule } from '@indiv/router';
 
 const routes: TRouter[] = [
     {

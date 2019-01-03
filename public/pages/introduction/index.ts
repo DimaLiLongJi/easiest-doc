@@ -1,8 +1,5 @@
 import './style.less';
-
-// import { Component } from 'indiv';
-import { Component } from '../../../../InDiv/src';
-// import { Component } from '../../../../InDiv/build';
+import { Component } from '@indiv/core';
 
 import { content } from '../../constants/introduction';
 
@@ -13,19 +10,16 @@ type Info = {
     info?: string[];
 }
 
-interface State {
-    infos: Info[];
-}
-@Component<State>({
+@Component({
     selector: 'introduction-container',
     template: (`
         <div class="page-container">
-            <div class="info-content" nv-repeat="let info in infos">
+            <div class="info-content" nv-repeat="info in infos">
                 <h1>{{info.h1}}</h1>
-                <p nv-repeat="let pp in info.p">{{pp}}</p>
+                <p nv-repeat="pp in info.p">{{pp}}</p>
                 <div class="child-info" nv-if="info.info">
                     <div class="pchild">
-                        <p nv-repeat="let child in info.info">{{child}}</p>
+                        <p nv-repeat="child in info.info">{{child}}</p>
                     </div>
                 </div>
             </div>
@@ -33,10 +27,5 @@ interface State {
     `),
 })
 export default class IntroductionContainer {
-    public state: State;
-    constructor() {
-        this.state = {
-            infos: content(),
-        };
-    }
+    public infos: Info[] = content();
 }

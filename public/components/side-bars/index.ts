@@ -1,9 +1,8 @@
 import './style.less';
 
 import { Subscription } from 'rxjs';
-// import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from 'indiv';
-import { Component, OnInit, RouteChange, SetState, OnDestory, setState, NvLocation } from '../../../../InDiv/src';
-// import { Component, OnInit, RouteChange, SetState, SetLocation, GetLocation, Injected, OnDestory, setState, getLocation, setLocation } from '../../../../InDiv/build';
+import { Component, OnInit, OnDestory, Input } from '@indiv/core';
+import { RouteChange, NvLocation } from '@indiv/router';
 
 import { navs } from '../../constants/nav';
 
@@ -15,26 +14,18 @@ type nav = {
     active?: string;
     child?: nav[];
 };
-interface State {
-    navs: nav[];
-    num: number;
-}
 
-interface Props {
-    handleSideBar: () => void;
-}
-
-@Component<State, Props>({
+@Component({
     selector: 'side-bar',
     template: (`
         <div class="side-bar-container">
-            <div class="nav-wrap" nv-class="nav.active" nv-repeat="let nav in navs">
-                <a class="nav" nv-on:click="@location.set(nav.to)">{{nav.name}}</a>
-                <div class="child-wrap" nv-if="nav.child">
-                    <a class="nav nav-child" nv-class="child.active" nv-repeat="let child in nav.child" nv-on:click="@location.set(child.to)">{{child.name}}</a>
+            <div class="nav-wrap" nv-class="_nav.active" nv-repeat="_nav in navs">
+                <a class="nav" nv-on:click="location.set(_nav.to)">{{_nav.name}}</a>
+                <div class="child-wrap" nv-if="_nav.child">
+                    <a class="nav nav-child" nv-repeat="_child in _nav.child" nv-class="_child.active" nv-on:click="location.set(_child.to)">{{_child.name}}</a>
                 </div>
             </div>
-            <button class="sidebar-toggle" nv-on:click="@changeShowSideBar()">
+            <button class="sidebar-toggle" nv-on:click="changeShowSideBar()">
                 <div class="sidebar-toggle-button">
                     <span></span>
                     <span></span>
@@ -46,16 +37,15 @@ interface Props {
 })
 
 export default class SideBar implements OnInit, RouteChange, OnDestory {
-    public state: State;
-    public props: Props;
-    public setState: SetState;
+    public navs: nav[] = navs();
+    public num: number = 1;
     public subscribeToken: Subscription;
+    @Input() handleSideBar: () => void;
 
     constructor(
         private testS: TestService,
         private location: NvLocation,
     ) {
-        this.setState = setState;
         this.subscribeToken = this.testS.subscribe(this.subscribe);
     }
 
@@ -64,12 +54,8 @@ export default class SideBar implements OnInit, RouteChange, OnDestory {
     }
 
     public nvOnInit() {
-        this.state = {
-            navs: navs(),
-            num: 1,
-        };
         this.showColor();
-        console.log('SideBar onInit');
+        console.log('SideBar onInit', this.navs);
     }
 
     public nvRouteChange(lastRoute?: string, newRoute?: string): void {
@@ -83,7 +69,7 @@ export default class SideBar implements OnInit, RouteChange, OnDestory {
 
     public showColor() {
         const location = this.location.get();
-        this.state.navs.forEach(nav => {
+        this.navs.forEach(nav => {
             nav.active = null;
             if (nav.to === location.path) nav.active = 'active';
             if (nav.child) {
@@ -99,6 +85,6 @@ export default class SideBar implements OnInit, RouteChange, OnDestory {
     }
 
     public changeShowSideBar() {
-        this.props.handleSideBar();
+        this.handleSideBar();
     }
 }

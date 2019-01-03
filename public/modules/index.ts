@@ -1,6 +1,4 @@
-// import { NvModule } from 'indiv';
-import { NvModule } from '../../../InDiv/src';
-// import { NvModule } from '../../../InDiv/build';
+import { NvModule } from '@indiv/core';
 
 import RootComponent from '../components/root-component';
 import SideBar from '../components/side-bars';

@@ -1,8 +1,5 @@
 import './style.less';
-
-// import { Component } from 'indiv';
-import { Component } from '../../../../InDiv/src';
-// import { Component } from '../../../../InDiv/build';
+import { Component } from '@indiv/core';
 
 import { ssrInfo } from '../../constants/ssr';
 
@@ -22,22 +19,18 @@ interface Info {
     }[];
 }
 
-interface State {
-    infos: Info[];
-    codeType: string;
-}
-@Component<State>({
+@Component({
     selector: 'ssr-container',
     template: (`
         <div class="page-container">
-            <div class="info-content" nv-repeat="let info in infos">
+            <div class="info-content" nv-repeat="info in infos">
                 <h1>{{info.h1}}</h1>
-                <p nv-repeat="let rp in info.p">{{rp}}</p>
-                <div class="child-info" nv-repeat="let code in info.info">
+                <p nv-repeat="rp in info.p">{{rp}}</p>
+                <div class="child-info" nv-repeat="code in info.info">
                     <h2>{{code.title}}</h2>
-                    <p nv-repeat="let pli in code.p">{{pli}}</p>
+                    <p nv-repeat="pli in code.p">{{pli}}</p>
                     <div class="pchild" nv-if="code.pchild">
-                    <p nv-repeat="let child in code.pchild">{{child}}</p>
+                    <p nv-repeat="child in code.pchild">{{child}}</p>
                     </div>
                     <code-shower nv-if="code.code" type="{codeType}" codes="{code.code}"></code-shower>
                 </div>
@@ -46,11 +39,6 @@ interface State {
     `),
 })
 export default class SSRContainer {
-    public state: State;
-    constructor() {
-        this.state = {
-            infos: ssrInfo(),
-            codeType: 'javascript',
-        };
-    }
+    public infos: Info[] = ssrInfo();
+    public codeType: string = 'javascript';
 }
