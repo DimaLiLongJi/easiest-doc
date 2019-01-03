@@ -4,8 +4,7 @@
   "description": "indiv doc",
   "main": "index.js",
   "scripts": {
-    "clear": "rm -rf dist",
-    "start:build": "npm run build && nodemon app.js",
+    "clear": "rm -rf dist 0.css 0.js 1.css 1.js 2.css 2.js 3.css 3.js 4.css 4.js 5.css 5.js main.css main.js",
     "start": "npm run clear && webpack --watch --mode=development & nodemon app.js",
     "build": "npm run clear && webpack --env=production --mode=production --progress"
   },
