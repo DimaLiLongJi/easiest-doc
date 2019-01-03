@@ -11,7 +11,7 @@ module.exports = (env) => {
     output: {
       path: env === 'production' ? path.resolve(__dirname) : path.resolve(__dirname, 'dist'),
       filename: '[name].js',
-      publicPath:  env === 'production' ? '/indiv-doc' : '/',
+      publicPath:  env === 'production' ? '/indiv-doc/' : '/', // 上了生成需要制定这个 要不然懒加载的根路径就错了
     },
   
     resolve: {
