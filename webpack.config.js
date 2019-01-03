@@ -14,8 +14,6 @@ module.exports = (env) => {
       publicPath: '/'
     },
   
-    devtool: 'inline-source-map',
-  
     resolve: {
       extensions: [
         '.js', '.jsx', '.ts', '.tsx',
