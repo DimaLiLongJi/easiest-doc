@@ -1,4 +1,3 @@
-import './style.less';
 import { Component } from '@indiv/core';
 
 import { content } from '../../constants/introduction';

@@ -1,4 +1,3 @@
-import './style.less';
 import { Component } from '@indiv/core';
 
 import { middlewareInfo } from '../../constants/middleware';

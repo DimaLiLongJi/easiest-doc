@@ -1,4 +1,3 @@
-import './style.less';
 import { Component } from '@indiv/core';
 
 import { ssrInfo } from '../../constants/ssr';

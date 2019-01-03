@@ -11,7 +11,7 @@ module.exports = (env) => {
     output: {
       path: env === 'production' ? path.resolve(__dirname) : path.resolve(__dirname, 'dist'),
       filename: '[name].js',
-      publicPath: '/'
+      publicPath:  env === 'production' ? '/indiv-doc' : '/',
     },
   
     resolve: {

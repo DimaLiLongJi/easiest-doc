@@ -1,5 +1,3 @@
-import './style.less';
-
 import { Component } from '@indiv/core';
 import { RouteChange } from '@indiv/router'
 
