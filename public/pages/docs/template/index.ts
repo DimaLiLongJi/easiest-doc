@@ -1,4 +1,5 @@
 import { Component, HasRender } from '@indiv/core';
+import { RouteCanActive } from '@indiv/router';
 
 import { templateInfo } from '../../../constants/template';
 
@@ -37,11 +38,16 @@ interface Info {
     </div>
   `),
 })
-export default class DocsTemplateContainer implements HasRender {
+export default class DocsTemplateContainer implements HasRender, RouteCanActive {
   public infos: Info[] = templateInfo();
   public codeType: string = 'html';
 
   public nvHasRender() {
     console.log('DocsTemplateContainer nvHasRender');
+  }
+
+  public nvRouteCanActive(lastRoute: string, currentRoute: string): boolean {
+    console.log('Template nvRouteCanActive');
+    return true;
   }
 }

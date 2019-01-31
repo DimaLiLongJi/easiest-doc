@@ -27,6 +27,7 @@ const routes: TRouter[] = [
                     {
                         path: '/template',
                         component: 'docs-template-container',
+                        routeCanActive: () => true
                     },
                     {
                         path: '/service',

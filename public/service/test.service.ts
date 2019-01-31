@@ -9,6 +9,7 @@ export default class TestService {
   constructor() {
     this.data = 1;
     this.subject = new Subject();
+    console.log(44444444, 'rx data', this.data);
   }
   
   public subscribe(fun: (value: any) => void): Subscription {
