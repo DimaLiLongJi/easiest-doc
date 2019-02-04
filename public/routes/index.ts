@@ -9,16 +9,16 @@ const routes: TRouter[] = [
         children: [
             {
                 path: '/introduction',
-                loadChild: () => import('../modules/introduction.module'),
+                loadChild: () => import(/* webpackChunkName: "introduction" */ '../modules/introduction.module'),
             },
             {
                 path: '/architecture',
-                loadChild: () => import('../modules/architecture.module'),
+                loadChild: () => import(/* webpackChunkName: "architecture" */ '../modules/architecture.module'),
             },
             {
                 path: '/docs',
                 redirectTo: '/docs/component',
-                loadChild: () => import('../modules/docs.module'),
+                loadChild: () => import(/* webpackChunkName: "docs" */ '../modules/docs.module'),
                 children: [
                     {
                         path: '/component',
@@ -57,11 +57,11 @@ const routes: TRouter[] = [
             },
             {
                 path: '/ssr',
-                loadChild: () => import('../modules/ssr.module'),
+                loadChild: () => import(/* webpackChunkName: "ssr" */ '../modules/ssr.module'),
             },
             {
                 path: '/middleware',
-                loadChild: () => import('../modules/middleware.module'),
+                loadChild: () => import(/* webpackChunkName: "middleware" */ '../modules/middleware.module'),
             },
         ],
     },
