@@ -9,7 +9,6 @@ export default class TestService {
   constructor() {
     this.data = 1;
     this.subject = new Subject();
-    console.log(44444444, 'rx data', this.data);
   }
   
   public subscribe(fun: (value: any) => void): Subscription {
@@ -19,6 +18,9 @@ export default class TestService {
   }
 
   public update(value: any) {
+    console.log(1000000, 'this.data', this.data);
+    this.data = value;
+    console.log(111111, 'this.data', this.data);
     this.subject.next({
       next: value,
     });
