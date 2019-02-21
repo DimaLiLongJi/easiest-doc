@@ -17,23 +17,24 @@ type nav = {
 
 @Component({
     selector: 'side-bar',
-    template: (`
-        <div class="side-bar-container">
-            <div class="nav-wrap" nv-class="_nav.active" nv-repeat="_nav in navs">
-                <a class="nav" nv-on:click="location.set(_nav.to)">{{_nav.name}}</a>
-                <div class="child-wrap" nv-if="_nav.child">
-                    <a class="nav nav-child" nv-repeat="_child in _nav.child" nv-class="_child.active" nv-on:click="location.set(_child.to)">{{_child.name}}</a>
-                </div>
-            </div>
-            <button class="sidebar-toggle" nv-on:click="changeShowSideBar()">
-                <div class="sidebar-toggle-button">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </button>
-        </div>
-    `),
+    templateUrl: './template.html',
+    // template: (`
+    //     <div class="side-bar-container">
+    //         <div class="nav-wrap" nv-class="_nav.active" nv-repeat="_nav in navs">
+    //             <a class="nav" nv-on:click="location.set(_nav.to)">{{_nav.name}}</a>
+    //             <div class="child-wrap" nv-if="_nav.child">
+    //                 <a class="nav nav-child" nv-repeat="_child in _nav.child" nv-class="_child.active" nv-on:click="location.set(_child.to)">{{_child.name}}</a>
+    //             </div>
+    //         </div>
+    //         <button class="sidebar-toggle" nv-on:click="changeShowSideBar()">
+    //             <div class="sidebar-toggle-button">
+    //                 <span></span>
+    //                 <span></span>
+    //                 <span></span>
+    //             </div>
+    //         </button>
+    //     </div>
+    // `),
 })
 
 export default class SideBar implements OnInit, RouteChange, OnDestory {

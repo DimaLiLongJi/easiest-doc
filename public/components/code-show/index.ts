@@ -5,13 +5,14 @@ import hljs from 'highlight.js';
 
 @Component({
     selector: 'code-shower',
-    template: (`
-        <div nv-on:click="show()" class="code-show-container">
-            <blockquote>
-                <pre><code nv-class="type">{{codes}}</code></pre>
-            </blockquote>
-        </div>
-    `),
+    // template: (`
+    //     <div nv-on:click="show()" class="code-show-container">
+    //         <blockquote>
+    //             <pre><code nv-class="type">{{codes}}</code></pre>
+    //         </blockquote>
+    //     </div>
+    // `),
+    templateUrl: './template.html'
 })
 export default class CodeShower implements OnInit, HasRender {
     @Input() public codes: string;
