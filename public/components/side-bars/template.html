@@ -1,4 +1,5 @@
 <div class="side-bar-container">
+  <nv-content></nv-content>
   <div class="nav-wrap" nv-class="_nav.active" nv-repeat="_nav in navs">
       <a class="nav" nv-on:click="location.set(_nav.to)">{{_nav.name}}</a>
       <div class="child-wrap" nv-if="_nav.child">

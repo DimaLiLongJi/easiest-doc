@@ -1,7 +1,7 @@
 import './style.less';
 
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestory, Input } from '@indiv/core';
+import { Component, OnInit, OnDestory, Input, ContentChild, ContentChildren, AfterMount } from '@indiv/core';
 import { RouteChange, NvLocation } from '@indiv/router';
 
 import { navs } from '../../constants/nav';
@@ -18,30 +18,15 @@ type nav = {
 @Component({
     selector: 'side-bar',
     templateUrl: './template.html',
-    // template: (`
-    //     <div class="side-bar-container">
-    //         <div class="nav-wrap" nv-class="_nav.active" nv-repeat="_nav in navs">
-    //             <a class="nav" nv-on:click="location.set(_nav.to)">{{_nav.name}}</a>
-    //             <div class="child-wrap" nv-if="_nav.child">
-    //                 <a class="nav nav-child" nv-repeat="_child in _nav.child" nv-class="_child.active" nv-on:click="location.set(_child.to)">{{_child.name}}</a>
-    //             </div>
-    //         </div>
-    //         <button class="sidebar-toggle" nv-on:click="changeShowSideBar()">
-    //             <div class="sidebar-toggle-button">
-    //                 <span></span>
-    //                 <span></span>
-    //                 <span></span>
-    //             </div>
-    //         </button>
-    //     </div>
-    // `),
 })
 
-export default class SideBar implements OnInit, RouteChange, OnDestory {
+export default class SideBar implements OnInit, AfterMount, RouteChange, OnDestory {
     public navs: nav[] = navs();
     public num: number = 1;
     public subscribeToken: Subscription;
     @Input() handleSideBar: () => void;
+    @ContentChild('a') htmltemplateA: HTMLElement;
+    @ContentChildren('a') htmltemplateAs: HTMLElement[];
 
     constructor(
         private testS: TestService,
@@ -57,6 +42,10 @@ export default class SideBar implements OnInit, RouteChange, OnDestory {
     public nvOnInit() {
         this.showColor();
         console.log('SideBar onInit', this.navs);
+    }
+
+    public nvAfterMount() {
+        console.log('SideBar afterMount', this.htmltemplateA, this.htmltemplateAs);
     }
 
     public nvRouteChange(lastRoute?: string, newRoute?: string): void {
