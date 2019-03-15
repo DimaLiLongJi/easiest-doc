@@ -24,28 +24,12 @@ interface Info {
 @Component({
   selector: 'docs-component-container',
   templateUrl: './template.html',
-  // template: (`
-  //   <div class="child-page-wrapper">
-  //     <div class="info-content" nv-repeat="info in content">
-  //       <h1>{{info.h1}}</h1>
-  //       <p nv-repeat="rp in info.p">{{rp}}</p>
-  //       <div class="child-info" nv-repeat="code in info.info">
-  //         <h2 class="fucker" nv-on:click="click(code, $index)">{{showText(code.title)}}</h2>
-  //         <p nv-repeat="pli in code.p">{{pli}}</p>
-  //         <div class="pchild" nv-if="code.pchild">
-  //           <p nv-repeat="child in code.pchild">{{child}}</p>
-  //         </div>
-  //         <code-shower codes="{code.code}" nv-if="code.code"></code-shower>
-  //       </div>
-  //     </div>
-  //   </div>
-  // `),
-  // providers: [
-  //   {
-  //     provide: TestService,
-  //     useClass: TestService,
-  //   },
-  // ],
+  providers: [
+    {
+      provide: TestService,
+      useClass: TestService,
+    },
+  ],
 })
 export default class DocsComponentContainer implements OnInit, HasRender, DoCheck, OnDestory, RouteChange {
   public content: Info[] = componentInfo();
@@ -70,7 +54,8 @@ export default class DocsComponentContainer implements OnInit, HasRender, DoChec
   }
 
   public click(code: any, index: number) {
-    code.title = '啊哈哈恭喜你发现，打开控制台吧';
+    code.title = '啊哈哈恭喜你发现，打开控制台吧（事件1）';
+    code.title = '啊哈哈恭喜你发现，打开控制台吧（事件2）';
     this.testS.update(3);
     console.log('刚刚更新了service中的值，下面应该就有打印了');
   }

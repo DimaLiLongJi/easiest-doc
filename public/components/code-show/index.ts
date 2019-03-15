@@ -1,20 +1,14 @@
 import 'highlight.js/styles/atom-one-dark.css';
 
-import { Component, OnInit, HasRender, Input } from '@indiv/core';
+import { Component, OnInit, AfterMount, Input, ChangeDetectionStrategy } from '@indiv/core';
 import hljs from 'highlight.js';
 
 @Component({
     selector: 'code-shower',
-    // template: (`
-    //     <div nv-on:click="show()" class="code-show-container">
-    //         <blockquote>
-    //             <pre><code nv-class="type">{{codes}}</code></pre>
-    //         </blockquote>
-    //     </div>
-    // `),
-    templateUrl: './template.html'
+    templateUrl: './template.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class CodeShower implements OnInit, HasRender {
+export default class CodeShower implements OnInit, AfterMount {
     @Input() public codes: string;
     @Input() public type: string;
 
@@ -27,7 +21,7 @@ export default class CodeShower implements OnInit, HasRender {
         console.log(this.codes);
     }
 
-    public nvHasRender() {
+    public nvAfterMount() {
         document.querySelectorAll('pre code').forEach((dom) => {
             hljs.highlightBlock(dom);
         });

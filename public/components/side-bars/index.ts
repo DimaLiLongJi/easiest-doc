@@ -1,7 +1,7 @@
 import './style.less';
 
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestory, Input, ContentChild, ContentChildren, AfterMount } from '@indiv/core';
+import { Component, OnInit, OnDestory, Input, ContentChild, ContentChildren, AfterMount, ChangeDetectionStrategy, MarkForCheck, TMarkForCheck } from '@indiv/core';
 import { RouteChange, NvLocation } from '@indiv/router';
 
 import { navs } from '../../constants/nav';
@@ -18,6 +18,7 @@ type nav = {
 @Component({
     selector: 'side-bar',
     templateUrl: './template.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export default class SideBar implements OnInit, AfterMount, RouteChange, OnDestory {
@@ -27,6 +28,7 @@ export default class SideBar implements OnInit, AfterMount, RouteChange, OnDesto
     @Input() handleSideBar: () => void;
     @ContentChild('a') htmltemplateA: HTMLElement;
     @ContentChildren('a') htmltemplateAs: HTMLElement[];
+    @MarkForCheck() marker: TMarkForCheck;
 
     constructor(
         private testS: TestService,
@@ -71,6 +73,9 @@ export default class SideBar implements OnInit, AfterMount, RouteChange, OnDesto
                     }
                 });
             }
+        });
+        this.marker().then(() => {
+            console.log('渲染完成');
         });
     }
 
