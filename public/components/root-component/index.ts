@@ -10,6 +10,7 @@ import { Component, ChangeDetectionStrategy, MarkForCheck, TMarkForCheck } from 
 export default class RootComponent {
     public showSideBar: string = 'open';
     public currentVersion: string = 'v1.2.2';
+    public nestVersion: string = 'v2.0.6';
     @MarkForCheck() public marker: TMarkForCheck;
 
     public changeShowSideBar() {
