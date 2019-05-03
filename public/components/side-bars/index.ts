@@ -37,8 +37,8 @@ export default class SideBar implements OnInit, AfterMount, RouteChange, OnDesto
         this.subscribeToken = this.testS.subscribe(this.subscribe);
     }
 
-    public subscribe(value: any) {
-        console.log('RXJS value from SideBar', value);
+    public subscribe = (value: any) => {
+        console.log('RXJS value from SideBar', value.next);
     }
 
     public nvOnInit() {

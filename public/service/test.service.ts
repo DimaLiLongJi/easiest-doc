@@ -3,7 +3,7 @@ import { Injectable } from '@indiv/core';
 
 @Injectable()
 export default class TestService {
-  public data: number;
+  public data: number = 0;
   public subject: Subject<any>;
 
   constructor() {
@@ -17,7 +17,7 @@ export default class TestService {
     });
   }
 
-  public update(value: any) {
+  public update = (value: any) => {
     console.log(1000000, 'this.data', this.data);
     this.data = value;
     console.log(111111, 'this.data', this.data);

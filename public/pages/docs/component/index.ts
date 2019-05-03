@@ -56,7 +56,7 @@ export default class DocsComponentContainer implements OnInit, HasRender, DoChec
   public click(code: any, index: number) {
     code.title = '啊哈哈恭喜你发现，打开控制台吧（事件1）';
     code.title = '啊哈哈恭喜你发现，打开控制台吧（事件2）';
-    this.testS.update(3);
+    this.testS.update(Math.round((Math.random())*100));
     console.log('刚刚更新了service中的值，下面应该就有打印了');
   }
   
