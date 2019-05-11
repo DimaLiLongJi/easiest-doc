@@ -1,16 +1,23 @@
 import './style.less';
 
 import { Component, ChangeDetectionStrategy, MarkForCheck, TMarkForCheck } from '@indiv/core';
+import TestService from '../../service/test.service';
 
 @Component({
     selector: 'root-component',
     templateUrl: './template.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [
+        {
+        provide: TestService,
+        useClass: TestService,
+        },
+    ],
 })
 export default class RootComponent {
     public showSideBar: string = 'open';
     public currentVersion: string = 'v1.2.2';
-    public nestVersion: string = 'v2.1.1';
+    public nestVersion: string = 'v2.2.0';
     @MarkForCheck() public marker: TMarkForCheck;
 
     public changeShowSideBar() {

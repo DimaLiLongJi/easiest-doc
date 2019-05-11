@@ -5,6 +5,7 @@ import SideBar from '../components/side-bars';
 import RouterModule from '../routes';
 
 import TestService from '../service/test.service';
+import { testToken } from '../service/inject-token';
 
 import ShareModule from './share.module';
 
@@ -19,6 +20,14 @@ import ShareModule from './share.module';
   ],
   providers: [
     TestService,
+    {
+      provide: testToken,
+      useValue: 'tk123456',
+    },
+    {
+      provide: 'testToken',
+      useValue: 'tk123456',
+    },
   ],
   bootstrap: RootComponent,
 })

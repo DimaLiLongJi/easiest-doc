@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, HasRender, DoCheck, OnInit, OnDestory,  } from '@indiv/core';
+import { Component, HasRender, DoCheck, OnInit, OnDestory, SkipSelf, Self, Optional, Host } from '@indiv/core';
 import { RouteChange } from '@indiv/router';
 import { componentInfo } from '../../../constants/component';
 
@@ -36,7 +36,9 @@ export default class DocsComponentContainer implements OnInit, HasRender, DoChec
   public subscribeToken: Subscription;
 
   constructor(
-    private testS: TestService,
+    @SkipSelf() private testS: TestService,
+    // @Self() private testS: TestService,
+    // @Optional() @Host() private testS: TestService,
   ) {
     this.subscribeToken = this.testS.subscribe(this.subscribe);
   }
@@ -50,13 +52,13 @@ export default class DocsComponentContainer implements OnInit, HasRender, DoChec
   }
 
   public subscribe(value: any) {
-    console.log('RXJS value from DocsComponentContainer', value);
+    console.log(77777, 'RXJS value from DocsComponentContainer', value);
   }
 
   public click(code: any, index: number) {
     code.title = '啊哈哈恭喜你发现，打开控制台吧（事件1）';
     code.title = '啊哈哈恭喜你发现，打开控制台吧（事件2）';
-    this.testS.update(Math.round((Math.random())*100));
+    this.testS.update(5);
     console.log('刚刚更新了service中的值，下面应该就有打印了');
   }
   
