@@ -1,7 +1,7 @@
 import './style.less';
 
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestory, Input, ContentChild, ContentChildren, AfterMount, ChangeDetectionStrategy, MarkForCheck, TMarkForCheck, Optional, SkipSelf, Host, Self, Inject } from '@indiv/core';
+import { Component, OnInit, OnDestory, Input, ContentChild, ContentChildren, AfterMount, ChangeDetectionStrategy, MarkForCheck, TMarkForCheck, Optional, SkipSelf, Host, Self, Inject, Attribute } from '@indiv/core';
 import { RouteChange, NvLocation } from '@indiv/router';
 
 import { navs } from '../../constants/nav';
@@ -44,8 +44,9 @@ export default class SideBar implements OnInit, AfterMount, RouteChange, OnDesto
         private location: NvLocation,
         @SkipSelf() @Inject('testToken') private testToken1: string,
         @Optional() @Self() @Inject(testToken) private testToken2: string,
+        @Attribute('test-attribute') private testAttribute: string,
     ) {
-        console.log(7777777, this.testS, this.testToken1, this.testToken2);
+        console.log(7777777, this.testS, this.testToken1, this.testToken2, this.testAttribute);
         // this.subscribeToken = this.testS.subscribe(this.subscribe);
     }
 
