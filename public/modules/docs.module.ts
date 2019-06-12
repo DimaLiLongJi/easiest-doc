@@ -11,6 +11,7 @@ import DocsLibsContainer from '../pages/docs/libs';
 import DocsHttpContainer from '../pages/docs/http';
 
 import TestService from '../service/test.service';
+import { factoryService, ProvideFactoryService } from '../service/factory.service';
 
 @NvModule({
     imports: [
@@ -27,12 +28,17 @@ import TestService from '../service/test.service';
         DocsLibsContainer,
         DocsHttpContainer,
     ],
-    // providers: [
-    //     {
-    //         provide: TestService,
-    //         useClass: TestService,
-    //     },
-    // ],
+    providers: [
+        // {
+        //     provide: TestService,
+        //     useClass: TestService,
+        // },
+        {
+            provide: ProvideFactoryService,
+            useFactory: factoryService,
+            deps: [TestService]
+        }
+    ],
     exports: [
         DocsContainer,
         DocsComponentContainer,

@@ -38,6 +38,7 @@ export default class SideBar implements OnInit, AfterMount, RouteChange, OnDesto
     @MarkForCheck() marker: TMarkForCheck;
 
     constructor(
+        // private testS: TestService,
         @Host() private testS: TestService,
         // @Self() private testS: TestService,
         // @SkipSelf() private testS: TestService,

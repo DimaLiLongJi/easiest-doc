@@ -4,6 +4,7 @@ import { RouteChange } from '@indiv/router';
 import { componentInfo } from '../../../constants/component';
 
 import TestService from '../../../service/test.service';
+import { ProvideFactoryService } from '../../../service/factory.service';
 
 interface Info {
     h1?: string;
@@ -36,11 +37,14 @@ export default class DocsComponentContainer implements OnInit, HasRender, DoChec
   public subscribeToken: Subscription;
 
   constructor(
+    // private testS: TestService,
     @SkipSelf() private testS: TestService,
     // @Self() private testS: TestService,
     // @Optional() @Host() private testS: TestService,
+    private factoryService: ProvideFactoryService,
   ) {
     this.subscribeToken = this.testS.subscribe(this.subscribe);
+    console.log(888888, this.factoryService.data);
   }
 
   public nvOnInit() {
