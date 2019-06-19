@@ -10,14 +10,14 @@ import TestService from '../../service/test.service';
     providers: [
         {
         provide: TestService,
-        useClass: TestService,
+        // useClass: TestService,
         },
     ],
 })
 export default class RootComponent {
     public showSideBar: string = 'open';
     public currentVersion: string = 'v1.2.2';
-    public nestVersion: string = 'v3.1.0';
+    public nestVersion: string = 'v3.1.1';
     @MarkForCheck() public marker: TMarkForCheck;
 
     public changeShowSideBar() {

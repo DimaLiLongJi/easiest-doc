@@ -19,7 +19,9 @@ import ShareModule from './share.module';
     RootComponent,
   ],
   providers: [
-    TestService,
+    {
+      provide: TestService
+    },
     {
       provide: testToken,
       useValue: 'tk123456',
