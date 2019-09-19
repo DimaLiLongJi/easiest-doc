@@ -52,7 +52,7 @@ import { factoryService, ProvideFactoryService } from '../service/factory.servic
     ],
     bootstrap: DocsContainer,
 })
-export default class DocsModule {
+export class DocsModule {
     constructor () {
         console.log(3333);
     }

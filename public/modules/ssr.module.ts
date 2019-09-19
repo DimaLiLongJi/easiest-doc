@@ -12,4 +12,4 @@ import SSRContainer from '../pages/ssr';
     ],
     bootstrap: SSRContainer,
 })
-export default class SSRModule {}
+export class SSRModule {}

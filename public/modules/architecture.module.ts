@@ -14,4 +14,4 @@ import ArchitectureContainer from '../pages/architecture';
     ],
     bootstrap: ArchitectureContainer,
 })
-export default class ArchitectureModule { }
+export class ArchitectureModule { }

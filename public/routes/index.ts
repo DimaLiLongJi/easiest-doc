@@ -9,16 +9,16 @@ const routes: TRouter[] = [
         children: [
             {
                 path: '/introduction',
-                loadChild: () => import(/* webpackChunkName: "introduction" */ '../modules/introduction.module'),
+                loadChild: () => import(/* webpackChunkName: "introduction" */ '../modules/introduction.module').then(mod => mod.default),
             },
             {
                 path: '/architecture',
-                loadChild: () => import(/* webpackChunkName: "architecture" */ '../modules/architecture.module'),
+                loadChild: () => import(/* webpackChunkName: "architecture" */ '../modules/architecture.module').then(mod => mod.ArchitectureModule),
             },
             {
                 path: '/docs',
                 redirectTo: '/docs/component',
-                loadChild: () => import(/* webpackChunkName: "docs" */ '../modules/docs.module'),
+                loadChild: () => import(/* webpackChunkName: "docs" */ '../modules/docs.module').then(mod => mod.DocsModule),
                 children: [
                     {
                         path: '/component',
@@ -57,11 +57,11 @@ const routes: TRouter[] = [
             },
             {
                 path: '/ssr',
-                loadChild: () => import(/* webpackChunkName: "ssr" */ '../modules/ssr.module'),
+                loadChild: () => import(/* webpackChunkName: "ssr" */ '../modules/ssr.module').then(mod => mod.SSRModule),
             },
             {
                 path: '/middleware',
-                loadChild: () => import(/* webpackChunkName: "middleware" */ '../modules/middleware.module'),
+                loadChild: () => import(/* webpackChunkName: "middleware" */ '../modules/middleware.module').then(mod => mod.default),
             },
         ],
     },
