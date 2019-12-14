@@ -24,11 +24,11 @@ import ShareModule from './share.module';
     },
     {
       provide: testToken,
-      useValue: 'tk123456',
+      useValue: '111',
     },
     {
       provide: 'testToken',
-      useValue: 'tk123456',
+      useValue: '222',
     },
   ],
   bootstrap: RootComponent,

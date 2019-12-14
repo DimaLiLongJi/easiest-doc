@@ -37,11 +37,13 @@ export default class SideBar implements OnInit, AfterMount, RouteChange, OnDesto
     @ContentChildren('a') htmltemplateAs: HTMLElement[];
     @MarkForCheck() marker: TMarkForCheck;
 
+    @Optional()
+    @Self()
+    @Inject(testToken)
+    private testToken0: string;
+
     constructor(
-        // private testS: TestService,
         @Host() private testS: TestService,
-        // @Self() private testS: TestService,
-        // @SkipSelf() private testS: TestService,
         private location: NvLocation,
         @SkipSelf() @Inject('testToken') private testToken1: string,
         @Optional() @Self() @Inject(testToken) private testToken2: string,
@@ -57,7 +59,7 @@ export default class SideBar implements OnInit, AfterMount, RouteChange, OnDesto
 
     public nvOnInit() {
         this.showColor();
-        console.log('SideBar onInit', this.navs);
+        console.log('SideBar onInit', this.navs, this.testToken0);
     }
 
     public nvAfterMount() {

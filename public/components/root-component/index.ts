@@ -17,7 +17,7 @@ import TestService from '../../service/test.service';
 export default class RootComponent {
     public showSideBar: string = 'open';
     public currentVersion: string = 'v1.2.2';
-    public newestVersion: string = 'v4.0.0';
+    public newestVersion: string = 'v4.1.0';
     @MarkForCheck() public marker: TMarkForCheck;
 
     public changeShowSideBar() {
