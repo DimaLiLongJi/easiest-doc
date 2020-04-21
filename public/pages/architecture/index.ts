@@ -26,6 +26,6 @@ type Tcontent = {
   //   </div>
   // `),
 })
-export default class ArchitectureContainer {
+export class ArchitectureContainer {
   public content: Tcontent[] = content();
 }

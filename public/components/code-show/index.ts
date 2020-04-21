@@ -1,6 +1,6 @@
 import 'highlight.js/styles/atom-one-dark.css';
 
-import { Component, OnInit, AfterMount, Input, ChangeDetectionStrategy } from '@indiv/core';
+import { Component, OnInit, AfterMount, Input, ChangeDetectionStrategy, ElementRef, ViewChild } from '@indiv/core';
 import hljs from 'highlight.js';
 
 @Component({
@@ -8,9 +8,10 @@ import hljs from 'highlight.js';
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class CodeShower implements OnInit, AfterMount {
+export class CodeShower implements OnInit, AfterMount {
     @Input() public codes: string;
     @Input() public type: string;
+    @ViewChild('pre code') private codeElement: ElementRef;
 
     public nvOnInit() {
         this.type = this.type || 'typescript';
@@ -22,8 +23,6 @@ export default class CodeShower implements OnInit, AfterMount {
     }
 
     public nvAfterMount() {
-        document.querySelectorAll('pre code').forEach((dom) => {
-            hljs.highlightBlock(dom);
-        });
+        hljs.highlightBlock(this.codeElement.nativeElement);
     }
 }

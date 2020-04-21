@@ -1,6 +1,6 @@
 import { NvModule } from '@indiv/core';
 import ShareModule from './share.module';
-import ArchitectureContainer from '../pages/architecture';
+import { ArchitectureContainer } from '../pages/architecture';
 
 @NvModule({
     imports: [

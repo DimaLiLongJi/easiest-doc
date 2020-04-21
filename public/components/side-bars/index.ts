@@ -27,8 +27,7 @@ type nav = {
         },
     ],
 })
-
-export default class SideBar implements OnInit, AfterMount, RouteChange, OnDestory {
+export class SideBar implements OnInit, AfterMount, RouteChange, OnDestory {
     public navs: nav[] = navs();
     public num: number = 1;
     public subscribeToken: Subscription;

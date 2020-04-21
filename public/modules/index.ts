@@ -1,7 +1,7 @@
 import { NvModule } from '@indiv/core';
 
-import RootComponent from '../components/root-component';
-import SideBar from '../components/side-bars';
+import { RootComponent } from '../components/root-component';
+import { SideBar } from '../components/side-bars';
 import RouterModule from '../routes';
 
 import TestService from '../service/test.service';

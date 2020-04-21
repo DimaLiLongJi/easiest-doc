@@ -1,5 +1,5 @@
 import { NvModule } from '@indiv/core';
-import CodeShower from '../components/code-show';
+import { CodeShower } from '../components/code-show';
 
 @NvModule({
     declarations: [
