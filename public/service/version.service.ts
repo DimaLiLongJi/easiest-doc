@@ -1,4 +1,4 @@
-import { Injectable } from "@indiv/core";
+import { Injectable, InjectionToken } from "@indiv/core";
 
 let a = 0;
 
@@ -6,7 +6,7 @@ let a = 0;
   providedIn: 'root'
 })
 export class VersionService {
-  private lastVersion: string = 'v4.1.1';
+  private lastVersion: string = 'v4.2.0';
 
   constructor() {
     a ++;
@@ -17,3 +17,11 @@ export class VersionService {
     return this.lastVersion;
   }
 }
+
+export const versionToken = new InjectionToken<string>('versionToken', {
+  providedIn: 'root',
+  factory: () => {
+    console.log(2222222222, '来自InjectionToken versionToken');
+    return 'v4.2.0';
+  }
+})
