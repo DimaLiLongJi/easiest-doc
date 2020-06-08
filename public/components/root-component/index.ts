@@ -2,6 +2,7 @@ import './style.less';
 
 import { Component, ChangeDetectionStrategy, MarkForCheck, TMarkForCheck } from '@indiv/core';
 import TestService from '../../service/test.service';
+import { VersionService } from '../../service/version.service';
 
 @Component({
     selector: 'root-component',
@@ -17,8 +18,12 @@ import TestService from '../../service/test.service';
 export class RootComponent {
     public showSideBar: string = 'open';
     public currentVersion: string = 'v1.2.2';
-    public newestVersion: string = 'v4.1.0';
+    public lastVersion: string = 'v4.1.0';
     @MarkForCheck() public marker: TMarkForCheck;
+
+    constructor(private versionService: VersionService) {
+        this.lastVersion = this.versionService.getLastVersion();
+    }
 
     public changeShowSideBar() {
         if (this.showSideBar === 'open') {

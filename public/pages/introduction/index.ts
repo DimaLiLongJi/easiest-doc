@@ -1,6 +1,7 @@
-import { Component } from '@indiv/core';
+import { Component, Inject, AfterMount, Watch } from '@indiv/core';
 
 import { content } from '../../constants/introduction';
+import { VersionService } from '../../service/version.service';
 
 type Info = {
     [x: string]: any;
@@ -26,6 +27,15 @@ type Info = {
     //     </div>
     // `),
 })
-export default class IntroductionContainer {
+export default class IntroductionContainer implements AfterMount {
+    @Watch() public lastVersion: string;
     public infos: Info[] = content();
+    
+    @Inject(VersionService)
+    private versionService: VersionService;
+
+    public nvAfterMount(): void {
+        this.lastVersion = this.versionService.getLastVersion();
+        console.log(444444444, (this as any).$dependencesList);
+    }
 }

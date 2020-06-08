@@ -1,6 +1,7 @@
 <div class="page-container">
   <div class="info-content" nv-repeat="info in infos">
       <h1>{{info.h1}}</h1>
+      <a href="https://dimalilongji.github.io/InDiv" target="_blank">最新版本：{{lastVersion}}</a>
       <p nv-repeat="pp in info.p">{{pp}}</p>
       <div class="child-info" nv-if="info.info">
           <div class="pchild">
