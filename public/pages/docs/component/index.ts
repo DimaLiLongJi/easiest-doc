@@ -1,5 +1,6 @@
 import { Subscription } from 'rxjs';
-import { Component, HasRender, DoCheck, OnInit, OnDestory, SkipSelf, Self, Optional, Host } from '@indiv/core';
+import { Component, HasRender, DoCheck, OnInit, OnDestory } from '@indiv/core';
+import { SkipSelf, Self, Optional, Host } from '@indiv/di';
 import { RouteChange } from '@indiv/router';
 import { componentInfo } from '../../../constants/component';
 

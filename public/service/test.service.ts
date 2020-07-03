@@ -1,5 +1,5 @@
 import { Subject, Subscription } from 'rxjs';
-import { Injectable } from '@indiv/core';
+import { Injectable } from '@indiv/di';
 
 @Injectable()
 export default class TestService {

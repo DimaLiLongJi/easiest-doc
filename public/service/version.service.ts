@@ -1,4 +1,4 @@
-import { Injectable, InjectionToken } from "@indiv/core";
+import { Injectable, InjectionToken } from "@indiv/di";
 
 let a = 0;
 

@@ -1,5 +1,5 @@
-import { Component, Inject, AfterMount, Watch } from '@indiv/core';
-
+import { Component, AfterMount, Watch } from '@indiv/core';
+import { Inject } from '@indiv/di';
 import { content } from '../../constants/introduction';
 import { VersionService, versionToken } from '../../service/version.service';
 

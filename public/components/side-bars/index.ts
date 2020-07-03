@@ -1,7 +1,8 @@
 import './style.less';
 
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestory, Input, ContentChild, ContentChildren, AfterMount, ChangeDetectionStrategy, MarkForCheck, TMarkForCheck, Optional, SkipSelf, Host, Self, Inject, Attribute } from '@indiv/core';
+import { Component, OnInit, OnDestory, Input, ContentChild, ContentChildren, AfterMount, ChangeDetectionStrategy, MarkForCheck, TMarkForCheck, Attribute } from '@indiv/core';
+import { Optional, SkipSelf, Host, Self, Inject } from '@indiv/di';
 import { RouteChange, NvLocation } from '@indiv/router';
 
 import { navs } from '../../constants/nav';
@@ -41,6 +42,10 @@ export class SideBar implements OnInit, AfterMount, RouteChange, OnDestory {
     @Inject(testToken)
     private testToken0: string;
 
+    @Optional()
+    @Attribute('test-attribute')
+    private testAttribute2: string;
+
     constructor(
         @Host() private testS: TestService,
         private location: NvLocation,
@@ -58,7 +63,7 @@ export class SideBar implements OnInit, AfterMount, RouteChange, OnDestory {
 
     public nvOnInit() {
         this.showColor();
-        console.log('SideBar onInit', this.navs, this.testToken0);
+        console.log('SideBar onInit', this.navs, this.testToken0, this.testAttribute2);
     }
 
     public nvAfterMount() {
