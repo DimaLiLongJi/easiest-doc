@@ -26,6 +26,7 @@ interface Info {
 @Component({
   selector: 'docs-component-container',
   templateUrl: './template.html',
+
   
   providers: [
     {
