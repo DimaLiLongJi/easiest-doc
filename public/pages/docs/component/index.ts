@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Component, HasRender, DoCheck, OnInit, OnDestory } from '@indiv/core';
-import { SkipSelf, Self, Optional, Host } from '@indiv/di';
+import { SkipSelf, Self, Optional, Host, Inject } from '@indiv/di';
 import { RouteChange } from '@indiv/router';
 import { componentInfo } from '../../../constants/component';
 
@@ -26,6 +26,7 @@ interface Info {
 @Component({
   selector: 'docs-component-container',
   templateUrl: './template.html',
+  
   providers: [
     {
       provide: TestService,
